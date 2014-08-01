@@ -5,13 +5,14 @@ include_once("../dao/UsuarioDAO.php");
 
 if(isset($_POST['buttonCadastrar'])) {
 	
-	$nome = $_POST["inputNome"];
-	$email = $_POST["inputEmail"];
-	$senha = $_POST["inputSenha"];
-	$idade = $_POST["inputIdade"];
-	$genero = $_POST["radioGenero"];
-	$escolaridade = $_POST["selectEscolaridade"];
-	$formacaoAcademica = $_POST["inputFormacaoAcademica"];
+	$nome = addslashes($_POST["inputNome"]);
+	$email = addslashes($_POST["inputEmail"]);
+	$senha = md5(addslashes($_POST["inputSenha"]));
+	$idade = addslashes($_POST["inputIdade"]);
+	$genero = addslashes($_POST["radioGenero"]);
+	$escolaridade = addslashes($_POST["selectEscolaridade"]);
+	$formacaoAcademica = addslashes($_POST["inputFormacaoAcademica"]);
+	$situacao = '1';
 	
 	echo $nome."/".$email."/".$senha."/".$idade."/".$genero."/".$escolaridade."/".$formacaoAcademica;
 	
@@ -27,12 +28,9 @@ if(isset($_POST['buttonCadastrar'])) {
 		else {
 			echo "\nPÁGINA INICIAL";
 			
-			$usuario = new Usuario($nome, $email, $senha, $idade, $genero, $escolaridade, $formacaoAcademica);
-			
-			echo "oi";
+			$usuario = new Usuario($nome, $email, $senha, $idade, $genero, $escolaridade, $formacaoAcademica, $situacao);
 			
 			$usuarioDAO = new UsuarioDAO();
-			echo "oi2";
 			
 			$usuarioDAO->inserirUsuario($usuario);
 			

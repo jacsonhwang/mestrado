@@ -70,8 +70,10 @@
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-default" name="buttonCadastrar" id="buttonCadastrar">Cadastrar</button>
-					</div>
-				</div>
+						<button type="submit" class="btn btn-default" name="buttonAlterar" id="buttonAlterar">Alterar</button>
+						<button type="" class="btn btn-default" name="buttonDesativar" id="buttonDesativar">Desativar</button>
+					</div>										
+				</div>	
 			</form>
 		</div>
 	</div>

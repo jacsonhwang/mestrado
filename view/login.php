@@ -7,17 +7,17 @@
 					<h1>Login</h1>
 				</div>
 				
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal" role="form" action="../controller/loginControle.php" method="POST">
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-3 control-label">Usu&aacute;rio</label>
 						<div class="col-sm-6">
-							<input type="email" class="form-control" id="inputEmail3">
+							<input type="email" class="form-control" id="inputEmail3" name="inputEmail">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputPassword3" class="col-sm-3 control-label">Senha</label>
 						<div class="col-sm-6">
-							<input type="password" class="form-control" id="inputPassword3">
+							<input type="password" class="form-control" id="inputPassword3" name="inputSenha">
 						</div>
 					</div>
 					<div class="form-group">
