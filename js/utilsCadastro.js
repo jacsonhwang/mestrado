@@ -19,4 +19,22 @@ $(document).ready(function() {
             return false;
         }
     });
+	
+	/*$("#formCadastro").bootstrapValidator({
+        excluded: ...,
+        feedbackIcons: ...,
+        live: 'enabled',
+        message: 'This value is not valid',
+        submitButtons: 'button[type="submit"]',
+        trigger: null,
+        fields: {
+        	text: {
+        		validators: {
+        			notEmpty: {
+        				message: "Favor preencher o campo."
+        			}
+        		}
+        	}
+        }
+    });*/
 });
