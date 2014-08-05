@@ -22,7 +22,7 @@ class Usuario {
 		$this->situacao = $situacao;
 	}
 	
-	/* function getNome() {
+	function getNome() {
 		return $this->nome;
 	}
 	
@@ -48,7 +48,7 @@ class Usuario {
 	
 	function getFormacaoAcademica() {
 		return $this->formacaoAcademica;
-	} */
+	}
 	
 	function getSituacao() {
 		return $this->situacao;

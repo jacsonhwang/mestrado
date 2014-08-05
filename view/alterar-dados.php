@@ -5,41 +5,41 @@
 		<div class="col-lg-8 col-lg-offset-2">
 
 			<div class="page-header">
-				<h2>Cadastro</h2>
+				<h2>Alterar dados cadastrais</h2>
 			</div>
+			
+			<?php
+			session_start();
+			
+			if(isset($_SESSION["nome"])) {
+			?>
 
-			<form class="form-horizontal" role="form" action="../controller/cadastroControle.php" method="POST" id="formCadastro">
+			<form class="form-horizontal" role="form" action="../controller/alterarDadosControle.php" method="POST" id="formAlterarDados">
 				<div class="form-group">
 					<label for="inputNome" class="col-sm-2 control-label">Nome</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="inputNome" name="inputNome">
+						<input type="text" class="form-control" id="inputNome" name="inputNome" value="<?php echo $_SESSION["nome"]; ?>">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputEmail" class="col-sm-2 control-label">Email</label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail" name="inputEmail">
+						<input type="email" class="form-control" id="inputEmail" name="inputEmail" value="<?php echo $_SESSION["email"]; ?>">
 					</div>
-				</div>
-				<div class="form-group">
-					<label for="inputSenha" class="col-sm-2 control-label">Senha</label>
-					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputSenha" name="inputSenha">
-					</div>
-				</div>
+				</div>				
 				<div class="form-group">
 					<label for="inputIdade" class="col-sm-2 control-label">Idade</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="inputIdade" name="inputIdade">
+						<input type="text" class="form-control" id="inputIdade" name="inputIdade" value="<?php echo $_SESSION["idade"]; ?>">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Sexo</label>
 					<div class="col-sm-10">
 						<label class="radio-inline"> <input type="radio"
-							name="radioGenero" id="radioGenero" value="m">Masculino
+							name="radioGenero" id="radioGenero" value="m" <?php if ($_SESSION["genero"] == "m") { echo "checked"; } ?>>Masculino
 						</label> <label class="radio-inline"> <input type="radio"
-							name="radioGenero" id="radioGenero" value="f">Feminino
+							name="radioGenero" id="radioGenero" value="f" <?php if ($_SESSION["genero"] == "f") { echo "checked"; } ?>>Feminino
 						</label>
 					</div>
 				</div>
@@ -47,16 +47,27 @@
 					<label for="inputIdade" class="col-sm-2 control-label">Escolaridade</label>
 					<div class="col-sm-10">
 						<select class="form-control" id="selectEscolaridade" name="selectEscolaridade">
-							<option disabled selected></option>
-							<option value="1">Analfabeto</option>
-							<option value="2">Ensino fundamental</option>
-							<option value="3">Ensino m&eacute;dio</option>
-							<option value="4">Superior incompleto</option>
-							<option value="5">Superior completo</option>
-							<option value="6">P&oacute;s-graduado</option>
-							<option value="7">Mestrado</option>
-							<option value="8">Doutorado</option>
-							<option value="9">Superior em andamento</option>
+							<?php
+							$opcoes["1"] = "Analfabeto";
+							$opcoes["2"] = "Ensino fundamental";
+							$opcoes["3"] = "Ensino médio";
+							$opcoes["4"] = "Superior incompleto";
+							$opcoes["5"] = "Superior completo";
+							$opcoes["6"] = "Pós-graduado";
+							$opcoes["7"] = "Mestrado";
+							$opcoes["8"] = "Doutorado";
+							$opcoes["9"] = "Superior em andamento";
+
+							foreach($opcoes as $key => $opcao) {
+								echo '<option value="' . $key . '"';
+								
+								if($_SESSION["escolaridade"] == $key) {
+									echo " selected";
+								}
+								
+								echo ">" . $opcao . "</option>";
+							}
+							?>
 						</select>
 					</div>
 				</div>
@@ -64,24 +75,24 @@
 					<label for="inputFormacaoAcademica" class="col-sm-2 control-label">Forma&ccedil;&atilde;o
 						acad&ecirc;mica</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="inputFormacaoAcademica" name="inputFormacaoAcademica" disabled>
+						<input type="text" class="form-control" id="inputFormacaoAcademica" name="inputFormacaoAcademica" <?php if($_SESSION["escolaridade"] <= 3) echo " disabled"; ?> value="<?php echo $_SESSION["formacaoAcademica"]; ?>">
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default" name="buttonCadastrar" id="buttonCadastrar">Cadastrar</button>
-						<button type="submit" class="btn btn-default" name="buttonAlterar" id="buttonAlterar">Alterar</button>
-						<button type="" class="btn btn-default" name="buttonDesativar" id="buttonDesativar">Desativar</button>
+						<button type="submit" class="btn btn-default" name="buttonAlterar" id="buttonAlterar">Salvar alterações</button>
 					</div>										
 				</div>	
 			</form>
+			
+			<?php } ?>
 		</div>
 	</div>
 </div>
 
 <script>
 	$(document).ready(function() {
-		$("#formCadastro").bootstrapValidator({
+		$("#formAlterarDados").bootstrapValidator({
 			feedbackIcons: {
 	            valid: 'glyphicon glyphicon-ok',
 	            invalid: 'glyphicon glyphicon-remove',
@@ -105,13 +116,6 @@
 	                    }
 	        		}
 	        	},
-	        	inputSenha: {
-	        		validators: {
-	        			notEmpty: {
-	        				message: "Favor preencher o campo."
-	        			}
-	        		}
-	    		},
 	    		inputIdade: {
 	    			validators: {
 	        			notEmpty: {
