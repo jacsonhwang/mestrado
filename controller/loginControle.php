@@ -1,6 +1,8 @@
 <?php
 include_once("../model/Usuario.php");
+include_once("../model/Administrador.php");
 include_once("../dao/UsuarioDAO.php");
+include_once("../dao/AdministradorDAO.php");
 
 $email = addslashes($_POST["inputEmail"]);
 $senha = addslashes($_POST["inputSenha"]);
@@ -15,7 +17,22 @@ else {
 	$usuario = $usuarioDAO->loginUsuario($email, $senha);
 
 	if ($usuario == false) {
-		header("location: ../view/login-erro.php");
+		
+		$adminDAO = new AdministradorDAO();
+		
+		$admin = $adminDAO->loginAdministrador($email, $senha);
+		
+		if($admin == false) {
+			header("location: ../view/login-erro.php");
+		}
+		else {			
+			session_start();
+			
+			$_SESSION["nomeAdmin"] = $admin->getNome();
+			$_SESSION["emailAdmin"] = $admin->getEmail();
+			
+			header("location: ../view/login-sucesso.php");
+		}
 	}
 	else {
 		session_start();
@@ -26,11 +43,13 @@ else {
 		$_SESSION["genero"] = $usuario->getGenero();
 		$_SESSION["escolaridade"] = $usuario->getEscolaridade();
 		$_SESSION["formacaoAcademica"] = $usuario->getFormacaoAcademica();
+		$_SESSION["marketplace"] = $usuario->getMarketplace();
+		$_SESSION["science"] = $usuario->getScience();
+		$_SESSION["gaming"] = $usuario->getGaming();
 		
-		//header("location: ../view/login-sucesso.php");
+		header("location: ../view/login-sucesso.php");
 	}
 
-	// não entendi
 	$situacao = $usuario->getSituacao();
 
 	if ($situacao == 1) {

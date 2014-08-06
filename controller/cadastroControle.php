@@ -12,29 +12,56 @@ if(isset($_POST['buttonCadastrar'])) {
 	$genero = addslashes($_POST["radioGenero"]);
 	$escolaridade = addslashes($_POST["selectEscolaridade"]);
 	$formacaoAcademica = addslashes($_POST["inputFormacaoAcademica"]);
+	$marketplace = addslashes($_POST["radioMarketplace"]);
+	$science = addslashes($_POST["radioScience"]);
+	$gaming = addslashes($_POST["radioGaming"]);
+	
 	$situacao = '1';
 	
-	echo $nome."/".$email."/".$senha."/".$idade."/".$genero."/".$escolaridade."/".$formacaoAcademica;
+	session_start();
 	
-	if(empty($nome) || empty($email) || empty($senha) || empty($idade) || !isset($genero, $escolaridade)) {
-		echo "\nPÁGINA DE CADASTRO 1";
-		//header("location: ../view/cadastro.php");
+	$_SESSION["nomeCadastro"] = $nome;
+	$_SESSION["emailCadastro"] = $email;
+	$_SESSION["idadeCadastro"] = $idade;		
+	$_SESSION["generoCadastro"] = $genero;
+	$_SESSION["escolaridadeCadastro"] = $escolaridade;
+	$_SESSION["formacaoAcademicaCadastro"] = $formacaoAcademica;
+	$_SESSION["marketplaceCadastro"] = $marketplace;
+	$_SESSION["scienceCadastro"] = $science;
+	$_SESSION["gaming"] = $gaming;
+	
+	if(intval($escolaridade) <= 3) {
+		$formacaoAcademica = null;
+	}
+	
+	$usuarioDAO = new UsuarioDAO();
+	
+	$emailCadastrado = $usuarioDAO->buscarEmail($email);
+	
+	if(empty($nome) || empty($email) || empty($senha) || empty($idade) || !isset($genero, $escolaridade, $marketplace, $science, $gaming)) {
+		$_SESSION["erro"] = "Favor preencher todos os campos.";
+		
+		header("location: ../view/cadastro.php");
 	}
 	else {
 		if(intval($escolaridade) > 3 && empty($formacaoAcademica)) {
-			echo "\nPÁGINA DE CADASTRO 2";
-			//header("location: ../view/cadastro.php");
+			$_SESSION["erro"] = "Favor preencher todos os campos.";
+			
+			header("location: ../view/cadastro.php");
 		}
-		else {
-			echo "\nPÁGINA INICIAL";
+		elseif ($emailCadastrado == true) {
+			$_SESSION["erro"] = "O e-mail inserido já está cadastrado no sistema.";
 			
-			$usuario = new Usuario($nome, $email, $senha, $idade, $genero, $escolaridade, $formacaoAcademica, $situacao);
-			
-			$usuarioDAO = new UsuarioDAO();
+			header("location: ../view/cadastro.php");
+		}
+		else {			
+			$usuario = new Usuario($nome, $email, $senha, $idade, $genero, $escolaridade, $formacaoAcademica, $marketplace, $science, $gaming, $situacao);
 			
 			$usuarioDAO->inserirUsuario($usuario);
 			
-			//header("location: ../index.php");
+			header("location: ../view/cadastro-sucesso.php");
+			
+			session_destroy();
 		}
 	}
 }

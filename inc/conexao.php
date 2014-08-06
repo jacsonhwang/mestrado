@@ -3,8 +3,8 @@
 class Conexao{
 
 	private $host = "146.164.34.73";
-	private $user = "sa";
-	private $pass = "tG45y#78gHty";
+	private $user = "usuario_site_mestrado";
+	private $pass = "147/*-mestradojacsonusuariocomum-*/741";
 	private $db = "mestrado";
 
 	public $query;

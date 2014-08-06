@@ -36,25 +36,44 @@
 				<a class="navbar-brand" href="#">NOME DO PROJETO</a>
 			</div>
 			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<?php
-					session_start();
-					
-					if(!isset($_SESSION["nome"])) {
-					?>
+			
+				<?php session_start(); ?>
+				
+				<?php
+				if(!isset($_SESSION["email"]) && !isset($_SESSION["emailAdmin"])) {
+				?>
+				
+					<ul class="nav navbar-nav">
 						<li><a href="cadastro.php" id="linkCadastro">Cadastro</a></li>
 						<li><a href="login.php" id="linkLogin">Login</a></li>
-				</ul>
+					</ul>
+				
 				<?php
-					} else {
+				} elseif (isset($_SESSION["email"])) {
 				?>
+				
+					<ul class="nav navbar-nav">
 						<li><a href="#">Jogar</a></li>
 						<li><a href="perfil.php">Perfil</a></li>
 						<li><a href="logout.php" id="linkLogout">Sair</a></li>
-				</ul>
+					</ul>
+					
+					<p class="navbar-text navbar-right" id="usuarioLogado">Bem-vindo(a), <?php echo $_SESSION["nome"]; ?>!</p>
+					
+				<?php
+				} else {
+				?>
 				
-				<p class="navbar-text navbar-right" id="usuarioLogado">Bem-vindo(a), <?php echo $_SESSION["nome"]; ?>!</p>
-				<?php } ?>
+					<ul class="nav navbar-nav">
+						<li><a href="painel_admin.php">Painel administrativo</a></li>
+						<li><a href="logout.php" id="linkLogout">Sair</a></li>
+					</ul>
+					
+					<p class="navbar-text navbar-right" id="usuarioLogado">Bem-vindo(a), <?php echo $_SESSION["nomeAdmin"]; ?>!</p>
+					
+				<?php
+				}
+				?>
 			</div>
 		</div>
 	</div>

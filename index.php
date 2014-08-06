@@ -1,1 +1,1 @@
-<?php include 'view/main.php'; ?>
+<?php include_once('view/main.php'); ?>

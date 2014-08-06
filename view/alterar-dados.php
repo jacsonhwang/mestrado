@@ -11,7 +11,7 @@
 			<?php
 			session_start();
 			
-			if(isset($_SESSION["nome"])) {
+			if(isset($_SESSION["email"])) {
 			?>
 
 			<form class="form-horizontal" role="form" action="../controller/alterarDadosControle.php" method="POST" id="formAlterarDados">
@@ -76,6 +76,58 @@
 						acad&ecirc;mica</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="inputFormacaoAcademica" name="inputFormacaoAcademica" <?php if($_SESSION["escolaridade"] <= 3) echo " disabled"; ?> value="<?php echo $_SESSION["formacaoAcademica"]; ?>">
+					</div>
+				</div>
+				<p class="text-center"><strong>Participação em sistemas crowdsourcing</strong></p>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Marketplace</label>
+					<div class="col-sm-10">
+						<label class="radio-inline">
+							<input type="radio" name="radioMarketplace" id="radioMarketplace" value="avancado" <?php if($_SESSION["marketplace"] == "avancado") { echo "checked"; } ?>>Avançado
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioMarketplace" id="radioMarketplace" value="intermediario" <?php if($_SESSION["marketplace"] == "intermediario") { echo "checked"; } ?>>Intermediário
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioMarketplace" id="radioMarketplace" value="basico" <?php if($_SESSION["marketplace"] == "basico") { echo "checked"; } ?>>Básico
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioMarketplace" id="radioMarketplace" value="nenhum" <?php if($_SESSION["marketplace"] == "nenhum") { echo "checked"; } ?>>Nenhum
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Science</label>
+					<div class="col-sm-10">
+						<label class="radio-inline">
+							<input type="radio" name="radioScience" id="radioScience" value="avancado" <?php if($_SESSION["science"] == "avancado") { echo "checked"; } ?>>Avançado
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioScience" id="radioScience" value="intermediario" <?php if($_SESSION["science"] == "intermediario") { echo "checked"; } ?>>Intermediário
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioScience" id="radioScience" value="basico" <?php if($_SESSION["science"] == "basico") { echo "checked"; } ?>>Básico
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioScience" id="radioScience" value="nenhum" <?php if($_SESSION["science"] == "nenhum") { echo "checked"; } ?>>Nenhum
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Gaming</label>
+					<div class="col-sm-10">
+						<label class="radio-inline">
+							<input type="radio" name="radioGaming" id="radioGaming" value="avancado" <?php if($_SESSION["gaming"] == "avancado") { echo "checked"; } ?>>Avançado
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioGaming" id="radioGaming" value="intermediario" <?php if($_SESSION["gaming"] == "intermediario") { echo "checked"; } ?>>Intermediário
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioGaming" id="radioGaming" value="basico" <?php if($_SESSION["gaming"] == "basico") { echo "checked"; } ?>>Básico
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="radioGaming" id="radioGaming" value="nenhum" <?php if($_SESSION["gaming"] == "nenhum") { echo "checked"; } ?>>Nenhum
+						</label>
 					</div>
 				</div>
 				<div class="form-group">

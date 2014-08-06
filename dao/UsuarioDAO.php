@@ -18,7 +18,7 @@ class UsuarioDAO {
 		$cn->disconnect();
 	}
 	
-	public function alterarUsuario ($usuario) {
+	public function alterarUsuario ($usuario, $emailAtual) {
 		
 		$cn = new Conexao();
 		
@@ -29,11 +29,11 @@ class UsuarioDAO {
 					genero='" . $usuario->getGenero() . "',
 					escolaridade='" . $usuario->getEscolaridade() . "',
 					formacao_academica='" . $usuario->getFormacaoAcademica() . "'
-				WHERE email='" . $usuario->getEmail() . "';";
+				WHERE email='" . $emailAtual . "';";
 		
 		$cn->execute($sql);
 		
-		$cn->disconnect();		
+		$cn->disconnect();	
 	}
 	
 	public function loginUsuario($usuario, $senha){
@@ -55,7 +55,7 @@ class UsuarioDAO {
 			}
 		}
 
-		$sql = "SELECT nome, idade, genero, escolaridade, formacao_academica, situacao
+		$sql = "SELECT nome, idade, genero, escolaridade, formacao_academica, marketplace, science, gaming, situacao
 				FROM usuario
 				WHERE email = '".$usuario."'
 		              AND senha = '".$senha."'";
@@ -64,7 +64,9 @@ class UsuarioDAO {
 		
 		while ($rs = sqlsrv_fetch_array($result)) {
 		
-			$novoUsuario = new Usuario($rs["nome"], $usuario, null, $rs["idade"], $rs["genero"], $rs["escolaridade"], $rs["formacao_academica"], $rs['situacao']);
+			$novoUsuario = new Usuario($rs["nome"], $usuario, null, $rs["idade"], $rs["genero"], $rs["escolaridade"],
+									   $rs["formacao_academica"], $rs["marketplace"], $rs["science"], $rs["gaming"],
+									   $rs['situacao']);
 		
 			$cn->disconnect();
 		
@@ -99,6 +101,24 @@ class UsuarioDAO {
 		$cn->execute($sql);
 		
 		$cn->disconnect();
+	}
+	
+	public function buscarEmail ($email) {
+		
+		$cn = new Conexao();
+		
+		$sql = "SELECT COUNT(*) FROM usuario WHERE email='" . $email . "'";
+		
+		$result = $cn->execute($sql);
+		
+		while ($rs = sqlsrv_fetch_array($result)) {		
+			$quantidade = $rs[0];
+		}
+		
+		$cn->disconnect();
+		
+		if($quantidade != 0) return true;
+		else return false;
 	}
 }
 

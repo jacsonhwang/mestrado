@@ -1,15 +1,6 @@
 <?php include 'header.php'; ?>
 <div>
-	
-	<?php
-	session_start();
-	
-	if(isset($_SESSION["nome"])) {
-		echo $_SESSION["nome"];
-	}
-	?>
-	<br />
-	
+	<?php echo $_SERVER["DOCUMENT_ROOT"]; ?>
 	<a href="view/cadastro.php">Cadastro</a><br />
 	<a href="view/login.php">Login</a>
 </div>

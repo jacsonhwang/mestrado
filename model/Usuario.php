@@ -9,9 +9,12 @@ class Usuario {
 	private $genero;
 	private $escolaridade;
 	private $formacaoAcademica;
+	private $marketplace;
+	private $science;
+	private $gaming;
 	private $situacao;
 	
-	public function __construct($nome, $email, $senha, $idade, $genero, $escolaridade, $formacaoAcademica, $situacao) {
+	public function __construct($nome, $email, $senha, $idade, $genero, $escolaridade, $formacaoAcademica, $marketplace, $science, $gaming, $situacao) {
 		$this->nome = $nome;
 		$this->email = $email;
 		$this->senha = $senha;
@@ -19,6 +22,9 @@ class Usuario {
 		$this->genero = $genero;
 		$this->escolaridade = $escolaridade;
 		$this->formacaoAcademica = $formacaoAcademica;
+		$this->marketplace = $marketplace;
+		$this->science = $science;
+		$this->gaming = $gaming;
 		$this->situacao = $situacao;
 	}
 	
@@ -50,6 +56,18 @@ class Usuario {
 		return $this->formacaoAcademica;
 	}
 	
+	function getMarketplace() {
+		return $this->marketplace;
+	}
+	
+	function getScience() {
+		return $this->science;
+	}
+	
+	function getGaming() {
+		return $this->gaming;
+	}
+	
 	function getSituacao() {
 		return $this->situacao;
 	}
@@ -62,6 +80,9 @@ class Usuario {
 		$usuarioArray['genero']             = $this->genero;
 		$usuarioArray['escolaridade']       = $this->escolaridade;
 		$usuarioArray['formacao_academica'] = $this->formacaoAcademica;
+		$usuarioArray['marketplace']		= $this->marketplace;
+		$usuarioArray['science']			= $this->science;
+		$usuarioArray['gaming']				= $this->gaming;
 		$usuarioArray['situacao']           = $this->situacao;
 		
 		return $usuarioArray;
