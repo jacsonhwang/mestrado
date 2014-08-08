@@ -19,7 +19,7 @@
 				}
 			?>
 
-				<form class="form-horizontal" role="form" action="../controller/alterarSenhaControle.php" method="POST" id="formAlterarSenha">
+				<form class="form-horizontal" role="form" action="controller/alterarSenhaControle.php" method="POST" id="formAlterarSenha">
 					<div class="form-group">
 						<label for="inputSenhaAtual" class="col-sm-2 control-label">Senha atual</label>
 						<div class="col-sm-6">

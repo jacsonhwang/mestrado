@@ -15,7 +15,7 @@
 			
 			<div class="alert alert-success" role="alert">A sessão foi finalizada.</div>
 			
-			<a href="../index.php">Voltar para página inicial</a>
+			<a href="index.php">Voltar para página inicial</a>
 		</div>
 	</div>
 </div>

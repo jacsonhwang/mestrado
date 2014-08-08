@@ -41,25 +41,25 @@ if(isset($_POST['buttonCadastrar'])) {
 	if(empty($nome) || empty($email) || empty($senha) || empty($idade) || !isset($genero, $escolaridade, $marketplace, $science, $gaming)) {
 		$_SESSION["erro"] = "Favor preencher todos os campos.";
 		
-		header("location: ../view/cadastro.php");
+		header("location: ../cadastro.php");
 	}
 	else {
 		if(intval($escolaridade) > 3 && empty($formacaoAcademica)) {
 			$_SESSION["erro"] = "Favor preencher todos os campos.";
 			
-			header("location: ../view/cadastro.php");
+			header("location: ../cadastro.php");
 		}
 		elseif ($emailCadastrado == true) {
 			$_SESSION["erro"] = "O e-mail inserido já está cadastrado no sistema.";
 			
-			header("location: ../view/cadastro.php");
+			header("location: ../cadastro.php");
 		}
 		else {			
 			$usuario = new Usuario($nome, $email, $senha, $idade, $genero, $escolaridade, $formacaoAcademica, $marketplace, $science, $gaming, $situacao);
 			
 			$usuarioDAO->inserirUsuario($usuario);
 			
-			header("location: ../view/cadastro-sucesso.php");
+			header("location: ../cadastro-sucesso.php");
 			
 			session_destroy();
 		}

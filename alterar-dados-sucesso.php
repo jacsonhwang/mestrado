@@ -10,7 +10,7 @@
 			
 			<div class="alert alert-success" role="alert">Alterações realizadas com sucesso.</div>
 			
-			<a href="../index.php">Voltar para página inicial</a>
+			<a href="index.php">Voltar para página inicial</a>
 			
 		</div>
 	</div>

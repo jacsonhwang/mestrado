@@ -8,7 +8,7 @@ $email = addslashes($_POST["inputEmail"]);
 $senha = addslashes($_POST["inputSenha"]);
 
 if (empty($email) || empty($senha)) {
-	header("location: ../view/login-erro.php");
+	header("location: ../login-erro.php");
 }
 
 else {
@@ -23,7 +23,7 @@ else {
 		$admin = $adminDAO->loginAdministrador($email, $senha);
 		
 		if($admin == false) {
-			header("location: ../view/login-erro.php");
+			header("location: ../login-erro.php");
 		}
 		else {			
 			session_start();
@@ -31,7 +31,7 @@ else {
 			$_SESSION["nomeAdmin"] = $admin->getNome();
 			$_SESSION["emailAdmin"] = $admin->getEmail();
 			
-			header("location: ../view/login-sucesso.php");
+			header("location: ../login-sucesso.php");
 		}
 	}
 	else {
@@ -47,7 +47,7 @@ else {
 		$_SESSION["science"] = $usuario->getScience();
 		$_SESSION["gaming"] = $usuario->getGaming();
 		
-		header("location: ../view/login-sucesso.php");
+		header("location: ../login-sucesso.php");
 	}
 
 	$situacao = $usuario->getSituacao();

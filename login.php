@@ -15,7 +15,7 @@
 			
 			<div class="alert alert-danger" role="alert" id="alertaLogin"><b>Erro!</b> E-mail ou senha incorretos.</div>
 			
-			<form class="form-horizontal" role="form" action="../controller/loginControle.php" method="POST" id="formLogin">
+			<form class="form-horizontal" role="form" action="controller/loginControle.php" method="POST" id="formLogin">
 				<div class="form-group">
 					<label for="inputEmail3" class="col-sm-3 control-label">Usu&aacute;rio</label>
 					<div class="col-sm-6">
@@ -48,7 +48,7 @@
 			
 			<div class="alert alert-danger" role="alert"><b>Erro!</b> Usuário logado.</div>
 			
-			<a href="../index.php">Voltar para página inicial</a>
+			<a href="index.php">Voltar para página inicial</a>
 			
 			<?php } ?>
 		</div>

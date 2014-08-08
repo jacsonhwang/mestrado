@@ -19,24 +19,24 @@ if(isset($_POST['buttonAlterarSenha'])) {
 	if(empty($senhaAtual) || empty($novaSenha)) {
 		$_SESSION["erroSenha"] = "Favor preencher todos os campos.";
 		
-		header("location: ../view/alterar-senha.php");
+		header("location: ../alterar-senha.php");
 	}
 	else if($senhaAtual == $novaSenha) {
 		$_SESSION["erroSenha"] = "A nova senha não pode ser idêntica à senha atual.";
 		
-		header("location: ../view/alterar-senha.php");
+		header("location: ../alterar-senha.php");
 	}
 	else if($senhaAtual != $senhaBanco) {
 		$_SESSION["erroSenha"] = "Senha incorreta.";
 		
-		header("location: ../view/alterar-senha.php");
+		header("location: ../alterar-senha.php");
 	}
 	else {			
 		$usuarioDAO = new UsuarioDAO();
 			
 		$usuarioDAO->alterarSenha($email, $novaSenha);
 			
-		header("location: ../view/alterar-dados-sucesso.php");
+		header("location: ../alterar-dados-sucesso.php");
 	}
 }
 

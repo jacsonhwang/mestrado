@@ -22,7 +22,7 @@
 			
 			<div class="alert alert-danger" role="alert"><b>Erro!</b> Favor efetuar o login.</div>
 			
-			<a href="../index.php">Voltar para página inicial</a>
+			<a href="index.php">Voltar para página inicial</a>
 			
 			<?php } ?>
 		</div>

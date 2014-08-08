@@ -19,7 +19,7 @@
 				}
 			?>
 
-			<form class="form-horizontal" role="form" action="../controller/alterarDadosControle.php" method="POST" id="formAlterarDados">
+			<form class="form-horizontal" role="form" action="controller/alterarDadosControle.php" method="POST" id="formAlterarDados">
 				<div class="form-group">
 					<label for="inputNome" class="col-sm-2 control-label">Nome</label>
 					<div class="col-sm-10">

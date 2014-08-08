@@ -14,7 +14,7 @@
 				<div class="alert alert-danger" role="alert"><?php echo $_SESSION["erro"]; ?></div>
 			<?php } ?>
 
-			<form class="form-horizontal" role="form" action="../controller/cadastroControle.php" method="POST" id="formCadastro">
+			<form class="form-horizontal" role="form" action="controller/cadastroControle.php" method="POST" id="formCadastro">
 				<div class="form-group">
 					<label for="inputNome" class="col-sm-2 control-label">Nome</label>
 					<div class="col-sm-10">
