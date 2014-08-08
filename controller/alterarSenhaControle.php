@@ -11,33 +11,27 @@ if(isset($_POST['buttonAlterarSenha'])) {
 	$situacao = '1';
 	
 	session_start();
-	
-	if(isset($_SESSION["email"])) {
 		
-		$email = $_SESSION["email"];
-		$usuarioDAO = new UsuarioDAO();
-		$senhaBanco = $usuarioDAO->recuperarSenhaUsuario($email);
-	}
-	else {
-		echo "não está logado";
-	}
-	
-	echo "<br />" . $_SESSION["senha"];
-	echo "<br />" . $senhaAtual;
+	$email = $_SESSION["email"];
+	$usuarioDAO = new UsuarioDAO();
+	$senhaBanco = $usuarioDAO->recuperarSenhaUsuario($email);
 
 	if(empty($senhaAtual) || empty($novaSenha)) {
-		echo "\nCAMPOS VAZIOS";
-		//header("location: ../view/cadastro.php");
+		$_SESSION["erroSenha"] = "Favor preencher todos os campos.";
+		
+		header("location: ../view/alterar-senha.php");
 	}
 	else if($senhaAtual == $novaSenha) {
-		echo "\nSENHAS IGUAIS";
+		$_SESSION["erroSenha"] = "A nova senha não pode ser idêntica à senha atual.";
+		
+		header("location: ../view/alterar-senha.php");
 	}
 	else if($senhaAtual != $senhaBanco) {
-		echo "\nSENHA ERRADA";
+		$_SESSION["erroSenha"] = "Senha incorreta.";
+		
+		header("location: ../view/alterar-senha.php");
 	}
-	else {
-		echo "\n TUDO OK";
-			
+	else {			
 		$usuarioDAO = new UsuarioDAO();
 			
 		$usuarioDAO->alterarSenha($email, $novaSenha);

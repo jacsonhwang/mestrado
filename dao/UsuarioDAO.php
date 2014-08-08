@@ -28,7 +28,10 @@ class UsuarioDAO {
 					idade='" . $usuario->getIdade() . "',
 					genero='" . $usuario->getGenero() . "',
 					escolaridade='" . $usuario->getEscolaridade() . "',
-					formacao_academica='" . $usuario->getFormacaoAcademica() . "'
+					formacao_academica='" . $usuario->getFormacaoAcademica() . "',
+					marketplace='" . $usuario->getMarketplace() . "',
+					science='" . $usuario->getScience() . "',
+					gaming='" . $usuario->getGaming() . "'
 				WHERE email='" . $emailAtual . "';";
 		
 		$cn->execute($sql);

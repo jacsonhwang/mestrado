@@ -11,31 +11,44 @@
 			<?php
 			session_start();
 			
-			if(isset($_SESSION["nome"])) {
+			if(isset($_SESSION["email"])) {
+				if(isset($_SESSION["erroSenha"])) {
+			?>
+					<div class="alert alert-danger" role="alert"><?php echo $_SESSION["erroSenha"]; ?></div>
+			<?php
+				}
 			?>
 
-			<form class="form-horizontal" role="form" action="../controller/alterarSenhaControle.php" method="POST" id="formAlterarSenha">
-				<div class="form-group">
-					<label for="inputSenhaAtual" class="col-sm-2 control-label">Senha atual</label>
-					<div class="col-sm-6">
-						<input type="password" class="form-control" id="inputSenhaAtual" name="inputSenhaAtual">
+				<form class="form-horizontal" role="form" action="../controller/alterarSenhaControle.php" method="POST" id="formAlterarSenha">
+					<div class="form-group">
+						<label for="inputSenhaAtual" class="col-sm-2 control-label">Senha atual</label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="inputSenhaAtual" name="inputSenhaAtual">
+						</div>
 					</div>
-				</div>
-				
-				<div class="form-group">
-					<label for="inputNovaSenha" class="col-sm-2 control-label">Nova senha</label>
-					<div class="col-sm-6">
-						<input type="password" class="form-control" id="inputNovaSenha" name="inputNovaSenha">
+					
+					<div class="form-group">
+						<label for="inputNovaSenha" class="col-sm-2 control-label">Nova senha</label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="inputNovaSenha" name="inputNovaSenha">
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default" name="buttonAlterarSenha" id="buttonAlterarSenha">Alterar senha</button>
-					</div>										
-				</div>	
-			</form>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-default" name="buttonAlterarSenha" id="buttonAlterarSenha">Alterar senha</button>
+						</div>										
+					</div>	
+				</form>
 			
-			<?php } ?>
+			<?php
+			} else {
+			?>
+				<div class="alert alert-danger" role="alert"><b>Erro!</b> Favor efetuar o login.</div>
+			<?php
+			}
+			
+			unset($_SESSION["erroSenha"]); 
+			?>
 		</div>
 	</div>
 </div>

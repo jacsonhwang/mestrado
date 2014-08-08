@@ -12,6 +12,11 @@
 			session_start();
 			
 			if(isset($_SESSION["email"])) {
+				if (isset($_SESSION["erroAlteracao"])) {
+			?>
+					<div class="alert alert-danger" role="alert"><?php echo $_SESSION["erroAlteracao"]; ?></div>
+			<?php
+				}
 			?>
 
 			<form class="form-horizontal" role="form" action="../controller/alterarDadosControle.php" method="POST" id="formAlterarDados">
@@ -137,7 +142,7 @@
 				</div>	
 			</form>
 			
-			<?php } ?>
+			<?php } unset($_SESSION["erroAlteracao"]); ?>
 		</div>
 	</div>
 </div>
