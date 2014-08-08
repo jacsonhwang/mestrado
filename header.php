@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>???</title>
+<title>GCER</title>
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
 <!-- <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css"> -->
 <link rel="stylesheet" href="css/bootstrapValidator.css" type="text/css">
 <link rel="stylesheet" href="css/jumbotron.css" type="text/css">
+<link rel="stylesheet" href="css/geral.css" type="text/css">
 
 <script src="js/jquery-2.1.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
@@ -32,7 +33,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">NOME DO PROJETO</a>
+				<a class="navbar-brand" href="index.php">GCER</a>
 			</div>
 			<div class="navbar-collapse collapse">
 			
@@ -43,8 +44,10 @@
 				?>
 				
 					<ul class="nav navbar-nav">
+						<li><a href="saibaMais.php">Saiba mais</a></li>
 						<li><a href="cadastro.php" id="linkCadastro">Cadastro</a></li>
 						<li><a href="login.php" id="linkLogin">Login</a></li>
+						<li><a href="contato.php">Contato</a></li>
 					</ul>
 				
 				<?php
@@ -52,9 +55,11 @@
 				?>
 				
 					<ul class="nav navbar-nav">
+						<li><a href="saibaMais.php">Saiba mais</a></li>
 						<li><a href="#">Jogar</a></li>
 						<li><a href="perfil.php">Perfil</a></li>
 						<li><a href="logout.php" id="linkLogout">Sair</a></li>
+						<li><a href="contato.php">Contato</a></li>
 					</ul>
 					
 					<p class="navbar-text navbar-right" id="usuarioLogado">Bem-vindo(a), <?php echo $_SESSION["nome"]; ?>!</p>
@@ -63,7 +68,7 @@
 				} else {
 				?>
 				
-					<ul class="nav navbar-nav">
+					<ul class="nav navbar-nav">						
 						<li><a href="painel_admin.php">Painel administrativo</a></li>
 						<li><a href="logout.php" id="linkLogout">Sair</a></li>
 					</ul>
