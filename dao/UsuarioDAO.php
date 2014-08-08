@@ -1,6 +1,7 @@
 <?php
 
-include_once("../inc/conexao.php");
+include_once("inc/conexao.php");
+include_once("model/Usuario.php");
 
 class UsuarioDAO {
 	
@@ -70,11 +71,11 @@ class UsuarioDAO {
 			$novoUsuario = new Usuario($rs["nome"], $usuario, null, $rs["idade"], $rs["genero"], $rs["escolaridade"],
 									   $rs["formacao_academica"], $rs["marketplace"], $rs["science"], $rs["gaming"],
 									   $rs['situacao']);
-		
-			$cn->disconnect();
-		
-			return $novoUsuario;
 		}
+		
+		$cn->disconnect();
+		
+		return $novoUsuario;
 		
 	}
 	
@@ -120,8 +121,37 @@ class UsuarioDAO {
 		
 		$cn->disconnect();
 		
-		if($quantidade != 0) return true;
-		else return false;
+		if($quantidade != 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+	}
+	
+	public function listarUsuarios() {
+		
+		$cn = new Conexao();
+		
+		$sql = "SELECT nome, email FROM usuario";
+		
+		$result = $cn->execute($sql);
+		
+		$usuarioArray = array();
+		
+		while ($rs = sqlsrv_fetch_array($result)) {
+			$nome = $rs["nome"];
+			$email = $rs["email"];
+			
+			$usuario = new Usuario($nome, $email, null, null, null, null, null, null, null, null, null);
+			
+			array_push($usuarioArray, $usuario);
+		}
+		
+		$cn->disconnect();
+		
+		return $usuarioArray;
 	}
 }
 
