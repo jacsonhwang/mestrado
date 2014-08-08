@@ -6,12 +6,15 @@
 <!-- <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css"> -->
 <link rel="stylesheet" href="css/bootstrapValidator.css" type="text/css">
 <link rel="stylesheet" href="css/jumbotron.css" type="text/css">
+<!-- <link rel="stylesheet" href="css/tablesorter.css" type="text/css"> -->
 <link rel="stylesheet" href="css/geral.css" type="text/css">
 
 <script src="js/jquery-2.1.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
+
 <script src="js/utilsCadastro.js"></script>
 <script src="js/utilsLogin.js"></script>
+<script src="js/utilsPainelAdmin.js"></script>
 
 <script type="text/javascript" src="js/validator/bootstrapValidator.js"></script>
 <script type="text/javascript" src="js/validator/notEmpty.js"></script>
@@ -21,7 +24,14 @@
 <script type="text/javascript" src="js/validator/emailAddress.js"></script>
 <script type="text/javascript" src="js/validator/numeric.js"></script>
 <script src="js/validator/pt_BR.js"></script>
+
+<script type="text/javascript" src="js/jquery.tablesorter.js"></script>
+<script type="text/javascript" src="js/jquery.tablesorter.pager.js"></script>
+
+<script src="js/utilsUsuarios.js"></script>
 </head>
+
+<?php include_once("inc/constantes.php"); ?>
 
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
