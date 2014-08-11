@@ -17,8 +17,60 @@
 			if(isset($_SESSION["emailAdmin"])) {
 			?>
 			
+				<p><button type="button" class="btn btn-primary" id="buttonCadastrarRodada">Cadastrar</button></p>
+			
 				<div class="col-lg-12">
-				
+					<table class="table tablesorter" id="tabelaRodadas">
+						<thead>
+							<tr>
+								<th>Nome</th>
+								<th>Criado em</th>
+								<th>Visualizar</th>
+								<th>Editar</th>
+								<th>Excluir</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Rodada 1</td>
+								<td>01/01/2014</td>
+								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
+							</tr>
+							<tr>
+								<td>Rodada 2</td>
+								<td>01/01/2014</td>
+								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
+							</tr>
+							<tr>
+								<td>Rodada 3</td>
+								<td>01/01/2014</td>
+								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
+							</tr>
+							<tr>
+								<td>Rodada 4</td>
+								<td>01/01/2014</td>
+								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
+							</tr>
+							<tr>
+								<td>Rodada 5</td>
+								<td>01/01/2014</td>
+								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<?php include 'paginacao.php'; ?>
+					
 				</div>
 					
 			<?php

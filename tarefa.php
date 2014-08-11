@@ -17,47 +17,53 @@
 			if(isset($_SESSION["emailAdmin"])) {
 			?>
 			
+				<p><button type="button" class="btn btn-primary" id="buttonCadastrarTarefa">Cadastrar</button></p>
+			
 				<div class="col-lg-12">
-					<table class="table tablesorter" id="tabelaUsuarios">
+					<table class="table tablesorter" id="tabelaTarefas">
 						<thead>
 							<tr>
-								<th>
-									<input type="checkbox" />
-								</th>
 								<th>Nome</th>
 								<th>Rodada</th>
+								<th>Visualizar</th>
+								<th>Editar</th>
 								<th>Excluir</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td><input type="checkbox" /></td>
 								<td>Tarefa 1</td>
 								<td>R1</td>
 								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
 							</tr>
 							<tr>
-								<td><input type="checkbox" /></td>
 								<td>Tarefa 2</td>
 								<td>R1</td>
 								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
 							</tr>
 							<tr>
-								<td><input type="checkbox" /></td>
 								<td>Tarefa 3</td>
 								<td>R1</td>
 								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
 							</tr>
 							<tr>
-								<td><input type="checkbox" /></td>
 								<td>Tarefa 4</td>
 								<td>R1</td>
 								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
 							</tr>
 							<tr>
-								<td><input type="checkbox" /></td>
 								<td>Tarefa 5</td>
 								<td>R1</td>
+								<td><input type="checkbox" /></td>
+								<td><input type="checkbox" /></td>
 								<td><input type="checkbox" /></td>
 							</tr>
 						</tbody>
