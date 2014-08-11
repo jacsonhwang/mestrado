@@ -15,7 +15,8 @@
 					<button type="button" class="btn btn-default btn-lg btn-block" id="buttonUsuarios">Usuários</button>
 					<button type="button" class="btn btn-default btn-lg btn-block" id="buttonTarefa">Tarefa</button>
 					<button type="button" class="btn btn-default btn-lg btn-block" id="buttonRodada">Rodada</button>
-					<button type="button" class="btn btn-default btn-lg btn-block" id="buttonImportarEntidades">Importar Entidades</button>
+					<button type="button" class="btn btn-default btn-lg btn-block" id="buttonEntidades">Entidades</button>
+					<button type="button" class="btn btn-default btn-lg btn-block" id="buttonBaseDeDados">Base de Dados</button>
 				</div>
 					
 			<?php
