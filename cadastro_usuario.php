@@ -8,11 +8,22 @@
 				<h2>Cadastro</h2>
 			</div>
 			
+			<ol class="breadcrumb">
+				<li><a href="index.php">Home</a></li>
+				<li><a href="painel_admin.php">Painel administrativo</a></li>
+				<li><a href="usuarios.php">Usuários</a></li>
+				<li class="active">Cadastro</li>
+			</ol>
+			
 			<?php session_start(); ?>
 			
 			<?php if (isset($_SESSION["erro"])) { ?>
 				<div class="alert alert-danger" role="alert"><?php echo $_SESSION["erro"]; ?></div>
 			<?php } ?>
+			
+			<?php
+			if(isset($_SESSION["emailAdmin"])) {
+			?>
 
 			<form class="form-horizontal" role="form" action="controller/cadastroControle.php" method="POST" id="formCadastro">
 				<div class="form-group">
@@ -131,9 +142,25 @@
 					</div>										
 				</div>
 			</form>
+			
+			<?php
+			} else {
+			?>
+			
+				<div class="col-lg-10 col-lg-offset-1">
+					<?php echo ERRO_LOGAR; ?>
+				</div>
+				
+			<?php
+			}
+			?>
 		</div>
 	</div>
 </div>
+
+<?php if (isset($_SESSION["erro"])) { 
+	unset($_SESSION["erro"]);
+} ?>
 
 <script>
 	$(document).ready(function() {
