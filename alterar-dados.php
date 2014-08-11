@@ -137,7 +137,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default" name="buttonAlterar" id="buttonAlterar">Salvar alterações</button>
+						<button type="submit" class="btn btn-primary" name="buttonAlterar" id="buttonAlterar">Salvar alterações</button>
 					</div>										
 				</div>	
 			</form>
