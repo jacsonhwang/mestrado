@@ -14,7 +14,6 @@
 
 <script src="js/utilsCadastro.js"></script>
 <script src="js/utilsLogin.js"></script>
-<script src="js/utilsPainelAdmin.js"></script>
 
 <script type="text/javascript" src="js/validator/bootstrapValidator.js"></script>
 <script type="text/javascript" src="js/validator/notEmpty.js"></script>
@@ -28,7 +27,9 @@
 <script type="text/javascript" src="js/jquery.tablesorter.js"></script>
 <script type="text/javascript" src="js/jquery.tablesorter.pager.js"></script>
 
-<script src="js/utilsUsuarios.js"></script>
+<script type="text/javascript" src="js/utilsPainelAdmin.js"></script>
+<script type="text/javascript" src="js/utilsUsuarios.js"></script>
+
 </head>
 
 <?php include_once("inc/constantes.php"); ?>
@@ -91,5 +92,4 @@
 			</div>
 		</div>
 	</div>
-	
-	
+		
