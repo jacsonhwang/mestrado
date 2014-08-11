@@ -19,15 +19,16 @@
 			if(isset($_SESSION["emailAdmin"])) {
 			?>
 			
+				<p><button type="button" class="btn btn-primary" id="buttonCadastrarUsuario">Cadastrar</button></p>
+			
 				<div class="col-lg-12">
 					<table class="table tablesorter" id="tabelaUsuarios">
 						<thead>
 							<tr>
-								<th>
-									<input type="checkbox" />
-								</th>
 								<th>Nome</th>
 								<th>E-mail</th>
+								<th>Visualizar</th>
+								<th>Editar</th>
 								<th>Excluir</th>
 							</tr>
 						</thead>
@@ -39,10 +40,11 @@
 							foreach ($usuariosArray as $usuario) {
 							?>
 								<tr>
-									<td><input type="checkbox" /></td>
 									<td><?php echo $usuario->getNome(); ?></td>
-									<td><?php echo $usuario->getEmail(); ?></td>
-									<td><input type="checkbox" /></td>
+									<td class="email"><?php echo $usuario->getEmail(); ?></td>
+									<td><input type="image" src="img/view-details.png" class="imagem" /></td>
+									<td><a href="editar_usuario.php?email=<?php echo $usuario->getEmail(); ?>"><img src="img/edit-gray.png" class="imagem"></a></td>
+									<td><input type="image" src="img/trash-gray.png" value="submit" class="imagem" /></td>
 								</tr>
 							
 							<?php
@@ -54,8 +56,7 @@
 					<?php include 'paginacao.php'; ?>
 
 			</div>
-					
-					
+			
 			<?php
 			} else {
 			?>
@@ -76,4 +77,5 @@
 		</div>
 	</div>
 </div>
+
 <?php include 'footer.php'; ?>
