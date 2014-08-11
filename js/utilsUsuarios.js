@@ -1,12 +1,23 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
 	
-	$("#tabelaUsuarios").tablesorter({
-		headers: {
-			0: { sorter: false },
-			1: { sorter: true },
-			2: { sorter: true },
-			3: { sorter: false }
-		}
-	}).tablesorterPager({ container: $(".pager"), output: '{startRow}/{endRow} (Total de {totalRows})', });;
+	$(".editarUsuario").click(function() {
+		var email = $(this).parent().parent().find(".email").html();
+		$(this).data("email", email);
+		
+		$("#inputNome").val(email);
+		
+		window.location = 'editar_usuario.php';
+	});
 	
-});
+	$(".visualizarUsuario").click(function() {
+		$.ajax({
+				type: "POST",
+				url: "controller/tratarUsuarioControle.php",
+				data: { email: email },
+				async: false,
+				success: function(msg) {
+				}
+			});
+	});
+	
+});*/

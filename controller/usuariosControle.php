@@ -10,4 +10,12 @@ function listarUsuarios() {
 	return $usuariosArray;
 }
 
+function recuperarUsuario($email) {
+	$usuarioDAO = new UsuarioDAO();
+	
+	$usuario = $usuarioDAO->recuperarUsuario($email);
+	
+	return $usuario;
+}
+
 ?>

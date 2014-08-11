@@ -134,17 +134,25 @@ class UsuarioDAO {
 		
 		$cn = new Conexao();
 		
-		$sql = "SELECT nome, email FROM usuario";
+		$sql = "SELECT idusuario, nome, email, idade, genero, escolaridade, formacao_academica, marketplace, science, gaming FROM usuario";
 		
 		$result = $cn->execute($sql);
 		
 		$usuarioArray = array();
 		
 		while ($rs = sqlsrv_fetch_array($result)) {
+			$id = $rs["idusuario"];
 			$nome = $rs["nome"];
 			$email = $rs["email"];
+			$idade = $rs["idade"];
+			$genero = $rs["genero"];
+			$escolaridade = $rs["escolaridade"];
+			$formacaoAcademica = $rs["formacao_academica"];
+			$marketplace = $rs["marketplace"];
+			$science = $rs["science"];
+			$gaming = $rs["gaming"];
 			
-			$usuario = new Usuario($nome, $email, null, null, null, null, null, null, null, null, null);
+			$usuario = new Usuario($nome, $email, null, $idade, $genero, $escolaridade, $formacaoAcademica, $marketplace, $science, $gaming, null);
 			
 			array_push($usuarioArray, $usuario);
 		}
@@ -152,6 +160,30 @@ class UsuarioDAO {
 		$cn->disconnect();
 		
 		return $usuarioArray;
+	}
+	
+	public function recuperarUsuario ($email) {
+	
+		$cn = new Conexao();
+	
+		$sql = "SELECT nome, idade, genero, escolaridade, formacao_academica FROM usuario WHERE email='" . $email . "'";
+	
+		$result = $cn->execute($sql);
+	
+		while ($rs = sqlsrv_fetch_array($result)) {
+			$nome = $rs["nome"];
+			$idade = $rs["idade"];
+			$genero = $rs["genero"];
+			$escolaridade = $rs["escolaridade"];
+			$formacaoAcademica = $rs["formacao_academica"];
+			
+			$usuario = new Usuario($nome, $email, null, $idade, $genero, $escolaridade, $formacaoAcademica, null, null, null, null);
+		}
+	
+		$cn->disconnect();
+	
+		return $usuario;
+	
 	}
 }
 

@@ -2,6 +2,7 @@
 
 class Usuario {
 	
+	//private $id;
 	private $nome;
 	private $email;
 	private $senha;
@@ -15,6 +16,7 @@ class Usuario {
 	private $situacao;
 	
 	public function __construct($nome, $email, $senha, $idade, $genero, $escolaridade, $formacaoAcademica, $marketplace, $science, $gaming, $situacao) {
+		//$this->id = $id;
 		$this->nome = $nome;
 		$this->email = $email;
 		$this->senha = $senha;
@@ -27,6 +29,10 @@ class Usuario {
 		$this->gaming = $gaming;
 		$this->situacao = $situacao;
 	}
+	
+	/* function getId() {
+		return $this->id;
+	} */
 	
 	function getNome() {
 		return $this->nome;
@@ -73,6 +79,7 @@ class Usuario {
 	}
 	
 	function recuperarArrayUsuario() {
+		//$usuarioArray['id']					= $this->id;
 		$usuarioArray['nome']               = $this->nome;
 		$usuarioArray['email']              = $this->email;
 		$usuarioArray['senha']              = $this->senha;

@@ -28,7 +28,7 @@ if(isset($_POST['buttonCadastrar'])) {
 	$_SESSION["formacaoAcademicaCadastro"] = $formacaoAcademica;
 	$_SESSION["marketplaceCadastro"] = $marketplace;
 	$_SESSION["scienceCadastro"] = $science;
-	$_SESSION["gaming"] = $gaming;
+	$_SESSION["gamingCadastro"] = $gaming;
 	
 	if(intval($escolaridade) <= 3) {
 		$formacaoAcademica = null;
@@ -41,18 +41,33 @@ if(isset($_POST['buttonCadastrar'])) {
 	if(empty($nome) || empty($email) || empty($senha) || empty($idade) || !isset($genero, $escolaridade, $marketplace, $science, $gaming)) {
 		$_SESSION["erro"] = "Favor preencher todos os campos.";
 		
-		header("location: ../cadastro.php");
+		if(!isset($_SESSION["emailAdmin"])) {
+			header("location: ../cadastro.php");
+		}
+		else {
+			header("location: ../cadastro_usuario.php");
+		}
 	}
 	else {
 		if(intval($escolaridade) > 3 && empty($formacaoAcademica)) {
 			$_SESSION["erro"] = "Favor preencher todos os campos.";
 			
-			header("location: ../cadastro.php");
+			if(!isset($_SESSION["emailAdmin"])) {
+				header("location: ../cadastro.php");
+			}
+			else {
+				header("location: ../cadastro_usuario.php");
+			}
 		}
 		elseif ($emailCadastrado == true) {
 			$_SESSION["erro"] = "O e-mail inserido já está cadastrado no sistema.";
 			
-			header("location: ../cadastro.php");
+			if(!isset($_SESSION["emailAdmin"])) {
+				header("location: ../cadastro.php");
+			}
+			else {
+				header("location: ../cadastro_usuario.php");
+			}
 		}
 		else {			
 			$usuario = new Usuario($nome, $email, $senha, $idade, $genero, $escolaridade, $formacaoAcademica, $marketplace, $science, $gaming, $situacao);
@@ -61,7 +76,14 @@ if(isset($_POST['buttonCadastrar'])) {
 			
 			header("location: ../cadastro-sucesso.php");
 			
-			session_destroy();
+			if(isset($_SESSION["emailAdmin"])) {
+				unset($_SESSION["nomeCadastro"], $_SESSION["emailCadastro"], $_SESSION["idadeCadastro"], $_SESSION["generoCadastro"],
+					  $_SESSION["escolaridadeCadastro"], $_SESSION["formacaoAcademicaCadastro"], $_SESSION["marketplaceCadastro"], 
+					  $_SESSION["scienceCadastro"], $_SESSION["gamingCadastro"], $_SESSION["erro"]);
+			}
+			else {
+				session_destroy();
+			}
 		}
 	}
 }
