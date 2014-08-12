@@ -35,30 +35,25 @@ else {
 		}
 	}
 	else {
-		session_start();
 		
-		$_SESSION["nome"] = $usuario->getNome();
-		$_SESSION["email"] = $usuario->getEmail();
-		$_SESSION["idade"] = $usuario->getIdade();		
-		$_SESSION["genero"] = $usuario->getGenero();
-		$_SESSION["escolaridade"] = $usuario->getEscolaridade();
-		$_SESSION["formacaoAcademica"] = $usuario->getFormacaoAcademica();
-		$_SESSION["marketplace"] = $usuario->getMarketplace();
-		$_SESSION["science"] = $usuario->getScience();
-		$_SESSION["gaming"] = $usuario->getGaming();
-		
-		header("location: ../login-sucesso.php");
-	}
-
-	$situacao = $usuario->getSituacao();
-
-	if ($situacao == 1) {
-		echo "ativo";
-	}
-	elseif ($situacao == 0) {
-		echo "desativado";
+		if($usuario->getSituacao() == 0) {
+			header("location: ../login-erro.php");
+		}
+		else {
+			session_start();
+			
+			$_SESSION["nome"] = $usuario->getNome();
+			$_SESSION["email"] = $usuario->getEmail();
+			$_SESSION["idade"] = $usuario->getIdade();
+			$_SESSION["genero"] = $usuario->getGenero();
+			$_SESSION["escolaridade"] = $usuario->getEscolaridade();
+			$_SESSION["formacaoAcademica"] = $usuario->getFormacaoAcademica();
+			$_SESSION["marketplace"] = $usuario->getMarketplace();
+			$_SESSION["science"] = $usuario->getScience();
+			$_SESSION["gaming"] = $usuario->getGaming();
+			
+			header("location: ../login-sucesso.php");
+		}
 	}
 }
-
-
 ?>

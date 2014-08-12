@@ -10,7 +10,14 @@
 			
 			<div class="alert alert-success" role="alert">Login realizado com sucesso.</div>
 			
-			<a href="index.php">Voltar para página inicial</a>
+			<?php
+			if(isset($_SESSION["email"])) {
+				header('Refresh: 0.5; URL=painel_usuario.php');
+			}
+			else if($_SESSION["emailAdmin"]) {
+				header('Refresh: 0.5; URL=painel_admin.php');
+			}
+			?>
 			
 		</div>
 	</div>

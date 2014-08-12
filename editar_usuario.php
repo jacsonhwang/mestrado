@@ -16,8 +16,6 @@
 				<li class="active">Editar</li>
 			</ol>
 			
-			<?php echo $_GET["email"]; ?>
-			
 			<?php
 			session_start();
 			
@@ -30,41 +28,41 @@
 			?>
 			
 			<?php
-				$email = $_GET["email"];
-				
-				echo $email;
-				
-				$usuario = recuperarUsuario($email);
-				
-				$_SESSION["edicao"]["email"] = $usuario->email;
+				if(isset($_GET["email"])) {
+					$email = $_GET["email"];
+					
+					$usuario = recuperarUsuario($email);
+					
+					guardarUsuarioSessao($usuario);
+				}
 			?>
 
 			<form class="form-horizontal" role="form" action="controller/alterarDadosAdminControle.php" method="POST" id="formAlterarDados">
 				<div class="form-group">
 					<label for="inputNome" class="col-sm-2 control-label">Nome</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="inputNome" name="inputNome" value="<?php echo $usuario->getNome(); ?>">
+						<input type="text" class="form-control" id="inputNome" name="inputNome" value="<?php echo $_SESSION["edicao"]["nome"]; ?>">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputEmail" class="col-sm-2 control-label">Email</label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail" name="inputEmail" value="<?php echo $usuario->getEmail(); ?>">
+						<input type="email" class="form-control" id="inputEmail" name="inputEmail" value="<?php echo $_SESSION["edicao"]["email"]; ?>">
 					</div>
 				</div>				
 				<div class="form-group">
 					<label for="inputIdade" class="col-sm-2 control-label">Idade</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="inputIdade" name="inputIdade" value="<?php echo $usuario->getIdade(); ?>">
+						<input type="text" class="form-control" id="inputIdade" name="inputIdade" value="<?php echo $_SESSION["edicao"]["idade"]; ?>">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Sexo</label>
 					<div class="col-sm-10">
 						<label class="radio-inline"> <input type="radio"
-							name="radioGenero" id="radioGenero" value="m" <?php if ($usuario->getGenero() == "m") { echo "checked"; } ?>>Masculino
+							name="radioGenero" id="radioGenero" value="m" <?php if ($_SESSION["edicao"]["genero"] == "m") { echo "checked"; } ?>>Masculino
 						</label> <label class="radio-inline"> <input type="radio"
-							name="radioGenero" id="radioGenero" value="f" <?php if ($usuario->getGenero() == "f") { echo "checked"; } ?>>Feminino
+							name="radioGenero" id="radioGenero" value="f" <?php if ($_SESSION["edicao"]["genero"] == "f") { echo "checked"; } ?>>Feminino
 						</label>
 					</div>
 				</div>
@@ -86,7 +84,7 @@
 							foreach($opcoes as $key => $opcao) {
 								echo '<option value="' . $key . '"';
 								
-								if($usuario->getEscolaridade() == $key) {
+								if($_SESSION["edicao"]["escolaridade"] == $key) {
 									echo " selected";
 								}
 								
@@ -99,7 +97,7 @@
 				<div class="form-group">
 					<label for="inputFormacaoAcademica" class="col-sm-2 control-label">Forma&ccedil;&atilde;o acad&ecirc;mica</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="inputFormacaoAcademica" name="inputFormacaoAcademica" <?php if(intval($usuario->getEscolaridade()) <= 3) { echo " disabled"; } ?> value="<?php echo $usuario->getFormacaoAcademica(); ?>">
+						<input type="text" class="form-control" id="inputFormacaoAcademica" name="inputFormacaoAcademica" <?php if(intval($_SESSION["edicao"]["escolaridade"]) <= 3) { echo " disabled"; } ?> value="<?php echo $_SESSION["edicao"]["formacaoAcademica"]; ?>">
 					</div>
 				</div>
 				<div class="form-group">
@@ -109,7 +107,20 @@
 				</div>	
 			</form>
 			
+			<?php
+			} else {
+			?>
+			
+				<div class="col-lg-10 col-lg-offset-1">
+					<?php echo ERRO_LOGAR; ?>
+				</div>
+			
 			<?php } unset($_SESSION["erroAlteracao"]); ?>
+			
+			<div class="col-lg-12" style="padding-top: 20px;">
+				<a href="javascript:history.go(-1)">Voltar</a>
+			</div>
+			
 		</div>
 	</div>
 </div>

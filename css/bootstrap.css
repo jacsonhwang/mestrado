@@ -5456,7 +5456,7 @@ button.close {
 }
 .modal-footer {
   padding: 15px;
-  text-align: right;
+  text-align: left;
   border-top: 1px solid #e5e5e5;
 }
 .modal-footer .btn + .btn {
@@ -5478,8 +5478,8 @@ button.close {
 }
 @media (min-width: 768px) {
   .modal-dialog {
-    width: 600px;
-    margin: 30px auto;
+    width: 450px;
+    margin: 300px auto;
   }
   .modal-content {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);

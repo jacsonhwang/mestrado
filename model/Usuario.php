@@ -78,6 +78,68 @@ class Usuario {
 		return $this->situacao;
 	}
 	
+	function getGeneroFormatado() {
+		if($this->genero == "m") {
+			return "Masculino";
+		}
+		else if($this->genero == "f") {
+			return "Feminino";
+		}
+	}
+	
+	function getEscolaridadeFormatado() {
+		switch (intval($this->escolaridade)) {
+			case 1:
+				$escolaridade = "Analfabeto";
+				break;
+			case 2:
+				$escolaridade = "Ensino fundamental";
+				break;
+			case 3:
+				$escolaridade = "Ensino médio";
+				break;
+			case 4:
+				$escolaridade = "Superior incompleto";
+				break;
+			case 5:
+				$escolaridade = "Superior completo";
+				break;
+			case 6:
+				$escolaridade = "Pós-graduado";
+				break;
+			case 7:
+				$escolaridade = "Mestrado";
+				break;
+			case 8:
+				$escolaridade = "Doutorado";
+				break;
+			case 9:
+				$escolaridade = "Superior em andamento";
+				break;
+		}
+		
+		return $escolaridade;
+	}
+	
+	function getParticipacaoFormatado($nivel) {
+		switch ($nivel) {
+			case "nenhum":
+				$nivelFormatado = "Nenhum";
+				break;
+			case "basico":
+				$nivelFormatado = "Básico";
+				break;
+			case "intermediario":
+				$nivelFormatado = "Intermediário";
+				break;
+			case "avancado":
+				$nivelFormatado = "Avançado";
+				break;
+		}
+		
+		return $nivelFormatado;
+	}
+	
 	function recuperarArrayUsuario() {
 		//$usuarioArray['id']					= $this->id;
 		$usuarioArray['nome']               = $this->nome;

@@ -10,7 +10,21 @@
 			
 			<div class="alert alert-success" role="alert">Cadastro realizado com sucesso.</div>
 			
-			<a href="index.php">Voltar para página inicial</a>
+			<?php
+			if(isset($_SESSION["email"])) {
+			?>
+			
+				<a href="index.php">Voltar para página inicial</a>
+				
+			<?php
+			} else if(isset($_SESSION["emailAdmin"])) {
+			?>
+			
+				<a href="usuarios.php">Voltar</a>
+			
+			<?php
+			}
+			?>
 			
 		</div>
 	</div>

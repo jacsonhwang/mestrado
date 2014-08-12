@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>GCER</title>
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
 <!-- <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css"> -->
@@ -67,13 +68,19 @@
 				
 					<ul class="nav navbar-nav">
 						<li><a href="saibaMais.php">Saiba mais</a></li>
-						<li><a href="#">Jogar</a></li>
-						<li><a href="perfil.php">Perfil</a></li>
-						<li><a href="logout.php" id="linkLogout">Sair</a></li>
+						<!-- <li><a href="#">Jogar</a></li> -->
 						<li><a href="contato.php">Contato</a></li>
 					</ul>
-					
-					<p class="navbar-text navbar-right" id="usuarioLogado">Bem-vindo(a), <?php echo $_SESSION["nome"]; ?>!</p>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Bem-vindo(a), <?php echo $_SESSION["nome"]; ?>! <span class="caret"></span>
+						</a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="perfil.php"><img src="img/config.png" class="imagem"> Configurações</a></li>
+								<li class="divider"></li>
+								<li><a href="logout.php"><img src="img/logout.png" class="imagem"> Sair</a></li>
+							</ul>
+						</li>
+					</ul>
 					
 				<?php
 				} else {

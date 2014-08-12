@@ -1,5 +1,5 @@
 <?php include 'header.php'; ?>
-<?php include_once("controller/usuariosControle.php"); ?>
+<?php require_once 'controller/usuariosControle.php'; ?>
 
 <div id="formularioLogin" class="container">
 	<div class="row">
@@ -21,15 +21,15 @@
 			
 				<p><button type="button" class="btn btn-primary" id="buttonCadastrarUsuario">Cadastrar</button></p>
 			
-				<div class="col-lg-12">
+				<div class="col-lg-12 table-responsive">
 					<table class="table tablesorter" id="tabelaUsuarios">
 						<thead>
 							<tr>
 								<th>Nome</th>
 								<th>E-mail</th>
-								<th>Visualizar</th>
-								<th>Editar</th>
-								<th>Excluir</th>
+								<th class="text-center">Visualizar</th>
+								<th class="text-center">Editar</th>
+								<th class="text-center">Desativar</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -39,12 +39,22 @@
 							
 							foreach ($usuariosArray as $usuario) {
 							?>
-								<tr>
+								<tr <?php if($usuario->getSituacao() == 0) { echo " class='danger'"; } ?>>
 									<td><?php echo $usuario->getNome(); ?></td>
 									<td class="email"><?php echo $usuario->getEmail(); ?></td>
-									<td><input type="image" src="img/view-details.png" class="imagem" /></td>
-									<td><a href="editar_usuario.php?email=<?php echo $usuario->getEmail(); ?>"><img src="img/edit-gray.png" class="imagem"></a></td>
-									<td><input type="image" src="img/trash-gray.png" value="submit" class="imagem" /></td>
+									<td class="text-center"><a href="visualizar_usuario.php?email=<?php echo $usuario->getEmail(); ?>"><input type="image" src="img/view-details.png" class="imagem" /></a></td>
+									<td class="text-center"><a href="editar_usuario.php?email=<?php echo $usuario->getEmail(); ?>"><img src="img/edit-gray.png" class="imagem"></a></td>
+									<?php
+									if($usuario->getSituacao() == 1) {
+									?>
+										<td class="text-center"><a href="controller/alterarSituacaoUsuarioControle.php?email=<?php echo $usuario->getEmail(); ?>"><img src="img/deactivate.png" class="imagem"></a></td>
+									<?php 
+									} else {
+									?>
+										<td class="text-center"><a href="controller/alterarSituacaoUsuarioControle.php?email=<?php echo $usuario->getEmail(); ?>"><img src="img/activate.png" class="imagem"></a></td>
+									<?php
+									}
+									?>
 								</tr>
 							
 							<?php

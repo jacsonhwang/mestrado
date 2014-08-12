@@ -15,6 +15,9 @@ if(isset($_POST['buttonAlterar'])) {
 		$genero = addslashes($_POST["radioGenero"]);
 		$escolaridade = addslashes($_POST["selectEscolaridade"]);
 		$formacaoAcademica = addslashes($_POST["inputFormacaoAcademica"]);
+		$marketplace = addslashes($_SESSION["edicao"]["marketplace"]);
+		$science = addslashes($_SESSION["edicao"]["science"]);
+		$gaming = addslashes($_SESSION["edicao"]["gaming"]);
 		
 		if(intval($escolaridade) <= 3) {
 			$formacaoAcademica = null;
@@ -35,27 +38,19 @@ if(isset($_POST['buttonAlterar'])) {
 			
 				header("location: ../editar_usuario.php");
 			}
-			elseif ($emailCadastrado == true && $email != $_SESSION["email"]) {
+			elseif ($emailCadastrado == true && $email != $_SESSION["edicao"]["email"]) {
 				$_SESSION["erroAlteracao"] = "O e-mail inserido já está cadastrado no sistema.";
 					
 				header("location: ../editar_usuario.php");
 			}
 			else {
-				$usuario = new Usuario($nome, $email, null, $idade, $genero, $escolaridade, $formacaoAcademica, $marketplace, $science, $gaming, $situacao);
+				$usuario = new Usuario($nome, $email, null, $idade, $genero, $escolaridade, $formacaoAcademica, $marketplace, $science, $gaming, null);
 					
-				$usuarioDAO->alterarUsuario($usuario, $_SESSION["email"]);
+				$usuarioDAO->alterarUsuario($usuario, $_SESSION["edicao"]["emailAtual"]);
+				
+				unset($_SESSION["edicao"]);
 					
-				$_SESSION["nome"] = $usuario->getNome();
-				$_SESSION["email"] = $usuario->getEmail();
-				$_SESSION["idade"] = $usuario->getIdade();
-				$_SESSION["genero"] = $usuario->getGenero();
-				$_SESSION["escolaridade"] = $usuario->getEscolaridade();
-				$_SESSION["formacaoAcademica"] = $usuario->getFormacaoAcademica();
-				$_SESSION["marketplace"] = $usuario->getMarketplace();
-				$_SESSION["science"] = $usuario->getScience();
-				$_SESSION["gaming"] = $usuario->getGaming();
-					
-				header("location: ../alterar-dados-sucesso.php");
+				header("location: ../usuarios.php");
 				
 				if(isset($_SESSION["erroAlteracao"])) {
 					unset($_SESSION["erroAlteracao"]);

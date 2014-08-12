@@ -3,6 +3,9 @@
 include_once("inc/conexao.php");
 include_once("model/Usuario.php");
 
+include_once("../inc/conexao.php");
+include_once("../model/Usuario.php");
+
 class UsuarioDAO {
 	
 	private $cn;
@@ -134,7 +137,7 @@ class UsuarioDAO {
 		
 		$cn = new Conexao();
 		
-		$sql = "SELECT idusuario, nome, email, idade, genero, escolaridade, formacao_academica, marketplace, science, gaming FROM usuario";
+		$sql = "SELECT idusuario, nome, email, idade, genero, escolaridade, formacao_academica, marketplace, science, gaming, situacao FROM usuario";
 		
 		$result = $cn->execute($sql);
 		
@@ -151,8 +154,9 @@ class UsuarioDAO {
 			$marketplace = $rs["marketplace"];
 			$science = $rs["science"];
 			$gaming = $rs["gaming"];
+			$situacao = $rs["situacao"];
 			
-			$usuario = new Usuario($nome, $email, null, $idade, $genero, $escolaridade, $formacaoAcademica, $marketplace, $science, $gaming, null);
+			$usuario = new Usuario($nome, $email, null, $idade, $genero, $escolaridade, $formacaoAcademica, $marketplace, $science, $gaming, $situacao);
 			
 			array_push($usuarioArray, $usuario);
 		}
@@ -166,7 +170,7 @@ class UsuarioDAO {
 	
 		$cn = new Conexao();
 	
-		$sql = "SELECT nome, idade, genero, escolaridade, formacao_academica FROM usuario WHERE email='" . $email . "'";
+		$sql = "SELECT nome, idade, genero, escolaridade, formacao_academica, marketplace, science, gaming, situacao FROM usuario WHERE email='" . $email . "'";
 	
 		$result = $cn->execute($sql);
 	
@@ -176,14 +180,36 @@ class UsuarioDAO {
 			$genero = $rs["genero"];
 			$escolaridade = $rs["escolaridade"];
 			$formacaoAcademica = $rs["formacao_academica"];
+			$marketplace = $rs["marketplace"];
+			$science = $rs["science"];
+			$gaming = $rs["gaming"];
+			$situacao = $rs["situacao"];
 			
-			$usuario = new Usuario($nome, $email, null, $idade, $genero, $escolaridade, $formacaoAcademica, null, null, null, null);
+			$usuario = new Usuario($nome, $email, null, $idade, $genero, $escolaridade, $formacaoAcademica, $marketplace, $science, $gaming, $situacao);
 		}
 	
 		$cn->disconnect();
 	
 		return $usuario;
 	
+	}
+	
+	public function alterarSituacaoUsuario ($email, $situacao) {
+		
+		$cn = new Conexao();
+		
+		if($situacao == 1) {
+			$novaSituacao = 0;
+		}
+		else {
+			$novaSituacao = 1;
+		}
+		
+		$sql = "UPDATE usuario SET situacao = " . $novaSituacao . " WHERE email = '" . $email . "'";
+		
+		$cn->execute($sql);
+		
+		$cn->disconnect();
 	}
 }
 

@@ -39,6 +39,10 @@ $(document).ready(function() {
 		window.location = 'cadastro_usuario.php';
 	});
 	
+	$('#buttonExcluirUsuario').click(function() {
+	    window.location = 'controller/desativar_usuario.php';
+	});
+	
 	// ---------------------- TABELAS ----------------------
 	
 	$("#tabelaUsuarios").tablesorter({
