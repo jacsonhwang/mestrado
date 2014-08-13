@@ -101,8 +101,9 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-primary" name="buttonAlterar" id="buttonAlterar">Salvar alterações</button>
+					<div class="col-sm-12" style="margin-top: 20px">
+						<button type="submit" class="btn btn-success" name="buttonAlterar" id="buttonAlterar" style="float: right;">Salvar alterações</button>
+						<a class="btn btn-info" href="usuarios.php" role="button" style="float: left;">Voltar</a>
 					</div>										
 				</div>	
 			</form>
@@ -116,10 +117,6 @@
 				</div>
 			
 			<?php } unset($_SESSION["erroAlteracao"]); ?>
-			
-			<div class="col-lg-12" style="padding-top: 20px;">
-				<a href="javascript:history.go(-1)">Voltar</a>
-			</div>
 			
 		</div>
 	</div>

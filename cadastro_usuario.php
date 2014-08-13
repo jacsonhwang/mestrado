@@ -137,8 +137,9 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-primary" name="buttonCadastrar" id="buttonCadastrar">Cadastrar</button>
+					<div class="col-sm-12" style="margin-top: 20px">
+						<button type="submit" class="btn btn-success" name="buttonCadastrar" id="buttonCadastrar" style="float: right;">Cadastrar</button>
+						<a class="btn btn-info" href="usuarios.php" role="button" style="float: left;">Voltar</a>
 					</div>										
 				</div>
 			</form>

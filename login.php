@@ -28,16 +28,16 @@
 						<input type="password" class="form-control" id="inputPassword3" name="inputSenha">
 					</div>
 				</div>
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<div class="col-sm-offset-3 col-sm-10">
 						<div class="checkbox">
 							<label> <input type="checkbox"> Lembrar</label>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<div class="form-group">
-					<div class="col-sm-offset-3 col-sm-10">
-						<button type="submit" class="btn btn-primary">Entrar</button>
+					<div class="col-sm-offset-2 col-sm-7">
+						<button type="submit" class="btn btn-success" style="float: right">Entrar</button>
 					</div>
 				</div>
 			</form>
@@ -48,7 +48,7 @@
 			
 			<div class="alert alert-danger" role="alert"><b>Erro!</b> Usuário logado.</div>
 			
-			<a href="index.php">Voltar para página inicial</a>
+			<a class="btn btn-info" href="index.php" role="button" style="float: left;">Voltar</a>
 			
 			<?php } ?>
 		</div>

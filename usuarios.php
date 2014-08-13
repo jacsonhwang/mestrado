@@ -79,8 +79,8 @@
 			}
 			?>
 			
-			<div class="col-lg-12" style="padding-top: 20px;">
-				<a href="javascript:history.go(-1)">Voltar</a>
+			<div class="col-lg-12">
+				<a class="btn btn-info" href="painel_admin.php" role="button" style="float: left;">Voltar</a>
 			</div>
 			
 			

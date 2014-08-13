@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
 <title>GCER</title>
+
+<link rel="stylesheet" href="css/datepicker.css" type="text/css">
 <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-<!-- <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css"> -->
 <link rel="stylesheet" href="css/bootstrapValidator.css" type="text/css">
 <link rel="stylesheet" href="css/jumbotron.css" type="text/css">
-<!-- <link rel="stylesheet" href="css/tablesorter.css" type="text/css"> -->
 <link rel="stylesheet" href="css/geral.css" type="text/css">
 
 <script src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="js/acao-datepicker.js"></script>
 <script src="js/bootstrap.js"></script>
 
 <script src="js/utilsCadastro.js"></script>
@@ -29,7 +33,6 @@
 <script type="text/javascript" src="js/jquery.tablesorter.pager.js"></script>
 
 <script type="text/javascript" src="js/utilsPainelAdmin.js"></script>
-<script type="text/javascript" src="js/utilsUsuarios.js"></script>
 
 </head>
 
@@ -75,7 +78,7 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Bem-vindo(a), <?php echo $_SESSION["nome"]; ?>! <span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="perfil.php"><img src="img/config.png" class="imagem"> Configurações</a></li>
+								<li><a href="perfil_usuario.php"><img src="img/config.png" class="imagem"> Configurações</a></li>
 								<li class="divider"></li>
 								<li><a href="logout.php"><img src="img/logout.png" class="imagem"> Sair</a></li>
 							</ul>

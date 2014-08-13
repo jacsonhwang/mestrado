@@ -7,6 +7,11 @@
 				<h1>Painel administrativo</h1>
 			</div>
 			
+			<ol class="breadcrumb">
+				<li><a href="index.php">Home</a></li>
+				<li class="active">Painel administrativo</li>
+			</ol>
+			
 			<?php
 			if(isset($_SESSION["emailAdmin"])) {
 			?>

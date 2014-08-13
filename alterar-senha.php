@@ -8,6 +8,12 @@
 				<h2>Alterar senha</h2>
 			</div>
 			
+			<ol class="breadcrumb">
+				<li><a href="index.php">Home</a></li>
+				<li><a href="perfil_usuario.php">Configurações</a></li>
+				<li class="active">Alterar senha</li>
+			</ol>
+			
 			<?php
 			session_start();
 			
@@ -18,27 +24,31 @@
 			<?php
 				}
 			?>
+			
+				<div class="col-lg-10 col-lg-offset-2">
 
-				<form class="form-horizontal" role="form" action="controller/alterarSenhaControle.php" method="POST" id="formAlterarSenha">
-					<div class="form-group">
-						<label for="inputSenhaAtual" class="col-sm-2 control-label">Senha atual</label>
-						<div class="col-sm-6">
-							<input type="password" class="form-control" id="inputSenhaAtual" name="inputSenhaAtual">
+					<form class="form-horizontal" role="form" action="controller/alterarSenhaControle.php" method="POST" id="formAlterarSenha">
+						<div class="form-group">
+							<label for="inputSenhaAtual" class="col-sm-3 control-label">Senha atual</label>
+							<div class="col-sm-6">
+								<input type="password" class="form-control" id="inputSenhaAtual" name="inputSenhaAtual">
+							</div>
 						</div>
-					</div>
-					
-					<div class="form-group">
-						<label for="inputNovaSenha" class="col-sm-2 control-label">Nova senha</label>
-						<div class="col-sm-6">
-							<input type="password" class="form-control" id="inputNovaSenha" name="inputNovaSenha">
+						
+						<div class="form-group">
+							<label for="inputNovaSenha" class="col-sm-3 control-label">Nova senha</label>
+							<div class="col-sm-6">
+								<input type="password" class="form-control" id="inputNovaSenha" name="inputNovaSenha">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-primary" name="buttonAlterarSenha" id="buttonAlterarSenha">Alterar senha</button>
-						</div>										
-					</div>	
-				</form>
+						<div class="form-group">
+							<div class="col-sm-offset-1 col-sm-8">
+								<button type="submit" class="btn btn-success" name="buttonAlterarSenha" id="buttonAlterarSenha" style="float: right">Alterar senha</button>
+								<a class="btn btn-info" href="perfil_usuario.php" role="button" style="float: left;">Voltar</a>
+							</div>										
+						</div>	
+					</form>
+				</div>
 			
 			<?php
 			} else {

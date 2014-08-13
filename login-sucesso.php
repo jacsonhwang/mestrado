@@ -8,14 +8,14 @@
 				<h1>Login</h1>
 			</div>
 			
-			<div class="alert alert-success" role="alert">Login realizado com sucesso.</div>
+			<div class="alert alert-success" role="alert">Login realizado com sucesso. Aguarde o redirecionamento.</div>
 			
 			<?php
 			if(isset($_SESSION["email"])) {
-				header('Refresh: 0.5; URL=painel_usuario.php');
+				header('Refresh: 1; URL=painel_usuario.php');
 			}
 			else if($_SESSION["emailAdmin"]) {
-				header('Refresh: 0.5; URL=painel_admin.php');
+				header('Refresh: 1; URL=painel_admin.php');
 			}
 			?>
 			

@@ -8,6 +8,11 @@
 				<h2>Cadastro</h2>
 			</div>
 			
+			<ol class="breadcrumb">
+				<li><a href="index.php">Home</a></li>
+				<li class="active">Cadastro</li>
+			</ol>
+			
 			<?php session_start(); ?>
 			
 			<?php if (isset($_SESSION["erro"])) { ?>
@@ -126,8 +131,8 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-primary" name="buttonCadastrar" id="buttonCadastrar">Cadastrar</button>
+					<div class="col-sm-12">
+						<button type="submit" class="btn btn-success" name="buttonCadastrar" id="buttonCadastrar" style="float: right;">Cadastrar</button>
 					</div>										
 				</div>
 			</form>

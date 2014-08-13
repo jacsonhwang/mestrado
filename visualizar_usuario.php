@@ -85,11 +85,13 @@
 				<div class="col-lg-10 col-lg-offset-1">
 					<?php echo ERRO_LOGAR; ?>
 				</div>
-			
-			<?php } unset($_SESSION["erroAlteracao"]); ?>
+				
+			<?php
+			}
+			?>
 			
 			<div class="col-lg-12" style="padding-top: 20px;">
-				<a href="javascript:history.go(-1)">Voltar</a>
+				<a class="btn btn-info" href="usuarios.php" role="button">Voltar</a>
 			</div>
 			
 		</div>

@@ -13,9 +13,15 @@
 				}
 			?>
 			
-			<div class="alert alert-success" role="alert">A sessão foi finalizada.</div>
+			<div class="alert alert-success" role="alert">
+				A sessão foi finalizada. Aguarde o redirecionamento.
+			</div>
 			
-			<a href="index.php">Voltar para página inicial</a>
+			<?php
+			
+			header('Refresh: 1; URL=index.php');
+			
+			?>
 		</div>
 	</div>
 </div>

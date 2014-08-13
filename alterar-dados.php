@@ -8,6 +8,12 @@
 				<h2>Alterar dados cadastrais</h2>
 			</div>
 			
+			<ol class="breadcrumb">
+				<li><a href="index.php">Home</a></li>
+				<li><a href="perfil_usuario.php">Configurações</a></li>
+				<li class="active">Alterar dados</li>
+			</ol>
+			
 			<?php
 			session_start();
 			
@@ -136,8 +142,9 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-primary" name="buttonAlterar" id="buttonAlterar">Salvar alterações</button>
+					<div class="col-sm-offset-1 col-sm-11" style="margin-top: 20px;">
+						<button type="submit" class="btn btn-success" name="buttonAlterar" id="buttonAlterar" style="float: right;">Salvar alterações</button>
+						<a class="btn btn-info" href="perfil_usuario.php" role="button" style="float: left;">Voltar</a>
 					</div>										
 				</div>	
 			</form>

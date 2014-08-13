@@ -17,54 +17,59 @@
 			if(isset($_SESSION["emailAdmin"])) {
 			?>
 			
+				<div class="alert alert-danger" role="alert" id="avisoRodadas">Não existem rodadas cadastradas no sistema.</div>
+				
 				<p><button type="button" class="btn btn-primary" id="buttonCadastrarRodada">Cadastrar</button></p>
 			
-				<div class="col-lg-12">
+				<div class="col-lg-12" id="divTabelaRodadas">
 					<table class="table tablesorter" id="tabelaRodadas">
 						<thead>
 							<tr>
 								<th>Nome</th>
-								<th>Criado em</th>
-								<th>Visualizar</th>
-								<th>Editar</th>
-								<th>Excluir</th>
+								<th>Entidade</th>
+								<th>Início</th>
+								<th>Fim</th>
+								<th class="text-center">Visualizar</th>
+								<th class="text-center">Editar</th>
+								<th class="text-center">Excluir</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td>Rodada 1</td>
+								<td>Pessoa</td>
 								<td>01/01/2014</td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
+								<td>01/10/2014</td>
+								<td class="text-center"><a href="visualizar_rodada.php"><img src="img/view-details.png" class="imagem"></a></td>
+								<td class="text-center"><a href="editar_rodada.php"><img src="img/edit-gray.png" class="imagem"></a></td>
+								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirRodada"></td>
 							</tr>
 							<tr>
-								<td>Rodada 2</td>
+								<td>Rodada 1</td>
+								<td>Pessoa</td>
 								<td>01/01/2014</td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
+								<td>01/10/2014</td>
+								<td class="text-center"><a href="visualizar_rodada.php"><img src="img/view-details.png" class="imagem"></a></td>
+								<td class="text-center"><a href="editar_rodada.php"><img src="img/edit-gray.png" class="imagem"></a></td>
+								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirRodada"></td>
 							</tr>
 							<tr>
-								<td>Rodada 3</td>
+								<td>Rodada 1</td>
+								<td>Pessoa</td>
 								<td>01/01/2014</td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
+								<td>01/10/2014</td>
+								<td class="text-center"><a href="visualizar_rodada.php"><img src="img/view-details.png" class="imagem"></a></td>
+								<td class="text-center"><a href="editar_rodada.php"><img src="img/edit-gray.png" class="imagem"></a></td>
+								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirRodada"></td>
 							</tr>
 							<tr>
-								<td>Rodada 4</td>
+								<td>Rodada 1</td>
+								<td>Pessoa</td>
 								<td>01/01/2014</td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
-							</tr>
-							<tr>
-								<td>Rodada 5</td>
-								<td>01/01/2014</td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
+								<td>01/10/2014</td>
+								<td class="text-center"><a href="visualizar_rodada.php"><img src="img/view-details.png" class="imagem"></a></td>
+								<td class="text-center"><a href="editar_rodada.php"><img src="img/edit-gray.png" class="imagem"></a></td>
+								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirRodada"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -85,8 +90,8 @@
 			}
 			?>
 			
-			<div class="col-lg-12" style="padding-top: 20px;">
-				<a href="javascript:history.go(-1)">Voltar</a>
+			<div class="col-lg-12">
+				<a class="btn btn-info" href="painel_admin.php" role="button" style="float: left;">Voltar</a>
 			</div>
 			
 		</div>

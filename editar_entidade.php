@@ -4,37 +4,38 @@
 		<div class="col-lg-8 col-lg-offset-2">
 
 			<div id="loginTitulo" class="page-header">
-				<h1>Cadastrar Entidade</h1>
+				<h1>Editar Entidade</h1>
 			</div>
 			
 			<ol class="breadcrumb">
 				<li><a href="index.php">Home</a></li>
 				<li><a href="painel_admin.php">Painel administrativo</a></li>
 				<li><a href="entidades.php">Entidades</a></li>
-				<li class="active">Cadastro</li>
+				<li class="active">Editar</li>
 			</ol>
 			
 			<?php
 			if(isset($_SESSION["emailAdmin"])) {
 			?>
 			
-				<form class="form-horizontal" role="form" action="controller/cadastroEntidadeControle.php" method="POST" id="formCadastroEntidade">
+				<form class="form-horizontal" role="form" action="controller/editarEntidadeControle.php" method="POST" id="formEditarEntidade">
 					<div class="form-group">
 						<label for="inputNome" class="col-sm-3 control-label">Nome</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control" id="inputNome" name="inputNome">
+							<input type="text" class="form-control" id="inputNome" name="inputNome" value="Entidade_Pessoa">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputNomeNoJogo" class="col-sm-3 control-label">Nome no Jogo</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control" id="inputNomeNoJogo" name="inputNomeNoJogo">
+							<input type="text" class="form-control" id="inputNomeNoJogo" name="inputNomeNoJogo" value="Pessoa">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputNomeExterno" class="col-sm-3 control-label">Descrição no Jogo</label>
 						<div class="col-sm-7">
-							<textarea class="form-control" rows="3" name="descricaoNoJogo" form="formCadastroEntidade"></textarea>
+							<textarea class="form-control" rows="3" name="descricaoNoJogo" form="formEditarEntidade">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent faucibus justo et pretium tincidunt. Curabitur id turpis ut urna rhoncus tempor at et lacus. Proin bibendum massa lorem, et elementum tortor cursus eu. Suspendisse at consectetur sem. Proin commodo nisl eget luctus rhoncus. Morbi faucibus nulla ut purus tempus pretium. Sed tristique nisl in felis fringilla rutrum. Fusce ultricies gravida nisi, sed vehicula mauris tempus vitae. Duis faucibus nibh at erat hendrerit congue. Donec ullamcorper nunc id euismod molestie. Phasellus auctor commodo mi a malesuada. Sed bibendum nulla at tincidunt imperdiet. 
+							</textarea>
 						</div>
 					</div>
 					
@@ -94,7 +95,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-11" style="margin-top: 20px">
-							<button type="submit" class="btn btn-success" name="buttonCadastrarEntidade" id="buttonCadastrarEntidade" style="float: right">Cadastrar</button>
+							<button type="submit" class="btn btn-success" name="buttonEditarEntidade" style="float: right">Salvar alterações</button>
 							<a class="btn btn-info" href="entidades.php" role="button" style="float: left;">Voltar</a>
 						</div>										
 					</div>

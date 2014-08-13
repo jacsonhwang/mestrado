@@ -7,7 +7,7 @@
 			realizar tarefas que ajudem a reunir da forma mais precisa os diversos registros que representem a mesma pessoa.
 			Contribua com este projeto de forma divertida e inteligente. Desafie a si mesmo e tente executar as tarefas propostas.
 		</p>
-        <p><a href="saibaMais.php" class="btn btn-primary btn-lg" role="button">Saiba mais</a></p>
+        <p><a href="cadastro.php" class="btn btn-success btn-lg" role="button">Cadastre-se</a></p>
       </div>
     </div>
     
