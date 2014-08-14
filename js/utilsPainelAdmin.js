@@ -7,6 +7,8 @@ $(document).ready(function() {
     $("#divTabelaBaseDeDadosAssociadas").hide();
     $("#avisoEntidades").hide();
     
+    $("#avisoBD").hide();
+    
 	$('#buttonUsuarios').click(function () {
 		window.location = 'usuarios.php';
 	});
@@ -200,6 +202,61 @@ $(document).ready(function() {
         if($("#tabelaEntidades tr").length <= 1) {
             $("#divTabelaEntidades").hide();
             $("#avisoEntidades").show();
+        }
+    });
+	
+	// ---------------------- EVENT BASES DE DADOS ----------------------
+	
+	$(".adicionarAtributo").click(function() {
+	    
+	    if($(this).is(":checked")) {
+	        
+	        $(this).parent().siblings().find(":input").each(function() {
+	            $(this).removeAttr("disabled");
+	        });
+	        
+	        if($(this).parent().siblings().find(":checkbox").is(":checked")) {
+	            
+	            $(this).parent().siblings().find(":text").each(function() {
+	                
+	                if($(this).is(":disabled") == false) {
+	                    $(this).attr("disabled", "");
+	                }
+	                
+	            });
+	        }
+	        
+	    }
+	    else {
+
+	        $(this).parent().siblings().find(":input").each(function() {
+	            $(this).attr("disabled", "");
+	        });
+
+	    }
+	});
+	
+	$(".id").click(function() {
+
+	    if($(this).is(":checked")) {
+
+	        $(this).parent().siblings().find(":text").attr("disabled", "");
+
+	    }
+	    else {
+
+	        $(this).parent().siblings().find(":text").removeAttr("disabled");
+
+	    }
+
+	});
+	
+	$(".excluirBD").click(function() {
+        $(this).parent().parent().remove();
+        
+        if($("#tabelaBaseDeDados tr").length <= 1) {
+            $("#divTabelaBaseDeDados").hide();
+            $("#avisoBD").show();
         }
     });
 	

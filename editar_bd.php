@@ -18,17 +18,17 @@
 			if(isset($_SESSION["emailAdmin"])) {
 			?>
 			
-				<form class="form-horizontal" role="form" action="controller/cadastroBDControle.php" method="POST" id="formCadastroBaseDeDado">
+				<form class="form-horizontal" role="form" action="controller/editarBDControle.php" method="POST" id="formCadastroBaseDeDado">
 					<div class="form-group">
 						<label for="inputNome" class="col-sm-2 control-label">Nome</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="inputNome" name="inputNome">
+							<input type="text" class="form-control" id="inputNome" name="inputNome" value="Pessoa_Parte1">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputNomeNoJogo" class="col-sm-2 control-label">Nome no Jogo</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="inputNomeNoJogo" name="inputNomeNoJogo">
+							<input type="text" class="form-control" id="inputNomeNoJogo" name="inputNomeNoJogo" value="Caixa Pessoa - A">
 						</div>
 					</div>
 					<div class="form-group">
@@ -92,7 +92,7 @@
 									<th>Coluna</th>
 									<th class="text-center">Identificador</th>
 									<th>Nome no Jogo</th>
-									<th>Descrição no Jogo</th>
+									<th>Descrição do Jogo</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -120,7 +120,7 @@
 					<p class="text-muted">* Caso não exista um identificador, o sistema criará um automaticamente.</p>
 					<div class="form-group">
 						<div class="col-sm-11">
-							<button type="submit" class="btn btn-success" name="buttonCadastrarBD" style="float: right">Cadastrar</button>
+							<button type="submit" class="btn btn-success" name="buttonEditarBD" style="float: right">Salvar alterações</button>
 							<a class="btn btn-info" href="base_de_dados.php" role="button" style="float: left;">Voltar</a>
 						</div>										
 					</div>

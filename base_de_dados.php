@@ -17,9 +17,11 @@
 			if(isset($_SESSION["emailAdmin"])) {
 			?>
 			
+				<div class="alert alert-danger" role="alert" id="avisoBD">Não existem bases de dados cadastradas no sistema.</div>
+			
 				<p><button type="button" class="btn btn-primary" id="buttonCadastrarBaseDeDado">Cadastrar</button></p>
 			
-				<div class="col-lg-12">
+				<div class="col-lg-12 table-responsive" id="divTabelaBaseDeDados">
 					<table class="table tablesorter" id="tabelaBaseDeDados">
 						<thead>
 							<tr>
@@ -27,9 +29,9 @@
 								<th>Nome no Jogo</th>
 								<th>Nome Arquivo</th>
 								<th>Criado</th>
-								<th>Visualizar</th>
-								<th>Editar</th>
-								<th>Excluir</th>
+								<th class="text-center">Visualizar</th>
+								<th class="text-center">Editar</th>
+								<th class="text-center">Excluir</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -38,36 +40,36 @@
 								<td>Caixa Pessoa - A</td>
 								<td>PessoaDB_A.csv</td>
 								<td>07/08/2014</td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
+								<td class="text-center"><a href="visualizar_bd.php"><img src="img/view-details.png" class="imagem"></a></td>
+								<td class="text-center"><a href="editar_bd.php"><img src="img/edit-gray.png" class="imagem"></a></td>
+								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirBD"></td>
 							</tr>
 							<tr>
 								<td>Pessoa_Parte1</td>
 								<td>Caixa Pessoa - A</td>
 								<td>PessoaDB_A.csv</td>
 								<td>07/08/2014</td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
+								<td class="text-center"><a href="visualizar_bd.php"><img src="img/view-details.png" class="imagem"></a></td>
+								<td class="text-center"><a href="editar_bd.php"><img src="img/edit-gray.png" class="imagem"></a></td>
+								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirBD"></td>
 							</tr>
 							<tr>
 								<td>Pessoa_Parte1</td>
 								<td>Caixa Pessoa - A</td>
 								<td>PessoaDB_A.csv</td>
 								<td>07/08/2014</td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
+								<td class="text-center"><a href="visualizar_bd.php"><img src="img/view-details.png" class="imagem"></a></td>
+								<td class="text-center"><a href="editar_bd.php"><img src="img/edit-gray.png" class="imagem"></a></td>
+								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirBD"></td>
 							</tr>
 							<tr>
 								<td>Pessoa_Parte1</td>
 								<td>Caixa Pessoa - A</td>
 								<td>PessoaDB_A.csv</td>
 								<td>07/08/2014</td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
-								<td><input type="checkbox" /></td>
+								<td class="text-center"><a href="visualizar_bd.php"><img src="img/view-details.png" class="imagem"></a></td>
+								<td class="text-center"><a href="editar_bd.php"><img src="img/edit-gray.png" class="imagem"></a></td>
+								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirBD"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -88,8 +90,8 @@
 			}
 			?>
 			
-			<div class="col-lg-12" style="padding-top: 20px;">
-				<a href="javascript:history.go(-1)">Voltar</a>
+			<div class="col-lg-12">
+				<a class="btn btn-info" href="painel_admin.php" role="button" style="float: left;">Voltar</a>
 			</div>
 			
 		</div>
