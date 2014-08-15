@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="css/geral.css" type="text/css">
 <link rel="stylesheet" href="css/jquery.bxslider.css" type="text/css">
 <link rel="stylesheet" href="css/dashboard.css" type="text/css">
+<link rel="stylesheet" href="css/jogo.css" type="text/css">
 
 <script src="js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
@@ -23,6 +24,7 @@
 <script src="js/utilsCadastro.js"></script>
 <script src="js/utilsLogin.js"></script>
 <script src="js/utilsPainelUsuario.js"></script>
+<script src="js/utilsJogada.js"></script>
 
 <script type="text/javascript" src="js/validator/bootstrapValidator.js"></script>
 <script type="text/javascript" src="js/validator/notEmpty.js"></script>
@@ -37,6 +39,14 @@
 <script type="text/javascript" src="js/jquery.tablesorter.pager.js"></script>
 
 <script type="text/javascript" src="js/utilsPainelAdmin.js"></script>
+
+<script type="text/javascript" src="js/entity.js"></script>
+<script type="text/javascript" src="js/entityViewer.js"></script>
+<script type="text/javascript" src="js/pool.js"></script>
+<script type="text/javascript" src="js/trash.js"></script>
+<!-- <script type="text/javascript" src="js/mestrado.js"></script> -->
+
+
 
 </head>
 
@@ -107,3 +117,5 @@
 			</div>
 		</div>
 	</div>
+
+	
