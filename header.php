@@ -11,14 +11,18 @@
 <link rel="stylesheet" href="css/bootstrapValidator.css" type="text/css">
 <link rel="stylesheet" href="css/jumbotron.css" type="text/css">
 <link rel="stylesheet" href="css/geral.css" type="text/css">
+<link rel="stylesheet" href="css/jquery.bxslider.css" type="text/css">
+<link rel="stylesheet" href="css/dashboard.css" type="text/css">
 
 <script src="js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="js/acao-datepicker.js"></script>
 <script src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
 
 <script src="js/utilsCadastro.js"></script>
 <script src="js/utilsLogin.js"></script>
+<script src="js/utilsPainelUsuario.js"></script>
 
 <script type="text/javascript" src="js/validator/bootstrapValidator.js"></script>
 <script type="text/javascript" src="js/validator/notEmpty.js"></script>
@@ -73,6 +77,7 @@
 						<li><a href="saibaMais.php">Saiba mais</a></li>
 						<!-- <li><a href="#">Jogar</a></li> -->
 						<li><a href="contato.php">Contato</a></li>
+						<li><a href="painel_usuario.php">Painel</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Bem-vindo(a), <?php echo $_SESSION["nome"]; ?>! <span class="caret"></span>
