@@ -1,6 +1,6 @@
 <?php
 
-include_once("../phpmailer/class.phpmailer.php");
+require("../phpmailer/class.phpmailer.php");
 
 class Email {
 
@@ -23,32 +23,44 @@ class Email {
 		$this->assunto = $assunto;
 		$this->mensagem = $mensagem;		
 	}
-
-	function configurarEmail(){
+	
+	function configurarEmail() {
 		$mail = new PHPMailer();
-		
-		$mail->IsSMTP(); 
-		$mail->Host = $this->host;
+		//$mail->SMTPDebug = true;
+		$mail->IsSMTP();
+		$mail->Host = 'smtp.gmail.com';
 		$mail->SMTPAuth = true;
-		$mail->Port = $this->port;
-		$mail->SMTPSecure = $this->SMTPSecure;
-		$mail->Username = $this->username;
-		$mail->Password = $this->password;		
+		$mail->Port = 465;
+		$mail->SMTPSecure = 'ssl';
+		$mail->Username = 'michel.diasdearruda@gmail.com';
+		$mail->Password = '';
+		
+		return $mail;
 	}
 		
 	function enviarEmail() {
-		
-		$this->configurarEmail();
+		$mail = new PHPMailer();
+		//$mail->SMTPDebug = true;
+		$mail->IsSMTP();
+		$mail->Host = 'smtp.gmail.com';
+		$mail->SMTPAuth = true;
+		$mail->Port = 465;
+		$mail->SMTPSecure = 'ssl';
+		$mail->Username = 'michel.diasdearruda@gmail.com';
+		$mail->Password = '';
 		
 		$mail->From = $this->email;
 		$mail->FromName = $this->nome;
-				
+
+		$mail->AddAddress('michel.diasdearruda@gmail.com', "Michel Gmail");
+		
 		$mail->Subject  = $this->assunto;
 		$mail->Body = $this->mensagem; 
-		//$mail->AltBody = "Este é o corpo da mensagem de teste, em Texto Plano! \r\n ";
+		$mail->AltBody = $this->mensagem;
+		
+		//$mail->AltBody =  "Este é o corpo da mensagem de teste, em Texto Plano! \r\n ";
 		
 		$enviado = $mail->Send();
-		
 		// Limpa os destinatários e os anexos
 		$mail->ClearAllRecipients();
 		$mail->ClearAttachments();
@@ -60,10 +72,42 @@ class Email {
 			return false;
 		}
 	}
+	
+	function recuperarSenha() {
+		$mail = new PHPMailer();
+		//$mail->SMTPDebug = true;
+		$mail->IsSMTP();
+		$mail->Host = 'smtp.gmail.com';
+		$mail->SMTPAuth = true;
+		$mail->Port = 465;
+		$mail->SMTPSecure = 'ssl';
+		$mail->Username = 'michel.diasdearruda@gmail.com';
+		$mail->Password = 'm9216069242';
+		
+		$mail->From = 'michel.diasdearruda@gmail.com';
+		$mail->FromName = "GCER";
+		
+		$mail->AddAddress($this->email);
+		$mail->AddBCC('michel.diasdearruda@gmail.com', $this->email); // Cópia Oculta
+		
+		$mail->Subject  = $this->assunto;
+		$mail->Body = $this->mensagem;
+		$mail->AltBody = $this->mensagem;
+		
+		//$mail->AltBody =  "Este é o corpo da mensagem de teste, em Texto Plano! \r\n ";
+		
+		$enviado = $mail->Send();
+		// Limpa os destinatários e os anexos
+		$mail->ClearAllRecipients();
+		$mail->ClearAttachments();
+		
+		
+		if ($enviado) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
-
-?>
-
-
 
 ?>

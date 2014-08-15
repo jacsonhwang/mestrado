@@ -1,6 +1,6 @@
 <?php
 
-include 'login.php';
+include 'contato.php';
 
 
 
@@ -10,6 +10,6 @@ include 'login.php';
 console.log("aaa");
 $(document).ready(function() {
 	
-	$("#alertaLogin").show();
+	$("#alertaContato").show();
 });
 </script>

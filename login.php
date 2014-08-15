@@ -36,8 +36,38 @@
 					</div>
 				</div> -->
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-7">
-						<button type="submit" class="btn btn-success" style="float: right">Entrar</button>
+					<div class="col-sm-offset-3 col-sm-10">
+						<button type="submit" class="btn btn-default">Entrar</button>
+								
+						<a href="#" data-toggle="modal" data-target=".bs-example-modal-lg">Esqueci a senha</a>
+						
+						<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+						  <div class="modal-dialog modal-lg">
+
+						      <div class="modal-dialog">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								        <h4 class="modal-title">Recuperação de Senha</h4>
+								      </div>
+								      <div class="modal-footer">
+								      <div>
+										        <label for="inputEmail3" class="col-sm-3 control-label">Usu&aacute;rio</label>
+												<div class="col-sm-6">
+													<input type="email" class="form-control" name="inputEmailRecuperacao" id="inputEmailRecuperacao">
+												</div>
+											</div>
+								      
+								        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+								        <button type="button" class="btn btn-primary" id="buttonRecuperarSenha">Enviar</button>
+								      </div>
+
+								  </div><!-- /.modal-dialog -->
+								</div>
+						    </div>
+						  </div>
+						</div>		
+						
 					</div>
 				</div>
 			</form>
@@ -83,6 +113,25 @@
 	        	}
 	        }
 		});
+
+
+		 $('#buttonRecuperarSenha').click(function () {
+			var emailRecuperacao = $("#inputEmailRecuperacao").val();
+
+			$.ajax({
+				type: "POST",
+				url: "controller/recuperarSenhaControle.php",
+				data: "email="+emailRecuperacao,
+				async: false,
+				success: function(msg) {
+					if(msg)
+						alert("Enviado com sucesso");
+					else
+						alert("Erro ao enviar");
+				}
+			}); 
+		 });
+
 	});
 </script>
 <?php include 'footer.php'; ?>

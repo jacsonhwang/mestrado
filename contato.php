@@ -8,9 +8,9 @@
 				<h2>Contato</h2>
 			</div>
 			
-			
-			
-			<form class="form-horizontal" role="form" action="controller/contatoControle.php" method="POST" id="formContato">
+			<div class="alert alert-danger" role="alert" id="alertaContato"><b>Erro!</b> Erro ao enviar contato.</div>
+						
+			<form class="form-horizontal" role="form" action="controller/emailControle.php" method="POST" id="formContato">
 				<div class="form-group">
 					<label for="inputAssunto" class="col-sm-2 control-label">Assunto</label>
 					<div class="col-sm-10">
@@ -21,14 +21,14 @@
 				<div class="form-group">
 					<label for="inputArea" class="col-sm-2 control-label">Mensagem</label>
 					<div class="col-sm-10">					
-						<textarea class="form-control" rows="3"></textarea>
+						<textarea class="form-control" rows="3" name="inputMensagem"></textarea>
 					</div>
 				</div>
 				
 											
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-success" name="buttonCadastrar" id="buttonCadastrar" style="float: right;">Enviar</button>
+						<button type="submit" class="btn btn-default" name="buttonEnviarEmail" id="buttonEnviarEmail">Enviar</button>
 					</div>										
 				</div>	
 			</form>
