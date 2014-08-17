@@ -22,3 +22,17 @@
 	width: 100%;
 	height: 100%;
 }
+
+.menu-slider {
+	position: absolute;
+	background-color: #FFFFFF;
+	z-index: 10;
+	margin-top: 20px;
+	padding-top: 15px;
+	border: 1px solid black;
+}
+
+.tab {
+	max-height: 200px;
+	overflow-x: auto;
+}

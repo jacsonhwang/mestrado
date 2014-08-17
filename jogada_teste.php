@@ -2,35 +2,40 @@
 
 <div class="container-fluid">
 	<div class="row">
-		
-		
-		<div class="col-sm-3 col-md-6 sidebar" style="left:150px;" id="filtro">
+		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
-				<li class="active"><a href="#" style="pointer-events: none; cursor: default;">Filtro</a></li>
+				<li class="active"><a href="#" style="pointer-events: none; cursor: default;">Ferramentas</a></li>
+				<li><a href="#" id="opcaoFiltro">Filtro</a></li>
+				<li><a href="#" id="opcaoComparador">Comparador</a></li>
+				<li><a href="#" id="opcaoDicionario">Dicionário</a></li>
+				<li><a href="#" id="opcaoArquivos">Arquivos</a></li>
 			</ul>
-			<form class="form-horizontal" role="form" action="controller/cadastroControle.php" method="POST" id="formCadastro">
+		</div>
+		
+		<div class="col-sm-9 col-sm-offset-3 col-md-4 col-md-offset-2 menu-slider" id="filtro">
+			<form class="form-horizontal">
 				<div class="form-group">
 					<label for="inputNome" class="col-sm-2 control-label">Nome</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="inputNome" name="inputNome">
+						<input type="text" class="form-control" id="inputNome">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputEmail" class="col-sm-2 control-label">Endereço</label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail" name="inputEmail">
+						<input type="email" class="form-control" id="inputEmail">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputSenha" class="col-sm-2 control-label">CPF</label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputSenha" name="inputSenha">
+						<input type="password" class="form-control" id="inputSenha">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="selectEscolaridade" class="col-sm-2 control-label">Arquivo</label>
 					<div class="col-sm-10">
-						<select class="form-control" id="selectEscolaridade" name="selectEscolaridade">
+						<select class="form-control" id="selectArquivo">
 							<option disabled selected></option>
 							<option value="1" >Caixa A</option>
 							<option value="2" >Caixa B</option>
@@ -40,9 +45,287 @@
 				</div>				
 				<div class="form-group">
 					<div class="col-sm-12">
-						<button type="submit" class="btn btn-success" name="buttonCadastrar" id="buttonCadastrar" style="float: right;">Filtrar</button>
+						<button class="btn btn-success" style="float: right;" id="buttonFiltrar">Filtrar</button>
 					</div>										
 				</div>
+			</form>
+			
+			<table class="table tablesorter" id="tabelaFiltro">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Endereço</th>
+						<th>CPF</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Lucas Fabio</td>
+						<td>Rua Assembleia</td>
+						<td>244.568.561-04</td>
+					</tr>
+					<tr>
+						<td>Lucas Faria</td>
+						<td>Rua Assembleia</td>
+						<td>644.245.655-57</td>
+					</tr>
+					<tr>
+						<td>Lucas Fernando</td>
+						<td>Rua Miguel</td>
+						<td>325.576.325-89</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="col-sm-9 col-sm-offset-3 col-md-4 col-md-offset-2 menu-slider" id="comparador">
+		
+			<div class="col-lg-6" style="height: 250px; border: 1px solid black;">
+			</div>
+			<div class="col-lg-6" style="height: 250px; border: 1px solid black;">
+			</div>
+			
+			<div class="clearfix"></div>
+			
+			<div class="col-sm-12 text-center" style="padding-top: 10px; padding-bottom: 15px;">
+				<button class="btn btn-success">Comparar</button>
+			</div>
+		</div>
+		
+		<div class="col-sm-9 col-sm-offset-3 col-md-4 col-md-offset-2 menu-slider" id="dicionario">
+		
+			<div class="col-sm-12 text-center" style="padding-top: 10px; padding-bottom: 15px;">
+				<input type="text" class="form-control">
+			</div>
+			
+			<div class="col-sm-12 text-center" style="padding-bottom: 15px;">
+				<button class="btn btn-success">Buscar</button>
+			</div>
+			
+			<div class="col-sm-12" style="padding-bottom: 15px;">
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="active"><a href="#tabNome" role="tab" data-toggle="tab">Nome</a></li>
+					<li><a href="#tabEndereco" role="tab" data-toggle="tab">Endereço</a></li>
+					<li><a href="#tabCPF" role="tab" data-toggle="tab">CPF</a></li>
+				</ul>
+
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="tab-pane active tab" id="tabNome">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Nome</th>
+									<th>Frequência</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Ana Madalena</td>
+									<td>2</td>
+								</tr>
+								<tr>
+									<td>Claudio Matos da Silva</td>
+									<td>1</td>
+								</tr>
+								<tr>
+									<td>Lucas Matias</td>
+									<td>3</td>
+								</tr>
+								<tr>
+									<td>Jonathan Luiz</td>
+									<td>5</td>
+								</tr>
+								<tr>
+									<td>Maria de Jesus</td>
+									<td>2</td>
+								</tr>
+								<tr>
+									<td>Michel Litie</td>
+									<td>10</td>
+								</tr>
+								<tr>
+									<td>Renato Ares</td>
+									<td>3</td>
+								</tr>
+								<tr>
+									<td>William Marcos</td>
+									<td>2</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="tab-pane tab" id="tabEndereco">Tabela endereços</div>
+					<div class="tab-pane tab" id="tabCPF">Tabela CPF</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-2 menu-slider" id="arquivos">
+			<div class="col-lg-2">
+				<div class="row">
+					<img src="img/box.png" style="width: 100%" />
+				</div>
+				<div class="row text-center">
+					<h4>Caixa A</h4>
+				</div>
+			</div>
+			<div class="col-lg-7">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Característica</th>
+							<th>Descrição</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Nome Completo</td>
+							<td>Nome completo</td>
+						</tr>
+						<tr>
+							<td>Endereço</td>
+							<td>Nome do logradouro</td>
+						</tr>
+						<tr>
+							<td>CPF</td>
+							<td>Documento único</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-lg-3">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Entidade Alvo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Rosana Faria</td>
+						</tr>
+						<tr>
+							<td>Rua Lindemberg</td>
+						</tr>
+						<tr>
+							<td>244.568.561-04</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="clearfix"></div>
+			
+			<div class="col-lg-2">
+				<div class="row">
+					<img src="img/box.png" style="width: 100%" />
+				</div>
+				<div class="row text-center">
+					<h4>Caixa B</h4>
+				</div>
+			</div>
+			<div class="col-lg-7">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Característica</th>
+							<th>Descrição</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Nome</td>
+							<td>Primeiro nome</td>
+						</tr>
+						<tr>
+							<td>CEP</td>
+							<td>CEP do local</td>
+						</tr>
+						<tr>
+							<td>CPF</td>
+							<td>Documento único</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-lg-3">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Entidade Alvo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Rosana</td>
+						</tr>
+						<tr>
+							<td>22541-351</td>
+						</tr>
+						<tr>
+							<td>244.568.561-04</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="clearfix"></div>
+			
+			<div class="col-lg-2">
+				<div class="row">
+					<img src="img/box.png" style="width: 100%" />
+				</div>
+				<div class="row text-center">
+					<h4>Caixa C</h4>
+				</div>
+			</div>
+			<div class="col-lg-7">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Característica</th>
+							<th>Descrição</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Nome Completo</td>
+							<td>Nome completo da pessoa</td>
+						</tr>
+						<tr>
+							<td>CEP</td>
+							<td>CEP</td>
+						</tr>
+						<tr>
+							<td>CPF</td>
+							<td>Documento único</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-lg-3">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Entidade Alvo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Rosana Faria</td>
+						</tr>
+						<tr>
+							<td>22541-351</td>
+						</tr>
+						<tr>
+							<td>244.568.561-04</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
 		</div>
 
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -68,7 +351,6 @@
 
 	</div>
 </div>
-
 
 <script>
 $.getJSON('entidades.json', function(data){
