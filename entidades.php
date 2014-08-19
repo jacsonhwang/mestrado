@@ -19,7 +19,8 @@
 			
 				<div class="alert alert-danger" role="alert" id="avisoEntidades">Não existem entidades cadastradas no sistema.</div>
 			
-				<p><button type="button" class="btn btn-primary" id="buttonCadastrarEntidade">Cadastrar</button></p>
+				<button type="button" class="btn btn-primary" id="buttonCadastrarEntidade">Cadastrar</button>
+				<button type="button" class="btn btn-primary" id="buttonVisualizarQualidade">Visualizar qualidade</button>
 			
 				<div class="col-lg-12" id="divTabelaEntidades">
 					<table class="table tablesorter" id="tabelaEntidades">

@@ -3,6 +3,7 @@
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 
 <title>GCER</title>
 
@@ -93,7 +94,7 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Bem-vindo(a), <?php echo $_SESSION["nome"]; ?>! <span class="caret"></span>
 						</a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="perfil_usuario.php"><img src="img/config.png" class="imagem"> Configurações</a></li>
+								<li><a href="perfil_usuario.php"><img src="img/config.png" class="imagem"> Configuraï¿½ï¿½es</a></li>
 								<li class="divider"></li>
 								<li><a href="logout.php"><img src="img/logout.png" class="imagem"> Sair</a></li>
 							</ul>

@@ -18,7 +18,7 @@ class Conexao{
 
 	function connect(){ //Método para abrir e testar a conexão.
 		//$connectionInfo = array("UID"=>$this->user, "PWD"=>$this->pass,"Database"=>$this->db, "CharacterSet"  => 'UTF-8');
-		$connectionInfo = array("UID"=>$this->user, "PWD"=>$this->pass,"Database"=>$this->db, "CharacterSet"  => 'UTF-8');
+		$connectionInfo = array("UID"=>$this->user, "PWD"=>$this->pass,"Database"=>$this->db);
 		$this->link = sqlsrv_connect($this->host, $connectionInfo);
 		if($this->link == false ){
 			echo "Conex&atilde;o Falhou.</br>";

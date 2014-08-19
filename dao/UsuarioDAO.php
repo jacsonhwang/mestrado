@@ -137,14 +137,14 @@ class UsuarioDAO {
 		
 		$cn = new Conexao();
 		
-		$sql = "SELECT idusuario, nome, email, idade, genero, escolaridade, formacao_academica, marketplace, science, gaming, situacao FROM usuario";
+		$sql = "SELECT id, nome, email, idade, genero, escolaridade, formacao_academica, marketplace, science, gaming, situacao FROM usuario";
 		
 		$result = $cn->execute($sql);
 		
 		$usuarioArray = array();
 		
 		while ($rs = sqlsrv_fetch_array($result)) {
-			$id = $rs["idusuario"];
+			$id = $rs["id"];
 			$nome = $rs["nome"];
 			$email = $rs["email"];
 			$idade = $rs["idade"];

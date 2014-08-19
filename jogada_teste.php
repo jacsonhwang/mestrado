@@ -1,4 +1,12 @@
-<?php include 'header.php'; ?>
+<?php
+
+include 'header.php';
+include 'dao/MetaBaseDadosDAO.php';
+include 'dao/EntidadesListaDAO.php';
+include 'model/MetaBaseDados.php';
+include 'controller/jogadaBancoControle.php';
+
+?>
 
 <div class="container-fluid">
 	<div class="row">
@@ -162,7 +170,20 @@
 			
 		</div>
 		
-		<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-2 menu-slider" id="arquivos">
+		<?php
+		$metaBaseDadosDAO = new MetaBaseDadosDAO();
+		$entidadesListaDAO = new EntidadesListaDAO();
+		
+		$dadosArray1 = $metaBaseDadosDAO->listarDados(1);
+		$dadosArray2 = $metaBaseDadosDAO->listarDados(2);
+		$dadosArray3 = $metaBaseDadosDAO->listarDados(3);
+		
+		$referenciaArray1 = $entidadesListaDAO->recuperarPrimeiraLinha(1, 'entidades_lista_a');
+		$referenciaArray2 = $entidadesListaDAO->recuperarPrimeiraLinha(2, 'entidades_lista_b');
+		$referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lista_c');
+		?>
+		
+		<div class="col-sm-9 col-sm-offset-3 col-md-7 col-md-offset-2 menu-slider" id="arquivos">
 			<div class="col-lg-2">
 				<div class="row">
 					<img src="img/box.png" style="width: 100%" />
@@ -171,47 +192,31 @@
 					<h4>Caixa A</h4>
 				</div>
 			</div>
-			<div class="col-lg-7">
+			<div class="col-lg-10 fixed-height" style="border: 1px solid black; margin-bottom: 10px">
 				<table class="table">
 					<thead>
 						<tr>
 							<th>Característica</th>
+							<th>Nome no Jogo</th>
 							<th>Descrição</th>
+							<th>Referência</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Nome Completo</td>
-							<td>Nome completo</td>
-						</tr>
-						<tr>
-							<td>Endereço</td>
-							<td>Nome do logradouro</td>
-						</tr>
-						<tr>
-							<td>CPF</td>
-							<td>Documento único</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="col-lg-3">
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Entidade Alvo</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Rosana Faria</td>
-						</tr>
-						<tr>
-							<td>Rua Lindemberg</td>
-						</tr>
-						<tr>
-							<td>244.568.561-04</td>
-						</tr>
+						<?php
+						$i = 0;
+						foreach($dadosArray1 as $caixaA) {
+						?>
+							<tr>
+								<td><?php echo $caixaA->getNomeAtributo(); ?></td>
+								<td><?php echo $caixaA->getNomeJogo(); ?></td>
+								<td><?php echo $caixaA->getDescricaoAtributo(); ?></td>
+								<td><?php echo $referenciaArray1[$i]; ?></td>
+							</tr>
+						<?php
+						$i++;
+						}
+						?>
 					</tbody>
 				</table>
 			</div>
@@ -226,47 +231,31 @@
 					<h4>Caixa B</h4>
 				</div>
 			</div>
-			<div class="col-lg-7">
+			<div class="col-lg-10 fixed-height" style="border: 1px solid black; margin-bottom: 10px">
 				<table class="table">
 					<thead>
 						<tr>
 							<th>Característica</th>
+							<th>Nome no Jogo</th>
 							<th>Descrição</th>
+							<th>Referência</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Nome</td>
-							<td>Primeiro nome</td>
-						</tr>
-						<tr>
-							<td>CEP</td>
-							<td>CEP do local</td>
-						</tr>
-						<tr>
-							<td>CPF</td>
-							<td>Documento único</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="col-lg-3">
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Entidade Alvo</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Rosana</td>
-						</tr>
-						<tr>
-							<td>22541-351</td>
-						</tr>
-						<tr>
-							<td>244.568.561-04</td>
-						</tr>
+						<?php
+						$j = 0;
+						foreach($dadosArray2 as $caixaB) {
+						?>
+							<tr>
+								<td><?php echo $caixaB->getNomeAtributo(); ?></td>
+								<td><?php echo $caixaB->getNomeJogo(); ?></td>
+								<td><?php echo $caixaB->getDescricaoAtributo(); ?></td>
+								<td><?php echo $referenciaArray2[$j]; ?></td>
+							</tr>
+						<?php
+						$j++;
+						}
+						?>
 					</tbody>
 				</table>
 			</div>
@@ -281,47 +270,31 @@
 					<h4>Caixa C</h4>
 				</div>
 			</div>
-			<div class="col-lg-7">
+			<div class="col-lg-10 fixed-height" style="border: 1px solid black; margin-bottom: 10px">
 				<table class="table">
 					<thead>
 						<tr>
 							<th>Característica</th>
+							<th>Nome no Jogo</th>
 							<th>Descrição</th>
+							<th>Referência</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Nome Completo</td>
-							<td>Nome completo da pessoa</td>
-						</tr>
-						<tr>
-							<td>CEP</td>
-							<td>CEP</td>
-						</tr>
-						<tr>
-							<td>CPF</td>
-							<td>Documento único</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="col-lg-3">
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Entidade Alvo</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Rosana Faria</td>
-						</tr>
-						<tr>
-							<td>22541-351</td>
-						</tr>
-						<tr>
-							<td>244.568.561-04</td>
-						</tr>
+						<?php
+						$k = 0;
+						foreach($dadosArray3 as $caixaC) {
+						?>
+							<tr>
+								<td><?php echo $caixaC->getNomeAtributo(); ?></td>
+								<td><?php echo $caixaC->getNomeJogo(); ?></td>
+								<td><?php echo $caixaC->getDescricaoAtributo(); ?></td>
+								<td><?php echo $referenciaArray3[$k]; ?></td>
+							</tr>
+						<?php
+						$k++;
+						}
+						?>
 					</tbody>
 				</table>
 			</div>

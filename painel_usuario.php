@@ -18,7 +18,7 @@
 							<button type="button" class="btn btn-default btn-lg btn-block" id="buttonUsuarios">Ranking</button>
 						</div>
 						<div class="col-lg-6">
-							<button type="button" class="btn btn-default btn-lg btn-block" id="buttonUsuarios">Jogo Teste</button><br>
+							<button type="button" class="btn btn-default btn-lg btn-block" id="buttonJogoTeste">Jogo Teste</button><br>
 						</div>
 					</div>
 					<div class="row">

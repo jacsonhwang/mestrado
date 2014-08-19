@@ -78,6 +78,36 @@
 					</div>
 				</div>
 
+				<div class="col-lg-8 col-lg-offset-2" style="border: 1px solid black; margin-top: 20px">
+	
+					<table class="table tablesorter">
+						<thead>
+							<tr>
+								<th>Entidade</th>
+								<th class="text-center">Qualidade (Métrica 1)</th>
+								<th class="text-center">Qualidade (Métrica 2)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Rodada Teste</td>
+								<td class="text-center">80%</td>
+								<td class="text-center">86%</td>
+							</tr>
+							<tr>
+								<td>Pessoa</td>
+								<td class="text-center">60%</td>
+								<td class="text-center">65%</td>
+							</tr>
+							<tr>
+								<td>Animal</td>
+								<td class="text-center">70%</td>
+								<td class="text-center">69%</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
 			<?php
 			} else {
 			?>

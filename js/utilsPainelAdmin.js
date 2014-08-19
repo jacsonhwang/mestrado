@@ -33,6 +33,10 @@ $(document).ready(function() {
 		window.location = 'cadastrar_entidade.php';
 	});
 	
+	$('#buttonVisualizarQualidade').click(function() {
+		window.location = 'qualidade.php';
+	});
+	
 	$('#buttonCadastrarTarefa').click(function() {
 		window.location = 'cadastrar_tarefa.php';
 	});
