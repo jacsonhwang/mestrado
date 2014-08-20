@@ -6,6 +6,17 @@ include 'dao/EntidadesListaDAO.php';
 include 'model/MetaBaseDados.php';
 include 'controller/jogadaBancoControle.php';
 
+$metaBaseDadosDAO = new MetaBaseDadosDAO();
+$entidadesListaDAO = new EntidadesListaDAO();
+
+$dadosArray1 = $metaBaseDadosDAO->listarDados(1);
+$dadosArray2 = $metaBaseDadosDAO->listarDados(2);
+$dadosArray3 = $metaBaseDadosDAO->listarDados(3);
+
+$referenciaArray1 = $entidadesListaDAO->recuperarPrimeiraLinha(1, 'entidades_lista_a');
+$referenciaArray2 = $entidadesListaDAO->recuperarPrimeiraLinha(2, 'entidades_lista_b');
+$referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lista_c');
+
 ?>
 
 <div class="container-fluid">
@@ -21,68 +32,83 @@ include 'controller/jogadaBancoControle.php';
 		</div>
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-4 col-md-offset-2 menu-slider" id="filtro">
-			<form class="form-horizontal">
-				<div class="form-group">
-					<label for="inputNome" class="col-sm-2 control-label">Nome</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="inputNome">
+			<div class="col-sm-12" style="padding-bottom: 15px;">
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="active"><a href="#tabCaixaA" role="tab" data-toggle="tab">Caixa A</a></li>
+					<li><a href="#tabCaixaB" role="tab" data-toggle="tab">Caixa B</a></li>
+					<li><a href="#tabCaixaC" role="tab" data-toggle="tab">Caixa C</a></li>
+				</ul>
+
+				<!-- Tab panes -->
+				<div class="tab-content" style="margin-top: 20px">
+					<div class="tab-pane active tab" id="tabCaixaA">
+						<form class="form-horizontal" id="formCaixaA">
+							<?php
+							foreach($dadosArray1 as $dado) {
+							?>					
+								<div class="form-group">
+									<label for="<?php echo $dado->getNomeAtributo(); ?>" class="col-sm-3 control-label"><?php echo $dado->getNomeJogo(); ?></label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="<?php echo $dado->getNomeAtributo(); ?>" name="<?php echo $dado->getNomeAtributo(); ?>">
+									</div>
+								</div>
+							<?php
+							}
+							?>
+
+							<div class="col-sm-11" style="padding-bottom: 15px;">
+								<button class="btn btn-success" id="buttonFiltrarA">Filtrar</button>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane tab" id="tabCaixaB">
+						<form class="form-horizontal">
+							<?php
+							foreach($dadosArray2 as $dado) {
+							?>					
+								<div class="form-group">
+									<label for="caixaB_<?php echo $dado->getNomeAtributo(); ?>" class="col-sm-3 control-label"><?php echo $dado->getNomeJogo(); ?></label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="caixaB_<?php echo $dado->getNomeAtributo(); ?>">
+									</div>
+								</div>
+							<?php
+							}
+							?>
+
+							<div class="col-sm-11" style="padding-bottom: 15px;">
+								<button class="btn btn-success" id="buttonFiltrarB">Filtrar</button>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane tab" id="tabCaixaC">
+						<form class="form-horizontal">
+							<?php
+							foreach($dadosArray3 as $dado) {
+							?>					
+								<div class="form-group">
+									<label for="caixaC_<?php echo $dado->getNomeAtributo(); ?>" class="col-sm-3 control-label"><?php echo $dado->getNomeJogo(); ?></label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="caixaC_<?php echo $dado->getNomeAtributo(); ?>">
+									</div>
+								</div>
+							<?php
+							}
+							?>
+
+							<div class="col-sm-11" style="padding-bottom: 15px;">
+								<button class="btn btn-success" id="buttonFiltrarC">Filtrar</button>
+							</div>
+						</form>
 					</div>
 				</div>
-				<div class="form-group">
-					<label for="inputEmail" class="col-sm-2 control-label">Endereço</label>
-					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inputSenha" class="col-sm-2 control-label">CPF</label>
-					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputSenha">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="selectEscolaridade" class="col-sm-2 control-label">Arquivo</label>
-					<div class="col-sm-10">
-						<select class="form-control" id="selectArquivo">
-							<option disabled selected></option>
-							<option value="1" >Caixa A</option>
-							<option value="2" >Caixa B</option>
-							<option value="3" >Caixa C</option>							
-						</select>
-					</div>
-				</div>				
-				<div class="form-group">
-					<div class="col-sm-12">
-						<button class="btn btn-success" style="float: right;" id="buttonFiltrar">Filtrar</button>
-					</div>										
-				</div>
-			</form>
+			</div>
 			
 			<table class="table tablesorter" id="tabelaFiltro">
 				<thead>
-					<tr>
-						<th>Nome</th>
-						<th>Endereço</th>
-						<th>CPF</th>
-					</tr>
+					<tr></tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>Lucas Fabio</td>
-						<td>Rua Assembleia</td>
-						<td>244.568.561-04</td>
-					</tr>
-					<tr>
-						<td>Lucas Faria</td>
-						<td>Rua Assembleia</td>
-						<td>644.245.655-57</td>
-					</tr>
-					<tr>
-						<td>Lucas Fernando</td>
-						<td>Rua Miguel</td>
-						<td>325.576.325-89</td>
-					</tr>
-				</tbody>
+				<tbody></tbody>
 			</table>
 		</div>
 		
@@ -169,19 +195,6 @@ include 'controller/jogadaBancoControle.php';
 			</div>
 			
 		</div>
-		
-		<?php
-		$metaBaseDadosDAO = new MetaBaseDadosDAO();
-		$entidadesListaDAO = new EntidadesListaDAO();
-		
-		$dadosArray1 = $metaBaseDadosDAO->listarDados(1);
-		$dadosArray2 = $metaBaseDadosDAO->listarDados(2);
-		$dadosArray3 = $metaBaseDadosDAO->listarDados(3);
-		
-		$referenciaArray1 = $entidadesListaDAO->recuperarPrimeiraLinha(1, 'entidades_lista_a');
-		$referenciaArray2 = $entidadesListaDAO->recuperarPrimeiraLinha(2, 'entidades_lista_b');
-		$referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lista_c');
-		?>
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-7 col-md-offset-2 menu-slider" id="arquivos">
 			<div class="col-lg-2">

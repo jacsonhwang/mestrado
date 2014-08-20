@@ -58,6 +58,27 @@ class MetaBaseDadosDAO {
 		
 		return $atributos;
 	}
+	
+	public function recuperarNomeJogo($idBaseDados) {
+	
+		$cn = new Conexao();
+	
+		$sql = "SELECT nome_jogo FROM " . $this->tabela . " WHERE base_dados_id = " . $idBaseDados;
+	
+		$result = $cn->execute($sql);
+	
+		$dadosArray = array();
+	
+		while ($rs = sqlsrv_fetch_array($result)) {
+			$nomeJogo = $rs["nome_jogo"];
+	
+			array_push($dadosArray, $nomeJogo);
+		}
+	
+		$cn->disconnect();
+	
+		return $atributos;
+	}
 }
 
 ?>

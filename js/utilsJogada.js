@@ -38,7 +38,35 @@ $(document).ready(function() {
         }
     });
 	
-	$("#buttonFiltrar").click(function() {
-	    $("#tabelaFiltro").show();
+	$("#formCaixaA").submit(function() {
+		
+		var atributo = new Array();
+		var valor = new Array();
+		
+		event.preventDefault();
+		
+		$(this).find("input").each(function() {
+			
+			if($(this).val() != "") {
+				atributo.push($(this).attr("id"));
+				valor.push($(this).val());
+			}
+			
+		});
+		
+		var jogadaAjax = new JogadaAjax();
+		
+		var dados = jogadaAjax.getDadosEntidade(atributo, valor, "entidades_lista_a");
+		
+		//console.log(dados);
+		
+		var nomesColunas = jogadaAjax.getNomesColunas(1);
+		
+		console.log(nomesColunas);
+		
+		/*$("#tabelaFiltro").show();
+		
+		$("<th>").appendTo("#tabelaFiltro > thead > tr").html("oi");*/
+		
 	});
 });

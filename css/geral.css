@@ -34,5 +34,6 @@
 
 .tab {
 	max-height: 200px;
-	overflow-x: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
