@@ -35,7 +35,11 @@ class EntidadesListaDAO {
 		
 	}
 	
-	public function recuperarDados($atributos, $valores, $tabela) {
+	public function recuperarDados($atributos, $valores, $tabela, $idBaseDados) {
+		
+		$mbd = new MetaBaseDadosDAO();
+		
+		$nomesColunas = $mbd->recuperarNomesColunas($idBaseDados);
 		
 		$cn = new Conexao();
 		
@@ -78,16 +82,14 @@ class EntidadesListaDAO {
 			}
 		}
 		
-		$sql = "SELECT * FROM " . $tabela . " WHERE " . $where;
+		$sql = "SELECT " . $nomesColunas . " FROM " . $tabela . " WHERE " . $where;
 		
 		$result = $cn->execute($sql);
 		
 		$dadosArray = array();
 		
 		while ($rs = sqlsrv_fetch_array($result, SQLSRV_FETCH_NUMERIC)) {
-			for($i = 0; $i < count($rs); $i++) {
-				array_push($dadosArray, $rs[$i]);
-			}
+			array_push($dadosArray, $rs);
 		}
 		
 		$cn->disconnect();

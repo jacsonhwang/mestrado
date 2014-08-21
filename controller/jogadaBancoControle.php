@@ -1,7 +1,6 @@
 <?php
 
 include '../dao/MetaBaseDadosDAO.php';
-include '../dao/EntidadesListaDAO.php';
 
 function listarDados($idBaseDados) {
 	

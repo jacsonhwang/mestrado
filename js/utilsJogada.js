@@ -1,6 +1,8 @@
 $(document).ready(function() {
 	$("#filtro, #comparador, #dicionario, #arquivos, #tabelaFiltro").hide();
 	
+	$("#divTabelaFiltroA, #divTabelaFiltroB, #divTabelaFiltroC").hide();
+	
 	$("#opcaoFiltro").click(function(){
 	    
 	    if($("#filtro").is(":visible")) {
@@ -38,35 +40,79 @@ $(document).ready(function() {
         }
     });
 	
+	$("#liCaixaA").click(function() {
+		$("#divTabelaFiltroA").hide();
+		$("#divTabelaFiltroB").hide();
+		$("#divTabelaFiltroC").hide();
+	});
+	
+	$("#liCaixaB").click(function() {
+		$("#divTabelaFiltroA").hide();
+		$("#divTabelaFiltroB").hide();
+		$("#divTabelaFiltroC").hide();
+	});
+	
+	$("#liCaixaC").click(function() {
+		$("#divTabelaFiltroA").hide();
+		$("#divTabelaFiltroB").hide();
+		$("#divTabelaFiltroC").hide();
+	});
+	
 	$("#formCaixaA").submit(function() {
 		
-		var atributo = new Array();
-		var valor = new Array();
+		criarTabela(this, "#tabelaFiltroA", "#divTabelaFiltroA", "entidades_lista_a", 1);
 		
-		event.preventDefault();
+	});
+	
+	$("#formCaixaB").submit(function() {
 		
-		$(this).find("input").each(function() {
-			
-			if($(this).val() != "") {
-				atributo.push($(this).attr("id"));
-				valor.push($(this).val());
-			}
-			
-		});
+		criarTabela(this, "#tabelaFiltroB", "#divTabelaFiltroB", "entidades_lista_b", 2);
 		
-		var jogadaAjax = new JogadaAjax();
+	});
+	
+	$("#formCaixaC").submit(function() {
 		
-		var dados = jogadaAjax.getDadosEntidade(atributo, valor, "entidades_lista_a");
-		
-		//console.log(dados);
-		
-		var nomesColunas = jogadaAjax.getNomesColunas(1);
-		
-		console.log(nomesColunas);
-		
-		/*$("#tabelaFiltro").show();
-		
-		$("<th>").appendTo("#tabelaFiltro > thead > tr").html("oi");*/
+		criarTabela(this, "#tabelaFiltroC", "#divTabelaFiltroC", "entidades_lista_c", 3);
 		
 	});
 });
+
+function criarTabela(form, tabela, divTabela, tabelaBanco, idBaseDados) {
+	
+	$(tabela + " > thead > tr").empty();
+	$(tabela + " > tbody").empty();
+	
+	var atributo = new Array();
+	var valor = new Array();
+	
+	event.preventDefault();
+	
+	$(form).find("input").each(function() {
+		
+		if($(this).val() != "") {
+			atributo.push($(this).attr("id"));
+			valor.push($(this).val());
+		}
+		
+	});
+	
+	var jogadaAjax = new JogadaAjax();
+	
+	var dadosArray = jogadaAjax.getDadosEntidade(atributo, valor, tabelaBanco, idBaseDados);
+	
+	var nomesColunas = jogadaAjax.getNomesColunas(idBaseDados);
+	
+	$(divTabela).show();
+	
+	for(var i in nomesColunas) {
+		$("<th class='text-center'>").appendTo(tabela + " > thead > tr").html(nomesColunas[i]);
+	}
+	
+	for(var i in dadosArray) {
+		$("<tr>").appendTo(tabela + " > tbody");
+		
+		for(var j in dadosArray[i]) {
+			$("<td class='text-center'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);
+		}
+	}
+}

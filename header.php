@@ -47,7 +47,7 @@
 <script type="text/javascript" src="js/trash.js"></script>
 <!-- <script type="text/javascript" src="js/mestrado.js"></script> -->
 
-<script type="text/javascript" src="js/JogadaAjax.js"></script>
+<script type="text/javascript" src="ajax/JogadaAjax.js"></script>
 
 
 

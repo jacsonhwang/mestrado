@@ -27,7 +27,13 @@ switch ($idConsulta){
 	case 1:
 		$entidadesListaDAO = new EntidadesListaDAO();
 		
-		$dadosArray = $entidadesListaDAO->recuperarDados($atributos, $valores, $tabela);
+		$dadosArray = $entidadesListaDAO->recuperarDados($atributos, $valores, $tabela, $idBaseDados);
+		
+		foreach($dadosArray as &$dadoArray) {
+			foreach($dadoArray as &$dado) {
+				$dado = utf8_encode($dado);
+			}
+		}
 		
 		echo json_encode($dadosArray);
 		
@@ -37,6 +43,10 @@ switch ($idConsulta){
 		$metaBaseDadosDAO = new MetaBaseDadosDAO();
 		
 		$nomesColunas = $metaBaseDadosDAO->recuperarNomeJogo($idBaseDados);
+		
+		foreach($nomesColunas as &$nomeColuna) {
+			$nomeColuna = utf8_encode($nomeColuna);
+		}
 		
 		echo json_encode($nomesColunas);
 		

@@ -31,12 +31,14 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 			</ul>
 		</div>
 		
+		<!-- ------------------------------ FILTRO ----------------------------- -->
+		
 		<div class="col-sm-9 col-sm-offset-3 col-md-4 col-md-offset-2 menu-slider" id="filtro">
 			<div class="col-sm-12" style="padding-bottom: 15px;">
 				<ul class="nav nav-tabs" role="tablist">
-					<li class="active"><a href="#tabCaixaA" role="tab" data-toggle="tab">Caixa A</a></li>
-					<li><a href="#tabCaixaB" role="tab" data-toggle="tab">Caixa B</a></li>
-					<li><a href="#tabCaixaC" role="tab" data-toggle="tab">Caixa C</a></li>
+					<li class="active" id="liCaixaA"><a href="#tabCaixaA" role="tab" data-toggle="tab">Caixa A</a></li>
+					<li id="liCaixaB"><a href="#tabCaixaB" role="tab" data-toggle="tab">Caixa B</a></li>
+					<li id="liCaixaC"><a href="#tabCaixaC" role="tab" data-toggle="tab">Caixa C</a></li>
 				</ul>
 
 				<!-- Tab panes -->
@@ -62,14 +64,14 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 						</form>
 					</div>
 					<div class="tab-pane tab" id="tabCaixaB">
-						<form class="form-horizontal">
+						<form class="form-horizontal" id="formCaixaB">
 							<?php
 							foreach($dadosArray2 as $dado) {
 							?>					
 								<div class="form-group">
-									<label for="caixaB_<?php echo $dado->getNomeAtributo(); ?>" class="col-sm-3 control-label"><?php echo $dado->getNomeJogo(); ?></label>
+									<label for="<?php echo $dado->getNomeAtributo(); ?>" class="col-sm-3 control-label"><?php echo $dado->getNomeJogo(); ?></label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" id="caixaB_<?php echo $dado->getNomeAtributo(); ?>">
+										<input type="text" class="form-control" id="<?php echo $dado->getNomeAtributo(); ?>">
 									</div>
 								</div>
 							<?php
@@ -82,14 +84,14 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 						</form>
 					</div>
 					<div class="tab-pane tab" id="tabCaixaC">
-						<form class="form-horizontal">
+						<form class="form-horizontal" id="formCaixaC">
 							<?php
 							foreach($dadosArray3 as $dado) {
 							?>					
 								<div class="form-group">
-									<label for="caixaC_<?php echo $dado->getNomeAtributo(); ?>" class="col-sm-3 control-label"><?php echo $dado->getNomeJogo(); ?></label>
+									<label for="<?php echo $dado->getNomeAtributo(); ?>" class="col-sm-3 control-label"><?php echo $dado->getNomeJogo(); ?></label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control" id="caixaC_<?php echo $dado->getNomeAtributo(); ?>">
+										<input type="text" class="form-control" id="<?php echo $dado->getNomeAtributo(); ?>">
 									</div>
 								</div>
 							<?php
@@ -104,13 +106,37 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 				</div>
 			</div>
 			
-			<table class="table tablesorter" id="tabelaFiltro">
-				<thead>
-					<tr></tr>
-				</thead>
-				<tbody></tbody>
-			</table>
+			<div class="clearfix"></div>
+
+			<div class="col-sm-12 divTabelaFiltro" id="divTabelaFiltroA">
+				<table class="table tablesorter" id="tabelaFiltroA">
+					<thead>
+						<tr></tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+			
+			<div class="col-sm-12 divTabelaFiltro" id="divTabelaFiltroB">
+				<table class="table tablesorter" id="tabelaFiltroB">
+					<thead>
+						<tr></tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+			
+			<div class="col-sm-12 divTabelaFiltro" id="divTabelaFiltroC">
+				<table class="table tablesorter" id="tabelaFiltroC">
+					<thead>
+						<tr></tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
 		</div>
+		
+		<!-- ------------------------------ COMPARADOR ----------------------------- -->
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-4 col-md-offset-2 menu-slider" id="comparador">
 		
@@ -125,6 +151,8 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 				<button class="btn btn-success">Comparar</button>
 			</div>
 		</div>
+		
+		<!-- ------------------------------ DICIONÁRIO ----------------------------- -->
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-4 col-md-offset-2 menu-slider" id="dicionario">
 		
@@ -195,6 +223,8 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 			</div>
 			
 		</div>
+		
+		<!-- ------------------------------ ARQUIVOS ----------------------------- -->
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-7 col-md-offset-2 menu-slider" id="arquivos">
 			<div class="col-lg-2">

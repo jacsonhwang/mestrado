@@ -37,3 +37,10 @@
 	overflow-y: auto;
 	overflow-x: hidden;
 }
+
+.divTabelaFiltro {
+	max-width: 100%;
+	overflow: auto;
+	max-height: 300px;
+	margin-bottom: 15px;
+}

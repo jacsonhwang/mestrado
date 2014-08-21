@@ -1,16 +1,16 @@
 var JogadaAjax = function() {
 };
 
-JogadaAjax.prototype.getDadosEntidade = function(atributo, valor, tabela) {
+JogadaAjax.prototype.getDadosEntidade = function(atributo, valor, tabela, idBaseDados) {
 	var resultado = "";
 	
 	$.ajax({
 		type: "POST",
-		url: "controller/jogadaAjaxControle.php",
-		data: { idConsulta: 1, atributo: atributo, valor: valor, tabela: tabela },
+		url: "controller/filtroJogoControle.php",
+		data: { idConsulta: 1, atributo: atributo, valor: valor, tabela: tabela, idBaseDados: idBaseDados },
 		async: false,
 		success: function(msg) {
-			resultado = JSON.parse(msg);
+			resultado = jQuery.parseJSON(msg);
 		}
 	});
 	
@@ -22,11 +22,11 @@ JogadaAjax.prototype.getNomesColunas = function(idBaseDados) {
 	
 	$.ajax({
 		type: "POST",
-		url: "controller/jogadaAjaxControle.php",
+		url: "controller/filtroJogoControle.php",
 		data: { idConsulta: 2, idBaseDados: idBaseDados },
 		async: false,
 		success: function(msg) {
-			resultado = JSON.parse(msg);
+			resultado = jQuery.parseJSON(msg);
 		}
 	});
 	
