@@ -4,7 +4,6 @@ include '../dao/EntidadeDAO.php';
 include 'dao/EntidadeDAO.php';
 
 function listarEntidade() {
-
 	$entidadeDAO = new EntidadeDAO();
 
 	$entidadeArray = $entidadeDAO->listarEntidade();

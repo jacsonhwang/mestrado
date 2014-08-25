@@ -1,5 +1,6 @@
 <?php include 'header.php'; ?>
-<?php require_once 'controller/usuariosControle.php'; ?>
+<?php include_once 'controller/entidadeControle.php'; ?>
+<?php include_once 'controller/rodadaControle.php'; ?>
 
 <div id="formularioLogin" class="container">
 	<div class="row">
@@ -18,13 +19,20 @@
 			
 			<?php
 			if(isset($_SESSION["emailAdmin"])) {
+				if(isset($_GET["idRodada"])) {
+					$id = $_GET["idRodada"];
+						
+					$rodada = recuperaRodadaPorId($id);
+				
+					guardarRodadaSessao($rodada);
+				}
 			?>
 			
 				<form class="form-horizontal" role="form" action="controller/editarRodadaControle.php" method="POST" id="formCadastroRodada">
 					<div class="form-group">
 						<label for="inputNome" class="col-sm-3 control-label">Nome</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control" id="inputNome" name="inputNome" value="Rodada1">
+							<input type="text" class="form-control" id="inputNome" name="inputNome" value="<?php echo $rodada->getNome();?>">
 						</div>
 					</div>
 					
@@ -32,10 +40,21 @@
 						<label for="selectEntidade" class="col-sm-3 control-label">Entidade</label>
 						<div class="col-sm-7">
 							<select class="form-control" id="selectEntidade" name="selectEntidade">
-								<option disabled>- Selecione -</option>
-								<option value="pessoa" selected>Pessoa</option>
-								<option value="produto">Produto</option>
-								<option value="animal">Animal</option>
+								
+									<option value="<?php echo $rodada->getEntidade()->getNome() ?>" selected><?php echo $rodada->getEntidade()->getNome() ?></option>
+									<?php
+							
+										$entidadesArray = listarEntidade();
+									
+										foreach ($entidadesArray as $entidade) {
+											if($rodada->getEntidade()->getId() != $entidade->getId()){
+									?>
+												
+											<option value="<?php echo $entidade->getNome(); ?>"><?php echo $entidade->getNome();?></option>
+									<?php
+											}
+										}
+									?>								
 							</select>
 						</div>
 					</div>					
@@ -43,7 +62,7 @@
 					<div class="form-group">
 						<label for="inicioRodada" class="col-sm-3 control-label">Início</label>
 						<div class="col-sm-3 input-group date">
-							<input type="text" class="form-control" placeholder="Selecione"  id="inicioRodada" name="inicioRodada" value="13/08/2014">
+							<input type="text" class="form-control" placeholder="Selecione"  id="inicioRodada" name="inicioRodada" value="<?php echo $rodada->getInicio();?>">
 							<span class="input-group-addon glyphicon glyphicon-calendar"></span>
 						</div>
 					</div>
@@ -51,22 +70,11 @@
 					<div class="form-group">
 						<label for="fimRodada" class="col-sm-3 control-label">Fim</label>
 						<div class="col-sm-3 input-group date">
-							<input type="text" class="form-control" placeholder="Selecione" id="fimRodada" name="fimRodada" value="30/08/2014">
+							<input type="text" class="form-control" placeholder="Selecione" id="fimRodada" name="fimRodada" value="<?php echo $rodada->getFim();?>">
 							<span class="input-group-addon glyphicon glyphicon-calendar"></span>
 						</div>
 					</div>
 					
-					<div class="form-group">
-						<label for="inputNome" class="col-sm-3 control-label">Todos os usuários?</label>
-						<div class="col-sm-7">
-							<label class="radio-inline">
-								<input type="radio" name="radioTodosUsuarios" class="radioTodosUsuarios" value="s" checked>Sim
-							</label>
-							<label class="radio-inline">
-								<input type="radio" name="radioTodosUsuarios" class="radioTodosUsuarios" value="n" >Não
-							</label>
-						</div>
-					</div>
 					
 					<!-- -------------------------------------- ALTERAR --------------------------------------  -->
 					
@@ -91,7 +99,7 @@
 						
 					</div>
 					
-					<div class="col-lg-10 col-lg-offset-1 table-responsive" style="border: 1px solid black; margin-top: 20px; margin-bottom: 20px" id="divTabelaUsuariosRodada">
+					<div class="col-lg-10 col-lg-offset-1 table-responsive" style="border: 1px solid black; margin-top: 20px; margin-bottom: 20px" id="divTabelaUsuariosRodadaEditar">
 					
 						<p class="text-center"><strong>Usuários gerais</strong></p>
 						
@@ -114,7 +122,6 @@
 										<tr>
 											<td class="nome"><?php echo $usuario->getNome(); ?></td>
 											<td class="email"><?php echo $usuario->getEmail(); ?></td>
-											<td class="text-center"><img src="img/activate.png" class="imagem associarUsuarioRodada"></td>
 										</tr>
 										
 								<?php

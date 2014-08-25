@@ -1,5 +1,5 @@
 <?php include 'header.php'; ?>
-<?php require_once 'controller/entidadeControle.php'; ?>
+<?php require_once 'controller/baseControle.php'; ?>
 <div id="formularioLogin" class="container">
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2">
@@ -37,9 +37,9 @@
 						</thead>
 						<tbody>
 						<?php 
-								$bases = listarBase();
+								//$bases = listarBase();
 								
-								foreach ($bases as $base){
+								//foreach ($bases as $base){
 				
 						?>
 							<tr>
@@ -80,7 +80,7 @@
 							</tr>
 						</tbody>
 						<?php 
-							}
+							//}
 						?>
 					</table>
 					

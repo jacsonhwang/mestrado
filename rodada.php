@@ -1,19 +1,10 @@
 <?php include 'header.php'; ?>
-<?php 
-//require_once 'controller/rodadaControle.php'; 
-
-
-/* require_once '../controller/rodadaControle.php';
-require_once '../model/Rodada.php';
-require_once '../model/Entidade.php'; */
-include_once '../controller/rodadaControle.php';
-include_once '../dao/EntidadeDAO.php';
-include_once '../dao/RodadaDAO.php';
-
-include_once '../model/Rodada.php';
-include_once '../model/Entidade.php';
+<?php require_once 'controller/rodadaControle.php'; 
+include_once 'model/Rodada.php';
+include_once 'model/Entidade.php';
 
 ?>
+
 
 <div id="formularioLogin" class="container">
 	<div class="row">
@@ -53,39 +44,23 @@ include_once '../model/Entidade.php';
 						</thead>
 						<tbody>
 							<?php	
-							$rodadaArray = array();
 							$rodadaArray = listarRodada();
-							
-							print_r($rodadaArray);
-							
-							/* foreach ($rodadaArray as $rodada) {
-								echo "<br /> Rodada :";
-								echo $rodada->getNome();
-								echo "<br />";
-								echo $rodada->getInicio();
-								echo "<br />";
-								echo $rodada->getFim();
-								echo "<br />";
-								echo $rodada->getEntidade()->getNome();
-								echo "<br />";
-							} */
-													
-							//$rodadaArray = listarRodada();
-							
-							//foreach ($rodadaArray as $rodada) {								
+														
+							foreach ($rodadaArray as $rodada) {								
 							?>
 								<tr>
-									<td><?php //echo $rodada->getNome(); ?></td>
-									
+									<td><?php echo $rodada->getNome(); ?></td>
+									<td><?php echo $rodada->getEntidade()->getNome(); ?></td>
+									<td><?php echo $rodada->getInicio(); ?></td>
+									<td><?php echo $rodada->getFim(); ?></td>
 																						
-																		
-									<td class="text-center"><a href="visualizar_rodada.php"><img src="img/view-details.png" class="imagem"></a></td>
-									<td class="text-center"><a href="editar_rodada.php"><img src="img/edit-gray.png" class="imagem"></a></td>
-									<td class="text-center"><img src="img/deactivate.png" class="imagem excluirRodada"></td>
+									<td class="text-center"><a href="visualizar_rodada.php?idRodada=<?php echo $rodada->getId(); ?>"><img src="img/view-details.png" class="imagem"></a></td>									
+									<td class="text-center"><a href="editar_rodada.php?idRodada=<?php echo $rodada->getId(); ?>"><img src="img/edit-gray.png" class="imagem"></a></td>
+									<td class="text-center"><a href="controller/excluirRodadaControle.php?idRodada=<?php echo $rodada->getId(); ?>"><img src="img/deactivate.png" class="imagem excluirRodada"></a></td>									
 								</tr>
 							
 							<?php
-							//}
+							}
 							?>
 						</tbody>						
 					</table>

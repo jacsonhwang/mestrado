@@ -17,6 +17,10 @@ class Rodada {
 		$this->entidade = $entidade;
 	}
 	
+	function getId() {
+		return $this->id;
+	}
+	
 	function getNome() {
 		return $this->nome;
 	}
