@@ -23,7 +23,7 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 	<div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
-				<li class="active"><a href="#" style="pointer-events: none; cursor: default;">Ferramentas</a></li>
+				<li class="tituloMenuSidebar"><a href="#" style="pointer-events: none; cursor: default;">Ferramentas</a></li>
 				<li><a href="#" id="opcaoFiltro">Filtro</a></li>
 				<li><a href="#" id="opcaoComparador">Comparador</a></li>
 				<li><a href="#" id="opcaoDicionario">Dicionário</a></li>
@@ -33,8 +33,8 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 		
 		<!-- ------------------------------ FILTRO ----------------------------- -->
 		
-		<div class="col-sm-9 col-sm-offset-3 col-md-4 col-md-offset-2 menu-slider" id="filtro">
-			<div class="col-sm-12" style="padding-bottom: 15px;">
+		<div class="col-sm-9 col-sm-offset-3 col-md-4 col-md-offset-2 menu-slider" id="filtro" style="padding: 15px">
+			<div class="col-sm-12" style="padding-bottom: 15px;" id="divFiltro">
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="active" id="liCaixaA"><a href="#tabCaixaA" role="tab" data-toggle="tab">Caixa A</a></li>
 					<li id="liCaixaB"><a href="#tabCaixaB" role="tab" data-toggle="tab">Caixa B</a></li>
@@ -133,6 +133,10 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 					</thead>
 					<tbody></tbody>
 				</table>
+			</div>
+			
+			<div class="col-sm-12">
+				<button class="btn btn-info" id="buttonLimparBusca">Limpar busca</button>
 			</div>
 		</div>
 		
@@ -343,26 +347,36 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 			</div>
 			
 		</div>
+		
+		<!-- ------------------------------ JOGO ----------------------------- -->
 
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<div id="entity-container" class="data-container ui-widget ui-helper-clearfix">
-				<table id="data">
-					<tbody>
-					</tbody>
-				</table>
+			<div class="row">
+				<div style="display: inline-block; width: 75%; text-align: center"><h1>Rodada de Qualificação</h1></div>
+				<div class="example" data-timer="300" style="float: right; width: 20%; display: inline-block"></div>
 			</div>
-			<div id="entity-viewer" class="entity-viewer ui-widget ui-helper-clearfix">
-				<ol id="views" class="views ui-helper-reset ui-helper-clearfix"></ol>
-			</div>
-			<div id="boxes" class="boxes ui-widget ui-helper-clearfix">
-				<div id="pool" class="pool">
-					<ol id="poolList" class="views ui-helper-reset ui-helper-clearfix"></ol>
+
+			<div class="row">
+				<div id="entity-container" class="data-container ui-widget ui-helper-clearfix">
+					<table id="data">
+						<tbody>
+						</tbody>
+					</table>
 				</div>
-				<div id="trash" class="trash">
-					<img src="trash.png">
-					<ol id="trashList" class="views ui-helper-reset ui-helper-clearfix"></ol>
+				<div id="entity-viewer" class="entity-viewer ui-widget ui-helper-clearfix">
+					<ol id="views" class="views ui-helper-reset ui-helper-clearfix"></ol>
+				</div>
+				<div id="boxes" class="boxes ui-widget ui-helper-clearfix">
+					<div id="pool" class="pool">
+						<ol id="poolList" class="views ui-helper-reset ui-helper-clearfix"></ol>
+					</div>
+					<div id="trash" class="trash">
+						<img src="trash.png">
+						<ol id="trashList" class="views ui-helper-reset ui-helper-clearfix"></ol>
+					</div>
 				</div>
 			</div>
+
 		</div>
 
 	</div>

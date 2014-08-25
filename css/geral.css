@@ -44,3 +44,11 @@
 	max-height: 300px;
 	margin-bottom: 15px;
 }
+
+.tituloMenuSidebar {
+	background-color: #2a6496;
+}
+
+.tituloMenuSidebar a {
+	color: #fff;
+}

@@ -3,59 +3,116 @@ $(document).ready(function() {
 	
 	$("#divTabelaFiltroA, #divTabelaFiltroB, #divTabelaFiltroC").hide();
 	
+	$(".example").TimeCircles({
+		time: {
+			Days: {
+				show: false
+			},
+			Hours: {
+				show: false
+			},
+			Minutes: {
+				text: "Minutos"
+			},
+			Seconds: {
+				text: "Segundos"
+			}
+		},
+		count_past_zero: false
+	}).addListener(function(unit, value, total) {
+		if(total == 0) {
+			alert("O jogo acabou.");
+		}
+	});
+	
 	$("#opcaoFiltro").click(function(){
 	    
 	    if($("#filtro").is(":visible")) {
+	    	$(this).parent().removeClass("active");
 	        $("#filtro").hide();
 	    }
 	    else {
+	    	$(this).parent().addClass("active");
+	    	
+	    	$("#opcaoComparador").parent().removeClass("active");
+	    	$("#opcaoDicionario").parent().removeClass("active");
+	    	$("#opcaoArquivos").parent().removeClass("active");
+	    	
+	    	$("#comparador, #dicionario, #arquivos").hide();
 	        $("#filtro").show();
 	    }
 	});
 	
 	$("#opcaoComparador").click(function() {
 	    if($("#comparador").is(":visible")) {
+	    	$(this).parent().removeClass("active");
             $("#comparador").hide();
         }
         else {
+        	$(this).parent().addClass("active");
+        	
+        	$("#opcaoFiltro").parent().removeClass("active");
+	    	$("#opcaoDicionario").parent().removeClass("active");
+	    	$("#opcaoArquivos").parent().removeClass("active");
+	    	
+        	$("#filtro, #dicionario, #arquivos").hide();
             $("#comparador").show();
         }
 	});
 	
 	$("#opcaoDicionario").click(function() {
         if($("#dicionario").is(":visible")) {
+        	$(this).parent().removeClass("active");
             $("#dicionario").hide();
         }
         else {
+        	$(this).parent().addClass("active");
+        	
+        	$("#opcaoFiltro").parent().removeClass("active");
+	    	$("#opcaoComparador").parent().removeClass("active");
+	    	$("#opcaoArquivos").parent().removeClass("active");
+	    	
+        	$("#filtro, #comparador, #arquivos").hide();
             $("#dicionario").show();
         }
     });
 	
 	$("#opcaoArquivos").click(function() {
         if($("#arquivos").is(":visible")) {
+        	$(this).parent().removeClass("active");
             $("#arquivos").hide();
         }
         else {
+        	$(this).parent().addClass("active");
+        	
+        	$("#opcaoFiltro").parent().removeClass("active");
+	    	$("#opcaoComparador").parent().removeClass("active");
+	    	$("#opcaoDicionario").parent().removeClass("active");
+	    	
+        	$("#filtro, #dicionario, #comparador").hide();
             $("#arquivos").show();
         }
     });
 	
 	$("#liCaixaA").click(function() {
-		$("#divTabelaFiltroA").hide();
+		$("#buttonLimparBusca").click();
+		/*$("#divTabelaFiltroA").hide();
 		$("#divTabelaFiltroB").hide();
-		$("#divTabelaFiltroC").hide();
+		$("#divTabelaFiltroC").hide();*/
 	});
 	
 	$("#liCaixaB").click(function() {
-		$("#divTabelaFiltroA").hide();
+		$("#buttonLimparBusca").click();
+		/*$("#divTabelaFiltroA").hide();
 		$("#divTabelaFiltroB").hide();
-		$("#divTabelaFiltroC").hide();
+		$("#divTabelaFiltroC").hide();*/
 	});
 	
 	$("#liCaixaC").click(function() {
-		$("#divTabelaFiltroA").hide();
+		$("#buttonLimparBusca").click();
+		/*$("#divTabelaFiltroA").hide();
 		$("#divTabelaFiltroB").hide();
-		$("#divTabelaFiltroC").hide();
+		$("#divTabelaFiltroC").hide();*/
 	});
 	
 	$("#formCaixaA").submit(function() {
@@ -74,6 +131,15 @@ $(document).ready(function() {
 		
 		criarTabela(this, "#tabelaFiltroC", "#divTabelaFiltroC", "entidades_lista_c", 3);
 		
+	});
+	
+	$("#buttonLimparBusca").click(function() {
+		
+		$("#divFiltro").find("input:text").each(function() {
+			$(this).val("");
+		});
+		
+		$(".divTabelaFiltro").hide();
 	});
 });
 
