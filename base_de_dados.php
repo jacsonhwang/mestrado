@@ -1,4 +1,5 @@
 <?php include 'header.php'; ?>
+<?php require_once 'controller/entidadeControle.php'; ?>
 <div id="formularioLogin" class="container">
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2">
@@ -35,6 +36,12 @@
 							</tr>
 						</thead>
 						<tbody>
+						<?php 
+								$bases = listarBase();
+								
+								foreach ($bases as $base){
+				
+						?>
 							<tr>
 								<td>Pessoa_Parte1</td>
 								<td>Caixa Pessoa - A</td>
@@ -72,6 +79,9 @@
 								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirBD"></td>
 							</tr>
 						</tbody>
+						<?php 
+							}
+						?>
 					</table>
 					
 					<?php include 'paginacao.php'; ?>

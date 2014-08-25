@@ -18,7 +18,7 @@
 			if(isset($_SESSION["emailAdmin"])) {
 			?>
 			
-				<form class="form-horizontal" role="form" action="controller/cadastroEntidadeControle.php" method="POST" id="formCadastroEntidade">
+				<form class="form-horizontal" role="form" action="controller/cadastroEntidadeControle.php" method="POST" id="formCadastroEntidade">					
 					<div class="form-group">
 						<label for="inputNome" class="col-sm-3 control-label">Nome</label>
 						<div class="col-sm-7">
@@ -56,7 +56,7 @@
 							</tbody>
 						</table>		
 					</div>
-					
+					<!-- 
 					<div class="col-lg-10 col-lg-offset-1" style="border: 1px solid black">
 						
 						<p class="text-center"><strong>Base de dados geral</strong></p>
@@ -92,6 +92,7 @@
 							</tbody>
 						</table>	
 					</div>
+					 -->
 					<div class="form-group">
 						<div class="col-sm-11" style="margin-top: 20px">
 							<button type="submit" class="btn btn-success" name="buttonCadastrarEntidade" id="buttonCadastrarEntidade" style="float: right">Cadastrar</button>

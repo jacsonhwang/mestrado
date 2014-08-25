@@ -1,4 +1,5 @@
 <?php include 'header.php'; ?>
+<?php include 'controller/entidadeControle.php'; ?>
 <div id="formularioLogin" class="container">
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2">
@@ -6,7 +7,7 @@
 			<div id="loginTitulo" class="page-header">
 				<h1>Editar Entidade</h1>
 			</div>
-			
+		
 			<ol class="breadcrumb">
 				<li><a href="index.php">Home</a></li>
 				<li><a href="painel_admin.php">Painel administrativo</a></li>
@@ -16,25 +17,38 @@
 			
 			<?php
 			if(isset($_SESSION["emailAdmin"])) {
+				if(isset($_GET["idEntidade"])) {
+					$id = $_GET["idEntidade"];
+				
+					$entidade = recuperarEntidade($id);
+				
+					guardarEntidadeSessao($entidade);
+				}
 			?>
 			
 				<form class="form-horizontal" role="form" action="controller/editarEntidadeControle.php" method="POST" id="formEditarEntidade">
 					<div class="form-group">
+						<label for="inputId" class="col-sm-3 control-label">Identificador</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="inputId" name="inputId" value="<?php echo $_SESSION["edicao"]["id"]; ?>" disabled>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="inputNome" class="col-sm-3 control-label">Nome</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control" id="inputNome" name="inputNome" value="Entidade_Pessoa">
+							<input type="text" class="form-control" id="inputNome" name="inputNome" value="<?php echo $_SESSION["edicao"]["nome"]; ?>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputNomeNoJogo" class="col-sm-3 control-label">Nome no Jogo</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control" id="inputNomeNoJogo" name="inputNomeNoJogo" value="Pessoa">
+							<input type="text" class="form-control" id="inputNomeNoJogo" name="inputNomeNoJogo" value="<?php echo $_SESSION["edicao"]["nome_jogo"]; ?>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputNomeExterno" class="col-sm-3 control-label">Descrição no Jogo</label>
 						<div class="col-sm-7">
-							<textarea class="form-control" rows="3" name="descricaoNoJogo" form="formEditarEntidade">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent faucibus justo et pretium tincidunt. Curabitur id turpis ut urna rhoncus tempor at et lacus. Proin bibendum massa lorem, et elementum tortor cursus eu. Suspendisse at consectetur sem. Proin commodo nisl eget luctus rhoncus. Morbi faucibus nulla ut purus tempus pretium. Sed tristique nisl in felis fringilla rutrum. Fusce ultricies gravida nisi, sed vehicula mauris tempus vitae. Duis faucibus nibh at erat hendrerit congue. Donec ullamcorper nunc id euismod molestie. Phasellus auctor commodo mi a malesuada. Sed bibendum nulla at tincidunt imperdiet. 
+							<textarea class="form-control" rows="3" name="descricaoNoJogo" form="formEditarEntidade"><?php echo $_SESSION["edicao"]["descricao_jogo"]; ?> 
 							</textarea>
 						</div>
 					</div>
@@ -57,7 +71,7 @@
 							</tbody>
 						</table>		
 					</div>
-					
+					<!-- 
 					<div class="col-lg-10 col-lg-offset-1" style="border: 1px solid black">
 						
 						<p class="text-center"><strong>Base de dados geral</strong></p>
@@ -72,6 +86,12 @@
 								</tr>
 							</thead>
 							<tbody>
+								<tr>
+									<td class="nomeBD">MODIFICAR !!!</td>
+									<td class="nomeNoJogo">MODIFICAR !!!</td>
+									<td class="nomeArquivo">MODIFICAR !!!</td>
+									<td class="text-center"><img src="img/activate.png" class="imagem associarBDEntidade"></td>
+								</tr>
 								<tr>
 									<td class="nomeBD">Pessoa_Parte2</td>
 									<td class="nomeNoJogo">Caixa Pessoa - B</td>
@@ -93,6 +113,7 @@
 							</tbody>
 						</table>	
 					</div>
+				 -->
 					<div class="form-group">
 						<div class="col-sm-11" style="margin-top: 20px">
 							<button type="submit" class="btn btn-success" name="buttonEditarEntidade" style="float: right">Salvar alterações</button>

@@ -1,5 +1,5 @@
 <?php include 'header.php'; ?>
-<?php include 'controller/usuariosControle.php'; ?>
+<?php include 'controller/entidadeControle.php'; ?>
 
 <div class="container">
 	<div class="row">
@@ -12,7 +12,7 @@
 			<ol class="breadcrumb">
 				<li><a href="index.php">Home</a></li>
 				<li><a href="painel_admin.php">Painel administrativo</a></li>
-				<li><a href="entidade.php">Entidade</a></li>
+				<li><a href="entidades.php">Entidades</a></li>
 				<li class="active">Visualizar</li>
 			</ol>
 			
@@ -20,41 +20,43 @@
 			session_start();
 			
 			if(isset($_SESSION["emailAdmin"])) {
+				if(isset($_GET["idEntidade"])) {
+					$id = $_GET["idEntidade"];
+		
+					$entidade = recuperarEntidade($id);
+		
+					guardarEntidadeSessao($entidade);
+				}
 			?>
 
 				<form class="form-horizontal" role="form">
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Nome</label>
 						<div class="col-sm-8">
-							<p class="form-control-static">Entidade_Pessoa</p>
+							<p class="form-control-static"><?php echo $entidade->getNome(); ?></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Nome no Jogo</label>
 						<div class="col-sm-8">
-							<p class="form-control-static">Pessoa</p>
+							<p class="form-control-static"><?php echo $entidade->getNomeJogo(); ?></p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Descrição no Jogo</label>
 						<div class="col-sm-8">
-							<p class="form-control-static text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent faucibus justo et pretium tincidunt. Curabitur id turpis ut urna rhoncus tempor at et lacus. Proin bibendum massa lorem, et elementum tortor cursus eu. Suspendisse at consectetur sem. Proin commodo nisl eget luctus rhoncus. Morbi faucibus nulla ut purus tempus pretium. Sed tristique nisl in felis fringilla rutrum. Fusce ultricies gravida nisi, sed vehicula mauris tempus vitae. Duis faucibus nibh at erat hendrerit congue. Donec ullamcorper nunc id euismod molestie. Phasellus auctor commodo mi a malesuada. Sed bibendum nulla at tincidunt imperdiet.</p>
+							<p class="form-control-static text-justify"><?php echo $entidade->getDescJogo(); ?></p>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">Criado em</label>
-						<div class="col-sm-8">
-							<p class="form-control-static">13/08/2014</p>
-						</div>
-					</div>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label class="col-sm-3 control-label">Base de dados associadas</label>
 						<div class="col-sm-8">
 							<ul class="list-unstyled form-control-static">
-								<li>Pessoa_Parte2</li>
+								<li><?php echo "MODIFICAR !!!!!"; ?></li>
 							</ul>
 						</div>
 					</div>
+					 -->
 				</form>
 
 			<?php

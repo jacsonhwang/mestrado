@@ -1,5 +1,7 @@
 <?php include 'header.php'; ?>
-<?php require_once 'controller/usuariosControle.php'; ?>
+<?php include_once 'controller/entidadeControle.php'; ?>
+<?php include_once 'controller/usuariosControle.php'; ?>
+<?php include_once 'model/Entidade.php'; ?>
 
 <div id="formularioLogin" class="container">
 	<div class="row">
@@ -33,9 +35,17 @@
 						<div class="col-sm-7">
 							<select class="form-control" id="selectEntidade" name="selectEntidade">
 								<option disabled selected>- Selecione -</option>
-								<option value="pessoa">Pessoa</option>
-								<option value="produto">Produto</option>
-								<option value="animal">Animal</option>
+									<?php
+							
+										$entidadesArray = listarEntidade();
+									
+										foreach ($entidadesArray as $entidade) {
+									?>
+											
+											<option value="<?php echo $entidade->getNome(); ?>"><?php echo $entidade->getNome();?></option>
+									<?php
+										}
+									?>								
 							</select>
 						</div>
 					</div>					

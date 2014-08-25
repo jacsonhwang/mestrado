@@ -1,4 +1,20 @@
 <?php include 'header.php'; ?>
+<?php 
+//require_once 'controller/rodadaControle.php'; 
+
+
+/* require_once '../controller/rodadaControle.php';
+require_once '../model/Rodada.php';
+require_once '../model/Entidade.php'; */
+include_once '../controller/rodadaControle.php';
+include_once '../dao/EntidadeDAO.php';
+include_once '../dao/RodadaDAO.php';
+
+include_once '../model/Rodada.php';
+include_once '../model/Entidade.php';
+
+?>
+
 <div id="formularioLogin" class="container">
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2">
@@ -27,6 +43,7 @@
 							<tr>
 								<th>Nome</th>
 								<th>Entidade</th>
+		
 								<th>Início</th>
 								<th>Fim</th>
 								<th class="text-center">Visualizar</th>
@@ -35,43 +52,42 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>Rodada 1</td>
-								<td>Pessoa</td>
-								<td>01/01/2014</td>
-								<td>01/10/2014</td>
-								<td class="text-center"><a href="visualizar_rodada.php"><img src="img/view-details.png" class="imagem"></a></td>
-								<td class="text-center"><a href="editar_rodada.php"><img src="img/edit-gray.png" class="imagem"></a></td>
-								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirRodada"></td>
-							</tr>
-							<tr>
-								<td>Rodada 1</td>
-								<td>Pessoa</td>
-								<td>01/01/2014</td>
-								<td>01/10/2014</td>
-								<td class="text-center"><a href="visualizar_rodada.php"><img src="img/view-details.png" class="imagem"></a></td>
-								<td class="text-center"><a href="editar_rodada.php"><img src="img/edit-gray.png" class="imagem"></a></td>
-								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirRodada"></td>
-							</tr>
-							<tr>
-								<td>Rodada 1</td>
-								<td>Pessoa</td>
-								<td>01/01/2014</td>
-								<td>01/10/2014</td>
-								<td class="text-center"><a href="visualizar_rodada.php"><img src="img/view-details.png" class="imagem"></a></td>
-								<td class="text-center"><a href="editar_rodada.php"><img src="img/edit-gray.png" class="imagem"></a></td>
-								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirRodada"></td>
-							</tr>
-							<tr>
-								<td>Rodada 1</td>
-								<td>Pessoa</td>
-								<td>01/01/2014</td>
-								<td>01/10/2014</td>
-								<td class="text-center"><a href="visualizar_rodada.php"><img src="img/view-details.png" class="imagem"></a></td>
-								<td class="text-center"><a href="editar_rodada.php"><img src="img/edit-gray.png" class="imagem"></a></td>
-								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirRodada"></td>
-							</tr>
-						</tbody>
+							<?php	
+							$rodadaArray = array();
+							$rodadaArray = listarRodada();
+							
+							print_r($rodadaArray);
+							
+							/* foreach ($rodadaArray as $rodada) {
+								echo "<br /> Rodada :";
+								echo $rodada->getNome();
+								echo "<br />";
+								echo $rodada->getInicio();
+								echo "<br />";
+								echo $rodada->getFim();
+								echo "<br />";
+								echo $rodada->getEntidade()->getNome();
+								echo "<br />";
+							} */
+													
+							//$rodadaArray = listarRodada();
+							
+							//foreach ($rodadaArray as $rodada) {								
+							?>
+								<tr>
+									<td><?php //echo $rodada->getNome(); ?></td>
+									
+																						
+																		
+									<td class="text-center"><a href="visualizar_rodada.php"><img src="img/view-details.png" class="imagem"></a></td>
+									<td class="text-center"><a href="editar_rodada.php"><img src="img/edit-gray.png" class="imagem"></a></td>
+									<td class="text-center"><img src="img/deactivate.png" class="imagem excluirRodada"></td>
+								</tr>
+							
+							<?php
+							//}
+							?>
+						</tbody>						
 					</table>
 					
 					<?php include 'paginacao.php'; ?>

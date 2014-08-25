@@ -1,4 +1,5 @@
 <?php include 'header.php'; ?>
+<?php require_once 'controller/entidadeControle.php'; ?>
 <div id="formularioLogin" class="container">
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2">
@@ -27,38 +28,30 @@
 						<thead>
 							<tr>
 								<th>Nome</th>
-								<th>Nome no Jogo</th>
-								<th>Criado</th>
+								<th>Nome no Jogo</th>								
 								<th class="text-center">Visualizar</th>
 								<th class="text-center">Editar</th>
 								<th class="text-center">Excluir</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>Entidade_Pessoa</td>
-								<td>Pessoa</td>
-								<td>07/08/2014</td>
-								<td class="text-center"><a href="visualizar_entidade.php"><img src="img/view-details.png" class="imagem"></a></td>
-								<td class="text-center"><a href="editar_entidade.php"><img src="img/edit-gray.png" class="imagem"></a></td>
-								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirEntidade"></td>
-							</tr>
-							<tr>
-								<td>Entidade_Produto</td>
-								<td>Produto</td>
-								<td>05/06/2014</td>
-								<td class="text-center"><a href="visualizar_entidade.php"><img src="img/view-details.png" class="imagem"></a></td>
-								<td class="text-center"><a href="editar_entidade.php"><img src="img/edit-gray.png" class="imagem"></a></td>
-								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirEntidade"></td>
-							</tr>
-							<tr>
-								<td>Entidade_Animal</td>
-								<td>Animal</td>
-								<td>23/07/2014</td>
-								<td class="text-center"><a href="visualizar_entidade.php"><img src="img/view-details.png" class="imagem"></a></td>
-								<td class="text-center"><a href="editar_entidade.php"><img src="img/edit-gray.png" class="imagem"></a></td>
-								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirEntidade"></td>
-							</tr>
+							<?php 
+								$entidades = listarEntidade();
+								
+								foreach ($entidades as $entidade){
+							?>
+									<tr>
+										<td><?php echo $entidade->getNome();?></td>
+										<td><?php echo $entidade->getNomeJogo();?></td>
+										
+										<td class="text-center"><a href="visualizar_entidade.php?idEntidade=<?php echo $entidade->getId(); ?>"><img src="img/view-details.png" class="imagem"></a></td>
+										<td class="text-center"><a href="editar_entidade.php?idEntidade=<?php echo $entidade->getId(); ?>"><img src="img/edit-gray.png" class="imagem"></a></td>
+										<td class="text-center"><a href="controller/excluirEntidadeControle.php?idEntidade=<?php echo $entidade->getId(); ?>"><img src="img/deactivate.png" class="imagem excluirEntidade"></a></td>
+										
+										
+									</tr>
+									
+							<?php }?>
 						</tbody>
 					</table>
 

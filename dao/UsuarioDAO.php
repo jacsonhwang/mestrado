@@ -211,6 +211,10 @@ class UsuarioDAO {
 		
 		$cn->disconnect();
 	}
+	
+	public function recuperarIdUsuario($email){
+			
+	}
 }
 
 ?>
