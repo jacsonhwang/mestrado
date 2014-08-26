@@ -15,7 +15,6 @@
 <link rel="stylesheet" href="css/jquery.bxslider.css" type="text/css">
 <link rel="stylesheet" href="css/dashboard.css" type="text/css">
 <link rel="stylesheet" href="css/jogo.css" type="text/css">
-<link rel="stylesheet" href="css/mestrado.css" type="text/css">
 <link rel="stylesheet" href="css/TimeCircles.css" type="text/css">
 
 <script src="js/jquery-2.1.1.min.js"></script>
@@ -49,7 +48,8 @@
 <script type="text/javascript" src="js/entityViewer.js"></script>
 <script type="text/javascript" src="js/pool.js"></script>
 <script type="text/javascript" src="js/trash.js"></script>
-<!-- <script type="text/javascript" src="js/mestrado.js"></script> -->
+<!-- <script type="text/javascript" src="js/jogo.js"></script> -->
+<script type="text/javascript" src="js/jogo2.js"></script>
 
 <script type="text/javascript" src="ajax/JogadaAjax.js"></script>
 

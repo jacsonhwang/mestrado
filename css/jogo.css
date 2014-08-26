@@ -32,11 +32,11 @@
 .gallery li h5 { margin: 0 0 0.4em; cursor: move; }
 .gallery li img { width: 25%; cursor: move; }
 
-#views { float: left; width: 65%; min-height: 12em; }
+/* #views { float: left; width: 65%; min-height: 12em; }
 .views.custom-state-active { background: white; }
 .views li { float: left; width: 96px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: left; background: white;}
 .views li h5 { margin: 0 0 0.4em; cursor: move; }
-.views li img { width: 25%; cursor: move; }
+.views li img { width: 25%; cursor: move; } */
 
 #data {
 	border: 1px solid black;
@@ -132,4 +132,14 @@
 .trash img {
 	width:100%;
 	height:100%;
+}
+
+#poolList {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+#poolList  li  div {
+	border: 1px solid black; z-index: 15; width: 200px; height: 200px; overflow: auto
 }

@@ -175,10 +175,41 @@ function criarTabela(form, tabela, divTabela, tabelaBanco, idBaseDados) {
 	}
 	
 	for(var i in dadosArray) {
-		$("<tr>").appendTo(tabela + " > tbody");
+		$("<tr class='linhaTabelaA'>").appendTo(tabela + " > tbody");
 		
 		for(var j in dadosArray[i]) {
 			$("<td class='text-center'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);
 		}
 	}
+	
+	/*$("#tabelaFiltroA > tbody").sortable({
+		revert: 'invalid',
+		containment: ".main",
+		helper: function(event) {
+			return getEntityLayout(this);
+		}
+	});*/
+	
+	$("#tabelaFiltroA > tbody").find("tr").each(function() {
+		$(this).draggable({
+			containment: ".main",
+			helper: function(event) {
+				return getEntityLayout(this);
+			},
+			appendTo: 'body',
+			cursorAt: { left: -10, top: -10}
+		});
+	});
 }
+
+/*function getEntityLayout(item) {
+	console.log(item);
+	var atributos = recuperarDadosPorID(item.id);
+	var nome = atributos.nome;
+	var endereco = atributos.endereco;
+	var cpf = atributos.cpf;
+	var classe = atributos.classe;
+	var html = "<div class='entity ui-corner-all grey' style='z-index: 15'>oi</div>";
+	//var html = "<div class='entity ui-corner-all grey' id='"+item.id+"' style='max-width:128px'><img src='stickman.png' class='stickman'></img><h5>"+nome+"</h5><h5>"+endereco+"</h5><h5>"+cpf+"</h5></div>";
+	return html;
+}*/
