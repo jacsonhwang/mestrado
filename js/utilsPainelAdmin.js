@@ -175,6 +175,32 @@ $(document).ready(function() {
 	    }
 	});
 	
+	$(".associarUsuarioRodadaEditar").click(function() {
+	    var nome = $(this).parent().parent().find(".nome").html();
+	    var email = $(this).parent().parent().find(".email").html();
+
+	    $("<tr>").appendTo("#tbodyTUPEditar").html("<td>" + nome + "</td><input type='hidden' name='emailUsuarioEditar[]' value='"+email+"'><td>" + email + "</td><td class='text-center'><img src='img/deactivate.png' class='imagem removerUsuarioRodadaEditar'></td>");
+
+	    $("#tabelaUsuariosParticipantesRodadaEditar").show();
+	});
+	
+	$('#tabelaUsuariosParticipantesRodadaEditar').on('click', 'img.removerUsuarioRodadaEditar', function() {
+	    $(this).parent().parent().remove();
+	    
+	    if($("#tbodyTUPEditar").children().length == 0) {
+	        $("#tabelaUsuariosParticipantesRodadaEditar").hide();
+	    }
+	});
+	
+	$(".excluirRodadaEditar").click(function() {
+	    $(this).parent().parent().remove();
+	    
+	    if($("#tabelaRodadasEditar tr").length <= 1) {
+	        $("#divTabelaRodadasEditar").hide();
+	        $("#avisoRodadasEditar").show();
+	    }
+	});
+	
 	// ---------------------- EVENT ENTIDADES ----------------------
 	
 	$(".associarBDEntidade").click(function() {

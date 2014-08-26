@@ -29,7 +29,7 @@
 								<th>Nome</th>
 								<th>Nome no Jogo</th>
 								<th>Nome Arquivo</th>
-								<th>Criado</th>
+								<th>Entidade</th>
 								<th class="text-center">Visualizar</th>
 								<th class="text-center">Editar</th>
 								<th class="text-center">Excluir</th>
@@ -37,50 +37,24 @@
 						</thead>
 						<tbody>
 						<?php 
-								//$bases = listarBase();
+								$bases = listarBase();
 								
-								//foreach ($bases as $base){
+								foreach ($bases as $base){
 				
 						?>
+						
 							<tr>
-								<td>Pessoa_Parte1</td>
-								<td>Caixa Pessoa - A</td>
-								<td>PessoaDB_A.csv</td>
-								<td>07/08/2014</td>
-								<td class="text-center"><a href="visualizar_bd.php"><img src="img/view-details.png" class="imagem"></a></td>
-								<td class="text-center"><a href="editar_bd.php"><img src="img/edit-gray.png" class="imagem"></a></td>
-								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirBD"></td>
-							</tr>
-							<tr>
-								<td>Pessoa_Parte1</td>
-								<td>Caixa Pessoa - A</td>
-								<td>PessoaDB_A.csv</td>
-								<td>07/08/2014</td>
-								<td class="text-center"><a href="visualizar_bd.php"><img src="img/view-details.png" class="imagem"></a></td>
-								<td class="text-center"><a href="editar_bd.php"><img src="img/edit-gray.png" class="imagem"></a></td>
-								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirBD"></td>
-							</tr>
-							<tr>
-								<td>Pessoa_Parte1</td>
-								<td>Caixa Pessoa - A</td>
-								<td>PessoaDB_A.csv</td>
-								<td>07/08/2014</td>
-								<td class="text-center"><a href="visualizar_bd.php"><img src="img/view-details.png" class="imagem"></a></td>
-								<td class="text-center"><a href="editar_bd.php"><img src="img/edit-gray.png" class="imagem"></a></td>
-								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirBD"></td>
-							</tr>
-							<tr>
-								<td>Pessoa_Parte1</td>
-								<td>Caixa Pessoa - A</td>
-								<td>PessoaDB_A.csv</td>
-								<td>07/08/2014</td>
+								<td><?php echo $base->getNome();?></td>
+								<td><?php echo $base->getNomeJogo();?></td>
+								<td><?php echo $base->getNomeArquivo();?></td>
+								<td><?php echo $base->getEntidade()->getNome();?></td>
 								<td class="text-center"><a href="visualizar_bd.php"><img src="img/view-details.png" class="imagem"></a></td>
 								<td class="text-center"><a href="editar_bd.php"><img src="img/edit-gray.png" class="imagem"></a></td>
 								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirBD"></td>
 							</tr>
 						</tbody>
 						<?php 
-							//}
+							}
 						?>
 					</table>
 					

@@ -1,5 +1,6 @@
 <?php include 'header.php'; ?>
 <?php include_once 'controller/entidadeControle.php'; ?>
+<?php include_once 'controller/usuariosControle.php'; ?>
 <?php include_once 'controller/rodadaControle.php'; ?>
 
 <div id="formularioLogin" class="container">
@@ -30,6 +31,7 @@
 			
 				<form class="form-horizontal" role="form" action="controller/editarRodadaControle.php" method="POST" id="formCadastroRodada">
 					<div class="form-group">
+						<input type='hidden' name='idRodadaEditar' value='<?php echo $id ?>'>
 						<label for="inputNome" class="col-sm-3 control-label">Nome</label>
 						<div class="col-sm-7">
 							<input type="text" class="form-control" id="inputNome" name="inputNome" value="<?php echo $rodada->getNome();?>">
@@ -78,19 +80,36 @@
 					
 					<!-- -------------------------------------- ALTERAR --------------------------------------  -->
 					
-					<div class="col-lg-10 col-lg-offset-1 table-responsive" style="border: 1px solid black" id="tabelaUsuariosParticipantesRodada">
+					<div class="col-lg-10 col-lg-offset-1 table-responsive" style="border: 1px solid black" id="tabelaUsuariosParticipantesRodadaEditar">
 					
 						<p class="text-center"><strong>Usuários que participarão da rodada</strong></p>
 						
-						<table class="table tablesorter" id="tabelaUsuariosParticipantesRodada">
+						<table class="table tablesorter" id="tabelaUsuariosParticipantesRodadaEditar">
 							<thead>
 								<tr>
 									<th>Nome</th>
 									<th>Email</th>
-									<th class="text-center">Excluir</th>
+									<th class="text-center">Excluir</th>																
 								</tr>
 							</thead>
-							<tbody id="tbodyTUP">
+							<tbody id="tbodyTUPEditar">
+								<?php
+								
+								$usuariosArray = listarUsuariosRodada($id);
+								
+								foreach ($usuariosArray as $usuario) {
+									if($usuario->getSituacao() == 1) {
+								?>
+										<tr>
+											<td class="nome" ><?php echo $usuario->getNome(); ?></td>
+											<td class="email"><input type='hidden' name='emailUsuarioEditar[]' value='<?php echo $usuario->getEmail(); ?>'><?php echo $usuario->getEmail(); ?><?php echo $usuario->getEmail(); ?></td>
+											<td class='text-center'><img src='img/deactivate.png' class='imagem removerUsuarioRodadaEditar'></td> 
+										</tr>
+										
+								<?php
+									}
+								}
+								?>
 								<!-- <tr>
 									<td class='text-center'><img src='img/deactivate.png' class='imagem removerUsuarioRodada'></td>
 								</tr> -->
@@ -103,7 +122,7 @@
 					
 						<p class="text-center"><strong>Usuários gerais</strong></p>
 						
-						<table class="table tablesorter" id="tabelaUsuariosRodada">
+						<table class="table tablesorter" id="tabelaUsuariosRodadaEditar">
 							<thead>
 								<tr>
 									<th>Nome</th>
@@ -114,18 +133,19 @@
 							<tbody>
 								<?php
 								
-								$usuariosArray = listarUsuarios();
+								$todosUsuarios = listarUsuarios();
 								
-								foreach ($usuariosArray as $usuario) {
-									if($usuario->getSituacao() == 1) {
+								foreach ($todosUsuarios as $usuario) {
+									 	if($usuario->getSituacao() == 1) {
 								?>
-										<tr>
-											<td class="nome"><?php echo $usuario->getNome(); ?></td>
-											<td class="email"><?php echo $usuario->getEmail(); ?></td>
-										</tr>
+											<tr>
+												<td class="nome"><?php echo $usuario->getNome(); ?></td>
+												<td class="email"><?php echo $usuario->getEmail(); ?></td>
+												<td class="text-center"><img src="img/activate.png" class="imagem associarUsuarioRodadaEditar"></td>
+											</tr>
 										
 								<?php
-									}
+										}
 								}
 								?>
 							</tbody>
@@ -134,6 +154,9 @@
 						<?php include 'paginacao.php'; ?>
 						
 					</div>
+					
+					
+						
 					
 					<div class="form-group">
 						<div class="col-sm-10">

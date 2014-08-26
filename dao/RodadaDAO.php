@@ -116,6 +116,23 @@ class RodadaDAO {
 		return $usuarios;
 	}
 	
+	
+	public function atualizarRodada($rodada) {
+	
+		$cn = new Conexao();
+	
+		$sql = "UPDATE rodada
+				SET nome='" . $rodada->getNome() . "',
+					inicio='" . $rodada->getInicio() . "',
+					fim='" . $rodada->getFim() . "',
+					entidade_id='" . $rodada->getEntidade()->getId() . "'					
+				WHERE id='" . $rodada->getId() . "';";
+		
+		$cn->execute($sql);
+	
+		$cn->disconnect();
+	}
+	
 }
 
 ?>

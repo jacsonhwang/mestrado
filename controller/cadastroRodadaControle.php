@@ -45,7 +45,10 @@ if(isset($_POST['buttonCadastrar'])) {
 			}
 			
 			$rodadaUsuarioDAO->inserirUsuarioRodada($rodada, $emailArray);
-		}		
+						
+		}	
+
+		header("location: ../rodada.php");
 	}
 	else {
 		echo "Erro.";

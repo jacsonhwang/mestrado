@@ -1,7 +1,14 @@
 <?php
-include '../dao/BaseDAO.php';
+include_once '../dao/BaseDAO.php';
 
-include 'dao/BaseDAO.php';
+include_once 'dao/BaseDAO.php';
+
+$baseDAO = new BaseDAO();
+
+$baseArray = $baseDAO->listarBase();
+
+print_r($baseArray);
+
 
 function listarBase() {
 
