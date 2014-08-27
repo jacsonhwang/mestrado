@@ -51,6 +51,19 @@ switch ($idConsulta){
 		echo json_encode($nomesColunas);
 		
 		break;
+		
+	case 3:
+		$metaBaseDadosDAO = new MetaBaseDadosDAO();
+		
+		$nomesAtributos = $metaBaseDadosDAO->recuperarNomesColunas($idBaseDados);
+		
+		foreach($nomesAtributos as &$nomeAtributo) {
+			$nomeAtributo = utf8_encode($nomeAtributo);
+		}
+		
+		echo json_encode($nomesAtributos);
+		
+		break;
 }
 
 ?>

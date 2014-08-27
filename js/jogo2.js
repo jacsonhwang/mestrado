@@ -1,17 +1,51 @@
 $(document).ready(function() {
-	$(".pool").droppable({
-		//accept: ".entity:not(.fromPool)",
+	
+	$("#pool").droppable({
+		accept: ":not(.fromPool)",
 		drop: function(event, ui) {
 			addToPool(ui.draggable);
 		}
 	});
+	
+	$("#views").droppable({
+		accept: ":not(.fromViewer)",
+		drop: function(event, ui) {
+			addToViewer(ui.draggable);
+		}
+	});
+	
+	$("#trash").droppable({
+		//accept: ".entity",
+		drop: function(event, ui) {
+			addToTrash(ui.draggable);
+		}
+	});
+	
+	$('.fromViewer').draggable({
+		revert: 'invalid',
+		containment: '.main',
+		helper: function(event) {
+			return getEntityLayout(this);
+		},
+		cursor: 'move',
+		opacity: 0.75
+	});
+	
+	$('.fromPool').draggable({
+		revert: 'invalid',
+		containment: '.main',
+		helper: function(event) {
+			return getEntityLayout(this);
+		},
+		cursor: 'move',
+		opacity: 0.75
+	});
+	
 });
 
 function getEntityLayout(item) {
 	
 	var html = "<div style='border: 1px solid black; z-index: 15; padding-right: 15px'><ul>";
-	
-	//console.log(item);
 	
 	$(item).find("td").each(function() {
 		html += "<li>" + $(this).html() + "</li>";
@@ -31,17 +65,24 @@ function getEntityLayout(item) {
 }
 
 function addToPool(item) {
+	
+	console.log(item);
+	console.log(item.data());
+	
 	var pool = $("#pool");
-	$("#views").find(item).remove();
-	$('#data').find(item).css({
-		'background':'grey'
-	});
 	
-	var html = "<li class='pull-left'><div><ul class='list-group'>";
+	var html = "<li class='pull-left'><div class='box'><ul class='list-group'>";
 	
-	$(item).find("td").each(function() {
-		html += "<li class='list-group-item'>" + $(this).html() + "</li>";
-	});
+	if($(item).find("td").length > 0) {
+		$(item).find("td").each(function() {
+			html += "<li class='list-group-item'>" + $(this).html() + "</li>";
+		});
+	}
+	else {
+		$(item).find("li").each(function() {
+			html += "<li class='list-group-item'>" + $(this).html() + "</li>";
+		});
+	}
 	
 	html += "</ul></div></li>";
 	
@@ -51,14 +92,20 @@ function addToPool(item) {
 	
 	$('#poolList').append(html);
 	
-	$('#poolList').find('li:last-child').addClass('fromPool');
-	$('#poolList').find('li:last-child').draggable({
-		//revert: 'invalid',
-		containment: 'document',
+	$('#poolList').children(":last").addClass('fromPool').data("idBaseDados", item.data("idBaseDados"))
+														 .data("dadosArray", item.data("dadosArray"))
+														 .data("nomesAtributos", item.data("nomesAtributos"));
+	
+	$("#viewsList").find(item).remove();
+	
+	$('#poolList').children(":last").draggable({
+		revert: 'invalid',
+		containment: '.main',
 		helper: 'original',
-		cursor: 'move',
+		cursor: 'auto',
 		opacity: 0.75
-	});			
+	});	
+	
 	/*$selected = new Entity();
 	$selected.setNome(nome);
 	$selected.setEndereco(endereco);
@@ -66,4 +113,91 @@ function addToPool(item) {
 	$selected.setID(id);
 	$pool.addEntity($selected);
 	$viewer.removeEntity($selected);*/
+}
+
+function addToViewer(item) {
+	
+	console.log(item);
+	console.log(item.data());
+	
+	$("#poolList").find(item).remove();
+	
+	/*var id = item.attr('id');
+	var atributos = recuperarDadosPorID(id);
+	var nome = atributos.nome;
+	var endereco = atributos.endereco;
+	var cpf = atributos.cpf;
+	var classe = atributos.classe;*/
+
+	var html = "<li class='pull-left'><div class='box'><ul class='list-group'>";
+	
+	if($(item).find("td").length > 0) {
+		$(item).find("td").each(function() {
+			html += "<li class='list-group-item'>" + $(this).html() + "</li>";
+		});
+	}
+	else {
+		$(item).find("li").each(function() {
+			html += "<li class='list-group-item'>" + $(this).html() + "</li>";
+		});
+	}
+	
+	html += "</ul></div></li>";
+	
+	var views = $("#viewsList");
+	
+	$('#data').find(item).css({
+		'background':'grey'
+	}).removeClass('entity');
+	
+	views.append(html);
+	
+	views.children(":last").addClass('fromViewer').data("idBaseDados", item.data("idBaseDados"))
+												  .data("dadosArray", item.data("dadosArray"))
+												  .data("nomesAtributos", item.data("nomesAtributos"));
+	
+	views.children(":last").draggable({
+		revert: 'invalid',
+		containment: '.main',
+		helper: 'original',
+		cursor: 'auto',
+		opacity: 0.75
+	});
+	
+	/*$selected = new Entity();
+	$selected.setNome(nome);
+	$selected.setEndereco(endereco);
+	$selected.setCPF(cpf);
+	$selected.setID(id);
+	$viewer.addEntity($selected);
+	$pool.removeEntity($selected);*/
+}
+
+function addToTrash(item) {
+	
+	$("body").css("cursor", "auto");
+	
+	var trash = $("#trash");
+	
+	$('#data').find(item).css({
+		'background':'white'
+	});
+	
+	$("#views").find(item).remove();
+	
+	$("#poolList").find(item).remove();
+	
+	/*var id = item.attr('id');
+	var atributos = recuperarDadosPorID(id);
+	var nome = atributos.nome;
+	var endereco = atributos.endereco;
+	var cpf = atributos.cpf;
+	$selected = new Entity();
+	$selected.setNome(nome);
+	$selected.setEndereco(endereco);
+	$selected.setCPF(cpf);
+	$selected.setID(id);
+	$trash.deleteEntity($selected);
+	$viewer.removeEntity($selected);
+	$pool.removeEntity($selected);*/
 }

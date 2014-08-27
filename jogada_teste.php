@@ -349,14 +349,51 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 		</div>
 		
 		<!-- ------------------------------ JOGO ----------------------------- -->
-
+		
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<div class="row">
+				<div style="display: inline-block; width: 75%; text-align: center"><h1>Rodada de Qualificação</h1></div>
+				
+				<div class="example" data-timer="300" style="float: right; width: 20%; display: inline-block"></div>
+			</div>
+
+			<div class="row area">
+			
+				<div id="views" class="col-lg-7">
+					<ul id="viewsList" class='box-list'></ul>
+				</div>
+				
+				<div id="pool" class="col-lg-5" style="border: 1px solid black">
+					<ul id="poolList" class='box-list'></ul>
+				</div>
+			
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-7 text-center">
+					<button type="button" class="btn btn-primary btn-lg" id="buttonEncerrarJogo">ENCERRAR JOGO</button>
+				</div>
+				
+				<div class="col-lg-5">
+					<div id="trash" class="trash">
+						<img src="trash.png">
+						<ol id="trashList" class="views ui-helper-reset ui-helper-clearfix"></ol>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<div class="row">
 				<div style="display: inline-block; width: 75%; text-align: center"><h1>Rodada de Qualificação</h1></div>
 				<div class="example" data-timer="300" style="float: right; width: 20%; display: inline-block"></div>
 			</div>
 
-			<div class="row">
+			<div class="row area">
+			
+				<ul id="views" class="views ui-helper-reset ui-helper-clearfix"></ul>
+				
 				<div id="entity-container" class="data-container ui-widget ui-helper-clearfix">
 					<table id="data">
 						<tbody>
@@ -383,7 +420,7 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 				</div>
 			</div>
 
-		</div>
+		</div> -->
 
 	</div>
 </div>

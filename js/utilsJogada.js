@@ -96,23 +96,14 @@ $(document).ready(function() {
 	
 	$("#liCaixaA").click(function() {
 		$("#buttonLimparBusca").click();
-		/*$("#divTabelaFiltroA").hide();
-		$("#divTabelaFiltroB").hide();
-		$("#divTabelaFiltroC").hide();*/
 	});
 	
 	$("#liCaixaB").click(function() {
 		$("#buttonLimparBusca").click();
-		/*$("#divTabelaFiltroA").hide();
-		$("#divTabelaFiltroB").hide();
-		$("#divTabelaFiltroC").hide();*/
 	});
 	
 	$("#liCaixaC").click(function() {
 		$("#buttonLimparBusca").click();
-		/*$("#divTabelaFiltroA").hide();
-		$("#divTabelaFiltroB").hide();
-		$("#divTabelaFiltroC").hide();*/
 	});
 	
 	$("#formCaixaA").submit(function() {
@@ -141,6 +132,12 @@ $(document).ready(function() {
 		
 		$(".divTabelaFiltro").hide();
 	});
+	
+	$("#buttonEncerrarJogo").click(function() {
+		$("#poolList").children().each(function() {
+			console.log($(this).data());
+		});
+	});
 });
 
 function criarTabela(form, tabela, divTabela, tabelaBanco, idBaseDados) {
@@ -168,6 +165,8 @@ function criarTabela(form, tabela, divTabela, tabelaBanco, idBaseDados) {
 	
 	var nomesColunas = jogadaAjax.getNomesColunas(idBaseDados);
 	
+	var nomesAtributos = jogadaAjax.getNomesAtributos(idBaseDados).split(", ");
+	
 	$(divTabela).show();
 	
 	for(var i in nomesColunas) {
@@ -175,20 +174,12 @@ function criarTabela(form, tabela, divTabela, tabelaBanco, idBaseDados) {
 	}
 	
 	for(var i in dadosArray) {
-		$("<tr class='linhaTabelaA'>").appendTo(tabela + " > tbody");
+		$("<tr class='linhaTabelaA'>").appendTo(tabela + " > tbody").data("idBaseDados", idBaseDados).data("dadosArray", dadosArray[i]).data("nomesAtributos", nomesAtributos);
 		
 		for(var j in dadosArray[i]) {
 			$("<td class='text-center'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);
 		}
 	}
-	
-	/*$("#tabelaFiltroA > tbody").sortable({
-		revert: 'invalid',
-		containment: ".main",
-		helper: function(event) {
-			return getEntityLayout(this);
-		}
-	});*/
 	
 	$("#tabelaFiltroA > tbody").find("tr").each(function() {
 		$(this).draggable({
@@ -201,15 +192,3 @@ function criarTabela(form, tabela, divTabela, tabelaBanco, idBaseDados) {
 		});
 	});
 }
-
-/*function getEntityLayout(item) {
-	console.log(item);
-	var atributos = recuperarDadosPorID(item.id);
-	var nome = atributos.nome;
-	var endereco = atributos.endereco;
-	var cpf = atributos.cpf;
-	var classe = atributos.classe;
-	var html = "<div class='entity ui-corner-all grey' style='z-index: 15'>oi</div>";
-	//var html = "<div class='entity ui-corner-all grey' id='"+item.id+"' style='max-width:128px'><img src='stickman.png' class='stickman'></img><h5>"+nome+"</h5><h5>"+endereco+"</h5><h5>"+cpf+"</h5></div>";
-	return html;
-}*/

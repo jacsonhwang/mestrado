@@ -32,3 +32,19 @@ JogadaAjax.prototype.getNomesColunas = function(idBaseDados) {
 	
 	return resultado;
 }
+
+JogadaAjax.prototype.getNomesAtributos = function(idBaseDados) {
+	var resultado = "";
+	
+	$.ajax({
+		type: "POST",
+		url: "controller/filtroJogoControle.php",
+		data: { idConsulta: 3, idBaseDados: idBaseDados },
+		async: false,
+		success: function(msg) {
+			resultado = jQuery.parseJSON(msg);
+		}
+	});
+	
+	return resultado;
+}
