@@ -1,0 +1,14 @@
+id;nome;sobrenome_meio;sobrenome_final;cpf;id_endereco;tipo_logradouro;logradouro;bairro;municipio;uf;cep;numero;id_entidade;pessoa_csv;data_nascimento
+131;HARLISON;CASQUILHO;CARRA;115.996.437-82;55;Avenida;Marechal Cƒmara;Centro;Rio de Janeiro;RJ;20020080;440;55;1;09/02/1988
+132;DEBORA;DA SILVA;DE PAULO;129.912.827-03;95;Rua;Mestre Valentim;Centro;Rio de Janeiro;RJ;20021220;960;95;2;19/04/1947
+133;THAMIRIS;PIRES;BERG;103.765.167-71;74;Avenida;Almirante S¡lvio de Noronha;Centro;Rio de Janeiro;RJ;20021010;300;74;3;03/02/1900
+134;SUELY;SAUDADES;DO CARMO;118.678.207-22;78;Beco;da Batalha;Centro;Rio de Janeiro;RJ;20021050;205;78;4;11/01/1947
+135;DEBORA;MACHADO;BERG;130.005.167-19;92;Rua;Marechal Aguinaldo Caiado de Castro;Centro;Rio de Janeiro;RJ;20021190;891;92;5;06/04/1919
+136;LOHANI;ESTEPHANELI;CARRA;123.892.917-67;64;NULL;Avenida Nilo Pe‡anha 50;Centro;Rio de Janeiro;RJ;20020906;101;64;6;07/05/1971
+137;THAMIRES;VINICIUS;NETTO;111.098.777-30;77;Avenida;Augusto Severo;Gl¢ria;Rio de Janeiro;RJ;20021040;621;77;7;15/02/1961
+138;IVANILDO;VENANCIO;NETTO;133.161.227-61;67;NULL;Avenida Presidente Ant“nio Carlos 375;Centro;Rio de Janeiro;RJ;20020909;267;67;8;31/10/1952
+139;JOSE;BARRETO;GARCIA;122.272.667-08;36;Rua;do Carmo;Centro;Rio de Janeiro;RJ;20011020;980;36;9;09/04/1905
+140;GEISIANE;ALBUQUERQUE;EVORA;128.148.787-27;69;NULL;Avenida Presidente Ant“nio Carlos 375;Centro;Rio de Janeiro;RJ;20020971;167;69;10;03/10/1976
+141;JONATHAN;DA ROCHA;SOUSA;101.566.956-50;80;Pra‡a;It lia;Centro;Rio de Janeiro;RJ;20021070;363;80;11;09/04/1934
+142;PABLO;MANETI;LOVISE;124.183.727-90;31;NULL;Rua Dom Manuel, s/n;Centro;Rio de Janeiro;RJ;20010975;920;31;12;20/09/1970
+143;GRACIELE;MACHADO;LOVISE;127.946.897-11;82;Pra‡a;Deodoro;Centro;Rio de Janeiro;RJ;20021090;51;82;13;24/02/1911

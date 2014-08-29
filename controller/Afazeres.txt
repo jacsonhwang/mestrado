@@ -1,0 +1,19 @@
+X pesquisa label região
+X pesquisa distancia rota
+- calculo area da região incluir no banco
+- carregar banco com dados da comlurb
+- acertar base no sistema
+X opção de escolha de tempo para equipes offlines
+- Mudar tabela infowindow localização de fiscais
+
+X change log
+  -> Otimização de consultas sql
+  -> Modulo de visualização de equipes offline
+
+  -> Tabela Região
+      -> Calculo área região
+  -> Tabela Localização de Equipe
+  -> Modificação do nome da aba "Painel Equipes Online" para "Filtros"
+
+  -> Documentação 1.7.0
+  -> Documentação 1.8.0
