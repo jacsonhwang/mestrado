@@ -1,5 +1,5 @@
 <?php
-include_once '../model/Base.php';
+include_once '../model/Entidade.php';
 
 class Base {
 	
@@ -42,9 +42,13 @@ class Base {
 	function getEntidade() {
 		return $this->entidade;
 	}
+	
+	function setId($id) {
+		$this->id = $id;
+	}
 		
 	function recuperarArrayBase() {
-		$baseArray['id']				= $this->id;
+		//$baseArray['id']				= $this->id;
 		$baseArray['nome']              = $this->nome;
 		$baseArray['nome_arquivo']      = $this->nomeArquivo;
 		$baseArray['nome_jogo']         = $this->nomeJogo;

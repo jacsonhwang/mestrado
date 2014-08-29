@@ -4,22 +4,6 @@ include_once("inc/conexao.php");
 include_once("../model/Entidade.php");
 include_once("model/Entidade.php");
 
-
-/* $cn = new Conexao();
-$id = "1";
-$sql = "SELECT id, nome, descricao_jogo, nome_jogo
-				FROM entidade
-				WHERE id = '".$id."'";
-
-$result = $cn->execute($sql);
-
-while ($rs = sqlsrv_fetch_array($result)) {
-	$entidade = new Entidade($rs['id'], $rs['nome'], $rs['nome_jogo'], $rs['descricao_jogo']);
-}
-
-$cn->disconnect();
-var_dump($entidade); */
- 
 class EntidadeDAO {
 	
 	private $cn;

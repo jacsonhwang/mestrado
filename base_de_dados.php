@@ -1,5 +1,6 @@
 <?php include 'header.php'; ?>
-<?php require_once 'controller/baseControle.php'; ?>
+<?php include_once 'controller/baseControle.php'; ?>
+<?php include_once '../controller/baseControle.php'; ?>
 <div id="formularioLogin" class="container">
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2">
@@ -48,7 +49,7 @@
 								<td><?php echo $base->getNomeJogo();?></td>
 								<td><?php echo $base->getNomeArquivo();?></td>
 								<td><?php echo $base->getEntidade()->getNome();?></td>
-								<td class="text-center"><a href="visualizar_bd.php"><img src="img/view-details.png" class="imagem"></a></td>
+								<td class="text-center"><a href="visualizar_bd.php?idBase=<?php echo $base->getId(); ?>"><img src="img/view-details.png" class="imagem"></a></td>								
 								<td class="text-center"><a href="editar_bd.php"><img src="img/edit-gray.png" class="imagem"></a></td>
 								<td class="text-center"><img src="img/deactivate.png" class="imagem excluirBD"></td>
 							</tr>

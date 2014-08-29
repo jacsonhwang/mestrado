@@ -289,5 +289,10 @@ $(document).ready(function() {
             $("#avisoBD").show();
         }
     });
-	
+		
+	/*$("#upload").uploadFile({
+		url: "../Mestrado3/controller/upload.php",
+		allowedTypes:"csv",
+		fileName:"myfile"
+	});*/
 });
