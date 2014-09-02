@@ -3,6 +3,7 @@ $(document).ready(function() {
 	$("#pool").droppable({
 		accept: ":not(.fromPool)",
 		drop: function(event, ui) {
+			console.log(ui.draggable.data());
 			addToPool(ui.draggable);
 		}
 	});
@@ -10,6 +11,8 @@ $(document).ready(function() {
 	$("#views").droppable({
 		accept: ":not(.fromViewer)",
 		drop: function(event, ui) {
+			console.log(event);
+			console.log(ui.draggable.data());
 			addToViewer(ui.draggable);
 		}
 	});
@@ -21,10 +24,11 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('.fromViewer').draggable({
+	/*$('.fromViewer').draggable({
 		revert: 'invalid',
 		containment: '.main',
 		helper: function(event) {
+			console.log("aaa");
 			return getEntityLayout(this);
 		},
 		cursor: 'move',
@@ -35,11 +39,12 @@ $(document).ready(function() {
 		revert: 'invalid',
 		containment: '.main',
 		helper: function(event) {
+			console.log("aaa");
 			return getEntityLayout(this);
 		},
 		cursor: 'move',
 		opacity: 0.75
-	});
+	});*/
 	
 });
 
@@ -66,8 +71,8 @@ function getEntityLayout(item) {
 
 function addToPool(item) {
 	
-	console.log(item);
-	console.log(item.data());
+	//console.log(item);
+	//console.log(item.data());
 	
 	var pool = $("#pool");
 	
@@ -98,10 +103,18 @@ function addToPool(item) {
 	
 	$("#viewsList").find(item).remove();
 	
-	$('#poolList').children(":last").draggable({
+	/*$('#poolList').children(":last").draggable({
 		revert: 'invalid',
 		containment: '.main',
-		helper: 'original',
+		helper: 'clone',
+		cursor: 'auto',
+		opacity: 0.75
+	});	*/
+	
+	$('.fromPool').draggable({
+		revert: 'invalid',
+		containment: '.main',
+		helper: 'clone',
 		cursor: 'auto',
 		opacity: 0.75
 	});	
@@ -117,10 +130,10 @@ function addToPool(item) {
 
 function addToViewer(item) {
 	
-	console.log(item);
-	console.log(item.data());
+	//console.log(item);
+	//console.log(item.data());
 	
-	$("#poolList").find(item).remove();
+	//$("#poolList").find(item).remove();
 	
 	/*var id = item.attr('id');
 	var atributos = recuperarDadosPorID(id);
@@ -146,23 +159,29 @@ function addToViewer(item) {
 	
 	var views = $("#viewsList");
 	
-	$('#data').find(item).css({
+	/*$('#data').find(item).css({
 		'background':'grey'
 	}).removeClass('entity');
-	
+	*/
 	views.append(html);
 	
 	views.children(":last").addClass('fromViewer').data("idBaseDados", item.data("idBaseDados"))
 												  .data("dadosArray", item.data("dadosArray"))
 												  .data("nomesAtributos", item.data("nomesAtributos"));
 	
-	views.children(":last").draggable({
+	$("#poolList").find(item).remove();
+	
+	$(".fromViewer").draggable({
 		revert: 'invalid',
 		containment: '.main',
-		helper: 'original',
+		//helper: 'clone',
 		cursor: 'auto',
 		opacity: 0.75
 	});
+	
+	$(".fromViewer").data("idBaseDados", item.data("idBaseDados"))
+	  .data("dadosArray", item.data("dadosArray"))
+	  .data("nomesAtributos", item.data("nomesAtributos"));
 	
 	/*$selected = new Entity();
 	$selected.setNome(nome);

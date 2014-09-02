@@ -13,7 +13,7 @@ class MetaBaseDadosDAO {
 		
 		$cn = new Conexao();
 		
-		$sql = "SELECT * FROM " . $this->tabela . " WHERE base_dados_id = " . $idBaseDados;
+		$sql = "SELECT id, nome_atributo, nome_jogo, descricao, exibir_atributo FROM " . $this->tabela . " WHERE base_dados_id = " . $idBaseDados;
 		
 		$result = $cn->execute($sql);
 		
@@ -22,10 +22,11 @@ class MetaBaseDadosDAO {
 		while ($rs = sqlsrv_fetch_array($result)) {
 			$id = $rs["id"];
 			$nomeAtributo = $rs["nome_atributo"];
-			$nomeJogo = $rs["nome_jogo"];
-			$descricaoAtributo = $rs["descricao"];
+			$nomeJogo = $rs["nome_jogo"];			
+			$descricaoAtributo = $rs["descricao"];			
+			$exibirAtributo = $rs["exibir_atributo"];
 			
-			$metaBaseDados = new MetaBaseDados($id, $nomeAtributo, $nomeJogo, $descricaoAtributo);
+			$metaBaseDados = new MetaBaseDados($id, $nomeAtributo, $idBaseDados, $nomeJogo, $descricaoAtributo, $exibirAtributo);
 			
 			array_push($dadosArray, $metaBaseDados);
 		}
@@ -63,21 +64,28 @@ class MetaBaseDadosDAO {
 	
 		$cn = new Conexao();
 	
-		$sql = "SELECT nome_jogo FROM " . $this->tabela . " WHERE base_dados_id = " . $idBaseDados;
+		$sql = "SELECT id, nome_jogo FROM " . $this->tabela . " WHERE base_dados_id = " . $idBaseDados;
 	
 		$result = $cn->execute($sql);
 	
 		$dadosArray = array();
 	
 		while ($rs = sqlsrv_fetch_array($result)) {
+			$id = $rs["id"];
 			$nomeJogo = $rs["nome_jogo"];
+			
+			$dados = array($id, $nomeJogo);
 	
-			array_push($dadosArray, $nomeJogo);
+			array_push($dadosArray, $dados);
 		}
 	
 		$cn->disconnect();
 	
 		return $dadosArray;
+	}
+	
+	function recuperarValorExibicaoAtributo ($idBaseDados) {
+	
 	}
 }
 

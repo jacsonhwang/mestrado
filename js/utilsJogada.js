@@ -165,12 +165,20 @@ function criarTabela(form, tabela, divTabela, tabelaBanco, idBaseDados) {
 	
 	var nomesColunas = jogadaAjax.getNomesColunas(idBaseDados);
 	
+	console.log("Nomes colunas: ");
+	console.log(nomesColunas);
+	
 	var nomesAtributos = jogadaAjax.getNomesAtributos(idBaseDados).split(", ");
 	
 	$(divTabela).show();
 	
 	for(var i in nomesColunas) {
-		$("<th class='text-center'>").appendTo(tabela + " > thead > tr").html(nomesColunas[i]);
+		
+		console.log(nomesColunas[i][0]);
+		
+		//if(nomesColunas[i][0] == 1) {
+			$("<th class='text-center'>").appendTo(tabela + " > thead > tr").html(nomesColunas[i][1]);
+		//}
 	}
 	
 	for(var i in dadosArray) {

@@ -45,7 +45,8 @@ switch ($idConsulta){
 		$nomesColunas = $metaBaseDadosDAO->recuperarNomeJogo($idBaseDados);
 		
 		foreach($nomesColunas as &$nomeColuna) {
-			$nomeColuna = utf8_encode($nomeColuna);
+			//$nomeColuna[0] = utf8_encode($nomeColuna[0]);
+			$nomeColuna[1] = utf8_encode($nomeColuna[1]);
 		}
 		
 		echo json_encode($nomesColunas);

@@ -47,14 +47,16 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 						<form class="form-horizontal" id="formCaixaA">
 							<?php
 							foreach($dadosArray1 as $dado) {
+								if($dado->getExibirAtributo() == 1) {
 							?>					
-								<div class="form-group">
-									<label for="<?php echo $dado->getNomeAtributo(); ?>" class="col-sm-3 control-label"><?php echo $dado->getNomeJogo(); ?></label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control" id="<?php echo $dado->getNomeAtributo(); ?>" name="<?php echo $dado->getNomeAtributo(); ?>">
+									<div class="form-group">
+										<label for="<?php echo $dado->getNomeAtributo(); ?>" class="col-sm-3 control-label"><?php echo $dado->getNomeJogo(); ?></label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="<?php echo $dado->getNomeAtributo(); ?>" name="<?php echo $dado->getNomeAtributo(); ?>">
+										</div>
 									</div>
-								</div>
 							<?php
+								}
 							}
 							?>
 
@@ -67,14 +69,16 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 						<form class="form-horizontal" id="formCaixaB">
 							<?php
 							foreach($dadosArray2 as $dado) {
+								if($dado->getExibirAtributo() == 1) {
 							?>					
-								<div class="form-group">
-									<label for="<?php echo $dado->getNomeAtributo(); ?>" class="col-sm-3 control-label"><?php echo $dado->getNomeJogo(); ?></label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control" id="<?php echo $dado->getNomeAtributo(); ?>">
+									<div class="form-group">
+										<label for="<?php echo $dado->getNomeAtributo(); ?>" class="col-sm-3 control-label"><?php echo $dado->getNomeJogo(); ?></label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="<?php echo $dado->getNomeAtributo(); ?>">
+										</div>
 									</div>
-								</div>
 							<?php
+								}
 							}
 							?>
 
@@ -87,14 +91,16 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 						<form class="form-horizontal" id="formCaixaC">
 							<?php
 							foreach($dadosArray3 as $dado) {
+								if($dado->getExibirAtributo() == 1) {
 							?>					
-								<div class="form-group">
-									<label for="<?php echo $dado->getNomeAtributo(); ?>" class="col-sm-3 control-label"><?php echo $dado->getNomeJogo(); ?></label>
-									<div class="col-sm-8">
-										<input type="text" class="form-control" id="<?php echo $dado->getNomeAtributo(); ?>">
+									<div class="form-group">
+										<label for="<?php echo $dado->getNomeAtributo(); ?>" class="col-sm-3 control-label"><?php echo $dado->getNomeJogo(); ?></label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="<?php echo $dado->getNomeAtributo(); ?>">
+										</div>
 									</div>
-								</div>
 							<?php
+								}
 							}
 							?>
 
@@ -253,15 +259,17 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 						<?php
 						$i = 0;
 						foreach($dadosArray1 as $caixaA) {
+							if ($caixaA->getExibirAtributo() == 1) {
 						?>
-							<tr>
-								<td><?php echo $caixaA->getNomeAtributo(); ?></td>
-								<td><?php echo $caixaA->getNomeJogo(); ?></td>
-								<td><?php echo $caixaA->getDescricaoAtributo(); ?></td>
-								<td><?php echo $referenciaArray1[$i]; ?></td>
-							</tr>
+								<tr>
+									<td><?php echo $caixaA->getNomeAtributo(); ?></td>
+									<td><?php echo $caixaA->getNomeJogo(); ?></td>
+									<td><?php echo $caixaA->getDescricaoAtributo(); ?></td>
+									<td><?php echo $referenciaArray1[$i]; ?></td>
+								</tr>
 						<?php
-						$i++;
+							}
+							$i++;
 						}
 						?>
 					</tbody>
@@ -292,15 +300,17 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 						<?php
 						$j = 0;
 						foreach($dadosArray2 as $caixaB) {
+							if ($caixaB->getExibirAtributo() == 1) {
 						?>
-							<tr>
-								<td><?php echo $caixaB->getNomeAtributo(); ?></td>
-								<td><?php echo $caixaB->getNomeJogo(); ?></td>
-								<td><?php echo $caixaB->getDescricaoAtributo(); ?></td>
-								<td><?php echo $referenciaArray2[$j]; ?></td>
-							</tr>
+								<tr>
+									<td><?php echo $caixaB->getNomeAtributo(); ?></td>
+									<td><?php echo $caixaB->getNomeJogo(); ?></td>
+									<td><?php echo $caixaB->getDescricaoAtributo(); ?></td>
+									<td><?php echo $referenciaArray2[$j]; ?></td>
+								</tr>
 						<?php
-						$j++;
+							}
+							$j++;
 						}
 						?>
 					</tbody>
@@ -331,15 +341,17 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 						<?php
 						$k = 0;
 						foreach($dadosArray3 as $caixaC) {
+							if ($caixaC->getExibirAtributo() == 1) {
 						?>
-							<tr>
-								<td><?php echo $caixaC->getNomeAtributo(); ?></td>
-								<td><?php echo $caixaC->getNomeJogo(); ?></td>
-								<td><?php echo $caixaC->getDescricaoAtributo(); ?></td>
-								<td><?php echo $referenciaArray3[$k]; ?></td>
-							</tr>
+								<tr>
+									<td><?php echo $caixaC->getNomeAtributo(); ?></td>
+									<td><?php echo $caixaC->getNomeJogo(); ?></td>
+									<td><?php echo $caixaC->getDescricaoAtributo(); ?></td>
+									<td><?php echo $referenciaArray3[$k]; ?></td>
+								</tr>
 						<?php
-						$k++;
+							}
+							$k++;
 						}
 						?>
 					</tbody>

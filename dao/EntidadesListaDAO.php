@@ -96,6 +96,23 @@ class EntidadesListaDAO {
 		
 		return $dadosArray;
 	}
+	
+	function recuperarIdCSV ($tabela, $id) {
+		
+		$cn = new Conexao();
+		
+		$sql = "SELECT pessoa_csv_id FROM " . $tabela . " WHERE id = " . $id;
+		
+		$result = $cn->execute($sql);
+		
+		while ($rs = sqlsrv_fetch_array($result)) {
+			$idCSV = $rs["pessoa_csv_id"];
+		}
+		
+		$cn->disconnect();
+		
+		return $idCSV;
+	}
 }
 
 ?>

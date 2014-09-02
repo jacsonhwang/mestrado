@@ -26,6 +26,7 @@ JogadaAjax.prototype.getNomesColunas = function(idBaseDados) {
 		data: { idConsulta: 2, idBaseDados: idBaseDados },
 		async: false,
 		success: function(msg) {
+			console.log(msg);
 			resultado = jQuery.parseJSON(msg);
 		}
 	});

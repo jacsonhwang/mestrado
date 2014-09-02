@@ -7,15 +7,17 @@ class MetaBaseDados {
 	private $base;
 	private $nomeJogo;
 	private $descricaoAtributo;
+	private $exibirAtributo;
 	
 	
-	public function __construct($id, $nomeAtributo, $base, $nomeJogo, $descricaoAtributo) {
+	public function __construct($id, $nomeAtributo, $base, $nomeJogo, $descricaoAtributo, $exibirAtributo) {
 		
 		$this->id = $id;
 		$this->nomeAtributo = $nomeAtributo;
 		$this->base = $base;
 		$this->nomeJogo = $nomeJogo;
 		$this->descricaoAtributo = $descricaoAtributo;
+		$this->exibirAtributo = $exibirAtributo;
 		
 	}
 	
@@ -38,6 +40,10 @@ class MetaBaseDados {
 	function getDescricaoAtributo() {
 		return $this->descricaoAtributo;
 	}
+	
+	function getExibirAtributo() {
+		return $this->exibirAtributo;
+	}
 
 	function recuperarArrayMetaBase() {
 				
@@ -46,6 +52,7 @@ class MetaBaseDados {
 		$metaBaseArray['base_dados_id']       = $this->nomeArquivo;
 		$metaBaseArray['descricao']           = $this->nomeJogo;
 		$metaBaseArray['nome_jogo']           = $this->nomeTabela;
+		$metaBaseArray['exibir_atributo']	  = $this->exibirAtributo;
 	
 		return $metaBaseArray;
 	}
