@@ -3,7 +3,6 @@ $(document).ready(function() {
 	$("#pool").droppable({
 		accept: ":not(.fromPool)",
 		drop: function(event, ui) {
-			console.log(ui.draggable.data());
 			addToPool(ui.draggable);
 		}
 	});
@@ -11,8 +10,6 @@ $(document).ready(function() {
 	$("#views").droppable({
 		accept: ":not(.fromViewer)",
 		drop: function(event, ui) {
-			console.log(event);
-			console.log(ui.draggable.data());
 			addToViewer(ui.draggable);
 		}
 	});
@@ -28,7 +25,6 @@ $(document).ready(function() {
 		revert: 'invalid',
 		containment: '.main',
 		helper: function(event) {
-			console.log("aaa");
 			return getEntityLayout(this);
 		},
 		cursor: 'move',
@@ -39,7 +35,6 @@ $(document).ready(function() {
 		revert: 'invalid',
 		containment: '.main',
 		helper: function(event) {
-			console.log("aaa");
 			return getEntityLayout(this);
 		},
 		cursor: 'move',
@@ -71,9 +66,6 @@ function getEntityLayout(item) {
 
 function addToPool(item) {
 	
-	//console.log(item);
-	//console.log(item.data());
-	
 	var pool = $("#pool");
 	
 	var html = "<li class='pull-left'><div class='box'><ul class='list-group'>";
@@ -89,7 +81,7 @@ function addToPool(item) {
 		});
 	}
 	
-	html += "</ul></div></li>";
+	html += "</ul></div></div></li>";
 	
 	$('#data').find(item).css({
 		'background':'grey'
@@ -97,19 +89,10 @@ function addToPool(item) {
 	
 	$('#poolList').append(html);
 	
-	$('#poolList').children(":last").addClass('fromPool').data("idBaseDados", item.data("idBaseDados"))
-														 .data("dadosArray", item.data("dadosArray"))
-														 .data("nomesAtributos", item.data("nomesAtributos"));
+	$('#poolList').children(":last").addClass('fromPool').data("id", item.data("id"))
+	                                                     .data("idBaseDados", item.data("idBaseDados"));
 	
 	$("#viewsList").find(item).remove();
-	
-	/*$('#poolList').children(":last").draggable({
-		revert: 'invalid',
-		containment: '.main',
-		helper: 'clone',
-		cursor: 'auto',
-		opacity: 0.75
-	});	*/
 	
 	$('.fromPool').draggable({
 		revert: 'invalid',
@@ -129,9 +112,6 @@ function addToPool(item) {
 }
 
 function addToViewer(item) {
-	
-	//console.log(item);
-	//console.log(item.data());
 	
 	//$("#poolList").find(item).remove();
 	
@@ -165,9 +145,8 @@ function addToViewer(item) {
 	*/
 	views.append(html);
 	
-	views.children(":last").addClass('fromViewer').data("idBaseDados", item.data("idBaseDados"))
-												  .data("dadosArray", item.data("dadosArray"))
-												  .data("nomesAtributos", item.data("nomesAtributos"));
+	views.children(":last").addClass('fromViewer').data("id", item.data("id"))
+	                                              .data("idBaseDados", item.data("idBaseDados"));
 	
 	$("#poolList").find(item).remove();
 	
@@ -178,10 +157,6 @@ function addToViewer(item) {
 		cursor: 'auto',
 		opacity: 0.75
 	});
-	
-	$(".fromViewer").data("idBaseDados", item.data("idBaseDados"))
-	  .data("dadosArray", item.data("dadosArray"))
-	  .data("nomesAtributos", item.data("nomesAtributos"));
 	
 	/*$selected = new Entity();
 	$selected.setNome(nome);

@@ -76,6 +76,14 @@ function recuperaDadosArquivo($caminho, $separador){
 	return $retorno;
 }
 
+function recuperarNomeTabela ($idBaseDados) {
+	$baseDAO = new BaseDAO();
+	
+	$nomeTabela = $baseDAO->recuperarNomeTabela($idBaseDados);
+	
+	return $nomeTabela;
+}
+
 
 /* function excluirEntidade($id){
 	$entidadeDAO = new EntidadeDAO();

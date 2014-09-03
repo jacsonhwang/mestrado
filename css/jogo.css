@@ -141,6 +141,18 @@
 	cursor: move;
 }
 
+.area {
+	height: 50vh;
+}
+
 .area div {
-	min-height: 512px;
+	height: 100%;
+}
+
+.lixeira {
+	height: 20vh;
+}
+
+.lixeira div {
+	height: 100%;
 }

@@ -45,8 +45,7 @@ switch ($idConsulta){
 		$nomesColunas = $metaBaseDadosDAO->recuperarNomeJogo($idBaseDados);
 		
 		foreach($nomesColunas as &$nomeColuna) {
-			//$nomeColuna[0] = utf8_encode($nomeColuna[0]);
-			$nomeColuna[1] = utf8_encode($nomeColuna[1]);
+			$nomeColuna = utf8_encode($nomeColuna);
 		}
 		
 		echo json_encode($nomesColunas);
@@ -58,11 +57,24 @@ switch ($idConsulta){
 		
 		$nomesAtributos = $metaBaseDadosDAO->recuperarNomesColunas($idBaseDados);
 		
-		foreach($nomesAtributos as &$nomeAtributo) {
+		/* foreach($nomesAtributos as &$nomeAtributo) {
 			$nomeAtributo = utf8_encode($nomeAtributo);
-		}
+		} */
 		
 		echo json_encode($nomesAtributos);
+		
+		break;
+		
+	case 4:
+		$metaBaseDadosDAO = new MetaBaseDadosDAO();
+		
+		$exibirAtributosArray = $metaBaseDadosDAO->recuperarValorExibicaoAtributo($idBaseDados);
+		
+		foreach($exibirAtributosArray as &$exibirAtributo) {
+			$exibirAtributo = utf8_encode($exibirAtributo);
+		}
+		
+		echo json_encode($exibirAtributosArray);
 		
 		break;
 }

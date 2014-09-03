@@ -366,7 +366,7 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 			<div class="row">
 				<div style="display: inline-block; width: 75%; text-align: center"><h1>Rodada de Qualificação</h1></div>
 				
-				<div class="example" data-timer="300" style="float: right; width: 20%; display: inline-block"></div>
+				<div class="contador" data-timer="300" style="float: right; width: 20%; display: inline-block"></div>
 			</div>
 
 			<div class="row area">
@@ -381,58 +381,20 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 			
 			</div>
 			
-			<div class="row">
+			<div class="row lixeira">
 				<div class="col-lg-7 text-center">
 					<button type="button" class="btn btn-primary btn-lg" id="buttonEncerrarJogo">ENCERRAR JOGO</button>
 				</div>
 				
 				<div class="col-lg-5">
 					<div id="trash" class="trash">
-						<img src="trash.png">
+						<img src="trash.png" style="height: 100%">
 						<ol id="trashList" class="views ui-helper-reset ui-helper-clearfix"></ol>
 					</div>
 				</div>
 			</div>
 
 		</div>
-
-		<!-- <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<div class="row">
-				<div style="display: inline-block; width: 75%; text-align: center"><h1>Rodada de Qualificação</h1></div>
-				<div class="example" data-timer="300" style="float: right; width: 20%; display: inline-block"></div>
-			</div>
-
-			<div class="row area">
-			
-				<ul id="views" class="views ui-helper-reset ui-helper-clearfix"></ul>
-				
-				<div id="entity-container" class="data-container ui-widget ui-helper-clearfix">
-					<table id="data">
-						<tbody>
-						</tbody>
-					</table>
-				</div>
-				<div id="entity-viewer" class="entity-viewer ui-widget ui-helper-clearfix">
-					<ol id="views" class="views ui-helper-reset ui-helper-clearfix"></ol>
-				</div>
-				<div id="boxes" class="boxes ui-widget ui-helper-clearfix">
-					<div id="pool" class="pool">
-						<ul id="poolList" class="views ui-helper-reset ui-helper-clearfix"></ul>
-					</div>
-					<div id="trash" class="trash">
-						<img src="trash.png">
-						<ol id="trashList" class="views ui-helper-reset ui-helper-clearfix"></ol>
-					</div>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<button type="button" class="btn btn-primary btn-lg">ENCERRAR JOGO</button>
-				</div>
-			</div>
-
-		</div> -->
 
 	</div>
 </div>

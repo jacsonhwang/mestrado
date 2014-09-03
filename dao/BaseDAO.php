@@ -121,6 +121,25 @@ class BaseDAO {
 		return $registros;
 	}
 	
+	public function recuperarNomeTabela ($idBaseDados) {
+		
+		$cn = new Conexao();
+		
+		$sql = "SELECT nome_tabela FROM " . $this->tabela . " WHERE id = " . $idBaseDados;
+		
+		$result = $cn->execute($sql);
+		
+		$nomeTabela = "";
+		
+		while($rs = sqlsrv_fetch_array($result)) {
+			$nomeTabela = $rs["nome_tabela"];
+		}
+		
+		$cn->disconnect();
+		
+		return $nomeTabela;
+	}
+	
 }
 
 

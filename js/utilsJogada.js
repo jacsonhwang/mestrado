@@ -3,26 +3,25 @@ $(document).ready(function() {
 	
 	$("#divTabelaFiltroA, #divTabelaFiltroB, #divTabelaFiltroC").hide();
 	
-	$(".example").TimeCircles({
-		time: {
-			Days: {
-				show: false
-			},
-			Hours: {
-				show: false
-			},
-			Minutes: {
-				text: "Minutos"
-			},
-			Seconds: {
-				text: "Segundos"
-			}
-		},
-		count_past_zero: false
-	}).addListener(function(unit, value, total) {
-		if(total == 0) {
-			alert("O jogo acabou.");
-		}
+	// iniciar jogo
+	
+	$.blockUI({ message: null });
+
+	new Messi("Clique em OK para iniciar o jogo.", {
+	    title : "Iniciar jogo",
+	    titleClass : 'info',
+	    buttons : [ {
+	        id : 0,
+	        label : 'OK',
+	        val : 'X'
+	    } ],
+	    callback: function(val) {
+	        if(val == 'X') {	            
+	            iniciarContador();
+	            
+	            $.unblockUI();
+	        }
+	    }
 	});
 	
 	$("#opcaoFiltro").click(function(){
@@ -133,10 +132,8 @@ $(document).ready(function() {
 		$(".divTabelaFiltro").hide();
 	});
 	
-	$("#buttonEncerrarJogo").click(function() {
-		$("#poolList").children().each(function() {
-			console.log($(this).data());
-		});
+	$("#buttonEncerrarJogo").click(function() {	    
+	    finalizarJogo();
 	});
 });
 
@@ -161,31 +158,32 @@ function criarTabela(form, tabela, divTabela, tabelaBanco, idBaseDados) {
 	
 	var jogadaAjax = new JogadaAjax();
 	
-	var dadosArray = jogadaAjax.getDadosEntidade(atributo, valor, tabelaBanco, idBaseDados);
-	
-	var nomesColunas = jogadaAjax.getNomesColunas(idBaseDados);
-	
-	console.log("Nomes colunas: ");
-	console.log(nomesColunas);
-	
+	var dadosArray = jogadaAjax.getDadosEntidade(atributo, valor, tabelaBanco, idBaseDados);	
+	var nomesColunas = jogadaAjax.getNomesColunas(idBaseDados);	
+	var valorExibicaoAtributos = jogadaAjax.getValorExibicaoAtributos(idBaseDados);	
 	var nomesAtributos = jogadaAjax.getNomesAtributos(idBaseDados).split(", ");
 	
 	$(divTabela).show();
 	
 	for(var i in nomesColunas) {
 		
-		console.log(nomesColunas[i][0]);
-		
-		//if(nomesColunas[i][0] == 1) {
-			$("<th class='text-center'>").appendTo(tabela + " > thead > tr").html(nomesColunas[i][1]);
-		//}
+		if(valorExibicaoAtributos[i] == 1) {
+			$("<th class='text-center'>").appendTo(tabela + " > thead > tr").html(nomesColunas[i]);
+		}
 	}
 	
 	for(var i in dadosArray) {
-		$("<tr class='linhaTabelaA'>").appendTo(tabela + " > tbody").data("idBaseDados", idBaseDados).data("dadosArray", dadosArray[i]).data("nomesAtributos", nomesAtributos);
+		$("<tr class='linhaTabelaA'>").appendTo(tabela + " > tbody").data("id", dadosArray[i]["id"])
+		                                                            .data("idBaseDados", idBaseDados);
+		
+		var k = 0;
 		
 		for(var j in dadosArray[i]) {
-			$("<td class='text-center'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);
+		    if(valorExibicaoAtributos[k] == 1) {
+		        $("<td class='text-center'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);
+		    }
+		    
+		    k++;
 		}
 	}
 	
@@ -199,4 +197,66 @@ function criarTabela(form, tabela, divTabela, tabelaBanco, idBaseDados) {
 			cursorAt: { left: -10, top: -10}
 		});
 	});
+}
+
+function finalizarJogo() {
+    
+    $.blockUI({ message: null });
+    
+    new Messi("O jogo foi finalizado.", {
+        title : "Fim de jogo",
+        titleClass : 'info',
+        buttons : [ {
+            id : 0,
+            label : 'OK',
+            val : 'X'
+        } ],
+        callback: function(val) {
+            if(val == 'X') {
+                
+                var jogadaAjax = new JogadaAjax();
+                
+                $("#poolList").children().each(function() {
+                    
+                    var idBaseDados = $(this).data("idBaseDados");
+                    var id = $(this).data("id");
+                    
+                    var idCSV = jogadaAjax.recuperarIdCSV(idBaseDados, id);
+                    
+                    console.log(idCSV);
+                    
+                    // pegar os outros ids. como?
+                });
+                
+                $.unblockUI();
+            }
+        }
+    });
+    
+}
+
+function iniciarContador() {
+    
+    $(".contador").TimeCircles({
+        time: {
+            Days: {
+                show: false
+            },
+            Hours: {
+                show: false
+            },
+            Minutes: {
+                text: "Minutos"
+            },
+            Seconds: {
+                text: "Segundos"
+            }
+        },
+        count_past_zero: false
+    }).addListener(function(unit, value, total) {
+        if(total == 0) {            
+            finalizarJogo();
+        }
+    });
+    
 }

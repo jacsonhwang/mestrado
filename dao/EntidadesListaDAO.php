@@ -4,6 +4,9 @@ include_once("../inc/conexao.php");
 
 include_once("inc/conexao.php");
 include_once("MetaBaseDadosDAO.php");
+include_once("BaseDAO.php");
+
+include '../dBug.php';
 
 class EntidadesListaDAO {
 	
@@ -88,7 +91,9 @@ class EntidadesListaDAO {
 		
 		$dadosArray = array();
 		
-		while ($rs = sqlsrv_fetch_array($result, SQLSRV_FETCH_NUMERIC)) {
+		//new dBug(sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC));
+		
+		while ($rs = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 			array_push($dadosArray, $rs);
 		}
 		
@@ -97,11 +102,15 @@ class EntidadesListaDAO {
 		return $dadosArray;
 	}
 	
-	function recuperarIdCSV ($tabela, $id) {
+	function recuperarIdCSV ($idBaseDados, $id) {
+		
+		$baseDAO = new BaseDAO();
+		
+		$nomeTabela = $baseDAO->recuperarNomeTabela($idBaseDados);
 		
 		$cn = new Conexao();
 		
-		$sql = "SELECT pessoa_csv_id FROM " . $tabela . " WHERE id = " . $id;
+		$sql = "SELECT pessoa_csv_id FROM " . $nomeTabela . " WHERE id = " . $id;
 		
 		$result = $cn->execute($sql);
 		

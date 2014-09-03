@@ -3,6 +3,8 @@ include '../dao/EntidadeDAO.php';
 
 include 'dao/EntidadeDAO.php';
 
+include '../dao/EntidadesListaDAO.php';
+
 function listarEntidade() {
 	$entidadeDAO = new EntidadeDAO();
 
@@ -32,6 +34,15 @@ function guardarEntidadeSessao($entidade) {
 	$_SESSION["edicao"]["nome_jogo"] = $entidade->getNomeJogo();
 	$_SESSION["edicao"]["descricao_jogo"] = $entidade->getDescJogo();	
 
+}
+
+function recuperarIdCSV($idBaseDados, $id) {
+	
+	$entidadesListaDAO = new EntidadesListaDAO();
+	
+	$idCSV = $entidadesListaDAO->recuperarIdCSV($idBaseDados, $id);
+	
+	return $idCSV;
 }
 
 ?>

@@ -64,19 +64,16 @@ class MetaBaseDadosDAO {
 	
 		$cn = new Conexao();
 	
-		$sql = "SELECT id, nome_jogo FROM " . $this->tabela . " WHERE base_dados_id = " . $idBaseDados;
+		$sql = "SELECT nome_jogo FROM " . $this->tabela . " WHERE base_dados_id = " . $idBaseDados;
 	
 		$result = $cn->execute($sql);
 	
 		$dadosArray = array();
 	
-		while ($rs = sqlsrv_fetch_array($result)) {
-			$id = $rs["id"];
+		while ($rs = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 			$nomeJogo = $rs["nome_jogo"];
 			
-			$dados = array($id, $nomeJogo);
-	
-			array_push($dadosArray, $dados);
+			array_push($dadosArray, $nomeJogo);
 		}
 	
 		$cn->disconnect();
@@ -86,6 +83,23 @@ class MetaBaseDadosDAO {
 	
 	function recuperarValorExibicaoAtributo ($idBaseDados) {
 	
+		$cn = new Conexao();
+		
+		$sql = "SELECT exibir_atributo FROM " . $this->tabela . " WHERE base_dados_id = " . $idBaseDados;
+		
+		$result = $cn->execute($sql);
+		
+		$exibirAtributosArray = array();
+		
+		while ($rs = sqlsrv_fetch_array($result)) {
+			$exibirAtributo = $rs["exibir_atributo"];
+			
+			array_push($exibirAtributosArray, $exibirAtributo);
+		}
+		
+		$cn->disconnect();
+		
+		return $exibirAtributosArray;
 	}
 }
 
