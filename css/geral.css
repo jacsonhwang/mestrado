@@ -33,7 +33,7 @@
 }
 
 .tab {
-	max-height: 200px;
+	/* max-height: 200px; */
 	overflow-y: auto;
 	overflow-x: hidden;
 }
@@ -41,7 +41,7 @@
 .divTabelaFiltro {
 	max-width: 100%;
 	overflow: auto;
-	max-height: 300px;
+	height: 40%;
 	margin-bottom: 15px;
 }
 
@@ -51,4 +51,10 @@
 
 .tituloMenuSidebar a {
 	color: #fff;
+}
+
+#divFiltro {
+	height: 50%;
+	overflow: auto;
+	margin-bottom: 20px;
 }

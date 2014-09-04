@@ -15,37 +15,16 @@ $(document).ready(function() {
 	});
 	
 	$("#trash").droppable({
-		//accept: ".entity",
 		drop: function(event, ui) {
 			addToTrash(ui.draggable);
 		}
 	});
 	
-	/*$('.fromViewer').draggable({
-		revert: 'invalid',
-		containment: '.main',
-		helper: function(event) {
-			return getEntityLayout(this);
-		},
-		cursor: 'move',
-		opacity: 0.75
-	});
-	
-	$('.fromPool').draggable({
-		revert: 'invalid',
-		containment: '.main',
-		helper: function(event) {
-			return getEntityLayout(this);
-		},
-		cursor: 'move',
-		opacity: 0.75
-	});*/
-	
 });
 
 function getEntityLayout(item) {
 	
-	var html = "<div style='border: 1px solid black; z-index: 15; padding-right: 15px'><ul>";
+	var html = "<div class='drag'><ul class='box-list'>";
 	
 	$(item).find("td").each(function() {
 		html += "<li>" + $(this).html() + "</li>";
@@ -53,31 +32,37 @@ function getEntityLayout(item) {
 	
 	html += "</ul></div>";
 	
-	
-	/*var atributos = recuperarDadosPorID(item.id);
-			var nome = atributos.nome;
-			var endereco = atributos.endereco;
-			var cpf = atributos.cpf;
-			var classe = atributos.classe;*/
-	//var html = "<div style='border: 1px solid black; z-index: 15'>oi</div>";
-	//var html = "<div class='entity ui-corner-all grey' id='"+item.id+"' style='max-width:128px'><img src='stickman.png' class='stickman'></img><h5>"+nome+"</h5><h5>"+endereco+"</h5><h5>"+cpf+"</h5></div>";
 	return html;
 }
 
 function addToPool(item) {
 	
+	var iguais = false;
+	
+	$("#poolList").children().each(function() {
+		if (item.data("id") == $(this).data("id") && item.data("idBaseDados") == $(this).data("idBaseDados")) {			
+			iguais = true;
+		}
+	});
+	
+	if(iguais == true) {
+		return;
+	}
+	
+	fecharMenuSlider();
+	
 	var pool = $("#pool");
 	
-	var html = "<li class='pull-left'><div class='box'><ul class='list-group'>";
+	var html = "<li class='pull-left'><div class='box'><ul class='box-list'>";
 	
 	if($(item).find("td").length > 0) {
 		$(item).find("td").each(function() {
-			html += "<li class='list-group-item'>" + $(this).html() + "</li>";
+			html += "<li>" + $(this).html() + "</li>";
 		});
 	}
 	else {
 		$(item).find("li").each(function() {
-			html += "<li class='list-group-item'>" + $(this).html() + "</li>";
+			html += "<li>" + $(this).html() + "</li>";
 		});
 	}
 	
@@ -97,41 +82,39 @@ function addToPool(item) {
 	$('.fromPool').draggable({
 		revert: 'invalid',
 		containment: '.main',
-		helper: 'clone',
 		cursor: 'auto',
-		opacity: 0.75
-	});	
-	
-	/*$selected = new Entity();
-	$selected.setNome(nome);
-	$selected.setEndereco(endereco);
-	$selected.setCPF(cpf);
-	$selected.setID(id);
-	$pool.addEntity($selected);
-	$viewer.removeEntity($selected);*/
+		opacity: 0.75,
+		helper: 'clone',
+		appendTo: 'body'
+	});
 }
 
 function addToViewer(item) {
 	
-	//$("#poolList").find(item).remove();
+	fecharMenuSlider();
 	
-	/*var id = item.attr('id');
-	var atributos = recuperarDadosPorID(id);
-	var nome = atributos.nome;
-	var endereco = atributos.endereco;
-	var cpf = atributos.cpf;
-	var classe = atributos.classe;*/
+	var iguais = false;
+	
+	$("#viewsList").children().each(function() {
+		if (item.data("id") == $(this).data("id") && item.data("idBaseDados") == $(this).data("idBaseDados")) {			
+			iguais = true;
+		}
+	});
+	
+	if(iguais == true) {
+		return;
+	}
 
-	var html = "<li class='pull-left'><div class='box'><ul class='list-group'>";
+	var html = "<li class='pull-left'><div class='box'><ul class='box-list'>";
 	
 	if($(item).find("td").length > 0) {
 		$(item).find("td").each(function() {
-			html += "<li class='list-group-item'>" + $(this).html() + "</li>";
+			html += "<li>" + $(this).html() + "</li>";
 		});
 	}
 	else {
 		$(item).find("li").each(function() {
-			html += "<li class='list-group-item'>" + $(this).html() + "</li>";
+			html += "<li>" + $(this).html() + "</li>";
 		});
 	}
 	
@@ -139,10 +122,6 @@ function addToViewer(item) {
 	
 	var views = $("#viewsList");
 	
-	/*$('#data').find(item).css({
-		'background':'grey'
-	}).removeClass('entity');
-	*/
 	views.append(html);
 	
 	views.children(":last").addClass('fromViewer').data("id", item.data("id"))
@@ -153,18 +132,11 @@ function addToViewer(item) {
 	$(".fromViewer").draggable({
 		revert: 'invalid',
 		containment: '.main',
-		//helper: 'clone',
 		cursor: 'auto',
-		opacity: 0.75
+		opacity: 0.75,
+		helper: 'clone',
+		appendTo: 'body'
 	});
-	
-	/*$selected = new Entity();
-	$selected.setNome(nome);
-	$selected.setEndereco(endereco);
-	$selected.setCPF(cpf);
-	$selected.setID(id);
-	$viewer.addEntity($selected);
-	$pool.removeEntity($selected);*/
 }
 
 function addToTrash(item) {
@@ -194,4 +166,11 @@ function addToTrash(item) {
 	$trash.deleteEntity($selected);
 	$viewer.removeEntity($selected);
 	$pool.removeEntity($selected);*/
+}
+
+function fecharMenuSlider() {
+	
+	$("#filtro").hide();
+	$("#opcaoFiltro").parent().removeClass("active");
+	
 }

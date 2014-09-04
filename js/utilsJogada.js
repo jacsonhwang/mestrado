@@ -3,27 +3,6 @@ $(document).ready(function() {
 	
 	$("#divTabelaFiltroA, #divTabelaFiltroB, #divTabelaFiltroC").hide();
 	
-	// iniciar jogo
-	
-	$.blockUI({ message: null });
-
-	new Messi("Clique em OK para iniciar o jogo.", {
-	    title : "Iniciar jogo",
-	    titleClass : 'info',
-	    buttons : [ {
-	        id : 0,
-	        label : 'OK',
-	        val : 'X'
-	    } ],
-	    callback: function(val) {
-	        if(val == 'X') {	            
-	            iniciarContador();
-	            
-	            $.unblockUI();
-	        }
-	    }
-	});
-	
 	$("#opcaoFiltro").click(function(){
 	    
 	    if($("#filtro").is(":visible")) {
@@ -133,7 +112,15 @@ $(document).ready(function() {
 	});
 	
 	$("#buttonEncerrarJogo").click(function() {	    
-	    finalizarJogo();
+	    finalizarJogo(0);
+	});
+	
+	$("#buttonLimparTudo").click(function() {	    
+	    $("#poolList, #viewsList").empty();
+	});
+	
+	$("#buttonDesistirJogo").click(function() {	    
+		desistirJogo();
 	});
 });
 
@@ -173,7 +160,7 @@ function criarTabela(form, tabela, divTabela, tabelaBanco, idBaseDados) {
 	}
 	
 	for(var i in dadosArray) {
-		$("<tr class='linhaTabelaA'>").appendTo(tabela + " > tbody").data("id", dadosArray[i]["id"])
+		$("<tr>").appendTo(tabela + " > tbody").data("id", dadosArray[i]["id"])
 		                                                            .data("idBaseDados", idBaseDados);
 		
 		var k = 0;
@@ -187,51 +174,67 @@ function criarTabela(form, tabela, divTabela, tabelaBanco, idBaseDados) {
 		}
 	}
 	
-	$("#tabelaFiltroA > tbody").find("tr").each(function() {
+	$(tabela + " > tbody").find("tr").each(function() {
 		$(this).draggable({
 			containment: ".main",
 			helper: function(event) {
 				return getEntityLayout(this);
 			},
-			appendTo: 'body',
-			cursorAt: { left: -10, top: -10}
+			appendTo: 'body'
 		});
 	});
 }
 
-function finalizarJogo() {
-    
-    $.blockUI({ message: null });
-    
-    new Messi("O jogo foi finalizado.", {
-        title : "Fim de jogo",
-        titleClass : 'info',
-        buttons : [ {
-            id : 0,
-            label : 'OK',
-            val : 'X'
-        } ],
-        callback: function(val) {
-            if(val == 'X') {
-                
-                var jogadaAjax = new JogadaAjax();
-                
-                $("#poolList").children().each(function() {
-                    
-                    var idBaseDados = $(this).data("idBaseDados");
-                    var id = $(this).data("id");
-                    
-                    var idCSV = jogadaAjax.recuperarIdCSV(idBaseDados, id);
-                    
-                    console.log(idCSV);
-                    
-                    // pegar os outros ids. como?
-                });
-                
-                $.unblockUI();
-            }
-        }
-    });
+function finalizarJogo(situacao) {
+	
+	if(situacao == 0) { // jogo encerrado normalmente, pelo botão
+		
+		$.blockUI({ message: null });
+		
+		new Messi("Deseja realmente finalizar o jogo?", {
+			title : "Finalizar jogo",
+			buttons : [ {
+				id : 0,
+				label : 'Sim',
+				val : 'Y'
+			}, {
+				id : 1,
+				label : 'N&atilde;o',
+				val : 'N'
+			} ],
+			callback: 
+				function(val) {
+				
+				if(val == 'Y') {
+					$.unblockUI();
+					salvarDados();
+				}
+				else {
+					$.unblockUI();
+				}
+			}
+		});
+		
+	}
+	else if(situacao == 1) { // jogo encerrado após contador finalizar
+		
+		$.blockUI({ message: null });
+	    
+	    new Messi("O jogo foi finalizado.", {
+	        title : "Fim de jogo",
+	        titleClass : 'info',
+	        buttons : [ {
+	            id : 0,
+	            label : 'OK',
+	            val : 'X'
+	        } ],
+	        callback: function(val) {
+	            if(val == 'X') {
+	                salvarDados();
+	            }
+	        }
+	    });
+	}
     
 }
 
@@ -255,8 +258,56 @@ function iniciarContador() {
         count_past_zero: false
     }).addListener(function(unit, value, total) {
         if(total == 0) {            
-            finalizarJogo();
+            finalizarJogo(1);
         }
     });
+    
+}
+
+function desistirJogo() {
+	$.blockUI({ message: null });
+	
+	new Messi("Deseja realmente sair do jogo? Os dados serão perdidos.", {
+		title : "Sair do jogo",
+		buttons : [ {
+			id : 0,
+			label : 'Sim',
+			val : 'Y'
+		}, {
+			id : 1,
+			label : 'N&atilde;o',
+			val : 'N'
+		} ],
+		callback: 
+			function(val) {
+			
+			if(val == 'Y') {
+				$.unblockUI();
+				window.location = "painel_usuario.php";
+			}
+			else {
+				$.unblockUI();
+			}
+		}
+	});
+}
+
+function salvarDados() {
+	
+	var jogadaAjax = new JogadaAjax();
+    
+    $("#poolList").children().each(function() {
+        
+        var idBaseDados = $(this).data("idBaseDados");
+        var id = $(this).data("id");
+        
+        var idCSV = jogadaAjax.recuperarIdCSV(idBaseDados, id);
+        
+        console.log(idCSV);
+        
+        // pegar os outros ids. como?
+    });
+    
+    $.unblockUI();
     
 }

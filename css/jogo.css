@@ -108,6 +108,9 @@
 	float: left;
 	display: block;
 	border: 1px solid black;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
 }
 
 .pool img{
@@ -117,8 +120,8 @@
 
 .trash img {
 	display: block;
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
 }
 
 .boxes {
@@ -133,16 +136,20 @@
 }
 
 .box {
-	border: 1px solid black;
+	border: 2px solid #2a6496;
 	z-index: 15;
 	width: 200px;
 	max-height: 200px;
 	overflow: auto;
 	cursor: move;
+	padding: 15px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
 }
 
 .area {
-	height: 50vh;
+	height: 57vh;
 }
 
 .area div {
@@ -150,9 +157,48 @@
 }
 
 .lixeira {
-	height: 20vh;
+	height: 15vh;
 }
 
 .lixeira div {
 	height: 100%;
+}
+
+#pool {
+	border: 5px solid #2a6496;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	padding: 15px;
+	overflow: auto;
+}
+
+.linha-titulo {
+	line-height: 100%;
+}
+
+.titulo-rodada {
+	display: inline-block;
+	width: 60%;
+	text-align: center;
+}
+
+.linha-titulo-botoes {
+	display: inline-block;
+	width: 15%;
+	vertical-align: middle;
+}
+
+.linha-titulo-botoes button {
+	margin-bottom: 10px;
+}
+
+.drag {
+	border: 2px solid #2a6496;
+	z-index: 15;
+	padding: 15px;
+	background-color: white;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
 }

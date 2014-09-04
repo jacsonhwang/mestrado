@@ -19,6 +19,27 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 
 ?>
 
+<script>
+$.blockUI({ message: null });
+
+new Messi("Clique em OK para iniciar o jogo.", {
+    title : "Iniciar jogo",
+    titleClass : 'info',
+    buttons : [ {
+        id : 0,
+        label : 'OK',
+        val : 'X'
+    } ],
+    callback: function(val) {
+        if(val == 'X') {	            
+            iniciarContador();
+            
+            $.unblockUI();
+        }
+    }
+});
+</script>
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-3 col-md-2 sidebar">
@@ -33,7 +54,7 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 		
 		<!-- ------------------------------ FILTRO ----------------------------- -->
 		
-		<div class="col-sm-9 col-sm-offset-3 col-md-4 col-md-offset-2 menu-slider" id="filtro" style="padding: 15px">
+		<div class="col-sm-9 col-sm-offset-3 col-md-4 col-md-offset-2 menu-slider" id="filtro" style="padding: 15px; height: 92%">
 			<div class="col-sm-12" style="padding-bottom: 15px;" id="divFiltro">
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="active" id="liCaixaA"><a href="#tabCaixaA" role="tab" data-toggle="tab">Caixa A</a></li>
@@ -115,7 +136,7 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 			<div class="clearfix"></div>
 
 			<div class="col-sm-12 divTabelaFiltro" id="divTabelaFiltroA">
-				<table class="table tablesorter" id="tabelaFiltroA">
+				<table class="table tablesorter table-hover" id="tabelaFiltroA">
 					<thead>
 						<tr></tr>
 					</thead>
@@ -124,7 +145,7 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 			</div>
 			
 			<div class="col-sm-12 divTabelaFiltro" id="divTabelaFiltroB">
-				<table class="table tablesorter" id="tabelaFiltroB">
+				<table class="table tablesorter table-hover" id="tabelaFiltroB">
 					<thead>
 						<tr></tr>
 					</thead>
@@ -133,7 +154,7 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 			</div>
 			
 			<div class="col-sm-12 divTabelaFiltro" id="divTabelaFiltroC">
-				<table class="table tablesorter" id="tabelaFiltroC">
+				<table class="table tablesorter table-hover" id="tabelaFiltroC">
 					<thead>
 						<tr></tr>
 					</thead>
@@ -363,11 +384,22 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 		<!-- ------------------------------ JOGO ----------------------------- -->
 		
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<div class="row">
-				<div style="display: inline-block; width: 75%; text-align: center"><h1>Rodada de Qualificação</h1></div>
+		
+			<!-- ------------------------------ LINHA 1 ------------------------------ -->
+			
+			<div class="row linha-titulo">
+				<div class="titulo-rodada"><h1>Rodada de Qualificação</h1></div>
+				
+				<div class="text-center linha-titulo-botoes">
+					<button type="button" class="btn btn-success btn-lg btn-block" id="buttonEncerrarJogo">ENCERRAR JOGO</button>
+					<button type="button" class="btn btn-warning btn-lg btn-block" id="buttonLimparTudo">LIMPAR TUDO</button>
+					<button type="button" class="btn btn-danger btn-lg btn-block" id="buttonDesistirJogo">DESISTIR</button>
+				</div>
 				
 				<div class="contador" data-timer="300" style="float: right; width: 20%; display: inline-block"></div>
 			</div>
+			
+			<!-- ------------------------------ LINHA 2 ------------------------------ -->
 
 			<div class="row area">
 			
@@ -375,28 +407,36 @@ $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lis
 					<ul id="viewsList" class='box-list'></ul>
 				</div>
 				
-				<div id="pool" class="col-lg-5" style="border: 1px solid black">
+				<div id="pool" class="col-lg-5">
 					<ul id="poolList" class='box-list'></ul>
 				</div>
 			
 			</div>
 			
+			<!-- ------------------------------ LINHA 3 ------------------------------ -->
+			
 			<div class="row lixeira">
-				<div class="col-lg-7 text-center">
+				<!-- <div class="col-lg-7 text-center">
 					<button type="button" class="btn btn-primary btn-lg" id="buttonEncerrarJogo">ENCERRAR JOGO</button>
+				</div> -->
+				
+				<div class="col-lg-7">
+					<div id="trash" class="trash">
+						<img src="trash.png" style="height: 100%">
+					</div>
 				</div>
 				
-				<div class="col-lg-5">
+				<!-- <div class="col-lg-5">
 					<div id="trash" class="trash">
 						<img src="trash.png" style="height: 100%">
 						<ol id="trashList" class="views ui-helper-reset ui-helper-clearfix"></ol>
 					</div>
-				</div>
+				</div> -->
 			</div>
 
 		</div>
 
 	</div>
 </div>
-
-<?php include 'footer.php'; ?>
+</body>
+</html>
