@@ -8,9 +8,26 @@
 				<h2>Contato</h2>
 			</div>
 			
-			<div class="alert alert-danger" role="alert" id="alertaContato"><b>Erro!</b> Erro ao enviar contato.</div>
+			<!-- <div class="alert alert-danger" role="alert" id="alertaContato"><b>Erro!</b> Erro ao enviar contato.</div> -->
 						
 			<form class="form-horizontal" role="form" action="controller/emailControle.php" method="POST" id="formContato">
+				
+				<div class="form-group">
+					<label for="inputNome" class="col-sm-2 control-label">Nome</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="inputNome" name="inputNome">
+					</div>
+				</div>
+				
+				
+				<div class="form-group">
+					<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="inputEmail" name="inputEmail">
+					</div>
+				</div>
+				
+				
 				<div class="form-group">
 					<label for="inputAssunto" class="col-sm-2 control-label">Assunto</label>
 					<div class="col-sm-10">

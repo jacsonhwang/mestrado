@@ -51,17 +51,16 @@
 								        <h4 class="modal-title">Recuperação de Senha</h4>
 								      </div>
 								      <div class="modal-footer">
-								      <div>
+								      		<div>
 										        <label for="inputEmail3" class="col-sm-3 control-label">Usu&aacute;rio</label>
 												<div class="col-sm-6">
 													<input type="email" class="form-control" name="inputEmailRecuperacao" id="inputEmailRecuperacao">
 												</div>
 											</div>
 								      
-								        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
 								        <button type="button" class="btn btn-primary" id="buttonRecuperarSenha">Enviar</button>
 								      </div>
-
+									  <div  role="alert" id="alertaRecuperaLogin" style="visibility: hidden;"><b>Enviado com sucesso</div>	
 								  </div><!-- /.modal-dialog -->
 								</div>
 						    </div>
@@ -124,10 +123,13 @@
 				data: "email="+emailRecuperacao,
 				async: false,
 				success: function(msg) {
-					if(msg)
-						alert("Enviado com sucesso");
-					else
-						alert("Erro ao enviar");
+					if(msg){
+					    $("#alertaRecuperaLogin").css('visibility','visible');
+					    $("#alertaRecuperaLogin").addClass("alert alert-success");						
+					} else {
+						$("#alertaRecuperaLogin").css('visibility','visible');
+						$("#alertaRecuperaLogin").addClass("alert alert-danger");
+					}
 				}
 			}); 
 		 });

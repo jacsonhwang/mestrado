@@ -1,6 +1,7 @@
 <?php
 
 include_once("../model/MetaBaseDados.php");
+include_once("model/MetaBaseDados.php");
 
 include_once("inc/conexao.php");
 
@@ -8,6 +9,17 @@ class MetaBaseDadosDAO {
 	
 	private $cn;
 	private $tabela = "meta_base_dados";
+	
+	public function inserirMetaBase($metaBase) {
+	
+		$cn = new Conexao();
+	
+		$metaBaseArray = $metaBase->recuperarArrayMetaBase();
+
+		$cn->insert($this->tabela, $metaBaseArray);
+	
+		$cn->disconnect();
+	}	
 	
 	public function listarDados($idBaseDados) {
 		
@@ -22,8 +34,8 @@ class MetaBaseDadosDAO {
 		while ($rs = sqlsrv_fetch_array($result)) {
 			$id = $rs["id"];
 			$nomeAtributo = $rs["nome_atributo"];
-			$nomeJogo = $rs["nome_jogo"];			
-			$descricaoAtributo = $rs["descricao"];			
+			$nomeJogo = $rs["nome_jogo"];
+			$descricaoAtributo = $rs["descricao"];
 			$exibirAtributo = $rs["exibir_atributo"];
 			
 			$metaBaseDados = new MetaBaseDados($id, $nomeAtributo, $idBaseDados, $nomeJogo, $descricaoAtributo, $exibirAtributo);
@@ -72,7 +84,7 @@ class MetaBaseDadosDAO {
 	
 		while ($rs = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 			$nomeJogo = $rs["nome_jogo"];
-			
+	
 			array_push($dadosArray, $nomeJogo);
 		}
 	

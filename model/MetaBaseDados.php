@@ -1,4 +1,7 @@
 <?php
+include_once '../model/Base.php';
+include_once 'model/Base.php';
+
 
 class MetaBaseDados {
 	
@@ -48,12 +51,12 @@ class MetaBaseDados {
 	function recuperarArrayMetaBase() {
 				
 		//$baseArray['id']				      = $this->id;
-		$metaBaseArray['nome_atributo']       = $this->nome;
-		$metaBaseArray['base_dados_id']       = $this->nomeArquivo;
+		$metaBaseArray['nome_atributo']       = $this->nomeAtributo;
+		$metaBaseArray['base_dados_id']       = $this->base->getId();
 		$metaBaseArray['descricao']           = $this->nomeJogo;
-		$metaBaseArray['nome_jogo']           = $this->nomeTabela;
-		$metaBaseArray['exibir_atributo']	  = $this->exibirAtributo;
-	
+		$metaBaseArray['nome_jogo']           = $this->descricaoAtributo;
+		$metaBaseArray['exibir_atributo']     = $this->exibirAtributo;
+			
 		return $metaBaseArray;
 	}
 }

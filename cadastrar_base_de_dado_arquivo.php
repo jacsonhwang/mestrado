@@ -140,9 +140,10 @@
 									<tr>
 										<td class="text-center"><input type="checkbox" class="adicionarAtributo" name="campos[]" value="<?php echo $atributo;?>"></td>
 										<td><?php echo $atributo; ?></td>
-										<td class="text-center"><input type="checkbox" class="id" disabled></td>
+										<td class="text-center"><input type="radio" name="radio" value="<?php echo $atributo;?>" disabled></td>
 										<td><input type="text" class="form-control" name="nomeNoJogo[]" disabled></td>
 										<td><input type="text" class="form-control" name="descricaoNoJogo[]" disabled></td>
+										<td><input type="hidden" class="form-control" name="atributos[]" value="<?php echo $atributo;?>" style=></td>
 									</tr>
 								
 								<?php 	

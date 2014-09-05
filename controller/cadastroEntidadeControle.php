@@ -23,12 +23,17 @@ if(isset($_POST["buttonCadastrarEntidade"])) {
 		
 		$entidadeDAO->inserirEntidade($entidade);
 		
+		$entidadeDAO->criarTabelaEntidade($entidade);
 		
-		/* foreach($_POST["nomeBD"] as $nomeBD) {
-			
-			echo $nomeBD . "<br />";
-			
-		} */
+		$entidadeDAO->criarTabelaEntidadeAlvo($entidade);
+		
+		$entidadeDAO->criarTabelaResultadoEntidade($entidade);
+		
+		$entidadeDAO->criarTabelaResultadoEntidadeFinal($entidade);
+
+		$entidadeDAO->criarTabelaGabaritoEntidade($entidade);
+	
+		$entidadeDAO->inserirTabelaEntidade($entidade);
 		
 	}
 	else {

@@ -2,11 +2,16 @@
 
 class Conexao{
 
-	private $host = "146.164.34.73";
-	private $user = "usuario_site_mestrado";
-	private $pass = "147/*-mestradojacsonusuariocomum-*/741";
-	private $db = "mestrado";
+// 	private $host = "146.164.34.73";
+// 	private $user = "usuario_site_mestrado";
+// 	private $pass = "147/*-mestradojacsonusuariocomum-*/741";
+// 	private $db = "mestrado";
 
+	private $host = "146.164.34.73";
+	private $user = "sa";
+	private $pass = "tG45y#78gHty";
+	private $db = "mestrado";
+	
 	public $query;
 	public $link;
 	public $result;
@@ -17,8 +22,8 @@ class Conexao{
 	}
 
 	function connect(){ //Método para abrir e testar a conexão.
-		//$connectionInfo = array("UID"=>$this->user, "PWD"=>$this->pass,"Database"=>$this->db, "CharacterSet"  => 'UTF-8');
-		$connectionInfo = array("UID"=>$this->user, "PWD"=>$this->pass,"Database"=>$this->db);
+		$connectionInfo = array("UID"=>$this->user, "PWD"=>$this->pass,"Database"=>$this->db, "CharacterSet"  => 'UTF-8');
+		//$connectionInfo = array("UID"=>$this->user, "PWD"=>$this->pass,"Database"=>$this->db);
 		$this->link = sqlsrv_connect($this->host, $connectionInfo);
 		if($this->link == false ){
 			echo "Conex&atilde;o Falhou.</br>";

@@ -1,6 +1,6 @@
 <?php
 	include_once("../model/Email.php");
-	include("../dao/UsuarioDAO.php");
+	include_once("../dao/UsuarioDAO.php");
 	
 	if(isset($_POST['email'])){
 		$enderecoEmail = $_POST['email'];
@@ -19,7 +19,7 @@
 	
 	if($resposta){
 		echo true;
-	}else if(!$resposta){
+	}else if(!$resposta){		
 		echo false;
 	}
 

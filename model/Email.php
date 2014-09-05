@@ -13,8 +13,8 @@ class Email {
 	private $host = 'smtp.gmail.com';
 	private $port = 465;
 	private $SMTPSecure = 'ssl';
-	private $username = 'michel.diasdearruda@gmail.com';
-	private $password = '';
+	private $username = 'sistema.gcer@gmail.com';
+	private $password = 's1st3m4gc3r';
 	
 	
 	public function __construct($nome, $email, $assunto, $mensagem) {
@@ -32,8 +32,8 @@ class Email {
 		$mail->SMTPAuth = true;
 		$mail->Port = 465;
 		$mail->SMTPSecure = 'ssl';
-		$mail->Username = 'michel.diasdearruda@gmail.com';
-		$mail->Password = '';
+		$mail->Username = $this->$username;
+		$mail->Password = $this->password;
 		
 		return $mail;
 	}
@@ -46,13 +46,13 @@ class Email {
 		$mail->SMTPAuth = true;
 		$mail->Port = 465;
 		$mail->SMTPSecure = 'ssl';
-		$mail->Username = 'michel.diasdearruda@gmail.com';
-		$mail->Password = '';
+		$mail->Username = $this->username;
+		$mail->Password = $this->password;
 		
 		$mail->From = $this->email;
 		$mail->FromName = $this->nome;
-
-		$mail->AddAddress('michel.diasdearruda@gmail.com', "Michel Gmail");
+		
+		$mail->AddAddress($this->username, "GCER SITE");
 		
 		$mail->Subject  = $this->assunto;
 		$mail->Body = $this->mensagem; 
@@ -81,14 +81,14 @@ class Email {
 		$mail->SMTPAuth = true;
 		$mail->Port = 465;
 		$mail->SMTPSecure = 'ssl';
-		$mail->Username = 'michel.diasdearruda@gmail.com';
-		$mail->Password = 'm9216069242';
+		$mail->Username = $this->username;
+		$mail->Password = $this->password;
 		
-		$mail->From = 'michel.diasdearruda@gmail.com';
-		$mail->FromName = "GCER";
+		$mail->From = $this->username;
+		$mail->FromName = "GCER SITE";
 		
 		$mail->AddAddress($this->email);
-		$mail->AddBCC('michel.diasdearruda@gmail.com', $this->email); // Cópia Oculta
+		$mail->AddBCC("GCER Recuperacao Senha", $this->username); // Cópia Oculta
 		
 		$mail->Subject  = $this->assunto;
 		$mail->Body = $this->mensagem;

@@ -98,7 +98,164 @@ class EntidadeDAO {
 		$cn->execute($sql);
 	
 		$cn->disconnect();
-	}	
+	}
+
+	public function criarTabelaEntidade($entidade) {
+	
+		$cn = new Conexao();
+	
+		$sql = "CREATE TABLE [dbo].[entidade_".$entidade->getNome()."](
+					[id] [int] IDENTITY(1,1) NOT NULL,
+					CONSTRAINT [PK_entidade_".$entidade->getNome()."] PRIMARY KEY CLUSTERED 
+				(
+					[id] ASC
+				)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+				) ON [PRIMARY]";
+			
+		echo $sql;
+		$cn->execute($sql);
+	
+		$cn->disconnect();
+	}
+	
+	public function criarTabelaResultadoEntidade($entidade) {
+	
+		$cn = new Conexao();
+	
+		$sql = "CREATE TABLE [dbo].[resultado_entidade_".$entidade->getNome()."](
+					[id] [int] IDENTITY(1,1) NOT NULL,	
+					[linking_id] INT NOT NULL,	
+					[entidade_".$entidade->getNome()."_id] INT NOT NULL,
+					[entidade_".$entidade->getNome()."_alvo_id] INT NOT NULL,
+ 						CONSTRAINT [PK_resultado_entidade_".$entidade->getNome()."] PRIMARY KEY CLUSTERED 
+				(
+					[id] ASC
+				)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+				) ON [PRIMARY]
+
+				ALTER TABLE [dbo].[resultado_entidade_".$entidade->getNome()."]  WITH CHECK ADD  CONSTRAINT [FK_resultado_entidade_".$entidade->getNome()."_entidade_".$entidade->getNome()."] FOREIGN KEY([entidade_".$entidade->getNome()."_id])
+				REFERENCES [dbo].[entidade_".$entidade->getNome()."] ([id])
+
+				ALTER TABLE [dbo].[resultado_entidade_".$entidade->getNome()."] CHECK CONSTRAINT [FK_resultado_entidade_".$entidade->getNome()."_entidade_".$entidade->getNome()."]			
+
+				ALTER TABLE [dbo].[resultado_entidade_".$entidade->getNome()."]  WITH CHECK ADD  CONSTRAINT [FK_resultado_entidade_".$entidade->getNome()."_resultado_entidade_".$entidade->getNome()."_alvo] FOREIGN KEY([entidade_".$entidade->getNome()."_alvo_id])
+				REFERENCES [dbo].[entidade_".$entidade->getNome()."_alvo] ([id])
+				
+				ALTER TABLE [dbo].[resultado_entidade_".$entidade->getNome()."] CHECK CONSTRAINT [FK_resultado_entidade_".$entidade->getNome()."_resultado_entidade_".$entidade->getNome()."_alvo]";
+		
+		echo $sql;			
+		$cn->execute($sql);
+	
+		$cn->disconnect();
+	}
+	
+	public function criarTabelaResultadoEntidadeFinal($entidade) {
+	
+		$cn = new Conexao();
+	
+		$sql = "CREATE TABLE [dbo].[resultado_entidade_".$entidade->getNome()."_final](
+					[id] [int] IDENTITY(1,1) NOT NULL,
+					[linking_id] INT NOT NULL,
+					[entidade_".$entidade->getNome()."_id] INT NOT NULL,
+ 						CONSTRAINT [PK_resultado_entidade_".$entidade->getNome()."_final] PRIMARY KEY CLUSTERED
+				(
+					[id] ASC
+				)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+				) ON [PRIMARY]
+	
+				ALTER TABLE [dbo].[resultado_entidade_".$entidade->getNome()."_final]  WITH CHECK ADD  CONSTRAINT [FK_resultado_".$entidade->getNome()."_final_entidade_".$entidade->getNome()."] FOREIGN KEY([entidade_".$entidade->getNome()."_id])
+				REFERENCES [dbo].[entidade_".$entidade->getNome()."] ([id])
+	
+				ALTER TABLE [dbo].[resultado_entidade_".$entidade->getNome()."_final] CHECK CONSTRAINT [FK_resultado_".$entidade->getNome()."_final_entidade_".$entidade->getNome()."]";	
+	
+		echo $sql;
+		$cn->execute($sql);
+	
+		$cn->disconnect();
+	}
+	
+	public function criarTabelaGabaritoEntidade($entidade) {
+	
+		$cn = new Conexao();
+	
+		$sql = "CREATE TABLE [dbo].[gabarito_entidade_".$entidade->getNome()."](
+					[id] [int] IDENTITY(1,1) NOT NULL,
+					[linking_id] INT NOT NULL,
+					[entidade_".$entidade->getNome()."_id] INT NOT NULL,
+ 						CONSTRAINT [PK_gabarito_entidade_".$entidade->getNome()."] PRIMARY KEY CLUSTERED
+				(
+					[id] ASC
+				)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+				) ON [PRIMARY]
+	
+				ALTER TABLE [dbo].[gabarito_entidade_".$entidade->getNome()."]  WITH CHECK ADD  CONSTRAINT [FK_gabarito_entidade_".$entidade->getNome()."_entidade_".$entidade->getNome()."] FOREIGN KEY([entidade_".$entidade->getNome()."_id])
+				REFERENCES [dbo].[entidade_".$entidade->getNome()."] ([id])
+	
+				ALTER TABLE [dbo].[gabarito_entidade_".$entidade->getNome()."] CHECK CONSTRAINT [FK_gabarito_entidade_".$entidade->getNome()."_entidade_".$entidade->getNome()."]";
+	
+		echo $sql;
+		$cn->execute($sql);
+	
+		$cn->disconnect();
+	}
+	
+	public function inserirTabelaEntidade($entidade){
+		echo "<br><br><br><br> AQUI ";
+		$cn = new Conexao();
+		
+		$sql = "INSERT INTO entidade_".$entidade->getNome()." DEFAULT VALUES";
+		echo $sql;
+		$cn->execute($sql);
+	
+		$cn->disconnect();
+	}
+	
+	
+	
+	public function criarTabelaEntidadeAlvo($entidade) {
+	
+		$cn = new Conexao();
+		
+		$sql = "CREATE TABLE [dbo].[entidade_".$entidade->getNome()."_alvo](
+					[id] [int] IDENTITY(1,1) NOT NULL,
+					[entidade_".$entidade->getNome()."_id] INT NULL,
+					[entidade_usuario_id] INT NULL,					
+					[situacao_tarefa_id] INT NULL,
+					[data_inicio] [datetime] NULL,
+					[data_fim] [datetime] NULL,
+					CONSTRAINT [PK_entidade_".$entidade->getNome()."_alvo] PRIMARY KEY CLUSTERED
+					(
+						[id] ASC
+					)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+				) ON [PRIMARY]
+					
+										
+				ALTER TABLE [dbo].[entidade_".$entidade->getNome()."_alvo]  WITH CHECK ADD  CONSTRAINT [FK_entidade_".$entidade->getNome()."_alvo_entidade_".$entidade->getNome()."] FOREIGN KEY([entidade_".$entidade->getNome()."_id])
+				REFERENCES [dbo].[entidade_".$entidade->getNome()."] ([id])
+				
+				
+				ALTER TABLE [dbo].[entidade_".$entidade->getNome()."_alvo] CHECK CONSTRAINT [FK_entidade_".$entidade->getNome()."_alvo_entidade_".$entidade->getNome()."]
+				
+				
+				ALTER TABLE [dbo].[entidade_".$entidade->getNome()."_alvo]  WITH CHECK ADD  CONSTRAINT [FK_entidade_".$entidade->getNome()."_alvo_entidade_usuario] FOREIGN KEY([entidade_usuario_id])
+				REFERENCES [dbo].[entidade_usuario] ([id])
+				
+				
+				ALTER TABLE [dbo].[entidade_".$entidade->getNome()."_alvo] CHECK CONSTRAINT [FK_entidade_".$entidade->getNome()."_alvo_entidade_usuario]
+				
+				
+				ALTER TABLE [dbo].[entidade_".$entidade->getNome()."_alvo]  WITH CHECK ADD  CONSTRAINT [FK_entidade_".$entidade->getNome()."_alvo_situacao_tarefa] FOREIGN KEY([situacao_tarefa_id])
+				REFERENCES [dbo].[situacao_tarefa] ([id])
+				
+				
+				ALTER TABLE [dbo].[entidade_".$entidade->getNome()."_alvo] CHECK CONSTRAINT [FK_entidade_".$entidade->getNome()."_alvo_situacao_tarefa]";
+		
+		echo $sql;
+		$cn->execute($sql);
+		
+		$cn->disconnect();
+		
+	}
 }
 
 ?>

@@ -267,18 +267,17 @@ $(document).ready(function() {
 	});
 	
 	$(".id").click(function() {
+		
+		/*if($(this).is(":checked")) {
 
-	    if($(this).is(":checked")) {
+		        $(this).parent().siblings().find(":text").attr("disabled", "");
 
-	        $(this).parent().siblings().find(":text").attr("disabled", "");
+		    }
+		    else {
 
-	    }
-	    else {
+		        $(this).parent().siblings().find(":text").removeAttr("disabled");
 
-	        $(this).parent().siblings().find(":text").removeAttr("disabled");
-
-	    }
-
+		    }*/		
 	});
 	
 	$(".excluirBD").click(function() {
