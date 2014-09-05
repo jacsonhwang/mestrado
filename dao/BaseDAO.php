@@ -21,9 +21,11 @@ class BaseDAO {
 
 		$baseArray = $base->recuperarArrayBase();
 	
-		$cn->insert($this->tabela, $baseArray);
+		$idBase = $cn->insert($this->tabela, $baseArray);
 	
 		$cn->disconnect();
+		
+		return $idBase;
 	}
 
 	public function listarBase(){
@@ -121,25 +123,91 @@ class BaseDAO {
 		return $registros;
 	}
 	
-	public function recuperarNomeTabela ($idBaseDados) {
-		
+	public function criarTabelaBase($chave, $atributos, $entidade, $arquivo) {
+	
 		$cn = new Conexao();
+	
+		$sql = "CREATE TABLE [dbo].[".$entidade->getNome()."_".$arquivo."]( ";
 		
-		$sql = "SELECT nome_tabela FROM " . $this->tabela . " WHERE id = " . $idBaseDados;
+		foreach($atributos as $atributo){
+			if($atributo == $chave)
+				$sql = $sql."[".$atributo."][varchar](100) NOT NULL, ";
+			else 
+				$sql = $sql."[".$atributo."][varchar](100) NULL, ";
+		}
 		
-		$result = $cn->execute($sql);
+		$sql = $sql."[".$entidade->getNome()."_id] INT NOT NULL,
+ 						CONSTRAINT [PK_".$entidade->getNome()."_".$arquivo."] PRIMARY KEY CLUSTERED(
+ 						[".$chave."] ASC
+					)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+					) ON [PRIMARY] ";
 		
-		$nomeTabela = "";
+		$sql = $sql."ALTER TABLE [dbo].[".$entidade->getNome()."_".$arquivo."]  WITH CHECK ADD  CONSTRAINT [FK_".$entidade->getNome()."_".$arquivo."_".$entidade->getNome()."] FOREIGN KEY([".$entidade->getNome()."_id])
+					REFERENCES [dbo].[".$entidade->getNome()."] ([id])
+	
+				ALTER TABLE [dbo].[".$entidade->getNome()."_".$arquivo."] CHECK CONSTRAINT [FK_".$entidade->getNome()."_".$arquivo."_".$entidade->getNome()."]";
+
+		$cn->execute($sql);
+	
+		$cn->disconnect();
+	}
+	
+	public function inserirDados($arquivo, $tabela, $entidade) {
+		$cn = new Conexao();
+
+		$id = $cn->getLastId($entidade->getNome());
 		
-		while($rs = sqlsrv_fetch_array($result)) {
-			$nomeTabela = $rs["nome_tabela"];
+		$campos = $arquivo['campos'];
+		$registros = $arquivo['registros'];
+		
+		$sql = "INSERT INTO ".$tabela." ( ";
+		
+		foreach($campos as $campo){
+			$sql = $sql.$campo.", ";
+		}
+		
+		$sql = $sql.$entidade->getNome()."_id";
+				
+		$sql = $sql." ) VALUES ( ";
+		
+		foreach($registros as $registro){
+			$sql2 = $sql;
+			foreach($registro as $dado){
+				$sql2 = $sql2."'".$dado."', ";
+			}
+			$sql2 = $sql2.$id." );";
+			
+			$cn->execute($sql2);			
 		}
 		
 		$cn->disconnect();
-		
-		return $nomeTabela;
 	}
 	
+	
+	public function recuperaNomeNovaTabelaArquivo($entidade){
+	
+		$cn = new Conexao();
+	
+		$sql = "SELECT nome_tabela 
+				FROM entidade e 
+				     INNER JOIN base_dados b on e.id = b.entidade_id
+				WHERE e.nome = '".$entidade->getNome()."'";
+	
+		$result = $cn->execute($sql);
+	
+		while ($rs = sqlsrv_fetch_array($result)) {
+	
+			$nome_tabela = $rs['nome_tabela'];
+	
+		}
+		
+		$pos = strrpos($nome_tabela, "_");
+		
+		
+		$cn->disconnect();
+	
+		return $base;
+	}
 }
 
 
