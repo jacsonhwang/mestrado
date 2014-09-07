@@ -41,7 +41,7 @@ if(isset($_POST["buttonCadastrarBD"])) {
 		$entidade = $entidadeDAO->recuperaEntidadePorNome($nomeEntidade);
 		
 		$nomeTabela = $baseDAO->recuperaNomeNovaTabelaArquivo($entidade);
-		
+				
 		$base = new Base(null, $nomeBase, $nomeArquivo, $nomeBaseNoJogo, $nomeTabela, $entidade);
 		
 		$idBase = $baseDAO->inserirBase($base);
@@ -64,32 +64,13 @@ if(isset($_POST["buttonCadastrarBD"])) {
 				$metaBaseDAO->inserirMetaBase($metaBase);
 			}
 		}
-	
-		$arquivo = "arquivo_3";
 		
 		
-		$baseDAO->criarTabelaBase($chave, $atributos, $entidade, $arquivo);
+		$baseDAO->criarTabelaBase($chave, $atributos, $entidade, $nomeTabela);
 		
-		echo $_SESSION['caminho'];
 		$arquivo = recuperaDadosArquivo($_SESSION['caminho'], ';');
-		
-		new dBug($arquivo); 
-			
-		$baseDAO->inserirDados($arquivo, $entidade->getNome()."_".$arquivo, $entidade);
-		
-		/* foreach ($_POST["nomeNoJogo"] as $nomeNoJogo) {
-			
-			
-			echo "<br>Nome no jogo: " . $nomeNoJogo . "<br>";
-		}
-		
-		foreach ($_POST["descricaoNoJogo"] as $descricaoNoJogo) {
-			echo "Descrição no jogo: " . $descricaoNoJogo . "<br>";
-		} */
-		
-		
-		
-		
+				
+		$baseDAO->inserirDados($arquivo, $nomeTabela, $entidade);
 		
 	}
 	else {

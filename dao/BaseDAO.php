@@ -142,11 +142,11 @@ class BaseDAO {
 		return $nomeTabela;
 	}
 	
-	public function criarTabelaBase($chave, $atributos, $entidade, $arquivo) {
+	public function criarTabelaBase($chave, $atributos, $entidade, $nomeTabela) {
 	
 		$cn = new Conexao();
 	
-		$sql = "CREATE TABLE [dbo].[".$entidade->getNome()."_".$arquivo."]( ";
+		$sql = "CREATE TABLE [dbo].[".$nomeTabela."]( ";
 		
 		foreach($atributos as $atributo){
 			if($atributo == $chave)
@@ -156,15 +156,15 @@ class BaseDAO {
 		}
 		
 		$sql = $sql."[".$entidade->getNome()."_id] INT NOT NULL,
- 						CONSTRAINT [PK_".$entidade->getNome()."_".$arquivo."] PRIMARY KEY CLUSTERED(
+ 						CONSTRAINT [PK_".$nomeTabela."] PRIMARY KEY CLUSTERED(
  						[".$chave."] ASC
 					)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 					) ON [PRIMARY] ";
 		
-		$sql = $sql."ALTER TABLE [dbo].[".$entidade->getNome()."_".$arquivo."]  WITH CHECK ADD  CONSTRAINT [FK_".$entidade->getNome()."_".$arquivo."_".$entidade->getNome()."] FOREIGN KEY([".$entidade->getNome()."_id])
-					REFERENCES [dbo].[".$entidade->getNome()."] ([id])
+		$sql = $sql."ALTER TABLE [dbo].[".$nomeTabela."]  WITH CHECK ADD  CONSTRAINT [FK_".$nomeTabela."_entidade_".$entidade->getNome()."] FOREIGN KEY([".$entidade->getNome()."_id])
+					REFERENCES [dbo].[entidade_".$entidade->getNome()."] ([id])
 	
-				ALTER TABLE [dbo].[".$entidade->getNome()."_".$arquivo."] CHECK CONSTRAINT [FK_".$entidade->getNome()."_".$arquivo."_".$entidade->getNome()."]";
+				ALTER TABLE [dbo].[".$nomeTabela."] CHECK CONSTRAINT [FK_".$nomeTabela."_entidade_".$entidade->getNome()."]";
 
 		$cn->execute($sql);
 	
@@ -174,7 +174,7 @@ class BaseDAO {
 	public function inserirDados($arquivo, $tabela, $entidade) {
 		$cn = new Conexao();
 
-		$id = $cn->getLastId($entidade->getNome());
+		$id = $cn->getLastId("entidade_".$entidade->getNome());
 		
 		$campos = $arquivo['campos'];
 		$registros = $arquivo['registros'];
@@ -198,7 +198,7 @@ class BaseDAO {
 			
 			$cn->execute($sql2);			
 		}
-		
+		echo $sql2;
 		$cn->disconnect();
 	}
 	
@@ -207,10 +207,11 @@ class BaseDAO {
 	
 		$cn = new Conexao();
 	
-		$sql = "SELECT nome_tabela 
+		$sql = "SELECT top(1) b.nome_tabela 
 				FROM entidade e 
 				     INNER JOIN base_dados b on e.id = b.entidade_id
-				WHERE e.nome = '".$entidade->getNome()."'";
+				WHERE e.nome = '".$entidade->getNome()."'
+				ORDER BY b.nome_tabela DESC";
 	
 		$result = $cn->execute($sql);
 	
@@ -219,13 +220,22 @@ class BaseDAO {
 			$nome_tabela = $rs['nome_tabela'];
 	
 		}
+		echo $sql;
 		
-		$pos = strrpos($nome_tabela, "_");
+		if(!empty($nome_tabela)){
+			$pos = strrpos($nome_tabela, "_");
+			
+			$numero = substr($nome_tabela, $pos+1, count($nome_tabela));
+			$numero = $numero+1;
+			$nome_tabela = substr($nome_tabela, 0, $pos)."_".$numero;
+		} else {
+			$nome_tabela = "entidade_".$entidade->getNome()."_1";
+		}
 		
-		
+			
 		$cn->disconnect();
 	
-		return $base;
+		return $nome_tabela;
 	}
 }
 
