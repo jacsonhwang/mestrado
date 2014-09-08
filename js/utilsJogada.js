@@ -86,19 +86,19 @@ $(document).ready(function() {
 	
 	$("#formCaixaA").submit(function() {
 		
-		criarTabela(this, "#tabelaFiltroA", "#divTabelaFiltroA", "entidades_lista_a", 1);
+		criarTabela(this, "#tabelaFiltroA", "#divTabelaFiltroA", "entidade_pessoa_1", 1);
 		
 	});
 	
 	$("#formCaixaB").submit(function() {
 		
-		criarTabela(this, "#tabelaFiltroB", "#divTabelaFiltroB", "entidades_lista_b", 2);
+		criarTabela(this, "#tabelaFiltroB", "#divTabelaFiltroB", "entidade_pessoa_2", 2);
 		
 	});
 	
 	$("#formCaixaC").submit(function() {
 		
-		criarTabela(this, "#tabelaFiltroC", "#divTabelaFiltroC", "entidades_lista_c", 3);
+		criarTabela(this, "#tabelaFiltroC", "#divTabelaFiltroC", "entidade_pessoa_3", 3);
 		
 	});
 	
@@ -145,7 +145,7 @@ function criarTabela(form, tabela, divTabela, tabelaBanco, idBaseDados) {
 	
 	var jogadaAjax = new JogadaAjax();
 	
-	var dadosArray = jogadaAjax.getDadosEntidade(atributo, valor, tabelaBanco, idBaseDados);	
+	var dadosArray = jogadaAjax.getDadosEntidade(atributo, valor, tabelaBanco, idBaseDados);
 	var nomesColunas = jogadaAjax.getNomesColunas(idBaseDados);	
 	var valorExibicaoAtributos = jogadaAjax.getValorExibicaoAtributos(idBaseDados);	
 	var nomesAtributos = jogadaAjax.getNomesAtributos(idBaseDados).split(", ");
@@ -301,13 +301,57 @@ function salvarDados() {
         var idBaseDados = $(this).data("idBaseDados");
         var id = $(this).data("id");
         
-        var idCSV = jogadaAjax.recuperarIdCSV(idBaseDados, id);
+        var idEntidade = jogadaAjax.recuperarIdEntidade(idBaseDados, id);
         
-        console.log(idCSV);
+        console.log(idEntidade);
         
         // pegar os outros ids. como?
     });
     
     $.unblockUI();
     
+}
+
+function recuperarEntidadeAleatoria(idEntidade) {
+	
+	var jogadaAjax = new JogadaAjax();
+	
+	var dadosTabela = jogadaAjax.recuperarNomeTabelaAleatoria(idEntidade);
+	
+	console.log(dadosTabela);
+	
+	var entidade = jogadaAjax.recuperarEntidadeAleatoria(dadosTabela["idBaseDados"], dadosTabela["nomeTabela"], idEntidade);
+	
+	console.log(entidade);
+	
+	/*var valorExibicaoAtributos = jogadaAjax.getValorExibicaoAtributos(dadosTabela["idBaseDados"]);
+	
+	console.log(valorExibicaoAtributos);
+	
+	var html = "<li class='pull-left'><div class='box'><ul class='box-list'>";
+	
+	for(var i in entidade) {
+		console.log(entidade[i]);
+	}*/
+	
+	/*if($(item).find("td").length > 0) {
+		$(item).find("td").each(function() {
+			html += "<li>" + $(this).html() + "</li>";
+		});
+	}
+	else {
+		$(item).find("li").each(function() {
+			html += "<li>" + $(this).html() + "</li>";
+		});
+	}
+	
+	html += "</ul></div></div></li>";
+	
+	$('#data').find(item).css({
+		'background':'grey'
+	}).removeClass('entity');
+	
+	$('#poolList').append(html);
+	
+	console.log(entidade);*/
 }

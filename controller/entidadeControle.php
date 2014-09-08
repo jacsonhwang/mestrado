@@ -5,6 +5,8 @@ include 'dao/EntidadeDAO.php';
 
 include '../dao/EntidadesListaDAO.php';
 
+include 'dao/EntidadesListaDAO.php';
+
 function listarEntidade() {
 	$entidadeDAO = new EntidadeDAO();
 
@@ -36,13 +38,22 @@ function guardarEntidadeSessao($entidade) {
 
 }
 
-function recuperarIdCSV($idBaseDados, $id) {
+function recuperarIdEntidade($idBaseDados, $id) {
 	
 	$entidadesListaDAO = new EntidadesListaDAO();
 	
-	$idCSV = $entidadesListaDAO->recuperarIdCSV($idBaseDados, $id);
+	$idEntidade = $entidadesListaDAO->recuperarIdEntidade($idBaseDados, $id);
 	
-	return $idCSV;
+	return $idEntidade;
+}
+
+function recuperarEntidadeAleatoria($idBaseDados, $nomeTabela, $idEntidade) {
+	
+	$entidadesListaDAO = new EntidadesListaDAO();
+	
+	$entidade = $entidadesListaDAO->recuperarEntidadeAleatoria(idBaseDados, $nomeTabela, $idEntidade);
+	
+	return $entidade;
 }
 
 ?>

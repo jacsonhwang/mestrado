@@ -1,7 +1,6 @@
 <?php
-include_once '../model/Base.php';
-include_once 'model/Base.php';
 
+include_once realpath('Base.php');
 
 class MetaBaseDados {
 	

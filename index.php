@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+<?php include realpath('header.php'); ?>
 <div>	
 	<div class="jumbotron">
       <div class="container">

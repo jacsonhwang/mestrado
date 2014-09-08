@@ -14,14 +14,32 @@ if(isset($_POST['id'])) {
 	$id = $_POST['id'];
 }
 
+if(isset($_POST['idEntidade'])) {
+	$idEntidade = $_POST['idEntidade'];
+}
+
+if(isset($_POST['nomeTabela'])) {
+	$nomeTabela = $_POST['nomeTabela'];
+}
+
 switch ($idConsulta){
 	case 1:
 		
-		$idCSV = recuperarIdCSV($idBaseDados, $id);
+		$idEntidade = recuperarIdEntidade($idBaseDados, $id);
 		
-		$idCSV = utf8_encode($idCSV);
+		echo json_encode($idEntidade);
 		
-		echo json_encode($idCSV);
+		break;
+		
+	case 2:
+		
+		$entidade = recuperarEntidadeAleatoria($idBaseDados, $nomeTabela, $idEntidade);
+		
+		foreach($entidade as &$dadoEntidade) {
+			$dadoEntidade = utf8_encode($dadoEntidade);
+		}
+		
+		echo json_encode($entidade);
 		
 		break;
 }

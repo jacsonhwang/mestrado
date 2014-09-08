@@ -31,7 +31,7 @@ JogadaAjax.prototype.getNomesColunas = function(idBaseDados) {
 	});
 	
 	return resultado;
-}
+};
 
 JogadaAjax.prototype.getNomesAtributos = function(idBaseDados) {
 	var resultado = "";
@@ -47,7 +47,7 @@ JogadaAjax.prototype.getNomesAtributos = function(idBaseDados) {
 	});
 	
 	return resultado;
-}
+};
 
 JogadaAjax.prototype.getValorExibicaoAtributos = function(idBaseDados) {
     var resultado = "";
@@ -63,9 +63,9 @@ JogadaAjax.prototype.getValorExibicaoAtributos = function(idBaseDados) {
     });
     
     return resultado;
-}
+};
 
-JogadaAjax.prototype.recuperarIdCSV = function(idBaseDados, id) {
+JogadaAjax.prototype.recuperarIdEntidade = function(idBaseDados, id) {
     var resultado = "";
 
     $.ajax({
@@ -79,4 +79,52 @@ JogadaAjax.prototype.recuperarIdCSV = function(idBaseDados, id) {
     });
 
     return resultado;
-}
+};
+
+JogadaAjax.prototype.inserirResultadoEntidade = function(idBaseDados, idEntidade, idEntidadeAlvo) {
+	var resultado = "";
+
+    $.ajax({
+        type: "POST",
+        url: "ajaxController/resultadoAjaxControle.php",
+        data: { idConsulta: 1, idBaseDados: idBaseDados, idEntidade: idEntidade, idEntidadeAlvo: idEntidadeAlvo },
+        async: false,
+        success: function(msg) {
+            resultado = jQuery.parseJSON(msg);
+        }
+    });
+
+    return resultado;
+};
+
+JogadaAjax.prototype.recuperarEntidadeAleatoria = function(idBaseDados, nomeTabela, idEntidade) {
+	var resultado = "";
+
+    $.ajax({
+        type: "POST",
+        url: "ajaxController/entidadeAjaxControle.php",
+        data: { idConsulta: 2, idBaseDados: idBaseDados, nomeTabela: nomeTabela, idEntidade: idEntidade },
+        async: false,
+        success: function(msg) {
+            resultado = jQuery.parseJSON(msg);
+        }
+    });
+
+    return resultado;
+};
+
+JogadaAjax.prototype.recuperarNomeTabelaAleatoria = function(idEntidade) {
+	var resultado = "";
+
+    $.ajax({
+        type: "POST",
+        url: "ajaxController/baseAjaxControle.php",
+        data: { idConsulta: 1, idEntidade: idEntidade },
+        async: false,
+        success: function(msg) {
+            resultado = jQuery.parseJSON(msg);
+        }
+    });
+
+    return resultado;
+};

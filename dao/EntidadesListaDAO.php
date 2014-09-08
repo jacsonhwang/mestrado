@@ -5,6 +5,8 @@ include_once("../inc/conexao.php");
 include_once("inc/conexao.php");
 include_once("MetaBaseDadosDAO.php");
 include_once("BaseDAO.php");
+include_once("EntidadeDAO.php");
+include_once("../model/Entidade.php");
 
 include '../dBug.php';
 
@@ -102,25 +104,58 @@ class EntidadesListaDAO {
 		return $dadosArray;
 	}
 	
-	function recuperarIdCSV ($idBaseDados, $id) {
+	function recuperarIdEntidade ($idBaseDados, $id) {
 		
 		$baseDAO = new BaseDAO();
 		
 		$nomeTabela = $baseDAO->recuperarNomeTabela($idBaseDados);
 		
+		$entidadeDAO = new EntidadeDAO();
+		
+		$entidade = $entidadeDAO->recuperaEntidadePorId($idBaseDados);
+		
+		$nomeEntidade = strtolower($entidade->getNome());
+		
 		$cn = new Conexao();
 		
-		$sql = "SELECT pessoa_csv_id FROM " . $nomeTabela . " WHERE id = " . $id;
+		$sql = "SELECT entidade_" . $nomeEntidade . "_id FROM " . $nomeTabela . " WHERE id = " . $id;
 		
 		$result = $cn->execute($sql);
 		
 		while ($rs = sqlsrv_fetch_array($result)) {
-			$idCSV = $rs["pessoa_csv_id"];
+			$idEntidade = $rs["entidade_" . $nomeEntidade . "_id"];
 		}
 		
 		$cn->disconnect();
 		
-		return $idCSV;
+		return $idEntidade;
+	}
+	
+	function recuperarEntidadeAleatoria($idBaseDados, $nomeTabela, $idEntidade) {
+		
+		/* $baseDAO = new BaseDAO();
+		
+		$dados = $baseDAO->recuperarNomeTabelaAleatoria($idEntidade); */
+		
+		$mbd = new MetaBaseDadosDAO();
+		
+		$nomesColunas = $mbd->recuperarNomesColunas($idBaseDados);
+		
+		$cn = new Conexao();
+		
+		$sql = "SELECT TOP 1 " . $nomesColunas . " FROM " . $nomeTabela . " ORDER BY NEWID()";
+		
+		$result = $cn->execute($sql);
+		
+		while ($rs = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+			$entidade = $rs;
+		}
+		
+		//$entidade["idBaseDados"] = $dados["idBaseDados"]; // guarda o id da base de dados
+		
+		$cn->disconnect();
+		
+		return $entidade;
 	}
 }
 

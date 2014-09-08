@@ -210,8 +210,6 @@ class EntidadeDAO {
 		$cn->disconnect();
 	}
 	
-	
-	
 	public function criarTabelaEntidadeAlvo($entidade) {
 	
 		$cn = new Conexao();

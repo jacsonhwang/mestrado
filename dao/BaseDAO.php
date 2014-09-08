@@ -202,7 +202,6 @@ class BaseDAO {
 		$cn->disconnect();
 	}
 	
-	
 	public function recuperaNomeNovaTabelaArquivo($entidade){
 	
 		$cn = new Conexao();
@@ -236,6 +235,28 @@ class BaseDAO {
 		$cn->disconnect();
 	
 		return $nome_tabela;
+	}
+	
+	public function recuperarNomeTabelaAleatoria ($idEntidade) {
+		
+		$cn = new Conexao();
+		
+		$sql = "SELECT TOP 1 id, nome_tabela FROM base_dados WHERE entidade_id = " . $idEntidade . " ORDER BY NEWID()";
+		
+		$result = $cn->execute($sql);
+		
+		$dados = array();
+		
+		while ($rs = sqlsrv_fetch_array($result)) {
+			
+			$dados["idBaseDados"] = $rs['id'];
+		
+			$dados["nomeTabela"] = $rs['nome_tabela'];		
+		}
+		
+		$cn->disconnect();
+		
+		return $dados;
 	}
 }
 

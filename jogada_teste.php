@@ -1,10 +1,10 @@
 <?php
 
-include 'header.php';
-include 'dao/MetaBaseDadosDAO.php';
-include 'dao/EntidadesListaDAO.php';
-include 'model/MetaBaseDados.php';
-include 'controller/jogadaBancoControle.php';
+include realpath('header.php');
+include realpath('dao/MetaBaseDadosDAO.php');
+include realpath('dao/EntidadesListaDAO.php');
+include realpath('/model/MetaBaseDados.php');
+include realpath('controller/jogadaBancoControle.php');
 
 $metaBaseDadosDAO = new MetaBaseDadosDAO();
 $entidadesListaDAO = new EntidadesListaDAO();
@@ -13,9 +13,9 @@ $dadosArray1 = $metaBaseDadosDAO->listarDados(1);
 $dadosArray2 = $metaBaseDadosDAO->listarDados(2);
 $dadosArray3 = $metaBaseDadosDAO->listarDados(3);
 
-$referenciaArray1 = $entidadesListaDAO->recuperarPrimeiraLinha(1, 'entidades_lista_a');
-$referenciaArray2 = $entidadesListaDAO->recuperarPrimeiraLinha(2, 'entidades_lista_b');
-$referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidades_lista_c');
+$referenciaArray1 = $entidadesListaDAO->recuperarPrimeiraLinha(1, 'entidade_pessoa_1');
+$referenciaArray2 = $entidadesListaDAO->recuperarPrimeiraLinha(2, 'entidade_pessoa_2');
+$referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidade_pessoa_3');
 
 ?>
 
@@ -31,7 +31,9 @@ new Messi("Clique em OK para iniciar o jogo.", {
         val : 'X'
     } ],
     callback: function(val) {
-        if(val == 'X') {	            
+        if(val == 'X') {
+            
+        	recuperarEntidadeAleatoria(1);
             iniciarContador();
             
             $.unblockUI();

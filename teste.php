@@ -1,9 +1,16 @@
 <?php 
-include 'dao/MetaBaseDadosDAO.php';
+//include 'dao/MetaBaseDadosDAO.php';
 //include 'dao/EntidadesListaDAO.php';
+//include 'dao/ResultadoDAO.php';
+//include 'dao/BaseDAO.php';
+include 'controller/entidadeControle.php';
+
+include "inc/constantes.php";
 include 'dBug.php';
 
-echo time();
+
+
+//echo time();
 
 /* $mbd = new MetaBaseDadosDAO();
 
@@ -15,14 +22,28 @@ new dBug($array); */
 
 /* $eld = new EntidadesListaDAO();
 
-$atributos = array("nome");
+$array = $eld->recuperarEntidadeAleatoria(1);
 
-$valores = array("harlison");
+new dBug($array); */
 
-$array = $eld->recuperarDados($atributos, $valores, "entidades_lista_a", 1);
+// ---------------------------------------------------------
 
-echo $array[0]["id"];
+/* $r = new ResultadoDAO();
 
-new dBug($array);
- */
+$r->inserirResultadoEntidade(1, 1); */
+
+// ---------------------------------------------------------
+
+/* $b = new BaseDAO();
+
+$nomeTabela = $b->recuperarNomeTabelaAleatoria(1);
+
+new dBug($nomeTabela); */
+
+// ---------------------------------------------------------
+
+$entidade = recuperarEntidadeAleatoria(1);
+
+new dBug($entidade);
+
 ?>
