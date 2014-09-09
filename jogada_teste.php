@@ -17,6 +17,12 @@ $referenciaArray1 = $entidadesListaDAO->recuperarPrimeiraLinha(1, 'entidade_pess
 $referenciaArray2 = $entidadesListaDAO->recuperarPrimeiraLinha(2, 'entidade_pessoa_2');
 $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidade_pessoa_3');
 
+session_start();
+
+$_SESSION["inicioJogo"] = date('Y-m-d H:i:s');
+
+var_dump($_SESSION["inicioJogo"]);
+
 ?>
 
 <script>

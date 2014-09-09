@@ -53,7 +53,9 @@ class MetaBaseDadosDAO {
 		
 		$cn = new Conexao();
 		
-		$sql = "SELECT nome_atributo FROM " . $this->tabela . " WHERE base_dados_id = " . $idBaseDados;
+		$sql = " SELECT nome_atributo FROM " . $this->tabela . " WHERE base_dados_id = " . $idBaseDados;
+		//$sql .=" UNION ";
+		//$sql .= "SELECT DISTINCT('entidade_' +  LOWER(e.nome) + '_id') FROM base_dados bd INNER JOIN entidade e ON bd.entidade_id = e.id where bd.id = ".$idBaseDados; 
 		
 		$result = $cn->execute($sql);
 		

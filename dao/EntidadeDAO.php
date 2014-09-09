@@ -48,6 +48,7 @@ class EntidadeDAO {
 	}
 	
 	public function recuperaEntidadePorId($id){
+		
 	 	$cn = new Conexao();
 	
 		$sql = "SELECT id, nome, descricao_jogo, nome_jogo
@@ -253,6 +254,24 @@ class EntidadeDAO {
 		
 		$cn->disconnect();
 		
+	}
+	
+	public function recuperarIdEntidadeUsuario($idBaseDados) {
+		
+		$cn = new Conexao();
+		
+		$sql = "SELECT id FROM entidade_usuario WHERE usuario_id = (SELECT id FROM usuario WHERE email = '" . $_SESSION['email'] . "') AND entidade_id = (SELECT entidade_id FROM base_dados WHERE id = " . $idBaseDados . ")";
+		
+		$result = $cn->execute($sql);
+		
+		while ($rs = sqlsrv_fetch_array($result)) {
+				
+			$idEntidadeUsuario = $rs["id"];
+		}
+		
+		$cn->disconnect();
+		
+		return $idEntidadeUsuario;
 	}
 }
 

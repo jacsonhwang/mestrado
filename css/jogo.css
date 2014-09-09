@@ -142,10 +142,23 @@
 	max-height: 200px;
 	overflow: auto;
 	cursor: move;
-	padding: 15px;
+	padding-bottom: 10px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
+}
+
+.box > ul > li:first-child {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #7eb0db;
+	text-align: center;
+	font-weight: bold;
+}
+
+.box > ul > li:not(:first-child) {
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 .area {

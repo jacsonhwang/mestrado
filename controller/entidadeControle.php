@@ -51,7 +51,7 @@ function recuperarEntidadeAleatoria($idBaseDados, $nomeTabela, $idEntidade) {
 	
 	$entidadesListaDAO = new EntidadesListaDAO();
 	
-	$entidade = $entidadesListaDAO->recuperarEntidadeAleatoria(idBaseDados, $nomeTabela, $idEntidade);
+	$entidade = $entidadesListaDAO->recuperarEntidadeAleatoria($idBaseDados, $nomeTabela, $idEntidade);
 	
 	return $entidade;
 }

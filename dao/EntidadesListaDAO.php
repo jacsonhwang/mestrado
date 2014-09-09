@@ -108,11 +108,14 @@ class EntidadesListaDAO {
 		
 		$baseDAO = new BaseDAO();
 		
-		$nomeTabela = $baseDAO->recuperarNomeTabela($idBaseDados);
+		$baseDados = $baseDAO->recuperaBasePorId($idBaseDados);
+		
+		$idBaseEntidade = $baseDados->getEntidade()->getId();		
+		$nomeTabela = $baseDados->getNomeTabela();
 		
 		$entidadeDAO = new EntidadeDAO();
 		
-		$entidade = $entidadeDAO->recuperaEntidadePorId($idBaseDados);
+		$entidade = $entidadeDAO->recuperaEntidadePorId($idBaseEntidade);
 		
 		$nomeEntidade = strtolower($entidade->getNome());
 		

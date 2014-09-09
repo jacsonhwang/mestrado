@@ -112,7 +112,7 @@ $(document).ready(function() {
 	});
 	
 	$("#buttonEncerrarJogo").click(function() {	    
-	    finalizarJogo(0);
+	    finalizarJogo(1);
 	});
 	
 	$("#buttonLimparTudo").click(function() {	    
@@ -187,7 +187,7 @@ function criarTabela(form, tabela, divTabela, tabelaBanco, idBaseDados) {
 
 function finalizarJogo(situacao) {
 	
-	if(situacao == 0) { // jogo encerrado normalmente, pelo botão
+	if(situacao == 1) { // jogo encerrado normalmente, pelo botão
 		
 		$.blockUI({ message: null });
 		
@@ -207,7 +207,7 @@ function finalizarJogo(situacao) {
 				
 				if(val == 'Y') {
 					$.unblockUI();
-					salvarDados();
+					salvarDados(situacao);
 				}
 				else {
 					$.unblockUI();
@@ -216,7 +216,7 @@ function finalizarJogo(situacao) {
 		});
 		
 	}
-	else if(situacao == 1) { // jogo encerrado após contador finalizar
+	else if(situacao == 2) { // jogo encerrado após contador finalizar
 		
 		$.blockUI({ message: null });
 	    
@@ -230,7 +230,7 @@ function finalizarJogo(situacao) {
 	        } ],
 	        callback: function(val) {
 	            if(val == 'X') {
-	                salvarDados();
+	                salvarDados(situacao);
 	            }
 	        }
 	    });
@@ -258,7 +258,7 @@ function iniciarContador() {
         count_past_zero: false
     }).addListener(function(unit, value, total) {
         if(total == 0) {            
-            finalizarJogo(1);
+            finalizarJogo(2);
         }
     });
     
@@ -292,24 +292,33 @@ function desistirJogo() {
 	});
 }
 
-function salvarDados() {
-	
+function salvarDados(situacao) {
+
 	var jogadaAjax = new JogadaAjax();
-    
-    $("#poolList").children().each(function() {
-        
-        var idBaseDados = $(this).data("idBaseDados");
-        var id = $(this).data("id");
-        
-        var idEntidade = jogadaAjax.recuperarIdEntidade(idBaseDados, id);
-        
-        console.log(idEntidade);
-        
-        // pegar os outros ids. como?
-    });
-    
-    $.unblockUI();
-    
+
+	var idBaseDados = $("#poolList").find("#entidadeAlvo").data("idBaseDados");
+	var idAlvo = $("#poolList").find("#entidadeAlvo").data("id");
+	
+	var idEntidade = jogadaAjax.recuperarIdEntidade(idBaseDados, idAlvo);
+	
+	var idEntidadeAlvo = jogadaAjax.inserirEntidadeAlvo(idEntidade, idBaseDados, situacao);
+
+	$("#poolList").children().each(function() {
+
+		var idBaseDados = $(this).data("idBaseDados");
+		var id = $(this).data("id");
+
+		var idEntidade = jogadaAjax.recuperarIdEntidade(idBaseDados, id);
+		
+		jogadaAjax.inserirResultadoEntidade(idBaseDados, idEntidade, idEntidadeAlvo);
+	});
+	
+	$.unblockUI();
+	
+	/*setTimeout(function() {
+		window.location = "painel_usuario.php";
+	}, 2000);*/
+
 }
 
 function recuperarEntidadeAleatoria(idEntidade) {
@@ -318,40 +327,27 @@ function recuperarEntidadeAleatoria(idEntidade) {
 	
 	var dadosTabela = jogadaAjax.recuperarNomeTabelaAleatoria(idEntidade);
 	
-	console.log(dadosTabela);
-	
 	var entidade = jogadaAjax.recuperarEntidadeAleatoria(dadosTabela["idBaseDados"], dadosTabela["nomeTabela"], idEntidade);
 	
-	console.log(entidade);
+	var valorExibicaoAtributos = jogadaAjax.getValorExibicaoAtributos(dadosTabela["idBaseDados"]);
 	
-	/*var valorExibicaoAtributos = jogadaAjax.getValorExibicaoAtributos(dadosTabela["idBaseDados"]);
+	var html = "<li class='pull-left' id='entidadeAlvo'><div class='box'><ul class='box-list'>";
 	
-	console.log(valorExibicaoAtributos);
+	html += "<li>Referência</li>";
 	
-	var html = "<li class='pull-left'><div class='box'><ul class='box-list'>";
+	var j = 0;
 	
 	for(var i in entidade) {
-		console.log(entidade[i]);
-	}*/
-	
-	/*if($(item).find("td").length > 0) {
-		$(item).find("td").each(function() {
-			html += "<li>" + $(this).html() + "</li>";
-		});
-	}
-	else {
-		$(item).find("li").each(function() {
-			html += "<li>" + $(this).html() + "</li>";
-		});
+		if(valorExibicaoAtributos[j] == 1) {
+			html += "<li>" + entidade[i] + "</li>";
+		}
+		
+		j++;
 	}
 	
 	html += "</ul></div></div></li>";
 	
-	$('#data').find(item).css({
-		'background':'grey'
-	}).removeClass('entity');
-	
 	$('#poolList').append(html);
 	
-	console.log(entidade);*/
+	$("#entidadeAlvo").data("idBaseDados", dadosTabela["idBaseDados"]).data("id", entidade["id"]);
 }

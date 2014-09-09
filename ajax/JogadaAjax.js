@@ -83,6 +83,8 @@ JogadaAjax.prototype.recuperarIdEntidade = function(idBaseDados, id) {
 
 JogadaAjax.prototype.inserirResultadoEntidade = function(idBaseDados, idEntidade, idEntidadeAlvo) {
 	var resultado = "";
+	
+	console.log(idBaseDados, idEntidade, idEntidadeAlvo);
 
     $.ajax({
         type: "POST",
@@ -90,14 +92,16 @@ JogadaAjax.prototype.inserirResultadoEntidade = function(idBaseDados, idEntidade
         data: { idConsulta: 1, idBaseDados: idBaseDados, idEntidade: idEntidade, idEntidadeAlvo: idEntidadeAlvo },
         async: false,
         success: function(msg) {
-            resultado = jQuery.parseJSON(msg);
+        	//console.log(msg);
+            //resultado = jQuery.parseJSON(msg);
         }
     });
 
-    return resultado;
+    //return resultado;
 };
 
 JogadaAjax.prototype.recuperarEntidadeAleatoria = function(idBaseDados, nomeTabela, idEntidade) {
+	
 	var resultado = "";
 
     $.ajax({
@@ -122,6 +126,23 @@ JogadaAjax.prototype.recuperarNomeTabelaAleatoria = function(idEntidade) {
         data: { idConsulta: 1, idEntidade: idEntidade },
         async: false,
         success: function(msg) {
+            resultado = jQuery.parseJSON(msg);
+        }
+    });
+
+    return resultado;
+};
+
+JogadaAjax.prototype.inserirEntidadeAlvo = function(idEntidade, idBaseDados, situacao) {
+	var resultado = "";
+
+    $.ajax({
+        type: "POST",
+        url: "ajaxController/resultadoAjaxControle.php",
+        data: { idConsulta: 2, idEntidade: idEntidade, idBaseDados: idBaseDados, situacao: situacao },
+        async: false,
+        success: function(msg) {
+        	//console.log(msg);
             resultado = jQuery.parseJSON(msg);
         }
     });

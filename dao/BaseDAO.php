@@ -219,7 +219,6 @@ class BaseDAO {
 			$nome_tabela = $rs['nome_tabela'];
 	
 		}
-		echo $sql;
 		
 		if(!empty($nome_tabela)){
 			$pos = strrpos($nome_tabela, "_");
@@ -259,6 +258,5 @@ class BaseDAO {
 		return $dados;
 	}
 }
-
 
 ?>

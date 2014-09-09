@@ -1,14 +1,17 @@
 <?php 
 //include 'dao/MetaBaseDadosDAO.php';
-//include 'dao/EntidadesListaDAO.php';
+include 'dao/EntidadesListaDAO.php';
 //include 'dao/ResultadoDAO.php';
 //include 'dao/BaseDAO.php';
-include 'controller/entidadeControle.php';
+//include 'controller/entidadeControle.php';
 
 include "inc/constantes.php";
 include 'dBug.php';
 
 
+session_start();
+
+$_SESSION["email"];
 
 //echo time();
 
@@ -22,7 +25,7 @@ new dBug($array); */
 
 /* $eld = new EntidadesListaDAO();
 
-$array = $eld->recuperarEntidadeAleatoria(1);
+$array = $eld->recuperarEntidadeAleatoria(2, "entidade_pessoa_2", 1);
 
 new dBug($array); */
 
@@ -42,8 +45,12 @@ new dBug($nomeTabela); */
 
 // ---------------------------------------------------------
 
-$entidade = recuperarEntidadeAleatoria(1);
+/* $entidade = recuperarEntidadeAleatoria(2, "entidade_pessoa_2", 1);
 
-new dBug($entidade);
+new dBug($entidade); */
+
+// ---------------------------------------------------------
+
+var_dump(date('Y-m-d H:i:s'));
 
 ?>

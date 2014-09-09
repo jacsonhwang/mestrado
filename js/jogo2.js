@@ -55,6 +55,8 @@ function addToPool(item) {
 	
 	var html = "<li class='pull-left'><div class='box'><ul class='box-list'>";
 	
+	html += "<li>teste</li>";
+	
 	if($(item).find("td").length > 0) {
 		$(item).find("td").each(function() {
 			html += "<li>" + $(this).html() + "</li>";
@@ -106,6 +108,8 @@ function addToViewer(item) {
 	}
 
 	var html = "<li class='pull-left'><div class='box'><ul class='box-list'>";
+	
+	html += "<li>teste</li>";
 	
 	if($(item).find("td").length > 0) {
 		$(item).find("td").each(function() {

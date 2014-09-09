@@ -18,11 +18,28 @@ if(isset($_POST['idEntidadeAlvo'])) {
 	$idEntidadeAlvo = $_POST['idEntidadeAlvo'];
 }
 
+if(isset($_POST['situacao'])) {
+	$situacao = $_POST['situacao'];
+}
+
+if(isset($_POST['idEntidadeAlvo'])) {
+	$idEntidadeAlvo = $_POST['idEntidadeAlvo'];
+}
+
 switch ($idConsulta){
 	case 1:
 		$resultadoDAO = new ResultadoDAO();
 		
 		$resultadoDAO->inserirResultadoEntidade($idBaseDados, $idEntidade, $idEntidadeAlvo);
+		
+		break;
+		
+	case 2:
+		$resultadoDAO = new ResultadoDAO();
+		
+		$lastId = $resultadoDAO->inserirEntidadeAlvo($idEntidade, $idBaseDados, $situacao);
+		
+		echo $lastId;
 		
 		break;
 }
