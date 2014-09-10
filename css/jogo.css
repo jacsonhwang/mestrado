@@ -2,42 +2,6 @@
 	cursor:move;
 }
 
-.entity {
-	display: block;
-}
-
-.fromContainer {
-	display: block;
-}
-
-.entity img{
-	max-height:10%;
-	max-width:10%;
-	float: right;
-}
-
-.entity-data {
-	border: 1px solid black;
-}
-
-.stickman {
-	max-width: 10%;
-	max-height: 10%;
-	float: right;
-}
-
-#gallery { float: left; width: 65%; min-height: 12em; }
-.gallery.custom-state-active { background: white; }
-.gallery li { float: left; width: 96px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; background: white;}
-.gallery li h5 { margin: 0 0 0.4em; cursor: move; }
-.gallery li img { width: 25%; cursor: move; }
-
-/* #views { float: left; width: 65%; min-height: 12em; }
-.views.custom-state-active { background: white; }
-.views li { float: left; width: 96px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: left; background: white;}
-.views li h5 { margin: 0 0 0.4em; cursor: move; }
-.views li img { width: 25%; cursor: move; } */
-
 #data {
 	border: 1px solid black;
 }
@@ -87,37 +51,6 @@
 	float: left;
 }
 
-.entity-viewer {
-	min-width:256px;
-	min-height:256px;
-	max-width:512px;
-	max-height:512px;
-	border: 1px solid black;
-	margin: 5%;
-	float: left;
-	display: inline-block;
-}
-
-.pool {
-	min-width:256px;
-	min-height: 256px;
-	max-width: 100%;
-	max-height: 512px;
-	display: block;
-	margin: 5%;
-	float: left;
-	display: block;
-	border: 1px solid black;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-}
-
-.pool img{
-	width:100%;
-	height: 100%;
-}
-
 .trash img {
 	display: block;
     /* margin-left: auto;
@@ -143,17 +76,33 @@
 	overflow: auto;
 	cursor: move;
 	padding-bottom: 10px;
-	-webkit-border-radius: 10px;
+	/* -webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
-	border-radius: 10px;
+	border-radius: 10px; */
 }
 
 .box > ul > li:first-child {
 	padding-top: 5px;
 	padding-bottom: 5px;
-	background-color: #7eb0db;
-	text-align: center;
+	background-color: #2a6496;
 	font-weight: bold;
+	font-size: 80%;
+	text-transform: uppercase;
+	color: white;
+	border-bottom: 1px solid white;
+}
+
+.box > ul > li:first-child > div {
+	width: 50%;
+	text-align: center;
+}
+
+.box > ul > li:first-child > div:first-child {
+	float: left;
+}
+
+.box > ul > li:first-child > div:nth-child(2) {
+	float: right;
 }
 
 .box > ul > li:not(:first-child) {
@@ -161,8 +110,15 @@
 	padding-right: 15px;
 }
 
+.pull-left {
+	margin: 10px;
+	background-color: white;
+}
+
 .area {
-	height: 57vh;
+	height: 60vh;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .area div {
@@ -183,22 +139,23 @@
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 	padding: 15px;
-	overflow: auto;
+	/* overflow: auto; */
 }
 
 .linha-titulo {
-	line-height: 100%;
+	background-color: #666;
+	color: white;
 }
 
 .titulo-rodada {
 	display: inline-block;
-	width: 60%;
-	text-align: center;
+	width: 50%;
+	padding-left: 20px;
 }
 
 .linha-titulo-botoes {
 	display: inline-block;
-	width: 15%;
+	/* width: 15%; */
 	vertical-align: middle;
 }
 
@@ -214,4 +171,16 @@
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
+}
+
+#entidadeAlvo {
+	background-color: #2a6496 !important;
+	color: white;
+}
+
+.buttonJogo {
+	display: inline-block;
+	margin: 10px;
+	cursor: pointer;
+	text-transform: uppercase;
 }

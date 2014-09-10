@@ -17,11 +17,11 @@ $referenciaArray1 = $entidadesListaDAO->recuperarPrimeiraLinha(1, 'entidade_pess
 $referenciaArray2 = $entidadesListaDAO->recuperarPrimeiraLinha(2, 'entidade_pessoa_2');
 $referenciaArray3 = $entidadesListaDAO->recuperarPrimeiraLinha(3, 'entidade_pessoa_3');
 
-session_start();
+/* session_start();
 
 $_SESSION["inicioJogo"] = date('Y-m-d H:i:s');
 
-var_dump($_SESSION["inicioJogo"]);
+var_dump($_SESSION["inicioJogo"]); */
 
 ?>
 
@@ -398,49 +398,69 @@ new Messi("Clique em OK para iniciar o jogo.", {
 			<div class="row linha-titulo">
 				<div class="titulo-rodada"><h1>Rodada de Qualificação</h1></div>
 				
-				<div class="text-center linha-titulo-botoes">
+				<div style="float: right">
+					<div class='text-center buttonJogo' id="buttonLimparTudo">
+						<div>X</div>
+						<div>Limpar</div>
+					</div>
+					<div class='text-center buttonJogo' id="buttonEncerrarJogo">
+						<div>X</div>
+						<div>Encerrar</div>
+					</div>
+					<div class='text-center buttonJogo' id="buttonDesistirJogo">
+						<div>X</div>
+						<div>Desistir</div>
+					</div>
+				</div>
+				
+				<!-- <div class="text-center linha-titulo-botoes">
+				Limpar Encerrar Desistir
 					<button type="button" class="btn btn-success btn-lg btn-block" id="buttonEncerrarJogo">ENCERRAR JOGO</button>
 					<button type="button" class="btn btn-warning btn-lg btn-block" id="buttonLimparTudo">LIMPAR TUDO</button>
 					<button type="button" class="btn btn-danger btn-lg btn-block" id="buttonDesistirJogo">DESISTIR</button>
-				</div>
+				</div> -->
 				
-				<div class="contador" data-timer="300" style="float: right; width: 20%; display: inline-block"></div>
+				<!-- <div class="contador" data-timer="300" style="float: right; width: 20%; display: inline-block"></div> -->
 			</div>
 			
+			<div class="clearfix"></div>
+			
 			<!-- ------------------------------ LINHA 2 ------------------------------ -->
+			
+			<div class="row" style="width: 100%">
+				<div class="contador" data-timer="300" style="float: right; width: 20%"></div>
+			</div>
+			
+			<!-- ------------------------------ LINHA 3 ------------------------------ -->
 
 			<div class="row area">
-			
+
 				<div id="views" class="col-lg-7">
 					<ul id="viewsList" class='box-list'></ul>
+					<!-- <div class="row lixeira">
+						<div class="col-lg-7">
+							<div id="trash" class="trash">
+								<img src="trash.png" style="height: 100%">
+							</div>
+						</div>
+					</div> -->
 				</div>
-				
+
 				<div id="pool" class="col-lg-5">
 					<ul id="poolList" class='box-list'></ul>
 				</div>
 			
 			</div>
 			
-			<!-- ------------------------------ LINHA 3 ------------------------------ -->
+			<!-- ------------------------------ LINHA 4 ------------------------------ -->
 			
-			<div class="row lixeira">
-				<!-- <div class="col-lg-7 text-center">
-					<button type="button" class="btn btn-primary btn-lg" id="buttonEncerrarJogo">ENCERRAR JOGO</button>
-				</div> -->
-				
+			<!-- <div class="row lixeira">				
 				<div class="col-lg-7">
 					<div id="trash" class="trash">
 						<img src="trash.png" style="height: 100%">
 					</div>
 				</div>
-				
-				<!-- <div class="col-lg-5">
-					<div id="trash" class="trash">
-						<img src="trash.png" style="height: 100%">
-						<ol id="trashList" class="views ui-helper-reset ui-helper-clearfix"></ol>
-					</div>
-				</div> -->
-			</div>
+			</div> -->
 
 		</div>
 
