@@ -1,20 +1,29 @@
 $(document).ready(function() {
 	$("#filtro, #comparador, #dicionario, #arquivos, #tabelaFiltro").hide();
 	
-	$("#divTabelaFiltroA, #divTabelaFiltroB, #divTabelaFiltroC").hide();
+	$(".divTabelaFiltro").hide();
 	
 	$("#opcaoFiltro").click(function(){
 	    
 	    if($("#filtro").is(":visible")) {
 	    	$(this).parent().removeClass("active");
+	    	
+	    	$(this).find("img").attr("src", "img/icone-filtro.png");
+	    	
 	        $("#filtro").hide();
 	    }
 	    else {
 	    	$(this).parent().addClass("active");
 	    	
+	    	$(this).find("img").attr("src", "img/icone-filtro-ativo.png");
+	    	
 	    	$("#opcaoComparador").parent().removeClass("active");
 	    	$("#opcaoDicionario").parent().removeClass("active");
 	    	$("#opcaoArquivos").parent().removeClass("active");
+	    	
+	    	$("#opcaoComparador").find("img").attr("src", "img/icone-comparador.png");
+	    	$("#opcaoDicionario").find("img").attr("src", "img/icone-dicionario.png");
+	    	$("#opcaoArquivos").find("img").attr("src", "img/icone-arquivos.png");
 	    	
 	    	$("#comparador, #dicionario, #arquivos").hide();
 	        $("#filtro").show();
@@ -24,14 +33,21 @@ $(document).ready(function() {
 	$("#opcaoComparador").click(function() {
 	    if($("#comparador").is(":visible")) {
 	    	$(this).parent().removeClass("active");
+	    	$(this).find("img").attr("src", "img/icone-comparador.png");
             $("#comparador").hide();
         }
         else {
         	$(this).parent().addClass("active");
         	
+        	$(this).find("img").attr("src", "img/icone-comparador-ativo.png");
+        	
         	$("#opcaoFiltro").parent().removeClass("active");
 	    	$("#opcaoDicionario").parent().removeClass("active");
 	    	$("#opcaoArquivos").parent().removeClass("active");
+	    	
+	    	$("#opcaoFiltro").find("img").attr("src", "img/icone-filtro.png");
+	    	$("#opcaoDicionario").find("img").attr("src", "img/icone-dicionario.png");
+	    	$("#opcaoArquivos").find("img").attr("src", "img/icone-arquivos.png");
 	    	
         	$("#filtro, #dicionario, #arquivos").hide();
             $("#comparador").show();
@@ -41,14 +57,21 @@ $(document).ready(function() {
 	$("#opcaoDicionario").click(function() {
         if($("#dicionario").is(":visible")) {
         	$(this).parent().removeClass("active");
+        	$(this).find("img").attr("src", "img/icone-dicionario.png");
             $("#dicionario").hide();
         }
         else {
         	$(this).parent().addClass("active");
         	
+        	$(this).find("img").attr("src", "img/icone-dicionario-ativo.png");
+        	
         	$("#opcaoFiltro").parent().removeClass("active");
 	    	$("#opcaoComparador").parent().removeClass("active");
 	    	$("#opcaoArquivos").parent().removeClass("active");
+	    	
+	    	$("#opcaoFiltro").find("img").attr("src", "img/icone-filtro.png");
+	    	$("#opcaoComparador").find("img").attr("src", "img/icone-comparador.png");
+	    	$("#opcaoArquivos").find("img").attr("src", "img/icone-arquivos.png");
 	    	
         	$("#filtro, #comparador, #arquivos").hide();
             $("#dicionario").show();
@@ -58,14 +81,21 @@ $(document).ready(function() {
 	$("#opcaoArquivos").click(function() {
         if($("#arquivos").is(":visible")) {
         	$(this).parent().removeClass("active");
+        	$(this).find("img").attr("src", "img/icone-arquivos.png");
             $("#arquivos").hide();
         }
         else {
         	$(this).parent().addClass("active");
         	
+        	$(this).find("img").attr("src", "img/icone-arquivos-ativo.png");
+        	
         	$("#opcaoFiltro").parent().removeClass("active");
 	    	$("#opcaoComparador").parent().removeClass("active");
 	    	$("#opcaoDicionario").parent().removeClass("active");
+	    	
+	    	$("#opcaoFiltro").find("img").attr("src", "img/icone-filtro.png");
+	    	$("#opcaoComparador").find("img").attr("src", "img/icone-comparador.png");
+	    	$("#opcaoDicionario").find("img").attr("src", "img/icone-dicionario.png");
 	    	
         	$("#filtro, #dicionario, #comparador").hide();
             $("#arquivos").show();
@@ -97,12 +127,39 @@ $(document).ready(function() {
 	});
 	
 	$("#buttonLimparTudo").click(function() {	    
-	    $("#poolList, #viewsList").empty();
+	    $("#viewsList").empty();
+	    $("#poolList").children().not("#entidadeAlvo").each(function() {
+	    	$(this).remove();
+	    });
 	});
 	
 	$("#buttonDesistirJogo").click(function() {	    
 		desistirJogo();
 	});
+	
+	$(".main").click(function() {
+		$(".menu-slider").hide();
+		$(".sidebar > .menu-ferramentas > ul > li").removeClass("active");
+		
+		$("#opcaoFiltro").find("img").attr("src", "img/icone-filtro.png");
+    	$("#opcaoComparador").find("img").attr("src", "img/icone-comparador.png");
+    	$("#opcaoDicionario").find("img").attr("src", "img/icone-dicionario.png");
+    	$("#opcaoArquivos").find("img").attr("src", "img/icone-arquivos.png");
+	});
+	
+	/*$(".sidebar").click(function(e) {
+		alert("fechou");
+		$(".menu-slider").hide();
+		$(".sidebar > ul > li").removeClass("active");
+	});*/
+	
+	/*$(".sidebar").on('click', ':not(.menu-ferramentas, ul, li, a)', function (e) {
+		e.stopPropagation();
+		alert("fechou");
+		console.log(e);
+		//$(".menu-slider").hide();
+		//$(".sidebar > ul > li").removeClass("active");
+	});*/
 });
 
 function criarTabela(form, tabela, divTabela, idBaseDados) {
@@ -312,9 +369,13 @@ function recuperarEntidadeAleatoria(idEntidade) {
 	
 	var valorExibicaoAtributos = jogadaAjax.getValorExibicaoAtributos(dadosTabela["idBaseDados"]);
 	
+	//var baseDados = jogadaAjax.recuperaObjetoPorBaseDadosId(dadosTabela["idBaseDados"]);
+	
+	//console.log(baseDados);
+	
 	var html = "<li class='pull-left' id='entidadeAlvo'><div class='box'><ul class='box-list'>";
 	
-	html += "<li>Refer&ecirc;ncia Alvo</li>";
+	html += "<li><div>Refer&ecirc;ncia Alvo</div><div>Caixa #</div><div class='clearfix'></div></li>";
 	
 	var j = 0;
 	

@@ -1,14 +1,19 @@
 <div class="row area">
 
-	<div id="views" class="col-lg-7">
-		<ul id="viewsList" class='box-list'></ul>
-		<!-- <div class="row lixeira">
-						<div class="col-lg-7">
-							<div id="trash" class="trash">
-								<img src="trash.png" style="height: 100%">
-							</div>
-						</div>
-					</div> -->
+	<div class="col-lg-7">
+	
+		<div id="views" style="height: 80%">
+			<ul id="viewsList" class='box-list'></ul>
+		</div>
+		
+		<div class="row lixeira" style="height: 20%">
+			<div class="col-lg-7">
+				<div id="trash" class="trash">
+					<img src="img/lixeira.png" style="height: 80%">
+				</div>
+			</div>
+		</div>
+		
 	</div>
 
 	<div id="pool" class="col-lg-5">

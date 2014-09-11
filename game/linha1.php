@@ -5,16 +5,13 @@
 
 	<div style="float: right">
 		<div class='text-center buttonJogo' id="buttonLimparTudo">
-			<div>X</div>
-			<div>Limpar</div>
+			<img src="img/botao-limpar.png" />
 		</div>
 		<div class='text-center buttonJogo' id="buttonEncerrarJogo">
-			<div>X</div>
-			<div>Encerrar</div>
+			<img src="img/botao-encerrar.png" />
 		</div>
 		<div class='text-center buttonJogo' id="buttonDesistirJogo">
-			<div>X</div>
-			<div>Desistir</div>
+			<img src="img/botao-desistir.png" />
 		</div>
 	</div>
 

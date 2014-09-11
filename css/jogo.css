@@ -116,7 +116,7 @@
 }
 
 .area {
-	height: 60vh;
+	height: 69vh;
 	padding-left: 20px;
 	padding-right: 20px;
 }
@@ -134,7 +134,7 @@
 }
 
 #pool {
-	border: 5px solid #2a6496;
+	border: 5px dotted #2a6496;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
@@ -168,9 +168,9 @@
 	z-index: 15;
 	padding: 15px;
 	background-color: white;
-	-webkit-border-radius: 10px;
+	/* -webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
-	border-radius: 10px;
+	border-radius: 10px; */
 }
 
 #entidadeAlvo {

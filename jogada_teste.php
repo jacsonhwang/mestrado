@@ -38,7 +38,12 @@ if ($entidadeHabilitadoUsuario == true) {
 		
 	jogo($entidade);
 } else {
-	erro (ERRO_JOGAR);
+	
+	erro ("Erro", ERRO_JOGAR, "painel_usuario.php");
+	
+	/*<div class="col-lg-10 col-lg-offset-1">
+		<div class="alert alert-danger" role="alert"><b>Erro!</b>&nbsp;<?php echo $mensagem?></div>
+	</div>*/
 }
 
 function verificarEntidadeParaUsuario ($entidadeSuspeita, $arrayEntidade) {
@@ -59,7 +64,13 @@ function jogo ($entidade) {
 	?>
 	
 	<script>
-	$.blockUI({ message: null });
+
+	$(document).ready(function () {
+		recuperarEntidadeAleatoria(1);
+	    iniciarContador();
+	});
+    
+	/*$.blockUI({ message: null });
 	
 	new Messi("Clique em OK para iniciar o jogo.", {
 	    title : "Iniciar jogo",
@@ -78,36 +89,38 @@ function jogo ($entidade) {
 	            $.unblockUI();
 	        }
 	    }
-	});
+	});*/
 	</script>
 	
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
-				<ul class="nav nav-sidebar">
-					<li class="tituloMenuSidebar"><a href="#" style="pointer-events: none; cursor: default;">Ferramentas</a></li>
-					<li><a href="#" id="opcaoFiltro">Filtro</a></li>
-					<li><a href="#" id="opcaoComparador">Comparador</a></li>
-					<li><a href="#" id="opcaoDicionario">Dicionário</a></li>
-					<li><a href="#" id="opcaoArquivos">Arquivos</a></li>
-				</ul>
+				<div class="menu-ferramentas">
+					<ul class="nav nav-sidebar">
+						<li class="tituloMenuSidebar"><a href="#" style="pointer-events: none; cursor: default;">Ferramentas</a></li>
+						<li><a href="#" id="opcaoFiltro"><img src="img/icone-filtro.png"> Filtro</a></li>
+						<li><a href="#" id="opcaoComparador"><img src="img/icone-comparador.png"> Comparador</a></li>
+						<li><a href="#" id="opcaoDicionario"><img src="img/icone-dicionario.png"> Dicionário</a></li>
+						<li><a href="#" id="opcaoArquivos"><img src="img/icone-arquivos.png"> Arquivos</a></li>
+					</ul>
+				</div>
 			</div>
 			
 			<!-- ------------------------------ FILTRO ----------------------------- -->
 			
-			<?php include_once __DIR__ . '/game/filtro.php'?>
+			<?php include_once __DIR__ . '/game/filtro.php'; ?>
 			
 			<!-- ------------------------------ COMPARADOR ------------------------- -->
 			
-			<?php include_once __DIR__ . '/game/comparador.php'?>
+			<?php include_once __DIR__ . '/game/comparador.php'; ?>
 			
 			<!-- ------------------------------ DICIONÁRIO ------------------------- -->
 			
-			<?php include_once __DIR__ . '/game/dicionario.php'?>
+			<?php include_once __DIR__ . '/game/dicionario.php'; ?>
 			
 			<!-- ------------------------------ ARQUIVOS --------------------------- -->
 			
-			<?php include_once __DIR__ . '/game/arquivo.php'?>
+			<?php include_once __DIR__ . '/game/arquivo.php'; ?>
 			
 			<!-- ------------------------------ JOGO ------------------------------- -->
 			
@@ -115,13 +128,13 @@ function jogo ($entidade) {
 			
 				<!-- ------------------------------ LINHA 1 ------------------------------ -->
 				
-				<?php include_once __DIR__ . '/game/linha1.php'?>
+				<?php include_once __DIR__ . '/game/linha1.php'; ?>
 				
 				<!-- ------------------------------ LINHA 2 ------------------------------ -->
-				<?php include_once __DIR__ . '/game/linha2.php'?>
+				<?php include_once __DIR__ . '/game/linha2.php'; ?>
 				
 				<!-- ------------------------------ LINHA 3 ------------------------------ -->
-				<?php include_once __DIR__ . '/game/linha3.php'?>
+				<?php include_once __DIR__ . '/game/linha3.php'; ?>
 				
 			</div>
 		</div>

@@ -19,7 +19,8 @@ $(document).ready(function() {
 	$("#trash").droppable({
 		drop: function(event, ui) {
 			addToTrash(ui.draggable);
-		}
+		},
+		tolerance: "touch"
 	});
 	
 });
@@ -88,12 +89,6 @@ function addToTrash(item) {
 	
 	$("body").css("cursor", "auto");
 	
-	var trash = $("#trash");
-	
-	$('#data').find(item).css({
-		'background':'white'
-	});
-	
 	$("#views").find(item).remove();
 	
 	$("#poolList").find(item).remove();
@@ -103,5 +98,7 @@ function fecharMenuSlider() {
 	
 	$("#filtro").hide();
 	$("#opcaoFiltro").parent().removeClass("active");
+	
+	$("#opcaoFiltro").find("img").attr("src", "img/icone-filtro.png");
 	
 }

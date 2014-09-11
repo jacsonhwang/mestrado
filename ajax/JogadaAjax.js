@@ -151,3 +151,20 @@ JogadaAjax.prototype.inserirEntidadeAlvo = function(idEntidade, idBaseDados, sit
 
     return resultado;
 };
+
+JogadaAjax.prototype.recuperaObjetoPorBaseDadosId = function(idBaseDados) {
+	var resultado = "";
+
+    $.ajax({
+        type: "POST",
+        url: "ajaxController/baseAjaxControle.php",
+        data: { idConsulta: 2, idBaseDados: idBaseDados },
+        async: false,
+        success: function(msg) {
+        	console.log(msg);
+            resultado = jQuery.parseJSON(msg);
+        }
+    });
+
+    return resultado;
+};
