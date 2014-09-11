@@ -1,7 +1,7 @@
 <?php
 
 // Inclui o arquivo class.phpmailer.php localizado na pasta phpmailer
-require("phpmailer/class.phpmailer.php");
+include_once __DIR__ . '/phpmailer/class.phpmailer.php';
 
 // Inicia a classe PHPMailer
 $mail = new PHPMailer();

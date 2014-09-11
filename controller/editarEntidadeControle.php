@@ -1,8 +1,6 @@
 <?php
-include '../dao/EntidadeDAO.php';
-
-include 'dao/EntidadeDAO.php';
-include_once '../model/Entidade.php';
+include_once __DIR__ . '/../dao/EntidadeDAO.php';
+include_once __DIR__ . '/../model/Entidade.php';
 
 if(isset($_POST["buttonEditarEntidade"])) {
 	

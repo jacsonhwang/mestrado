@@ -1,10 +1,4 @@
-<?php
-
-include 'contato.php';
-
-
-
-?>
+<?php include_once __DIR__ . '/contato.php'; ?>
 
 <script>
 console.log("aaa");

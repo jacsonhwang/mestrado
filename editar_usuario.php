@@ -1,5 +1,5 @@
-<?php include 'header.php'; ?>
-<?php include 'controller/usuariosControle.php'; ?>
+<?php include_once __DIR__ . '/header.php'; ?>
+<?php include_once __DIR__ . '/controller/usuariosControle.php'; ?>
 
 <div id="formularioLogin" class="container">
 	<div class="row">
@@ -183,4 +183,4 @@
 		});
 	});
 </script>
-<?php include 'footer.php'; ?>
+<?php include_once __DIR__ . '/footer.php'; ?>

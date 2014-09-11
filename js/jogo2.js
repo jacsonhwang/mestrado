@@ -53,7 +53,7 @@ function drop(lista, classe, listaOposta, item) {
 	
 	fecharMenuSlider();
 
-	var html = "<li class='pull-left'><div class='box'><ul class='box-list'><li><div>Referência suspeita</div><div>Caixa #</div><div class='clearfix'></div></li>";
+	var html = "<li class='pull-left'><div class='box'><ul class='box-list'><li><div>Refer&ecirc;ncia Suspeita</div><div>Caixa #</div><div class='clearfix'></div></li>";
 
 	if($(item).find("td").length > 0) {
 		$(item).find("td").each(function() {

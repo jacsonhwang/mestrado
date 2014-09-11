@@ -1,11 +1,6 @@
 <?php
-include '../dao/EntidadeDAO.php';
-
-include 'dao/EntidadeDAO.php';
-
-include '../dao/EntidadesListaDAO.php';
-
-include 'dao/EntidadesListaDAO.php';
+include_once __DIR__ . '/../dao/EntidadeDAO.php';
+include_once __DIR__ . '/../dao/EntidadesListaDAO.php';
 
 function listarEntidade() {
 	$entidadeDAO = new EntidadeDAO();

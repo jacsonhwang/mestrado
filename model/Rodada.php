@@ -1,5 +1,5 @@
 <?php
-include_once '../model/Entidade.php';
+include_once __DIR__ . '/../model/Entidade.php';
 
 class Rodada {
 	

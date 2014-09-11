@@ -1,10 +1,9 @@
-<?php include 'header.php'; ?>
-<?php require_once 'controller/rodadaControle.php'; 
-include_once 'model/Rodada.php';
-include_once 'model/Entidade.php';
-
+<?php
+include_once __DIR__ . '/header.php';
+include_once __DIR__ . '/controller/rodadaControle.php'; 
+include_once __DIR__ . '/model/Rodada.php';
+include_once __DIR__ . '/model/Entidade.php';
 ?>
-
 
 <div id="formularioLogin" class="container">
 	<div class="row">
@@ -65,7 +64,7 @@ include_once 'model/Entidade.php';
 						</tbody>						
 					</table>
 					
-					<?php include 'paginacao.php'; ?>
+					<?php include_once __DIR__ . '/paginacao.php'; ?>
 					
 				</div>
 					
@@ -88,4 +87,4 @@ include_once 'model/Entidade.php';
 		</div>
 	</div>
 </div>
-<?php include 'footer.php'; ?>
+<?php include_once __DIR__ . '/footer.php'; ?>

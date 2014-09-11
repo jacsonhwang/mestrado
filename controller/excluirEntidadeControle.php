@@ -1,6 +1,6 @@
 <?php
 
-include 'entidadeControle.php';
+include_once __DIR__ . '/../entidadeControle.php';
 
 session_start();
 

@@ -1,5 +1,6 @@
 <?php
-include_once '../model/Entidade.php';
+include_once __DIR__ . '/../model/Entidade.php';
+include_once __DIR__ . '/../model/MetaBaseDados.php';
 
 class Base {
 	
@@ -9,14 +10,16 @@ class Base {
 	private $nomeJogo;
 	private $nomeTabela;
 	private $entidade;
+	private $metaBaseDados;
 	
-	public function __construct($id, $nome, $nomeArquivo, $nomeJogo, $nomeTabela, $entidade) {
+	public function __construct($id, $nome, $nomeArquivo, $nomeJogo, $nomeTabela, $entidade, $metaBaseDados) {
 		$this->id = $id;
 		$this->nome = $nome;
 		$this->nomeArquivo = $nomeArquivo;
 		$this->nomeJogo = $nomeJogo;
 		$this->nomeTabela = $nomeTabela;
 		$this->entidade = $entidade;
+		$this->metaBaseDados = $metaBaseDados;
 	}
 	
 	function getId() {
@@ -41,6 +44,10 @@ class Base {
 	
 	function getEntidade() {
 		return $this->entidade;
+	}
+
+	function getMetaBaseDados() {
+		return $this->metaBaseDados;
 	}
 	
 	function setId($id) {

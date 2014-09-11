@@ -1,18 +1,9 @@
 <?php
-include_once("../inc/conexao.php");
-include_once("inc/conexao.php");
-
-include_once 'dao/EntidadeDAO.php';
-include_once '../dao/EntidadeDAO.php';
-
-include_once '../model/Rodada.php';
-include_once 'model/Rodada.php';
-
-include_once '../model/Entidade.php';
-include_once 'model/Entidade.php';
-
-include_once '../model/Usuario.php';
-include_once 'model/Usuario.php';
+include_once __DIR__ . '/../inc/conexao.php';
+include_once __DIR__ . '/../dao/EntidadeDAO.php';
+include_once __DIR__ . '/../model/Rodada.php';
+include_once __DIR__ . '/../model/Entidade.php';
+include_once __DIR__ . '/../model/Usuario.php';
 
 class RodadaDAO {
 

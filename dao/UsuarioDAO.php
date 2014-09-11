@@ -1,10 +1,7 @@
 <?php
 
-include_once("inc/conexao.php");
-include_once("model/Usuario.php");
-
-include_once("../inc/conexao.php");
-include_once("../model/Usuario.php");
+include_once __DIR__ . '/../inc/conexao.php';
+include_once __DIR__ . '/../model/Usuario.php';
 
 class UsuarioDAO {
 	
@@ -62,7 +59,7 @@ class UsuarioDAO {
 			}
 		}
 
-		$sql = "SELECT nome, idade, genero, escolaridade, formacao_academica, marketplace, science, gaming, situacao
+		$sql = "SELECT id, nome, idade, genero, escolaridade, formacao_academica, marketplace, science, gaming, situacao
 				FROM usuario
 				WHERE email = '".$usuario."'
 		              AND senha = '".$senha."'";
@@ -73,7 +70,7 @@ class UsuarioDAO {
 		
 			$novoUsuario = new Usuario($rs["nome"], $usuario, null, $rs["idade"], $rs["genero"], $rs["escolaridade"],
 									   $rs["formacao_academica"], $rs["marketplace"], $rs["science"], $rs["gaming"],
-									   $rs['situacao']);
+									   $rs['situacao'], $rs['id']);
 		}
 		
 		$cn->disconnect();
@@ -210,6 +207,23 @@ class UsuarioDAO {
 		$cn->execute($sql);
 		
 		$cn->disconnect();
+	}
+	
+	public function recuperarObjetoUsuarioPorEmail($email) {
+	
+		$cn = new Conexao();
+	
+		$sql = "SELECT id, nome, email, senha, idade, genero, situacao FROM usuario WHERE email = '" . $email . "'";
+	
+		$result = $cn->execute($sql);
+	
+		while ($rs = sqlsrv_fetch_array($result)) {
+			$usuario = new Usuario($rs["id"], $rs["nome"], $rs["email"], $rs["senha"], $rs["idade"], $rs["genero"], null, null, null, null, null, $rs["situacao"]);
+		}
+	
+		$cn->disconnect();
+	
+		return $usuario;
 	}
 	
 	public function recuperarIdUsuario($email){

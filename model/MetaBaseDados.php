@@ -1,6 +1,6 @@
 <?php
 
-include_once realpath('Base.php');
+include_once __DIR__ . '/../model/BaseDados.php';
 
 class MetaBaseDados {
 	
@@ -10,9 +10,9 @@ class MetaBaseDados {
 	private $nomeJogo;
 	private $descricaoAtributo;
 	private $exibirAtributo;
-	
-	
-	public function __construct($id, $nomeAtributo, $base, $nomeJogo, $descricaoAtributo, $exibirAtributo) {
+	private $identificador;
+		
+	public function __construct($id, $nomeAtributo, $base, $nomeJogo, $descricaoAtributo, $exibirAtributo, $identificador) {
 		
 		$this->id = $id;
 		$this->nomeAtributo = $nomeAtributo;
@@ -20,7 +20,7 @@ class MetaBaseDados {
 		$this->nomeJogo = $nomeJogo;
 		$this->descricaoAtributo = $descricaoAtributo;
 		$this->exibirAtributo = $exibirAtributo;
-		
+		$this->identificador = $identificador;
 	}
 	
 	function getId() {
@@ -46,7 +46,11 @@ class MetaBaseDados {
 	function getExibirAtributo() {
 		return $this->exibirAtributo;
 	}
-
+	
+	function getIdentificador() {
+		return $this->identificador;
+	}	
+	
 	function recuperarArrayMetaBase() {
 				
 		//$baseArray['id']				      = $this->id;

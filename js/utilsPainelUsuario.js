@@ -2,8 +2,8 @@ $(document).ready(function(){
 	
 	$('.bxslider').bxSlider();
 	
-	$("#buttonJogoTeste").click(function() {
+	/*$("#buttonJogoTeste").click(function() {
 		window.location = 'jogada_teste.php';
-	});
+	});*/
 	
 });

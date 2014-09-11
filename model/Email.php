@@ -1,6 +1,6 @@
 <?php
 
-require("../phpmailer/class.phpmailer.php");
+include_once __DIR__ . '/../phpmailer/class.phpmailer.php';
 
 class Email {
 

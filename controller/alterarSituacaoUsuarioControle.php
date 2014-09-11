@@ -1,6 +1,6 @@
 <?php
 
-include 'usuariosControle.php';
+include_once __DIR__ . '/usuariosControle.php';
 
 session_start();
 

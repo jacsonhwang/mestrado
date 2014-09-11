@@ -1,8 +1,6 @@
 <?php
-
-include_once 'EntidadeDAO.php';
-
-include_once("inc/conexao.php");
+include_once __DIR__ . '/../inc/conexao.php';
+include_once __DIR__ . '/../dao/EntidadeDAO.php';
 
 session_start();
 

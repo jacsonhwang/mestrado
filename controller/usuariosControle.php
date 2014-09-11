@@ -1,8 +1,6 @@
 <?php
 
-include '../dao/UsuarioDAO.php';
-
-include 'dao/UsuarioDAO.php';
+include_once __DIR__ . '/../dao/UsuarioDAO.php';
 
 function listarUsuarios() {
 	

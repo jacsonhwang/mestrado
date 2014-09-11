@@ -1,5 +1,7 @@
-<?php include 'header.php'; ?>
-<?php include 'controller/entidadeControle.php'; ?>
+<?php
+include_once __DIR__ . '/header.php';
+include_once __DIR__ . '/controller/entidadeControle.php';
+?>
 
 <div class="container">
 	<div class="row">
@@ -78,4 +80,4 @@
 		</div>
 	</div>
 </div>
-<?php include 'footer.php'; ?>
+<?php include_once __DIR__ . '/footer.php'; ?>

@@ -1,14 +1,8 @@
 <?php
-include_once("../inc/conexao.php");
-include_once("inc/conexao.php");
 
-
-include_once '../model/BaseDados.php';
-include_once 'model/BaseDados.php';
-
-
-include_once '../model/Entidade.php';
-include_once 'model/Entidade.php';
+include_once __DIR__ . '/../inc/conexao.php';
+include_once __DIR__ . '/../model/BaseDados.php';
+include_once __DIR__ . '/../model/Entidade.php';
 
 class BaseDAO {
 
@@ -256,6 +250,58 @@ class BaseDAO {
 		$cn->disconnect();
 		
 		return $dados;
+	}
+	
+	public function recuperaObjetoPorEntidadeId($entidadeId){
+	
+		$cn = new Conexao();
+		$campos = array();
+	
+		$metaBaseDadosDAO = new MetaBaseDadosDAO();
+		
+		$sql = "SELECT id, nome, nome_arquivo, nome_jogo, nome_tabela, entidade_id
+				FROM base_dados
+				WHERE entidade_id = '".$entidadeId."'";
+			
+		$result = $cn->execute($sql);
+	
+		while ($rs = sqlsrv_fetch_array($result)) {
+			
+			$arrayMetaBaseDados = $metaBaseDadosDAO->recuperarObjetoPorBaseDadoId($rs['id']); 
+			
+			$baseDados = new Base($rs['id'], $rs['nome'], $rs['nome_arquivo'], $rs['nome_jogo'], $rs['nome_tabela'], null, $arrayMetaBaseDados);
+						
+			array_push($campos, $baseDados);
+		}
+	
+		$cn->disconnect();
+	
+		return $campos;
+	}
+	
+	public function recuperaObjetoPorBaseDadosId($baseDadosId){
+	
+		$cn = new Conexao();
+		$baseDados = null;
+	
+		$metaBaseDadosDAO = new MetaBaseDadosDAO();
+	
+		$sql = "SELECT id, nome, nome_arquivo, nome_jogo, nome_tabela, entidade_id
+				FROM base_dados
+				WHERE id = '".$baseDadosId."'";
+			
+		$result = $cn->execute($sql);
+	
+		while ($rs = sqlsrv_fetch_array($result)) {
+				
+			$arrayMetaBaseDados = $metaBaseDadosDAO->recuperarObjetoPorBaseDadoId($rs['id']);
+				
+			$baseDados = new Base($rs['id'], $rs['nome'], $rs['nome_arquivo'], $rs['nome_jogo'], $rs['nome_tabela'], null, $arrayMetaBaseDados);
+		}
+	
+		$cn->disconnect();
+	
+		return $baseDados;
 	}
 }
 

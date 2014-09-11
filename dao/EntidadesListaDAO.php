@@ -1,18 +1,19 @@
 <?php
 
-include_once("../inc/conexao.php");
-
-include_once("inc/conexao.php");
-include_once("MetaBaseDadosDAO.php");
-include_once("BaseDAO.php");
-include_once("EntidadeDAO.php");
-include_once("../model/Entidade.php");
-
-include '../dBug.php';
+include_once  __DIR__ . '/../inc/conexao.php';
+include_once  __DIR__ . '/../inc/dBug.php';
+include_once  __DIR__ . '/../dao/MetaBaseDadosDAO.php';
+include_once  __DIR__ . '/../dao/BaseDAO.php';
+include_once  __DIR__ . '/../dao/EntidadeDAO.php';
+include_once  __DIR__ . '/../model/Entidade.php';
 
 class EntidadesListaDAO {
 	
 	private $cn;
+	
+	public function __construct__ () {
+		echo "lalala";
+	}
 	
 	public function recuperarPrimeiraLinha($idBaseDados, $nomeTabela) {
 		
@@ -40,55 +41,83 @@ class EntidadesListaDAO {
 		
 	}
 	
-	public function recuperarDados($atributos, $valores, $tabela, $idBaseDados) {
-		
-		$mbd = new MetaBaseDadosDAO();
-		
-		$nomesColunas = $mbd->recuperarNomesColunas($idBaseDados);
+	//public function recuperarDados($atributos, $valores, $tabela, $idBaseDados) {
+	public function recuperarDados($atributos, $valores, $idBaseDados) {
 		
 		$cn = new Conexao();
+		$baseDadosDAO = new BaseDAO();
+		$metaBaseDadosDAO = new MetaBaseDadosDAO();
 		
-		$where = "";
+		$nomesColunas = $metaBaseDadosDAO->recuperarNomesColunas($idBaseDados);
+		$baseDados = $baseDadosDAO->recuperaObjetoPorBaseDadosId($idBaseDados); 
+		$table = $baseDados->getNomeTabela();
 		
-		$arrayTypeColumns = $cn->typeColumns($tabela);
+		$where = null;
+		$arrayWhere[] = "(1=1)";
+		
+		//$arrayTypeColumns = $cn->typeColumns($tabela);
+		$arrayTypeColumns = $cn->typeColumns($table);
 		
 		for($i = 0; $i < count($atributos); $i++) {
-			$where .= $atributos[$i] . "=";
+			//$where .= $atributos[$i] . "=";
 			
 			switch ($arrayTypeColumns[$atributos[$i]]) {
 				case 'char':
-					$where .= "'" . $valores[$i] . "'";
+					$arrayWhere[] = $atributos[$i] . " LIKE '%" . $valores[$i] . "%'";
+					
+					//$where .= "'" . $valores[$i] . "'";
 					break;
 				case 'datetime':
-					$where .= "'" . $valores[$i] . "'";
+					$arrayWhere[] = $atributos[$i] . " = '" . $valores[$i] . "'";
+					
+					///$where .= "'" . $valores[$i] . "'";
 					break;
 				case 'float':
-					$where .= $valores[$i];
+					$arrayWhere[] = $atributos[$i] . " = " . $valores[$i];
+					
+					//$where .= $valores[$i];
 					break;
 				case 'int':
-					$where .= $valores[$i];
+					$arrayWhere[] = $atributos[$i] . " = " . $valores[$i];
+					
+					//$where .= $valores[$i];
 					break;
 				case 'numeric':
-					$where .= $valores[$i];
+					$arrayWhere[] = $atributos[$i] . " = " . $valores[$i];
+					
+					//$where .= $valores[$i];
 					break;
 				case 'smallint':
-					$where .= $valores[$i];
+					$arrayWhere[] = $atributos[$i] . " = " . $valores[$i];
+					
+					//$where .= $valores[$i];
 					break;
 				case 'text':
-					$where .= "'" . $valores[$i] . "'";
+					$arrayWhere[] = $atributos[$i] . " LIKE '%" . $valores[$i] . "%'";
+					
+					//$where .= "'" . $valores[$i] . "'";
 					break;
 				case 'varchar':
-					$where .= "'" . $valores[$i] . "'";
+					$arrayWhere[] = $atributos[$i] . " LIKE '%" . $valores[$i] . "%'";
+					
+					//$where .= "'" . $valores[$i] . "'";
 					break;
 			}
-			
+	/* 		
 			if($i != count($atributos) - 1) {
 				$where .= " AND ";
-			}
+			} */
 		}
-		
-		$sql = "SELECT " . $nomesColunas . " FROM " . $tabela . " WHERE " . $where;
-		
+		$where = implode(' AND ', $arrayWhere);
+				
+		$sql =  " SELECT " . $nomesColunas;
+		$sql .= " FROM " . $table;
+		$sql .= " WHERE " . $where;
+				
+		/* if ($where != "" && $where != null) {
+			$sql .= "WHERE " . $where;	
+		 }*/
+
 		$result = $cn->execute($sql);
 		
 		$dadosArray = array();

@@ -1,12 +1,12 @@
 <?php 
 //include 'dao/MetaBaseDadosDAO.php';
-include 'dao/EntidadesListaDAO.php';
+include_once __DIR__ . '/dao/EntidadesListaDAO.php';
 //include 'dao/ResultadoDAO.php';
 //include 'dao/BaseDAO.php';
 //include 'controller/entidadeControle.php';
 
-include "inc/constantes.php";
-include 'dBug.php';
+include_once __DIR__ . '/inc/constantes.php';
+include_once __DIR__ . '/inc/dBug.php';
 
 
 session_start();

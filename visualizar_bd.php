@@ -1,5 +1,7 @@
-<?php include 'header.php'; ?>
-<?php include_once 'controller/baseControle.php'; ?>
+<?php
+include_once __DIR__ . '/header.php';
+include_once __DIR__ . '/controller/baseControle.php';
+?>
 
 <div class="container">
 	<div class="row">
@@ -121,4 +123,4 @@
 		</div>
 	</div>
 </div>
-<?php include 'footer.php'; ?>
+<?php include_once __DIR__ . '/footer.php'; ?>

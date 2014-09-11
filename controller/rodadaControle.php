@@ -1,10 +1,8 @@
 <?php 
-include_once '../dao/EntidadeDAO.php';
-include_once 'dao/RodadaDAO.php';
-include_once '../dao/RodadaDAO.php';
-
-include_once '../model/Rodada.php';
-include_once '../model/Entidade.php';
+include_once __DIR__ . '/../dao/EntidadeDAO.php';
+include_once __DIR__ . '/../dao/RodadaDAO.php';
+include_once __DIR__ . '/../model/Rodada.php';
+include_once __DIR__ . '/../model/Entidade.php';
 
 function listarRodada() {
 	

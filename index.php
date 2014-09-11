@@ -1,4 +1,7 @@
-<?php include realpath('header.php'); ?>
+<?php include_once __DIR__ . '/inc/constantes.php'?>
+<?php include_once __DIR__ . '/inc/dBug.php'; ?>
+<?php include_once __DIR__ . '/header.php'; ?>
+
 <div>	
 	<div class="jumbotron">
       <div class="container">
@@ -32,7 +35,7 @@
 	          <p><a class="btn btn-default" href="contato.php" role="button">Saiba mais</a></p>
 	        </div>
 	      </div>
-    </div>
-    
+    </div>    
 </div>
-<?php include 'footer.php'; ?>
+
+<?php include_once __DIR__ . '/footer.php'; ?>

@@ -1,5 +1,7 @@
-<?php include 'header.php'; ?>
-<?php require_once 'controller/usuariosControle.php'; ?>
+<?php
+include_once __DIR__ . '/header.php';
+include_once __DIR__ . '/controller/usuariosControle.php';
+?>
 
 <div id="formularioLogin" class="container">
 	<div class="row">
@@ -63,7 +65,7 @@
 						</tbody>
 					</table>
 
-					<?php include 'paginacao.php'; ?>
+					<?php include_once __DIR__ . '/paginacao.php'; ?>
 
 			</div>
 			
@@ -88,4 +90,4 @@
 	</div>
 </div>
 
-<?php include 'footer.php'; ?>
+<?php include_once __DIR__ . '/footer.php'; ?>

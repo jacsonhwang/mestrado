@@ -1,6 +1,6 @@
 <?php
 
-include '../controller/entidadeControle.php';
+include_once __DIR__ . '/../controller/entidadeControle.php';
 
 if(isset($_POST['idConsulta'])){
 	$idConsulta = $_POST['idConsulta'];

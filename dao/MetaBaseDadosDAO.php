@@ -1,9 +1,7 @@
 <?php
 
-include_once("../model/MetaBaseDados.php");
-include_once("model/MetaBaseDados.php");
-
-include_once("inc/conexao.php");
+include_once __DIR__ . '/../inc/conexao.php';
+include_once __DIR__ . '/../model/MetaBaseDados.php';
 
 class MetaBaseDadosDAO {
 	
@@ -114,6 +112,31 @@ class MetaBaseDadosDAO {
 		$cn->disconnect();
 		
 		return $exibirAtributosArray;
+	}
+	
+	public function recuperarObjetoPorBaseDadoId($idBaseDados) {
+	
+		$cn = new Conexao();
+	
+		$sql  = " SELECT id, nome_atributo, descricao, nome_jogo, exibir_atributo, identificador"; 
+		$sql .= " FROM " . $this->tabela;
+		$sql .= " WHERE exibir_atributo = 1";
+		$sql .= " AND base_dados_id = " . $idBaseDados;
+	
+		$result = $cn->execute($sql);
+	
+		$arrayMetaBaseDados = array();
+	
+		while ($rs = sqlsrv_fetch_array($result)) {
+			
+			$metaBaseDados = new MetaBaseDados($rs["id"], $rs["nome_atributo"], null, $rs["nome_jogo"], $rs["descricao"], $rs["exibir_atributo"], $rs["identificador"]);
+				
+			array_push($arrayMetaBaseDados, $metaBaseDados);
+		}
+	
+		$cn->disconnect();
+		
+		return $arrayMetaBaseDados;
 	}
 }
 

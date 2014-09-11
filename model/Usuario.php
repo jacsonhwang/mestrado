@@ -2,7 +2,7 @@
 
 class Usuario {
 	
-	//private $id;
+	private $id;
 	private $nome;
 	private $email;
 	private $senha;
@@ -15,8 +15,8 @@ class Usuario {
 	private $gaming;
 	private $situacao;
 	
-	public function __construct($nome, $email, $senha, $idade, $genero, $escolaridade, $formacaoAcademica, $marketplace, $science, $gaming, $situacao) {
-		//$this->id = $id;
+	public function __construct($nome, $email, $senha, $idade, $genero, $escolaridade, $formacaoAcademica, $marketplace, $science, $gaming, $situacao, $id) {
+		$this->id = $id;
 		$this->nome = $nome;
 		$this->email = $email;
 		$this->senha = $senha;
@@ -30,9 +30,9 @@ class Usuario {
 		$this->situacao = $situacao;
 	}
 	
-	/* function getId() {
+	function getId() {
 		return $this->id;
-	} */
+	}
 	
 	function getNome() {
 		return $this->nome;

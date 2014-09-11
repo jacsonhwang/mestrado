@@ -72,36 +72,17 @@ $(document).ready(function() {
         }
     });
 	
-	$("#liCaixaA").click(function() {
+	$(".abaFiltro").click(function() {
 		$("#buttonLimparBusca").click();
 	});
 	
-	$("#liCaixaB").click(function() {
-		$("#buttonLimparBusca").click();
+	$(".botaoFiltrar").click(function() {
+		var baseDadosId = $('.abaFiltro.active').attr('value');
+		var baseDadosNomeJogo = $('.abaFiltro.active').text().trim();
+		
+		criarTabela("#form"+baseDadosNomeJogo, "#tabelaFiltro"+baseDadosNomeJogo, "#divTabelaFiltro"+baseDadosNomeJogo, baseDadosId);
 	});
-	
-	$("#liCaixaC").click(function() {
-		$("#buttonLimparBusca").click();
-	});
-	
-	$("#formCaixaA").submit(function() {
-		
-		criarTabela(this, "#tabelaFiltroA", "#divTabelaFiltroA", "entidade_pessoa_1", 1);
-		
-	});
-	
-	$("#formCaixaB").submit(function() {
-		
-		criarTabela(this, "#tabelaFiltroB", "#divTabelaFiltroB", "entidade_pessoa_2", 2);
-		
-	});
-	
-	$("#formCaixaC").submit(function() {
-		
-		criarTabela(this, "#tabelaFiltroC", "#divTabelaFiltroC", "entidade_pessoa_3", 3);
-		
-	});
-	
+
 	$("#buttonLimparBusca").click(function() {
 		
 		$("#divFiltro").find("input:text").each(function() {
@@ -124,7 +105,7 @@ $(document).ready(function() {
 	});
 });
 
-function criarTabela(form, tabela, divTabela, tabelaBanco, idBaseDados) {
+function criarTabela(form, tabela, divTabela, idBaseDados) {
 	
 	$(tabela + " > thead > tr").empty();
 	$(tabela + " > tbody").empty();
@@ -145,7 +126,7 @@ function criarTabela(form, tabela, divTabela, tabelaBanco, idBaseDados) {
 	
 	var jogadaAjax = new JogadaAjax();
 	
-	var dadosArray = jogadaAjax.getDadosEntidade(atributo, valor, tabelaBanco, idBaseDados);
+	var dadosArray = jogadaAjax.getDadosEntidade(atributo, valor, idBaseDados);
 	var nomesColunas = jogadaAjax.getNomesColunas(idBaseDados);	
 	var valorExibicaoAtributos = jogadaAjax.getValorExibicaoAtributos(idBaseDados);	
 	var nomesAtributos = jogadaAjax.getNomesAtributos(idBaseDados).split(", ");
@@ -187,7 +168,7 @@ function criarTabela(form, tabela, divTabela, tabelaBanco, idBaseDados) {
 
 function finalizarJogo(situacao) {
 	
-	if(situacao == 1) { // jogo encerrado normalmente, pelo botão
+	if(situacao == 1) { // jogo encerrado normalmente, pelo botï¿½o
 		
 		$.blockUI({ message: null });
 		
@@ -216,7 +197,7 @@ function finalizarJogo(situacao) {
 		});
 		
 	}
-	else if(situacao == 2) { // jogo encerrado após contador finalizar
+	else if(situacao == 2) { // jogo encerrado apï¿½s contador finalizar
 		
 		$.blockUI({ message: null });
 	    
@@ -267,7 +248,7 @@ function iniciarContador() {
 function desistirJogo() {
 	$.blockUI({ message: null });
 	
-	new Messi("Deseja realmente sair do jogo? Os dados serão perdidos.", {
+	new Messi("Deseja realmente sair do jogo? Os dados serï¿½o perdidos.", {
 		title : "Sair do jogo",
 		buttons : [ {
 			id : 0,
@@ -333,7 +314,7 @@ function recuperarEntidadeAleatoria(idEntidade) {
 	
 	var html = "<li class='pull-left' id='entidadeAlvo'><div class='box'><ul class='box-list'>";
 	
-	html += "<li><div>Referência Alvo</div><div>Caixa #</div><div class='clearfix'></div></li>";
+	html += "<li>Refer&ecirc;ncia Alvo</li>";
 	
 	var j = 0;
 	

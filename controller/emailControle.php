@@ -1,5 +1,5 @@
 <?php
-include_once("../model/Email.php");
+include_once __DIR__ . '/../model/Email.php';
 
 $assunto = $_POST["inputAssunto"];
 $mensagem = $_POST["inputMensagem"];

@@ -1,7 +1,9 @@
 <?php
 
-include '../dao/EntidadesListaDAO.php';
-include 'dao/MetaBaseDadosDAO.php';
+include_once __DIR__ . '/../dao/EntidadesListaDAO.php';
+include_once __DIR__ . '/../dao/MetaBaseDadosDAO.php';
+
+$idConsulta = null;
 
 if(isset($_POST['idConsulta'])){
 	$idConsulta = $_POST['idConsulta'];
@@ -27,14 +29,14 @@ switch ($idConsulta){
 	case 1:
 		$entidadesListaDAO = new EntidadesListaDAO();
 		
-		$dadosArray = $entidadesListaDAO->recuperarDados($atributos, $valores, $tabela, $idBaseDados);
+		//$dadosArray = $entidadesListaDAO->recuperarDados($atributos, $valores, $tabela, $idBaseDados);
+		$dadosArray = $entidadesListaDAO->recuperarDados($atributos, $valores, $idBaseDados);
 		
 		foreach($dadosArray as &$dadoArray) {
 			foreach($dadoArray as &$dado) {
 				$dado = utf8_encode($dado);
 			}
 		}
-		
 		echo json_encode($dadosArray);
 		
 		break;

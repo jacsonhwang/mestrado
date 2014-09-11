@@ -1,6 +1,6 @@
 <?php
 
-include_once("../inc/conexao.php");
+include_once __DIR__ . '/../inc/conexao.php';
 
 class AdministradorDAO {
 	

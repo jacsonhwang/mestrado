@@ -1,7 +1,9 @@
-<?php include 'header.php'; ?>
-<?php include_once 'controller/entidadeControle.php'; ?>
-<?php include_once 'controller/usuariosControle.php'; ?>
-<?php include_once 'model/Entidade.php'; ?>
+<?php
+include_once __DIR__ . '/header.php';
+include_once __DIR__ . '/controller/entidadeControle.php';
+include_once __DIR__ . '/controller/usuariosControle.php';
+include_once __DIR__ . '/model/Entidade.php';
+?>
 
 <div id="formularioLogin" class="container">
 	<div class="row">
@@ -132,7 +134,7 @@
 							</tbody>
 						</table>
 						
-						<?php include 'paginacao.php'; ?>
+						<?php include_once __DIR__ . '/paginacao.php'; ?>
 						
 					</div>
 					
@@ -159,4 +161,4 @@
 		</div>
 	</div>
 </div>
-<?php include 'footer.php'; ?>
+<?php include_once __DIR__ . '/footer.php'; ?>

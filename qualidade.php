@@ -1,4 +1,5 @@
-<?php include 'header.php'; ?>
+<?php include_once __DIR__ . '/header.php'; ?>
+
 <div id="formularioLogin" class="container">
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2">
@@ -93,4 +94,4 @@
 		</div>
 	</div>
 </div>
-<?php include 'footer.php'; ?>
+<?php include_once __DIR__ . '/footer.php'; ?>

@@ -1,7 +1,5 @@
 <?php
-include_once '../dao/BaseDAO.php';
-
-include_once 'dao/BaseDAO.php';
+include_once __DIR__ . '/../dao/BaseDAO.php';
 
 function listarBase() {
 

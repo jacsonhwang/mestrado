@@ -1,10 +1,4 @@
-<?php
-
-include 'login.php';
-
-
-
-?>
+<?php include_once __DIR__ . '/login.php'; ?>
 
 <script>
 console.log("aaa");

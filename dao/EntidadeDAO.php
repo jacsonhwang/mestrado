@@ -1,8 +1,6 @@
 <?php
-include_once("../inc/conexao.php");
-include_once("inc/conexao.php");
-include_once("../model/Entidade.php");
-include_once("model/Entidade.php");
+include_once __DIR__ . '/../inc/conexao.php';
+include_once __DIR__ . '/../model/Entidade.php';
 
 class EntidadeDAO {
 	
@@ -272,6 +270,31 @@ class EntidadeDAO {
 		$cn->disconnect();
 		
 		return $idEntidadeUsuario;
+	}
+	
+
+	public function recuperarArrayEntidadePorUsuario($usuario) {
+	
+		$cn = new Conexao();
+		$arrayEntidade = array();
+		
+		$sql  = " SELECT e.id, e.nome, e.descricao_jogo, e.nome_jogo";
+		$sql .= " FROM entidade_usuario eu";
+		$sql .= " INNER JOIN entidade e ON e.id= eu.entidade_id ";
+		$sql .= " WHERE usuario_id = ". $usuario->getId();
+	
+		$result = $cn->execute($sql);
+	
+		while ($rs = sqlsrv_fetch_array($result)) {
+	
+			$entidade = new Entidade($rs["id"], $rs["nome"], $rs["nome_jogo"], $rs["descricao"]);
+			
+			array_push($arrayEntidade, $entidade);
+		}
+	
+		$cn->disconnect();
+	
+		return $arrayEntidade;
 	}
 }
 

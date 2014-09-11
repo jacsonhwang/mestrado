@@ -1,6 +1,6 @@
 <?php
 
-include 'rodadaControle.php';
+include_once __DIR__ . '/rodadaControle.php';
 
 session_start();
 

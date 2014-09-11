@@ -1,13 +1,15 @@
 var JogadaAjax = function() {
 };
 
-JogadaAjax.prototype.getDadosEntidade = function(atributo, valor, tabela, idBaseDados) {
+//JogadaAjax.prototype.getDadosEntidade = function(atributo, valor, tabela, idBaseDados) {
+JogadaAjax.prototype.getDadosEntidade = function(atributo, valor, idBaseDados) {
 	var resultado = "";
 	
 	$.ajax({
 		type: "POST",
 		url: "controller/filtroJogoControle.php",
-		data: { idConsulta: 1, atributo: atributo, valor: valor, tabela: tabela, idBaseDados: idBaseDados },
+		//data: { idConsulta: 1, atributo: atributo, valor: valor, tabela: tabela, idBaseDados: idBaseDados },
+		data: { idConsulta: 1, atributo: atributo, valor: valor, idBaseDados: idBaseDados },
 		async: false,
 		success: function(msg) {
 			resultado = jQuery.parseJSON(msg);

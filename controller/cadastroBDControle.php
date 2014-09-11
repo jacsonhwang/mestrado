@@ -1,18 +1,11 @@
 <?php
-include_once '../dao/BaseDAO.php';
-include_once '../dao/MetaBaseDadosDAO.php';
-include_once '../dao/EntidadeDAO.php';
-
-include_once '../model/BaseDados.php';
-include_once 'model/BaseDados.php';
-
-include_once '../model/MetaBaseDados.php';
-include_once 'model/MetaBaseDados.php';
-
-include_once '../controller/baseControle.php';
-
-
-include_once("../dBug.php");
+include_once __DIR__ . '/../dao/BaseDAO.php';
+include_once __DIR__ . '/../dao/MetaBaseDadosDAO.php';
+include_once __DIR__ . '/../dao/EntidadeDAO.php';
+include_once __DIR__ . '/../model/BaseDados.php';
+include_once __DIR__ . '/../model/MetaBaseDados.php';
+include_once __DIR__ . '/../controller/baseControle.php';
+include_once __DIR__ . '/../inc/dBug.php';
 
 
 if(isset($_POST["buttonCadastrarBD"])) {

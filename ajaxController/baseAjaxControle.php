@@ -1,6 +1,6 @@
 <?php
 
-include '../dao/BaseDAO.php';
+include_once __DIR__ . '/../dao/BaseDAO.php';
 
 if(isset($_POST['idConsulta'])){
 	$idConsulta = $_POST['idConsulta'];

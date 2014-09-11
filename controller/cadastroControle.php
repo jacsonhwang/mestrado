@@ -1,7 +1,7 @@
 <?php
-include_once("../inc/conexao.php");
-include_once("../model/Usuario.php");
-include_once("../dao/UsuarioDAO.php");
+include_once __DIR__ . '/../inc/conexao.php';
+include_once __DIR__ . '/../model/Usuario.php';
+include_once __DIR__ . '/../dao/UsuarioDAO.php';
 
 if(isset($_POST['buttonCadastrar'])) {
 	
