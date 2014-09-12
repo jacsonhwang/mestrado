@@ -152,7 +152,7 @@ JogadaAjax.prototype.inserirEntidadeAlvo = function(idEntidade, idBaseDados, sit
     return resultado;
 };
 
-JogadaAjax.prototype.recuperaObjetoPorBaseDadosId = function(idBaseDados) {
+JogadaAjax.prototype.recuperaNomeJogo = function(idBaseDados) {
 	var resultado = "";
 
     $.ajax({
@@ -161,7 +161,6 @@ JogadaAjax.prototype.recuperaObjetoPorBaseDadosId = function(idBaseDados) {
         data: { idConsulta: 2, idBaseDados: idBaseDados },
         async: false,
         success: function(msg) {
-        	console.log(msg);
             resultado = jQuery.parseJSON(msg);
         }
     });

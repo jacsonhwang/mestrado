@@ -3,6 +3,7 @@
 include_once __DIR__ . '/../inc/conexao.php';
 include_once __DIR__ . '/../model/BaseDados.php';
 include_once __DIR__ . '/../model/Entidade.php';
+include_once __DIR__ . '/../dao/MetaBaseDadosDAO.php';
 
 class BaseDAO {
 
@@ -302,6 +303,24 @@ class BaseDAO {
 		$cn->disconnect();
 	
 		return $baseDados;
+	}
+	
+	public function recuperaNomeJogo($baseDadosId){
+	
+		$cn = new Conexao();
+	
+		$sql = "SELECT nome_jogo FROM base_dados WHERE id = '".$baseDadosId."'";
+			
+		$result = $cn->execute($sql);
+	
+		while ($rs = sqlsrv_fetch_array($result)) {
+	
+			$nomeJogo = $rs["nome_jogo"];
+		}
+	
+		$cn->disconnect();
+	
+		return $nomeJogo;
 	}
 }
 

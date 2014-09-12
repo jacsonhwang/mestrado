@@ -32,18 +32,12 @@ switch ($idConsulta){
 	case 2:
 
 		$baseDAO = new BaseDAO();
+
+		$nomeJogo = $baseDAO->recuperaNomeJogo($idBaseDados);
 		
-		echo $idBaseDados;
+		$nomeJogo = utf8_encode($nomeJogo);
 
-		$dados = $baseDAO->recuperaObjetoPorBaseDadosId($idBaseDados);
-		
-		echo $dados;
-
-		foreach($dados as $dado) {
-			$dado = utf8_encode($dado);
-		}
-
-		echo json_encode($dados);
+		echo json_encode($nomeJogo);
 
 		break;
 }

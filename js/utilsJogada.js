@@ -369,13 +369,11 @@ function recuperarEntidadeAleatoria(idEntidade) {
 	
 	var valorExibicaoAtributos = jogadaAjax.getValorExibicaoAtributos(dadosTabela["idBaseDados"]);
 	
-	//var baseDados = jogadaAjax.recuperaObjetoPorBaseDadosId(dadosTabela["idBaseDados"]);
-	
-	//console.log(baseDados);
+	var nomeJogo = jogadaAjax.recuperaNomeJogo(dadosTabela["idBaseDados"]);
 	
 	var html = "<li class='pull-left' id='entidadeAlvo'><div class='box'><ul class='box-list'>";
 	
-	html += "<li><div>Refer&ecirc;ncia Alvo</div><div>Caixa #</div><div class='clearfix'></div></li>";
+	html += "<li><div>Refer&ecirc;ncia Alvo</div><div>Caixa " + nomeJogo + "</div><div class='clearfix'></div></li>";
 	
 	var j = 0;
 	
