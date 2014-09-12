@@ -323,7 +323,7 @@ function iniciarContador() {
 function desistirJogo() {
 	$.blockUI({ message: null });
 	
-	new Messi("Deseja realmente sair do jogo? Os dados serï¿½o perdidos.", {
+	new Messi("Deseja realmente sair do jogo? Os dados serão perdidos.", {
 		title : "Sair do jogo",
 		buttons : [ {
 			id : 0,
