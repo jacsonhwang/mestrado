@@ -1,34 +1,42 @@
 <?php
 include_once __DIR__ . '/../inc/conexao.php';
 include_once __DIR__ . '/../dao/EntidadeDAO.php';
+include_once __DIR__ . '/../dao/BaseDAO.php';
 
 session_start();
 
 class ResultadoDAO {
 	
 	private $cn;
-	
-	function inserirResultadoEntidade($idBaseDados, $idEntidade, $idEntidadeAlvo) {
-		
-		$entidadeDAO = new EntidadeDAO();
-		
-		$entidade = $entidadeDAO->recuperaEntidadePorId($idBaseDados);
-		
-		$nomeEntidade = strtolower($entidade->getNome());
-		
-		$idEntidadeUsuario = $entidadeDAO->recuperarIdEntidadeUsuario($idBaseDados);
+
+	function inserirResultadoEntidade($resultadoArray) {
 		
 		$cn = new Conexao();
-		
-		$sql = "INSERT INTO resultado_entidade_" . $nomeEntidade . " (linking_id, entidade_" . $nomeEntidade . "_id, entidade_" . $nomeEntidade . "_alvo_id) VALUES ((SELECT ISNULL(MAX(linking_id),0) FROM resultado_entidade_" . $nomeEntidade . ") + 1, " . $idEntidade . ", " . $idEntidadeAlvo . ")";
-		
-		//echo $sql . "\n";
-		
-		$cn->execute($sql);
+	
+		foreach ($resultadoArray as $resultado){
+	
+			$entidadeDAO = new EntidadeDAO();
+
+			$baseDAO = new BaseDAO();				
+
+			$base = $baseDAO->recuperaBasePorId($resultado->idBaseDados);
+			$entidade = $base->getEntidade();
+				
+			$nomeEntidade = strtolower($entidade->getNome());
+			
+			$idEntidadeUsuario = $entidadeDAO->recuperarIdEntidadeUsuario($resultado->idBaseDados);
+			
+			$sql = "INSERT INTO resultado_entidade_" . $nomeEntidade . " (linking_id, entidade_" . $nomeEntidade . "_id, entidade_" . $nomeEntidade . "_alvo_id) 
+					VALUES ((SELECT ISNULL(MAX(linking_id),0) FROM resultado_entidade_" . $nomeEntidade . ") + 1,
+							 " . $resultado->idRegistro . ", 
+							 " . $resultado->idEntidadeAlvo . ")";
+					
+			$cn->execute($sql);
+		}
 		
 		$cn->disconnect();
 	}
-	
+
 	function inserirEntidadeAlvo ($idEntidade, $idBaseDados, $situacao) {
 		
 		$entidadeDAO = new EntidadeDAO();

@@ -140,7 +140,7 @@ class EntidadeDAO {
 				REFERENCES [dbo].[entidade_".$entidade->getNome()."_alvo] ([id])
 				
 				ALTER TABLE [dbo].[resultado_entidade_".$entidade->getNome()."] CHECK CONSTRAINT [FK_resultado_entidade_".$entidade->getNome()."_resultado_entidade_".$entidade->getNome()."_alvo]";
-				
+
 		$cn->execute($sql);
 	
 		$cn->disconnect();
@@ -188,7 +188,7 @@ class EntidadeDAO {
 				REFERENCES [dbo].[entidade_".$entidade->getNome()."] ([id])
 	
 				ALTER TABLE [dbo].[gabarito_entidade_".$entidade->getNome()."] CHECK CONSTRAINT [FK_gabarito_entidade_".$entidade->getNome()."_entidade_".$entidade->getNome()."]";
-	
+
 		$cn->execute($sql);
 	
 		$cn->disconnect();
@@ -198,7 +198,7 @@ class EntidadeDAO {
 		$cn = new Conexao();
 		
 		$sql = "INSERT INTO entidade_".$entidade->getNome()." DEFAULT VALUES";
-		
+
 		$cn->execute($sql);
 	
 		$cn->disconnect();

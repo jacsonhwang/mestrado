@@ -50,6 +50,9 @@ $(document).ready(function() {
 	    	$("#opcaoArquivos").find("img").attr("src", "img/icone-arquivos.png");
 	    	
         	$("#filtro, #dicionario, #arquivos").hide();
+        	$("#comparador").css('z-index','1');
+        	$("#comparador1").css('z-index','1');
+        	$("#comparador2").css('z-index','1');
             $("#comparador").show();
         }
 	});
@@ -123,6 +126,14 @@ $(document).ready(function() {
 		$(".divTabelaFiltro").hide();
 	});
 	
+	$("#buttonComparar").click(function() {
+		/*$("#divFiltro").find("input:text").each(function() {
+			$(this).val("");
+		});
+		
+		$(".divTabelaFiltro").hide();*/
+	});
+	
 	$("#buttonEncerrarJogo").click(function() {	    
 	    finalizarJogo(1);
 	});
@@ -173,7 +184,7 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 	
 	$(tabela + " > thead > tr").empty();
 	$(tabela + " > tbody").empty();
-	
+
 	var atributo = new Array();
 	var valor = new Array();
 	
@@ -189,7 +200,7 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 	});
 	
 	var jogadaAjax = new JogadaAjax();
-	
+
 	var dadosArray = jogadaAjax.getDadosEntidade(atributo, valor, idBaseDados);
 	var nomesColunas = jogadaAjax.getNomesColunas(idBaseDados);	
 	var valorExibicaoAtributos = jogadaAjax.getValorExibicaoAtributos(idBaseDados);	
@@ -211,7 +222,7 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 		var dados = {};
 		var objeto = {};
 		
-		for(var j in dadosArray[i]) {			
+		for(var j in dadosArray[i]) {
 			
 		    if(valorExibicaoAtributos[k] == 1) {
 		        dados[nomesColunas[k]] = dadosArray[i][j];
@@ -358,22 +369,30 @@ function salvarDados(situacao) {
 	var idBaseDados = $("#poolList").find("#entidadeAlvo").data("idBaseDados");
 	var idAlvo = $("#poolList").find("#entidadeAlvo").data("id");
 	
-	var idEntidade = jogadaAjax.recuperarIdEntidade(idBaseDados, idAlvo);
+	var idRegistro = jogadaAjax.recuperarIdEntidade(idBaseDados, idAlvo);
+
+	var idEntidadeAlvo = jogadaAjax.inserirEntidadeAlvo(idRegistro, idBaseDados, situacao);
 	
-	var idEntidadeAlvo = jogadaAjax.inserirEntidadeAlvo(idEntidade, idBaseDados, situacao);
+	var resultadoArray = new Array();
 
 	$("#poolList").children().each(function() {
 
 		var idBaseDados = $(this).data("idBaseDados");
 		var id = $(this).data("id");
 
-		var idEntidade = jogadaAjax.recuperarIdEntidade(idBaseDados, id);
+		var idRegistro = jogadaAjax.recuperarIdEntidade(idBaseDados, id);
 		
-		jogadaAjax.inserirResultadoEntidade(idBaseDados, idEntidade, idEntidadeAlvo);
+		resultadoArray.push({"idBaseDados"    : idBaseDados,
+							 "idRegistro"     : idRegistro,
+							 "idEntidadeAlvo" : idEntidadeAlvo});
+		
 	});
+	
+	jogadaAjax.inserirResultadoEntidade(resultadoArray);
 	
 	$.unblockUI();
 	
+	window.location = "painel_usuario.php";
 	/*setTimeout(function() {
 		window.location = "painel_usuario.php";
 	}, 2000);*/
@@ -400,7 +419,10 @@ function recuperarEntidadeAleatoria(idEntidade) {
 	
 	for(var i in entidade) {
 		if(valorExibicaoAtributos[j] == 1) {
-			html += "<li>" + entidade[i] + "</li>";
+			if(entidade[i].indexOf('http://') == -1)
+				html += "<li>" + entidade[i] + "</li>";
+			else
+				html += "<li><img src='" + entidade[i] + "'></img></li>";
 		}
 		
 		j++;

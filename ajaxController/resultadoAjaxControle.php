@@ -26,11 +26,15 @@ if(isset($_POST['idEntidadeAlvo'])) {
 	$idEntidadeAlvo = $_POST['idEntidadeAlvo'];
 }
 
+if(isset($_POST['resultadoArray'])) {
+	$resultadoArray = $_POST['resultadoArray'];
+}
+
 switch ($idConsulta){
 	case 1:
 		$resultadoDAO = new ResultadoDAO();
 		
-		$resultadoDAO->inserirResultadoEntidade($idBaseDados, $idEntidade, $idEntidadeAlvo);
+		$resultadoDAO->inserirResultadoEntidade(json_decode($resultadoArray));
 		
 		break;
 		

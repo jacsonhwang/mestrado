@@ -83,19 +83,16 @@ JogadaAjax.prototype.recuperarIdEntidade = function(idBaseDados, id) {
     return resultado;
 };
 
-JogadaAjax.prototype.inserirResultadoEntidade = function(idBaseDados, idEntidade, idEntidadeAlvo) {
+JogadaAjax.prototype.inserirResultadoEntidade = function(resultadoArray) {
 	var resultado = "";
 	
-	console.log(idBaseDados, idEntidade, idEntidadeAlvo);
-
     $.ajax({
         type: "POST",
         url: "ajaxController/resultadoAjaxControle.php",
-        data: { idConsulta: 1, idBaseDados: idBaseDados, idEntidade: idEntidade, idEntidadeAlvo: idEntidadeAlvo },
+        data: { idConsulta: 1, resultadoArray: JSON.stringify(resultadoArray)},
         async: false,
         success: function(msg) {
-        	//console.log(msg);
-            //resultado = jQuery.parseJSON(msg);
+
         }
     });
 

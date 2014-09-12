@@ -24,7 +24,7 @@ $(document).ready(function() {
 	});
 	
 	$("#comparador1").droppable({
-		accept: ":not(.fromPool)",
+		//accept: ":not(.fromPool)",
 		drop: function(event, ui) {
 			//addToPool(ui.draggable);
 			drop("#comparador1List", 'fromComparador1', "#viewsList", ui.draggable);
@@ -32,7 +32,7 @@ $(document).ready(function() {
 	});
 	
 	$("#comparador2").droppable({
-		accept: ":not(.fromPool)",
+		//accept: ":not(.fromPool)",
 		drop: function(event, ui) {
 			//addToPool(ui.draggable);
 			drop("#comparador2List", 'fromComparador2', "#viewsList", ui.draggable);

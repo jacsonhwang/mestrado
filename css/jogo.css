@@ -110,9 +110,16 @@
 	padding-right: 15px;
 }
 
+.box > ul > li:not(:first-child) > img {
+	height: 166px ;
+	width: 166px;
+}
+
+
 .pull-left {
 	margin: 10px;
 	background-color: white;
+	z-index : 10;
 }
 
 .area {
