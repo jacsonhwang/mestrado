@@ -43,7 +43,8 @@ function drop(lista, classe, listaOposta, item) {
 	var iguais = false;
 
 	$(lista).children().each(function() {
-		if (item.data("id") == $(this).data("id") && item.data("idBaseDados") == $(this).data("idBaseDados")) {			
+		//if (item.data("id") == $(this).data("id") && item.data("idBaseDados") == $(this).data("idBaseDados")) {			
+		if (item.data("id") == $(this).data("id") && item.data("idBaseDados") == $(this).data("idBaseDados")) {
 			iguais = true;
 		}
 	});
@@ -54,7 +55,7 @@ function drop(lista, classe, listaOposta, item) {
 	
 	fecharMenuSlider();
 
-	var html = "<li class='pull-left'><div class='box'><ul class='box-list'><li><div>Refer&ecirc;ncia Suspeita</div><div>Caixa #</div><div class='clearfix'></div></li>";
+	var html = "<li class='pull-left'><div class='box'><ul class='box-list'><li><div>Refer&ecirc;ncia Suspeita</div><div>" + item.data("baseDadosNomeJogo")+ "</div><div class='clearfix'></div></li>";
 
 	if($(item).find("td").length > 0) {
 		$(item).find("td").each(function() {
@@ -71,7 +72,13 @@ function drop(lista, classe, listaOposta, item) {
 
 	$(lista).append(html);
 
+	//sem erro de drag androp
 	$(lista).children(":last").addClass(classe).data("id", item.data("id")).data("idBaseDados", item.data("idBaseDados"));
+
+	//com erro de drag androp
+	//$(lista).children(":last").addClass(classe).data(item.data());
+	
+	console.log($(lista).children(":last").addClass(classe).data());
 
 	$(listaOposta).find(item).remove();
 

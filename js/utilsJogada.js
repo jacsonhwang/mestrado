@@ -110,7 +110,8 @@ $(document).ready(function() {
 		var baseDadosId = $('.abaFiltro.active').attr('value');
 		var baseDadosNomeJogo = $('.abaFiltro.active').text().trim();
 		
-		criarTabela("#form"+baseDadosNomeJogo, "#tabelaFiltro"+baseDadosNomeJogo, "#divTabelaFiltro"+baseDadosNomeJogo, baseDadosId);
+		//criarTabela("#form"+baseDadosNomeJogo, "#tabelaFiltro"+baseDadosNomeJogo, "#divTabelaFiltro"+baseDadosNomeJogo, baseDadosId);
+		criarTabela(baseDadosNomeJogo, baseDadosId);
 	});
 
 	$("#buttonLimparBusca").click(function() {
@@ -162,7 +163,13 @@ $(document).ready(function() {
 	});*/
 });
 
-function criarTabela(form, tabela, divTabela, idBaseDados) {
+//function criarTabela(form, tabela, divTabela, idBaseDados) {
+function criarTabela(baseDadosNomeJogo, idBaseDados) {
+	
+	var form = "#form" + baseDadosNomeJogo; 
+	var tabela = "#tabelaFiltro"+ baseDadosNomeJogo;
+	var divTabela = "#divTabelaFiltro"+ baseDadosNomeJogo;
+	
 	
 	$(tabela + " > thead > tr").empty();
 	$(tabela + " > tbody").empty();
@@ -198,18 +205,29 @@ function criarTabela(form, tabela, divTabela, idBaseDados) {
 	}
 	
 	for(var i in dadosArray) {
-		$("<tr>").appendTo(tabela + " > tbody").data("id", dadosArray[i]["id"])
-		                                                            .data("idBaseDados", idBaseDados);
+		//$("<tr>").appendTo(tabela + " > tbody").data("id", dadosArray[i]["id"]).data("idBaseDados", idBaseDados);
 		
 		var k = 0;
+		var objeto = {};
 		
 		for(var j in dadosArray[i]) {
+			
+			objeto[nomesColunas[k]] = dadosArray[i][j];
+			
 		    if(valorExibicaoAtributos[k] == 1) {
 		        $("<td class='text-center'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);
 		    }
 		    
 		    k++;
 		}
+		
+		objeto["id"] = dadosArray[i]["id"];
+		objeto["idBaseDados"] = idBaseDados;
+		objeto["baseDadosNomeJogo"] = baseDadosNomeJogo;
+		
+		$("<tr>").appendTo(tabela + " > tbody").data(objeto);
+		//$("<tr>").appendTo(tabela + " > tbody").data({name:"dasda", idade:"23123"});
+		//console.log ($("<tr>").appendTo(tabela + " > tbody").data());
 	}
 	
 	$(tabela + " > tbody").find("tr").each(function() {
