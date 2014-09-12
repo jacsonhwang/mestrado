@@ -110,8 +110,7 @@ class EntidadeDAO {
 					[id] ASC
 				)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 				) ON [PRIMARY]";
-			
-		echo $sql;
+		
 		$cn->execute($sql);
 	
 		$cn->disconnect();
@@ -141,8 +140,7 @@ class EntidadeDAO {
 				REFERENCES [dbo].[entidade_".$entidade->getNome()."_alvo] ([id])
 				
 				ALTER TABLE [dbo].[resultado_entidade_".$entidade->getNome()."] CHECK CONSTRAINT [FK_resultado_entidade_".$entidade->getNome()."_resultado_entidade_".$entidade->getNome()."_alvo]";
-		
-		echo $sql;			
+				
 		$cn->execute($sql);
 	
 		$cn->disconnect();
@@ -166,8 +164,7 @@ class EntidadeDAO {
 				REFERENCES [dbo].[entidade_".$entidade->getNome()."] ([id])
 	
 				ALTER TABLE [dbo].[resultado_entidade_".$entidade->getNome()."_final] CHECK CONSTRAINT [FK_resultado_".$entidade->getNome()."_final_entidade_".$entidade->getNome()."]";	
-	
-		echo $sql;
+
 		$cn->execute($sql);
 	
 		$cn->disconnect();
@@ -192,18 +189,16 @@ class EntidadeDAO {
 	
 				ALTER TABLE [dbo].[gabarito_entidade_".$entidade->getNome()."] CHECK CONSTRAINT [FK_gabarito_entidade_".$entidade->getNome()."_entidade_".$entidade->getNome()."]";
 	
-		echo $sql;
 		$cn->execute($sql);
 	
 		$cn->disconnect();
 	}
 	
 	public function inserirTabelaEntidade($entidade){
-		echo "<br><br><br><br> AQUI ";
 		$cn = new Conexao();
 		
 		$sql = "INSERT INTO entidade_".$entidade->getNome()." DEFAULT VALUES";
-		echo $sql;
+		
 		$cn->execute($sql);
 	
 		$cn->disconnect();
@@ -247,7 +242,6 @@ class EntidadeDAO {
 				
 				ALTER TABLE [dbo].[entidade_".$entidade->getNome()."_alvo] CHECK CONSTRAINT [FK_entidade_".$entidade->getNome()."_alvo_situacao_tarefa]";
 		
-		echo $sql;
 		$cn->execute($sql);
 		
 		$cn->disconnect();

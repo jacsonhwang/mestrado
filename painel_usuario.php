@@ -33,17 +33,8 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 						</div>
 						-->
 						
-						<div class="row">
-							<div class="col-lg-6">
-								<button type="button" class="btn btn-default btn-lg btn-block" id="buttonUsuarios">Tutorial</button>
-							</div>
-							<div class="col-lg-6">
-								<button type="button" class="btn btn-default btn-lg btn-block" id="buttonUsuarios">Animal</button><br>
-							</div>
-						</div>
-						
 						<form action="jogada_teste.php" method="POST">
-							<div class="row">
+							<div class="row" style="margin-bottom: 10px">
 								<?php foreach($arrayEntidade as $key => $entidade) {?>
 								
 									<div class="col-lg-6">
@@ -53,6 +44,16 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 								<?php }?>
 							</div>
 						</form>
+						
+						<div class="row">
+							<div class="col-lg-6">
+								<button type="button" class="btn btn-default btn-lg btn-block" id="buttonTutorial">Tutorial</button>
+							</div>
+							<div class="col-lg-6">
+								
+							</div>
+						</div>
+						
 					</div>
 				</div>
 			<?php

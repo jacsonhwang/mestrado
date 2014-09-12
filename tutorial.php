@@ -31,7 +31,7 @@
 			?>
 			
 			<div class="col-lg-12">
-				<a class="btn btn-info" href="#" role="button" style="float: left;">Voltar</a>
+				<a class="btn btn-info" href="painel_usuario.php" role="button" style="float: left;">Voltar</a>
 			</div>
 			
 		</div>

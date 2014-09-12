@@ -17,6 +17,7 @@ $metaBaseDadosDAO = new MetaBaseDadosDAO();
 $usuarioDAO = new UsuarioDAO();
 
 $usuario = $usuarioDAO->recuperarObjetoUsuarioPorEmail($_SESSION["email"]);
+
 $arrayEntidadePermitidoUsuario = $entidadeDAO->recuperarArrayEntidadePorUsuario($usuario);
 
 //Cria uma entidade baseada nos dados do POST, que e considera suspeita a princpio
@@ -37,13 +38,9 @@ if ($entidadeHabilitadoUsuario == true) {
 	$entidade = $baseDadosDAO->recuperaObjetoPorEntidadeId($_POST['entidade_id']);
 		
 	jogo($entidade);
-} else {
 	
+} else {	
 	erro ("Erro", ERRO_JOGAR, "painel_usuario.php");
-	
-	/*<div class="col-lg-10 col-lg-offset-1">
-		<div class="alert alert-danger" role="alert"><b>Erro!</b>&nbsp;<?php echo $mensagem?></div>
-	</div>*/
 }
 
 function verificarEntidadeParaUsuario ($entidadeSuspeita, $arrayEntidade) {
@@ -66,7 +63,7 @@ function jogo ($entidade) {
 	<script>
 
 	$(document).ready(function () {
-		recuperarEntidadeAleatoria(1);
+		recuperarEntidadeAleatoria(<?php echo $_POST['entidade_id']; ?>);
 	    iniciarContador();
 	});
     

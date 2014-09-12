@@ -218,7 +218,7 @@ class UsuarioDAO {
 		$result = $cn->execute($sql);
 	
 		while ($rs = sqlsrv_fetch_array($result)) {
-			$usuario = new Usuario($rs["id"], $rs["nome"], $rs["email"], $rs["senha"], $rs["idade"], $rs["genero"], null, null, null, null, null, $rs["situacao"]);
+			$usuario = new Usuario($rs["nome"], $rs["email"], $rs["senha"], $rs["idade"], $rs["genero"], null, null, null, null, null, $rs["situacao"], $rs["id"]);
 		}
 	
 		$cn->disconnect();

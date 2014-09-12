@@ -54,7 +54,7 @@
 
 	<?php foreach($entidade as $key => $baseDados) { ?>
 		<div class="col-sm-12 divTabelaFiltro" id="divTabelaFiltro<?php echo $baseDados->getNomeJogo();?>">
-			<table class="table tablesorter table-hover tabelaFiltro" id="tabelaFiltro<?php echo $baseDados->getNomeJogo();?>">
+			<table class="table tablesorter table-hover table-bordered table-striped tabelaFiltro" id="tabelaFiltro<?php echo $baseDados->getNomeJogo();?>">
 				<thead>
 					<tr></tr>
 				</thead>
