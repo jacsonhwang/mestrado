@@ -39,14 +39,19 @@ function getEntityLayout(item) {
 }
 
 function drop(lista, classe, listaOposta, item) {
+    
+    var dados = item.data("dadosEntidade");
 
 	var iguais = false;
 
 	$(lista).children().each(function() {
-		//if (item.data("id") == $(this).data("id") && item.data("idBaseDados") == $(this).data("idBaseDados")) {			
-		if (item.data("id") == $(this).data("id") && item.data("idBaseDados") == $(this).data("idBaseDados")) {
-			iguais = true;
-		}
+	    
+	    if($(this).data("dadosEntidade") != undefined) {
+	        if (dados.id == $(this).data("dadosEntidade").id && dados.idBaseDados == $(this).data("dadosEntidade").idBaseDados) {
+	            iguais = true;
+	        }
+	    }
+	    
 	});
 
 	if(iguais == true) {
@@ -55,7 +60,7 @@ function drop(lista, classe, listaOposta, item) {
 	
 	fecharMenuSlider();
 
-	var html = "<li class='pull-left'><div class='box'><ul class='box-list'><li><div>Refer&ecirc;ncia Suspeita</div><div>" + item.data("baseDadosNomeJogo")+ "</div><div class='clearfix'></div></li>";
+	var html = "<li class='pull-left'><div class='box'><ul class='box-list'><li><div>Refer&ecirc;ncia Suspeita</div><div>Caixa " + dados.baseDadosNomeJogo + "</div><div class='clearfix'></div></li>";
 
 	if($(item).find("td").length > 0) {
 		$(item).find("td").each(function() {
@@ -71,25 +76,23 @@ function drop(lista, classe, listaOposta, item) {
 	html += "</ul></div></li>";
 
 	$(lista).append(html);
-
-	//sem erro de drag androp
-	$(lista).children(":last").addClass(classe).data("id", item.data("id")).data("idBaseDados", item.data("idBaseDados"));
-
-	//com erro de drag androp
-	//$(lista).children(":last").addClass(classe).data(item.data());
 	
-	console.log($(lista).children(":last").addClass(classe).data());
-
-	$(listaOposta).find(item).remove();
+	console.log(classe);
+	
+	$(lista).children(":last").addClass(classe);
+	
+	$("." + classe).data("dadosEntidade", dados);
 
 	$("." + classe).draggable({
-		//revert: 'invalid',
-		containment: '.main',
-		cursor: 'auto',
-		opacity: 0.75,
-		//helper: 'clone',
-		//appendTo: 'body'
-	});
+        //revert: 'invalid',
+        containment: '.main',
+        cursor: 'auto',
+        opacity: 0.75,
+        //helper: 'clone',
+        //appendTo: 'body'
+    });
+	
+	$(listaOposta).find(item).remove();
 }
 
 function addToTrash(item) {
