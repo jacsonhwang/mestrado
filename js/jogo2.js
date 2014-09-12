@@ -23,6 +23,23 @@ $(document).ready(function() {
 		tolerance: "touch"
 	});
 	
+	$("#comparador1").droppable({
+		accept: ":not(.fromPool)",
+		drop: function(event, ui) {
+			//addToPool(ui.draggable);
+			drop("#comparador1List", 'fromComparador1', "#viewsList", ui.draggable);
+		}
+	});
+	
+	$("#comparador2").droppable({
+		accept: ":not(.fromPool)",
+		drop: function(event, ui) {
+			//addToPool(ui.draggable);
+			drop("#comparador2List", 'fromComparador2', "#viewsList", ui.draggable);
+		}
+	});
+
+	
 });
 
 function getEntityLayout(item) {
@@ -64,7 +81,10 @@ function drop(lista, classe, listaOposta, item) {
 
 	if($(item).find("td").length > 0) {
 		$(item).find("td").each(function() {
-			html += "<li>" + $(this).html() + "</li>";
+			if($(this).html().indexOf("http://") == -1)
+				html += "<li>" + $(this).html() + "</li>";
+			else
+				html += "<li><img src='" + $(this).html() + "'></li>";
 		});
 	}
 	else {
