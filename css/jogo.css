@@ -191,3 +191,11 @@
 	cursor: pointer;
 	text-transform: uppercase;
 }
+
+.ui-state-hover{
+	border-color: #2a6496 #2a6496 !important;
+}
+
+.ui-state-active{
+	border-color:green green !important;
+}
