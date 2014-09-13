@@ -67,7 +67,7 @@
 							<option value="6" <?php if($_SESSION["escolaridadeCadastro"] == "6") { echo "selected"; } ?>>P&oacute;s-graduado</option>
 							<option value="7" <?php if($_SESSION["escolaridadeCadastro"] == "7") { echo "selected"; } ?>>Mestrado</option>
 							<option value="8" <?php if($_SESSION["escolaridadeCadastro"] == "8") { echo "selected"; } ?>>Doutorado</option>
-							<option value="9" <?php if($_SESSION["escolaridadeCadastro"] == "9") { echo "selected"; } ?>>Superior em andamento</option>
+							<!-- <option value="9" <?php //if($_SESSION["escolaridadeCadastro"] == "9") { echo "selected"; } ?>>Superior em andamento</option> -->
 						</select>
 					</div>
 				</div>
