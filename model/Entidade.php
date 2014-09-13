@@ -6,12 +6,14 @@ class Entidade {
 	private $nome;
 	private $nomeJogo;
 	private $descJogo;
+	private $arrayBaseDados;
 		
-	public function __construct($id, $nome, $nomeJogo, $descJogo) {
+	public function __construct($id, $nome, $nomeJogo, $descJogo, $arrayBaseDados) {
 		$this->id = $id;
 		$this->nome = $nome;
 		$this->nomeJogo = $nomeJogo;
 		$this->descJogo = $descJogo;
+		$this->arrayBaseDados = $arrayBaseDados;
 	}
 	
 	function getId() {
@@ -28,6 +30,14 @@ class Entidade {
 	
 	function getDescJogo() {
 		return $this->descJogo;
+	}
+	
+	function getArrayBaseDados() {
+		return $this->arrayBaseDados;
+	}
+	
+	function setArrayBaseDados($arrayBaseDados) {
+		return $this->arrayBaseDados = $arrayBaseDados;
 	}
 	
 	function recuperarArrayEntidade() {
