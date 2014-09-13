@@ -23,7 +23,13 @@
 				<a href="usuarios.php">Voltar</a>
 			
 			<?php
-			}
+			} else {
+			?>
+				
+				<a href="login.php">Login</a>
+				
+			<?php 
+			}	
 			?>
 			
 		</div>

@@ -70,7 +70,6 @@
 
 .box {
 	border: 2px solid #2a6496;
-	z-index: 15;
 	width: 200px;
 	max-height: 200px;
 	overflow: auto;
@@ -194,8 +193,10 @@
 
 .ui-state-hover{
 	border-color: #2a6496 #2a6496 !important;
+	border-width: 5px !important;
 }
 
 .ui-state-active{
 	border-color:green green !important;
+	border-width : 8px !important;
 }

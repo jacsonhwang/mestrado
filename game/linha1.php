@@ -2,8 +2,9 @@
 	<div class="titulo-rodada">
 		<h1>Rodada de Qualificação</h1>
 	</div>
-
-	<div style="float: right">
+	
+	<div class="contador" data-timer="300" style="float: right; width: 15%"></div>
+	<div style="float: right; width : 30%">
 		<div class='text-center buttonJogo' id="buttonLimparTudo">
 			<img src="img/botao-limpar.png" />
 		</div>
@@ -14,6 +15,12 @@
 			<img src="img/botao-desistir.png" />
 		</div>
 	</div>
+	
+	
+	
+	
+
+	
 
 	<!--
 	<div class="text-center linha-titulo-botoes">

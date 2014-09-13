@@ -50,9 +50,7 @@ $(document).ready(function() {
 	    	$("#opcaoArquivos").find("img").attr("src", "img/icone-arquivos.png");
 	    	
         	$("#filtro, #dicionario, #arquivos").hide();
-        	$("#comparador").css('z-index','1');
-        	$("#comparador1").css('z-index','1');
-        	$("#comparador2").css('z-index','1');
+        	
             $("#comparador").show();
         }
 	});
@@ -311,6 +309,7 @@ function finalizarJogo(situacao) {
 function iniciarContador() {
     
     $(".contador").TimeCircles({
+        "circle_bg_color": "#6666FF",
         time: {
             Days: {
                 show: false
@@ -325,7 +324,7 @@ function iniciarContador() {
                 text: "Segundos"
             }
         },
-        count_past_zero: false
+        count_past_zero: false,
     }).addListener(function(unit, value, total) {
         if(total == 0) {            
             finalizarJogo(2);
