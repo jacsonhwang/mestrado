@@ -2,6 +2,8 @@ $(document).ready(function() {
 	
 	$("#pool").droppable({
 		accept: ":not(.fromPool)",
+		activeClass: "ui-state-hover",
+	    hoverClass: "ui-state-active",
 		drop: function(event, ui) {
 			//addToPool(ui.draggable);
 			drop("#poolList", 'fromPool', "#viewsList", ui.draggable);
@@ -9,7 +11,7 @@ $(document).ready(function() {
 	});
 	
 	$("#views").droppable({
-		accept: ":not(.fromViewer)",
+		accept: ":not(.fromViewer)",		
 		drop: function(event, ui) {
 			//addToViewer(ui.draggable);
 			drop("#viewsList", 'fromViewer', "#poolList", ui.draggable);
