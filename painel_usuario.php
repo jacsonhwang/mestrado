@@ -33,7 +33,7 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 						</div>
 						-->
 						
-						<form action="jogada_teste.php" method="POST">
+						<form action="jogo.php" method="POST">
 							<div class="row" style="margin-bottom: 10px">
 								<?php foreach($arrayEntidade as $key => $entidade) {?>
 								

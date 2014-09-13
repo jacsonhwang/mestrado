@@ -10,7 +10,7 @@
 	-->
 	
 		<ul class="nav nav-tabs" role="tablist">
-				<?php foreach($entidade as $key => $baseDados) { ?>
+				<?php foreach($entidade->getArrayBaseDados() as $key => $baseDados) { ?>
 				<li class="abaFiltro <?php if ($key==0) echo 'active';?>" id="li<?php echo $baseDados->getNomeJogo();?>" value="<?php echo $baseDados->getId();?>">
 					<a href="#tab<?php echo $baseDados->getNomeJogo();?>" role="tab" data-toggle="tab"><?php echo $baseDados->getNomeJogo();?></a>
 				</li>
@@ -20,7 +20,7 @@
 		<!-- Tab panes -->
 		<div class="tab-content" style="margin-top: 20px">
 		
-			<?php foreach($entidade as $key => $baseDados) { ?>
+			<?php foreach($entidade->getArrayBaseDados() as $key => $baseDados) { ?>
 		
 			<div class="tab-pane tab <?php if ($key==0) echo 'active';?>" id="tab<?php echo $baseDados->getNomeJogo();?>">
 				<form class="form-horizontal" id="form<?php echo $baseDados->getNomeJogo();?>">
@@ -52,7 +52,7 @@
 	
 	<div class="clearfix"></div>
 
-	<?php foreach($entidade as $key => $baseDados) { ?>
+	<?php foreach($entidade->getArrayBaseDados() as $key => $baseDados) { ?>
 		<div class="col-sm-12 divTabelaFiltro" id="divTabelaFiltro<?php echo $baseDados->getNomeJogo();?>">
 			<table class="table tablesorter table-hover table-bordered table-striped tabelaFiltro" id="tabelaFiltro<?php echo $baseDados->getNomeJogo();?>">
 				<thead>

@@ -1,10 +1,14 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-7 col-md-offset-2 menu-slider" id="arquivos">
 	
-	<?php foreach ($entidade as $key => $baseDados) { ?>
+	<?php foreach ($entidade->getArrayBaseDados() as $key => $baseDados) { ?>
 	
 	<div class="col-lg-2">
 		<div class="row">
-			<img src="img/box.png" style="width: 100%" />
+			<?php if ($entidade->getNomeJogo() == 'Produto') { ?>
+				<img src="img/<?php echo $baseDados->getNomeJogo();?>.png" style="width: 100%" />
+			<?php } else {?>
+				<img src="img/box.png" style="width: 100%" />
+			<?php } ?>
 		</div>
 		<div class="row text-center">
 			<h4><?php echo $baseDados->getNomeJogo();?></h4>

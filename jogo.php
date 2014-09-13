@@ -10,7 +10,7 @@ include_once __DIR__ . '/dao/MetaBaseDadosDAO.php';
 include_once __DIR__ . '/dao/UsuarioDAO.php';
 include_once __DIR__ . '/controller/jogadaBancoControle.php';
 
-$baseDadosDAO = new BaseDAO();
+$baseDAO = new BaseDAO();
 $entidadeDAO = new EntidadeDAO();
 $entidadesListaDAO = new EntidadesListaDAO();
 $metaBaseDadosDAO = new MetaBaseDadosDAO();
@@ -21,38 +21,45 @@ $usuario = $usuarioDAO->recuperarObjetoUsuarioPorEmail($_SESSION["email"]);
 $arrayEntidadePermitidoUsuario = $entidadeDAO->recuperarArrayEntidadePorUsuario($usuario);
 
 //Cria uma entidade baseada nos dados do POST, que e considera suspeita a princpio
-$entidadeSuspeita = new Entidade($_POST['entidade_id'], null, null, null);
+//$entidadeSuspeita = new Entidade($_POST['entidade_id'], null, null, null);
+$entidadeSuspeita = $entidadeDAO->recuperaEntidadePorId($_POST['entidade_id']);
 
 //Verifica se a Entidade passada via POST é de fato valido para o usuario
 $entidadeHabilitadoUsuario = verificarEntidadeParaUsuario ($entidadeSuspeita, $arrayEntidadePermitidoUsuario);
 
-// $exemploArquivo = array();
-// foreach ($entidade as $key => $baseDados) {
-// 	$tabela = $baseDados->getNomeTabela();
-// 	$referenciaArray1 = $entidadesListaDAO->recuperarPrimeiraLinha(1, $tabela);
-// 	$exemploArquivo[$baseDados->getNomeJogo()] = $referencia;
-// }
-
 if ($entidadeHabilitadoUsuario == true) {
 	//Carrega as bases de dados ligadas a entidade e seus meta base de dados
-	$entidade = $baseDadosDAO->recuperaObjetoPorEntidadeId($_POST['entidade_id']);
-		
-	jogo($entidade);
+
+	$entidade = $entidadeSuspeita;
+	
+	$arrayBaseDados = $baseDAO->recuperaArrayBaseDadosPorEntidadeId($entidade);
+	$entidade->setArrayBaseDados($arrayBaseDados);
+	
+	/* $referenciaExemplo = array();
+	 foreach ($entidade as $key => $baseDados) {
+	$tabela = $baseDados->getNomeTabela();
+	$referenciaArray1 = $entidadesListaDAO->recuperarPrimeiraLinha(1, $tabela);
+	$exemploArquivo[$baseDados->getNomeJogo()] = $referencia;
+	}
+	*/
+	jogo($entidade, $referenciaExemplo);
 	
 } else {	
 	erro ("Erro", ERRO_JOGAR, "painel_usuario.php");
 }
 
 function verificarEntidadeParaUsuario ($entidadeSuspeita, $arrayEntidade) {
-	foreach ($arrayEntidade as $entidade) {
-		if ($entidade->getId() == $entidadeSuspeita->getId()) {
-			return true;
-		} 
+	if ($entidadeSuspeita != null) {
+		foreach ($arrayEntidade as $entidade) {
+			if ($entidade->getId() == $entidadeSuspeita->getId()) {
+				return true;
+			} 
+		}
 	}
 	return false;
 }
 
-function jogo ($entidade) {
+function jogo ($entidade, $referenciaExemplo) {
 	
 	/*session_start();
 	$_SESSION["inicioJogo"] = date('Y-m-d H:i:s');
@@ -96,9 +103,9 @@ function jogo ($entidade) {
 					<ul class="nav nav-sidebar">
 						<li class="tituloMenuSidebar"><a href="#" style="pointer-events: none; cursor: default;">Ferramentas</a></li>
 						<li><a href="#" id="opcaoFiltro"><img src="img/icone-filtro.png"> Filtro</a></li>
-						<li><a href="#" id="opcaoComparador"><img src="img/icone-comparador.png"> Comparador</a></li>
-						<li><a href="#" id="opcaoDicionario"><img src="img/icone-dicionario.png"> Dicionário</a></li>
-						<li><a href="#" id="opcaoArquivos"><img src="img/icone-arquivos.png"> Arquivos</a></li>
+						<!-- <li><a href="#" id="opcaoComparador"><img src="img/icone-comparador.png"> Comparador</a></li> -->
+						<!-- <li><a href="#" id="opcaoDicionario"><img src="img/icone-dicionario.png"> Dicionário</a></li> -->
+						<li><a href="#" id="opcaoArquivos"><img src="img/icone-arquivos.png"> Ajuda</a></li>
 					</ul>
 				</div>
 			</div>
@@ -109,11 +116,11 @@ function jogo ($entidade) {
 			
 			<!-- ------------------------------ COMPARADOR ------------------------- -->
 			
-			<?php include_once __DIR__ . '/game/comparador.php'; ?>
+			<?php //include_once __DIR__ . '/game/comparador.php'; ?>
 			
 			<!-- ------------------------------ DICIONÁRIO ------------------------- -->
 			
-			<?php include_once __DIR__ . '/game/dicionario.php'; ?>
+			<?php //include_once __DIR__ . '/game/dicionario.php'; ?>
 			
 			<!-- ------------------------------ ARQUIVOS --------------------------- -->
 			

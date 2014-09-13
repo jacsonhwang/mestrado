@@ -253,7 +253,7 @@ class BaseDAO {
 		return $dados;
 	}
 	
-	public function recuperaObjetoPorEntidadeId($entidadeId){
+	public function recuperaArrayBaseDadosPorEntidadeId($entidade){
 	
 		$cn = new Conexao();
 		$campos = array();
@@ -262,7 +262,7 @@ class BaseDAO {
 		
 		$sql = "SELECT id, nome, nome_arquivo, nome_jogo, nome_tabela, entidade_id
 				FROM base_dados
-				WHERE entidade_id = '".$entidadeId."'";
+				WHERE entidade_id = '".$entidade->getId()."'";
 			
 		$result = $cn->execute($sql);
 	
