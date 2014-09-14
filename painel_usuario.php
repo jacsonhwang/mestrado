@@ -21,7 +21,7 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 
 				$arrayEntidade = $entidadeDAO->recuperarArrayEntidadePorUsuario($usuario);
 			?>
-				<div class="col-lg-8 col-lg-offset-2">
+		<div class="col-lg-8 col-lg-offset-2">
 			<div id="loginTitulo" class="page-header">
 				<h1>Painel do Usuário</h1>
 			</div>
