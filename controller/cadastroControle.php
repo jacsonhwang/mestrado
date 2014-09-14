@@ -5,16 +5,16 @@ include_once __DIR__ . '/../dao/UsuarioDAO.php';
 
 if(isset($_POST['buttonCadastrar'])) {
 	
-	$nome = utf8_encode(addslashes($_POST["inputNome"]));
-	$email = utf8_encode(addslashes($_POST["inputEmail"]));
-	$senha = utf8_encode(md5(addslashes($_POST["inputSenha"])));
-	$idade = utf8_encode(addslashes($_POST["inputIdade"]));
-	$genero = utf8_encode(addslashes($_POST["radioGenero"]));
-	$escolaridade = utf8_encode(addslashes($_POST["selectEscolaridade"]));
-	$formacaoAcademica = utf8_encode(addslashes($_POST["inputFormacaoAcademica"]));
-	$marketplace = utf8_encode(addslashes($_POST["radioMarketplace"]));
-	$science = utf8_encode(addslashes($_POST["radioScience"]));
-	$gaming = utf8_encode(addslashes($_POST["radioGaming"]));
+	$nome = addslashes($_POST["inputNome"]);
+	$email = addslashes($_POST["inputEmail"]);
+	$senha = md5(addslashes($_POST["inputSenha"]));
+	$idade = addslashes($_POST["inputIdade"]);
+	$genero = addslashes($_POST["radioGenero"]);
+	$escolaridade = addslashes($_POST["selectEscolaridade"]);
+	$formacaoAcademica = addslashes($_POST["inputFormacaoAcademica"]);
+	$marketplace = addslashes($_POST["radioMarketplace"]);
+	$science = addslashes($_POST["radioScience"]);
+	$gaming = addslashes($_POST["radioGaming"]);
 	
 	$situacao = '1';
 	
