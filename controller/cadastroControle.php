@@ -1,6 +1,8 @@
 <?php
 include_once __DIR__ . '/../inc/conexao.php';
+include_once __DIR__ . '/../inc/constantes.php';
 include_once __DIR__ . '/../model/Usuario.php';
+include_once __DIR__ . '/../dao/RodadaUsuarioDAO.php';
 include_once __DIR__ . '/../dao/UsuarioDAO.php';
 
 if(isset($_POST['buttonCadastrar'])) {
@@ -69,10 +71,15 @@ if(isset($_POST['buttonCadastrar'])) {
 				header("location: ../cadastro_usuario.php");
 			}
 		}
-		else {			
+		else {
+			$rodadaUsuarioDAO = new RodadaUsuarioDAO();
 			$usuario = new Usuario($nome, $email, $senha, $idade, $genero, $escolaridade, $formacaoAcademica, $marketplace, $science, $gaming, $situacao);
-			
+
 			$usuarioDAO->inserirUsuario($usuario);
+			
+			//Inclusao forcado de uma rodada para todo usuario que se cadastrar
+			$usuarioReal = $usuarioDAO->recuperarObjetoUsuarioPorEmail($email);
+			$rodadaUsuarioDAO->inserirUsuarioRodadaPorRodadaIdUsuario(EXPERIMENTO_RODADA_ID, $usuarioReal);
 			
 			header("location: ../cadastro-sucesso.php");
 			

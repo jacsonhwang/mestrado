@@ -12,4 +12,5 @@
 	define ('TOOLTIP_PAINEL_USUARIO_OUTROS', 'Tutorial explica o funcionamento do jogo.');
 	
 	define ('PONTO_QUALIFICACAO', '60');
+	define ('EXPERIMENTO_RODADA_ID', '10');
 ?>

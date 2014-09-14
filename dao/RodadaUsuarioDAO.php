@@ -67,6 +67,18 @@ class RodadaUsuarioDAO {
 		
 		$cn->disconnect();
 	}
+	
+	public function inserirUsuarioRodadaPorRodadaIdUsuario($rodadaId, $usuario) {
+	
+		$cn = new Conexao();
+
+		$rodadaUsuarioArray['idusuario'] = $usuario->getId();
+		$rodadaUsuarioArray['idrodada'] = $rodadaId;
+
+		$cn->insert($this->tabela, $rodadaUsuarioArray);
+	
+		$cn->disconnect();
+	}
 }
 
 ?>
