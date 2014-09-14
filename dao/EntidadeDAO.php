@@ -1,5 +1,6 @@
 <?php
 include_once __DIR__ . '/../inc/conexao.php';
+include_once __DIR__ . '/../inc/constantes.php';
 include_once __DIR__ . '/../model/Entidade.php';
 
 class EntidadeDAO {
@@ -272,17 +273,51 @@ class EntidadeDAO {
 		$cn = new Conexao();
 		$arrayEntidade = array();
 		
-		$sql  = " SELECT e.id, e.nome, e.descricao_jogo, e.nome_jogo";
-		$sql .= " FROM entidade_usuario eu";
-		$sql .= " INNER JOIN entidade e ON e.id= eu.entidade_id ";
-		$sql .= " WHERE usuario_id = ". $usuario->getId();
+		$sql  = " SELECT e.id, e.nome, e.nome_jogo, e.descricao_jogo ";
+		$sql .= " FROM rodada_usuario ru ";
+		$sql .= " INNER JOIN rodada r ON r.id = ru.idrodada ";
+		$sql .= " INNER JOIN entidade e ON e.id = r.entidade_id";
+		$sql .= " WHERE ru.idusuario = ". $usuario->getId();
+		$sql .= "   AND GETDATE() BETWEEN inicio AND fim ";
+		$sql .= "   AND ativo = 1 ";
+		$sql .= "   AND ru.qualidade IS NOT NULL ";
+		$sql .= "   AND ru.qualidade >= ". PONTO_QUALIFICACAO;
+		
+		$result = $cn->execute($sql);
+	
+		while ($rs = sqlsrv_fetch_array($result)) {
+	
+			$entidade = new Entidade($rs["id"], $rs["nome"], $rs["nome_jogo"], $rs["descricao_jogo"], null);
+			
+			array_push($arrayEntidade, $entidade);
+		}
+	
+		$cn->disconnect();
+	
+		return $arrayEntidade;
+	}
+	
+	public function recuperarArrayEntidadeQualificacaoPorUsuario($usuario) {
+	
+		$cn = new Conexao();
+		$arrayEntidade = array();
+	
+		$sql  = " SELECT e.id, e.nome, e.nome_jogo, e.descricao_jogo ";
+		$sql .= " FROM rodada_usuario ru ";
+		$sql .= " INNER JOIN rodada r ON r.id = ru.idrodada ";
+		$sql .= " INNER JOIN entidade e ON e.id = r.entidade_id";
+		$sql .= " WHERE ru.idusuario = ". $usuario->getId();
+		$sql .= "   AND GETDATE() BETWEEN inicio AND fim ";
+		$sql .= "   AND ativo = 1 ";
+		$sql .= "   AND ru.qualidade IS NOT NULL ";
+		$sql .= "   AND ru.qualidade < ". PONTO_QUALIFICACAO;
 	
 		$result = $cn->execute($sql);
 	
 		while ($rs = sqlsrv_fetch_array($result)) {
 	
-			$entidade = new Entidade($rs["id"], $rs["nome"], $rs["nome_jogo"], $rs["descricao"]);
-			
+			$entidade = new Entidade($rs["id"], $rs["nome"], $rs["nome_jogo"], $rs["descricao_jogo"], null);
+				
 			array_push($arrayEntidade, $entidade);
 		}
 	

@@ -17,6 +17,8 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 			
 				$usuario = $usuarioDAO->recuperarObjetoUsuarioPorEmail($_SESSION["email"]);
 			
+				$arrayEntidadeQualificacao = $entidadeDAO->recuperarArrayEntidadeQualificacaoPorUsuario($usuario);
+
 				$arrayEntidade = $entidadeDAO->recuperarArrayEntidadePorUsuario($usuario);
 			?>
 				<div class="col-lg-8 col-lg-offset-2">
@@ -34,7 +36,7 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 					<div class="col-lg-8 col-lg-offset-2">
 						<form action="jogo.php" method="POST">
 							<div class="row" style="margin-bottom: 10px">
-								<?php foreach($arrayEntidade as $key => $entidade) {?>
+								<?php foreach($arrayEntidadeQualificacao as $key => $entidade) {?>
 									<div class="col-lg-6">
 										<button type="submit" class="btn btn-default btn-lg btn-block"
 											name="entidade_id"

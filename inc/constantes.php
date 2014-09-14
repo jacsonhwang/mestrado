@@ -10,4 +10,6 @@
 	define ('TOOLTIP_PAINEL_USUARIO_QUALIFICACAO', 'A qualificação serve para avaliar o seu desempenho no jogo. Caso seja aprovado, o jogo pra valer é habilitado.');
 	define ('TOOLTIP_PAINEL_USUARIO_JOGAR', 'O jogo só aparecerá nesta seção, após passar no exame de qualificação. Você poderá jogar quantas vezes desejar.');
 	define ('TOOLTIP_PAINEL_USUARIO_OUTROS', 'Tutorial explica o funcionamento do jogo.');
+	
+	define ('PONTO_QUALIFICACAO', '60');
 ?>
