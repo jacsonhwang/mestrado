@@ -26,7 +26,7 @@
 				<form class="form-horizontal" id="form<?php echo $baseDados->getNomeJogo();?>">
 					<?php
 					foreach($baseDados->getMetaBaseDados() as $key2 => $metaBaseDados) {
-						if($metaBaseDados->getExibirAtributo() == 1) {
+						if($metaBaseDados->getExibirAtributo() == 1 && $metaBaseDados->getNomeAtributo() != 'imagem'){
 					?>					
 							<div class="form-group">
 								<label for="<?php echo $metaBaseDados->getNomeAtributo(); ?>" class="col-sm-3 control-label"><?php echo $metaBaseDados->getNomeJogo(); ?></label>
@@ -39,9 +39,6 @@
 					}
 					?>
 
-					<div class="col-sm-11" style="padding-bottom: 15px;">
-						<button class="btn btn-success botaoFiltrar" id="buttonFiltrar<?php echo $baseDados->getNomeJogo();?>">Filtrar</button>
-					</div>
 				</form>
 			</div>
 			
@@ -63,7 +60,11 @@
 		</div>
 	<?php }?>
 
-	<div class="col-sm-12 teste">
+	<!-- <div style="float:left;">  -->
 		<button class="btn btn-info" id="buttonLimparBusca">Limpar busca</button>
+	</div>
+	
+	<!-- <div style="float:right;"> -->
+		<button class="btn btn-success botaoFiltrar" id="buttonFiltrar<?php echo $baseDados->getNomeJogo();?>">Filtrar</button>
 	</div>
 </div>

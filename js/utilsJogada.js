@@ -169,7 +169,6 @@ $(document).ready(function() {
 	});*/
 });
 
-//function criarTabela(form, tabela, divTabela, idBaseDados) {
 function criarTabela(baseDadosNomeJogo, idBaseDados) {
 	
 	var form = "#form" + baseDadosNomeJogo; 
@@ -205,7 +204,7 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 	
 	for(var i in nomesColunas) {
 		
-		if(valorExibicaoAtributos[i] == 1) {
+		if(valorExibicaoAtributos[i] == 1 && nomesColunas[i] != 'Imagem') {
 			$("<th class='text-center'>").appendTo(tabela + " > thead > tr").html(nomesColunas[i]);
 		}
 	}
@@ -219,7 +218,7 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 		
 		for(var j in dadosArray[i]) {
 			
-		    if(valorExibicaoAtributos[k] == 1) {
+		    if(valorExibicaoAtributos[k] == 1 && nomesColunas[k] != 'Imagem') {
 		        dados[nomesColunas[k]] = dadosArray[i][j];
 		        $("<td class='text-center'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);
 		    }
