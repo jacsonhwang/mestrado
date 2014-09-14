@@ -309,8 +309,7 @@ class EntidadeDAO {
 		$sql .= " WHERE ru.idusuario = ". $usuario->getId();
 		$sql .= "   AND GETDATE() BETWEEN inicio AND fim ";
 		$sql .= "   AND ativo = 1 ";
-		$sql .= "   AND ru.qualidade IS NOT NULL ";
-		$sql .= "   AND ru.qualidade < ". PONTO_QUALIFICACAO;
+		$sql .= "   AND (ru.qualidade IS NULL OR ru.qualidade < ". PONTO_QUALIFICACAO . ")";
 	
 		$result = $cn->execute($sql);
 	
