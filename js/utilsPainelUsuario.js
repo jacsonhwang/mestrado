@@ -5,5 +5,8 @@ $(document).ready(function(){
 	$("#buttonTutorial").click(function() {
 		window.location = 'tutorial.php';
 	});
-	
+
+	$(".tooltipJogo").tipsy({});
+	$(".tooltipQualificacao").tipsy({});
+	$(".tooltipOutros").tipsy({});
 });

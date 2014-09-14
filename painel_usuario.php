@@ -25,7 +25,11 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 			</div>
 
 			<div class="panel panel-primary">
-				<div class="panel-heading">Qualificação</div>
+				<div class="panel-heading">Qualificação
+					<a href="#" title="<?php echo TOOLTIP_PAINEL_USUARIO_QUALIFICACAO;?>" class="tooltipQualificacao">
+						<img src="img/help.png"/>
+					</a>
+				</div>
 				<div class="panel-body">
 					<div class="col-lg-8 col-lg-offset-2">
 						<form action="jogo.php" method="POST">
@@ -57,7 +61,11 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 			</div>
 
 			<div class="panel panel-info">
-				<div class="panel-heading">Jogos</div>
+				<div class="panel-heading">Jogos
+					<a href="#" title="<?php echo TOOLTIP_PAINEL_USUARIO_JOGAR;?>" class="tooltipJogo">
+						<img src="img/help.png"/>
+					</a>
+				</div>
 				<div class="panel-body">
 
 					<div class="col-lg-8 col-lg-offset-2">
@@ -89,7 +97,11 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 			</div>
 
 			<div class="panel panel-success">
-				<div class="panel-heading">Outros</div>
+				<div class="panel-heading">Outros
+					<a href="#" title="<?php echo TOOLTIP_PAINEL_USUARIO_OUTROS;?>" class="tooltipOutros">
+						<img src="img/help.png"/>
+					</a>
+				</div>
 				<div class="panel-body">
 
 					<div class="col-lg-8 col-lg-offset-2">

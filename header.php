@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="css/TimeCircles.css" type="text/css">
 <link rel="stylesheet" href="css/messi.css" type="text/css">
 <link rel="stylesheet" href="css/portlets.css" type="text/css">
+<link rel="stylesheet" href="css/tipsy.css" type="text/css" />
 
 <script src="js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
@@ -28,6 +29,7 @@
 <script type="text/javascript" src="js/TimeCircles.js"></script>
 <script type="text/javascript" src="js/jquery.blockUI.js"></script>
 <script type="text/javascript" src="js/messi.js"></script>
+<script type="text/javascript" src="js/jquery.tipsy.js"></script>
 
 <script src="js/utilsCadastro.js"></script>
 <script src="js/utilsLogin.js"></script>
