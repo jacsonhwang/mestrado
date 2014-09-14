@@ -136,11 +136,8 @@ $(document).ready(function() {
 	    finalizarJogo(1);
 	});
 	
-	$("#buttonLimparTudo").click(function() {	    
-	    $("#viewsList").empty();
-	    $("#poolList").children().not("#entidadeAlvo").each(function() {
-	    	$(this).remove();
-	    });
+	$("#buttonLimparTudo").click(function() {
+		limparJogo();
 	});
 	
 	$("#buttonDesistirJogo").click(function() {	    
@@ -333,10 +330,41 @@ function iniciarContador() {
     
 }
 
+function limparJogo() {
+	$.blockUI({ message: null });
+	
+	new Messi("Deseja realmente limpar todas as refer&ecirc;ncias do jogo?", {
+		title : "Sair do jogo",
+		buttons : [ {
+			id : 0,
+			label : 'Sim',
+			val : 'Y'
+		}, {
+			id : 1,
+			label : 'N&atilde;o',
+			val : 'N'
+		} ],
+		callback: 
+			function(val) {
+			
+			if(val == 'Y') {
+				$.unblockUI();
+				$("#viewsList").empty();
+			    $("#poolList").children().not("#entidadeAlvo").each(function() {
+			    	$(this).remove();
+			    });
+			}
+			else {
+				$.unblockUI();
+			}
+		}
+	});
+}
+
 function desistirJogo() {
 	$.blockUI({ message: null });
 	
-	new Messi("Deseja realmente sair do jogo? Os dados serão perdidos.", {
+	new Messi("Deseja realmente sair do jogo? Os dados ser&atilde;o perdidos.", {
 		title : "Sair do jogo",
 		buttons : [ {
 			id : 0,
