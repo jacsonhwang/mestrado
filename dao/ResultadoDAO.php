@@ -11,6 +11,14 @@ class ResultadoDAO {
 
 	function inserirResultadoEntidade($resultadoArray) {
 		
+		$tipoRodada = $_SESSION['rodadaTipo'];
+		
+		if($tipoRodada == 1){
+			$qualificacao = '_qualificacao';
+		}else if($tipoRodada == 2){
+			$qualificacao = '';
+		}
+		
 		$cn = new Conexao();
 	
 		foreach ($resultadoArray as $resultado){
@@ -26,8 +34,8 @@ class ResultadoDAO {
 			
 			$idEntidadeUsuario = $entidadeDAO->recuperarIdEntidadeUsuario($resultado->idBaseDados);
 			
-			$sql = "INSERT INTO resultado_entidade_" . $nomeEntidade . " (linking_id, entidade_" . $nomeEntidade . "_id, entidade_" . $nomeEntidade . "_alvo_id) 
-					VALUES ((SELECT ISNULL(MAX(linking_id),0) FROM resultado_entidade_" . $nomeEntidade . ") + 1,
+			$sql = "INSERT INTO resultado_entidade_" . $nomeEntidade . $qualificacao ." (linking_id, entidade_" . $nomeEntidade . "_id, entidade_" . $nomeEntidade . "_alvo_id) 
+					VALUES ((SELECT ISNULL(MAX(linking_id),0) FROM resultado_entidade_" . $nomeEntidade . $qualificacao .") + 1,
 							 " . $resultado->idRegistro . ", 
 							 " . $resultado->idEntidadeAlvo . ")";
 					
@@ -38,6 +46,13 @@ class ResultadoDAO {
 	}
 
 	function inserirEntidadeAlvo ($idEntidade, $idBaseDados, $situacao) {
+		$tipoRodada = $_SESSION['rodadaTipo'];
+		
+		if($tipoRodada == 1){
+			$qualificacao = '_qualificacao';
+		}else if($tipoRodada == 2){
+			$qualificacao = '';
+		}
 		
 		$entidadeDAO = new EntidadeDAO();
 		
@@ -45,7 +60,18 @@ class ResultadoDAO {
 		
 		$cn = new Conexao();
 		
-		$sql = "INSERT INTO [mestrado].[dbo].[entidade_produto_alvo]
+		$sql = "dbo.calculaQualidadeQualificacao ".$idEntidadeUsuario.", ".$idEntidade;
+		
+		$result = $cn->execute($sql);
+
+		session_start();
+		
+		while ($rs = sqlsrv_fetch_array($result)) {
+				
+			$_SESSION['qualidade'] = $rs["qualidade"];
+		}
+		
+		$sql = "INSERT INTO [mestrado].[dbo].[entidade_produto_alvo".$qualificacao."]
 				([entidade_produto_id]
 				,[entidade_usuario_id]
 				,[situacao_tarefa_id]
@@ -60,7 +86,7 @@ class ResultadoDAO {
 		
 		$cn->execute($sql);
 		
-		$lastId = $cn->getLastId("entidade_produto_alvo");
+		$lastId = $cn->getLastId("entidade_produto_alvo".$qualificacao);
 		
 		$cn->disconnect();
 		

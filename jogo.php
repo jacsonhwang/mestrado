@@ -33,9 +33,15 @@ if ($entidadeHabilitadoUsuarioQualificacao == true || $entidadeHabilitadoUsuario
 	if ($entidadeHabilitadoUsuarioQualificacao == true) {
 		$rodada['titulo'] = "Rodada de Qualificação";
 		$rodada['tipo'] = "1";
+		
+		session_start();
+		$_SESSION['rodadaTipo'] = "1";
 	} else if ($entidadeHabilitadoUsuario == true) {
 		$rodada['titulo'] = "Rodada";
 		$rodada['tipo'] = "2";
+		
+		session_start();
+		$_SESSION['rodadaTipo'] = "2";
 	}
 	
 	//Carrega as bases de dados ligadas a entidade e seus meta base de dados

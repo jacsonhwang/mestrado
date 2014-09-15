@@ -316,7 +316,7 @@ function finalizarJogo(situacao) {
 function iniciarContador() {
     
     $(".contador").TimeCircles({
-        "circle_bg_color": "#6666FF",
+        "circle_bg_color": "#1a1a1a",
         time: {
             Days: {
                 show: false
@@ -325,10 +325,12 @@ function iniciarContador() {
                 show: false
             },
             Minutes: {
-                text: "Minutos"
+                text: "Minutos",
+                "color": "#ffcc00",
             },
             Seconds: {
-                text: "Segundos"
+                text: "Segundos",
+                "color": "#ffcc00",
             }
         },
         count_past_zero: false,
@@ -413,12 +415,19 @@ function salvarDados(situacao) {
 	var resultadoArray = new Array();
 
 	$("#poolList").children().each(function() {
-
+				
 		var idBaseDados = $(this).data("idBaseDados");
 		var id = $(this).data("id");
-
-		var idRegistro = jogadaAjax.recuperarIdEntidade(idBaseDados, id);
+				
+		if(id == undefined || idBaseDados == undefined){
+			var dados = $(this).data("dadosEntidade");
+			
+			var idBaseDados = dados.idBaseDados;
+			var id = dados.id;			
+		}
 		
+		var idRegistro = jogadaAjax.recuperarIdEntidade(idBaseDados, id);
+				
 		resultadoArray.push({"idBaseDados"    : idBaseDados,
 							 "idRegistro"     : idRegistro,
 							 "idEntidadeAlvo" : idEntidadeAlvo});

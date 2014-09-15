@@ -92,7 +92,6 @@ JogadaAjax.prototype.inserirResultadoEntidade = function(resultadoArray) {
         data: { idConsulta: 1, resultadoArray: JSON.stringify(resultadoArray)},
         async: false,
         success: function(msg) {
-
         }
     });
 
@@ -141,7 +140,6 @@ JogadaAjax.prototype.inserirEntidadeAlvo = function(idEntidade, idBaseDados, sit
         data: { idConsulta: 2, idEntidade: idEntidade, idBaseDados: idBaseDados, situacao: situacao },
         async: false,
         success: function(msg) {
-        	//console.log(msg);
             resultado = jQuery.parseJSON(msg);
         }
     });

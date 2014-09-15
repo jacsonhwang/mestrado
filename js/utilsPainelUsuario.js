@@ -9,4 +9,5 @@ $(document).ready(function(){
 	$(".tooltipJogo").tipsy({});
 	$(".tooltipQualificacao").tipsy({});
 	$(".tooltipOutros").tipsy({});
+	
 });

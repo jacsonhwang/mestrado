@@ -6,7 +6,32 @@ include_once __DIR__ . '/inc/erro.php';
 include_once __DIR__ . '/dao/EntidadeDAO.php';
 include_once __DIR__ . '/dao/UsuarioDAO.php';
 ?>
-	
+<?php 
+//echo '<script language="javascript">';
+//echo 'alert("Última pontuação = '.$_SESSION['qualidade'].'");';
+//echo '</script>';
+?>
+
+<script language="javascript">
+
+
+	<?php if ($_SESSION['qualidade'] != null) { ?>
+			new Messi('Última pontuação = <?php echo $_SESSION['qualidade']; ?>', {
+					title: 'Pontuação',
+					titleClass : 'info',
+				    buttons : [ {
+				        id : 0,
+				        label : 'OK',
+				        val : 'X'
+				    } ],	
+				});
+
+	<?php
+		$_SESSION['qualidade'] = '';
+	}
+	?>
+</script>'
+
 <div id="formularioLogin" class="container">
 	<div class="row">
 			
@@ -24,6 +49,14 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 		<div class="col-lg-8 col-lg-offset-2">
 			<div id="loginTitulo" class="page-header">
 				<h1>Painel do Usuário</h1>
+				<h3><?php 
+				$qualidade = $_SESSION['qualidade'];
+				
+				if($qualidade == null || empty($qualidade) == true){
+					$_SESSION['qualidade'] = 0;
+				}
+					
+				echo "Última pontuação: ".$_SESSION['qualidade'];?></h3>
 			</div>
 
 			<div class="panel panel-primary">
@@ -62,7 +95,7 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 				</div>
 			</div>
 
-			<div class="panel panel-info">
+			<div class="panel panel-primary">
 				<div class="panel-heading">Jogos
 					<a href="#" title="<?php echo TOOLTIP_PAINEL_USUARIO_JOGAR;?>" class="tooltipJogo">
 						<img src="img/help.png"/>
@@ -98,9 +131,10 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 				</div>
 			</div>
 
+			<!-- 
 			<div class="panel panel-success">
 				<div class="panel-heading">Outros
-					<a href="#" title="<?php echo TOOLTIP_PAINEL_USUARIO_OUTROS;?>" class="tooltipOutros">
+					<a href="#" title="<?php //echo TOOLTIP_PAINEL_USUARIO_OUTROS;?>" class="tooltipOutros">
 						<img src="img/help.png"/>
 					</a>
 				</div>
@@ -116,6 +150,7 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 					</div>
 				</div>
 			</div>
+			-->
 			
 			<?php
 			} else {
