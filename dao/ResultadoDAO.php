@@ -56,7 +56,7 @@ class ResultadoDAO {
 				," . $idEntidadeUsuario . "
 				," . $situacao . "
 				,'" . $_SESSION["inicioJogo"] . "'
-				,'" . date('Y-m-d H:i:s') . "')";
+				,'" . date('Y-d-m H:i:s') . "')";
 		
 		$cn->execute($sql);
 		
