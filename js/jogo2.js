@@ -1,11 +1,14 @@
 $(document).ready(function() {
 	
+	dropArray = new Array();
+	
 	$("#pool").droppable({
 		accept: ":not(.fromPool)",
 		activeClass: "ui-state-hover",
 	    hoverClass: "ui-state-active",
 		drop: function(event, ui) {
 			//addToPool(ui.draggable);
+			dropArray.push(ui.draggable.data("dadosEntidade").id);
 			drop("#poolList", 'fromPool', "#viewsList", ui.draggable);
 		}
 	});
@@ -14,6 +17,7 @@ $(document).ready(function() {
 		accept: ":not(.fromViewer)",		
 		drop: function(event, ui) {
 			//addToViewer(ui.draggable);
+			dropArray.push(ui.draggable.data("dadosEntidade").id);
 			drop("#viewsList", 'fromViewer', "#poolList", ui.draggable);
 		}
 	});

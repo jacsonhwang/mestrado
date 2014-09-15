@@ -14,6 +14,9 @@ $(document).ready(function() {
 	    }
 	    else {
 	    	$(this).parent().addClass("active");
+	    		
+	    	$("#filtro table > thead > tr").empty();
+	    	$("#filtro table > tbody").empty();
 	    	
 	    	$(this).find("img").attr("src", "img/icone-filtro-ativo.png");
 	    	
@@ -215,15 +218,23 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 		var k = 0;
 		var dados = {};
 		var objeto = {};
-		
+		var teste = false;
 		for(var j in dadosArray[i]) {
+			teste = false;
+			for(var m in dropArray){
+				if(dropArray[m] == dadosArray[i]["id"]){
+					teste = true;
+					break;
+				}						
+			}
+			if(teste == false){
+				if(valorExibicaoAtributos[k] == 1 && nomesColunas[k] != 'Imagem' && dadosArray[i]["id"] != $("#poolList").find("#entidadeAlvo").data("id")) {
+			        dados[nomesColunas[k]] = dadosArray[i][j];
+			        $("<td class='text-center'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);
+			    }			   
+			}
 			
-		    if(valorExibicaoAtributos[k] == 1 && nomesColunas[k] != 'Imagem') {
-		        dados[nomesColunas[k]] = dadosArray[i][j];
-		        $("<td class='text-center'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);
-		    }
-		    
-		    k++;
+			k++;
 		}
 		
 		objeto["dados"] = dados;
