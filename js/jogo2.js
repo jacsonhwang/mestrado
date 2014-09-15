@@ -21,6 +21,13 @@ $(document).ready(function() {
 	$("#trash").droppable({
 		drop: function(event, ui) {
 			addToTrash(ui.draggable);
+			$("#trash").animate({ "height": 90, "width": 90 })
+		},
+		over: function(event, ui) {
+			$("#trash").animate({ "height": 120, "width": 120 })
+		},
+		out: function(event, ui) {
+			$("#trash").animate({ "height": 90, "width": 90 })
 		},
 		tolerance: "touch"
 	});
