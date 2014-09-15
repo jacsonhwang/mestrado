@@ -439,7 +439,7 @@ function recuperarEntidadeAleatoria(idEntidade) {
 	
 	var html = "<li class='pull-left' id='entidadeAlvo'><div class='box'><ul class='box-list'>";
 	
-	html += "<li><div>Refer&ecirc;ncia Alvo</div><div>Caixa " + nomeJogo + "</div><div class='clearfix'></div></li>";
+	html += "<li><div>Refer&ecirc;ncia Alvo</div><div> " + nomeJogo + "</div><div class='clearfix'></div></li>";
 	
 	var j = 0;
 	
