@@ -45,8 +45,8 @@ class ResultadoDAO {
 		
 		$cn = new Conexao();
 		
-		$sql = "INSERT INTO [mestrado].[dbo].[entidade_pessoa_alvo]
-				([entidade_pessoa_id]
+		$sql = "INSERT INTO [mestrado].[dbo].[entidade_produto_alvo]
+				([entidade_produto_id]
 				,[entidade_usuario_id]
 				,[situacao_tarefa_id]
 				,[data_inicio]
@@ -60,7 +60,7 @@ class ResultadoDAO {
 		
 		$cn->execute($sql);
 		
-		$lastId = $cn->getLastId("entidade_pessoa_alvo");
+		$lastId = $cn->getLastId("entidade_produto_alvo");
 		
 		$cn->disconnect();
 		
