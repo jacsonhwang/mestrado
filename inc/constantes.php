@@ -14,4 +14,5 @@
 	
 	define ('PONTO_QUALIFICACAO', '60');
 	define ('EXPERIMENTO_RODADA_ID', '10');
+	define ('EXPERIMENTO_ENTIDADE_ID', '43');
 ?>
