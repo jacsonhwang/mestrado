@@ -15,8 +15,8 @@
 				Desafie a si mesmo e tente executar a tarefa proposta.</p>
 
 		
-			<video width="700" height="300" controls>
-			  <source src="video/GCER.mp4" type="video/mp4">
+			<video width="700" height="400" controls autoplay>
+			  <source src="video/GCER.mp4" type='video/mp4;' /> 
 			</video>
 		</div>
 	</div>
