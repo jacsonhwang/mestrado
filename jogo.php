@@ -34,7 +34,7 @@ if ($entidadeHabilitadoUsuarioQualificacao == true || $entidadeHabilitadoUsuario
 		$rodada['titulo'] = "Rodada de Qualificação";
 		$rodada['tipo'] = "1";
 	} else if ($entidadeHabilitadoUsuario == true) {
-		$rodada['titulo'] = "Rodada Real";
+		$rodada['titulo'] = "Rodada";
 		$rodada['tipo'] = "2";
 	}
 	
@@ -45,7 +45,7 @@ if ($entidadeHabilitadoUsuarioQualificacao == true || $entidadeHabilitadoUsuario
 	$arrayBaseDados = $baseDAO->recuperaArrayBaseDadosPorEntidadeId($entidade);
 	$entidade->setArrayBaseDados($arrayBaseDados);
 	
-	jogo($entidade, $referenciaExemplo);
+	jogo($entidade, $referenciaExemplo, $rodada);
 	
 } else {	
 	erro ("Erro", ERRO_JOGAR, "painel_usuario.php");
@@ -62,7 +62,7 @@ function verificarEntidadeParaUsuario ($entidadeSuspeita, $arrayEntidade) {
 	return false;
 }
 
-function jogo ($entidade, $referenciaExemplo) {
+function jogo ($entidade, $referenciaExemplo, $rodada) {
 	
 	/*session_start();
 	$_SESSION["inicioJogo"] = date('Y-m-d H:i:s');
