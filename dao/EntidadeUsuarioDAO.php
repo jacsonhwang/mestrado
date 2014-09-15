@@ -3,7 +3,7 @@ include_once __DIR__ . '/../inc/conexao.php';
 include_once __DIR__ . '/../model/Entidade.php';
 include_once __DIR__ . '/../model/Usuario.php';
 
-class EntidadUsuarioeDAO {
+class EntidadeUsuarioDAO {
 
 	private $cn;
 	private $tabela = "entidade_usuario";
@@ -25,6 +25,20 @@ class EntidadUsuarioeDAO {
 	
 		return $idEntidadeUsuario;
 	} */
-
+	
+	
+	public function insereEntidadeUsuario($usuario_id, $entidade_id) {
+	
+		$cn = new Conexao();
+		
+		$arrayEntidadeUsuario['usuario_id'] = $usuario_id;
+		$arrayEntidadeUsuario['entidade_id'] = $entidade_id;
+		
+		$cn->insert('entidade_usuario', $arrayEntidadeUsuario);
+		
+		$cn->disconnect();
+		
+		return $idEntidadeUsuario;
+	}
 }
 ?>

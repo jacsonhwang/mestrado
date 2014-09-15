@@ -2,6 +2,7 @@
 include_once __DIR__ . '/../inc/conexao.php';
 include_once __DIR__ . '/../inc/constantes.php';
 include_once __DIR__ . '/../model/Usuario.php';
+include_once __DIR__ . '/../dao/EntidadeUsuarioDAO.php';
 include_once __DIR__ . '/../dao/RodadaUsuarioDAO.php';
 include_once __DIR__ . '/../dao/UsuarioDAO.php';
 
@@ -72,6 +73,7 @@ if(isset($_POST['buttonCadastrar'])) {
 			}
 		}
 		else {
+			$entidadeUsuarioDAO = new EntidadeUsuarioDAO();
 			$rodadaUsuarioDAO = new RodadaUsuarioDAO();
 			$usuario = new Usuario($nome, $email, $senha, $idade, $genero, $escolaridade, $formacaoAcademica, $marketplace, $science, $gaming, $situacao);
 
@@ -80,6 +82,8 @@ if(isset($_POST['buttonCadastrar'])) {
 			//Inclusao forcado de uma rodada para todo usuario que se cadastrar
 			$usuarioReal = $usuarioDAO->recuperarObjetoUsuarioPorEmail($email);
 			$rodadaUsuarioDAO->inserirUsuarioRodadaPorRodadaIdUsuario(EXPERIMENTO_RODADA_ID, $usuarioReal);
+			
+			$entidadeUsuarioDAO->insereEntidadeUsuario($usuarioReal->getId(), EXPERIMENTO_ENTIDADE_ID);
 			
 			header("location: ../cadastro-sucesso.php");
 			
