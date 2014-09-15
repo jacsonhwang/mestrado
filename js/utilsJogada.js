@@ -344,7 +344,7 @@ function limparJogo() {
 	$.blockUI({ message: null });
 	
 	new Messi("Deseja realmente limpar todas as refer&ecirc;ncias do jogo?", {
-		title : "Sair do jogo",
+		title : "Limpar refer&ecirc;ncias",
 		buttons : [ {
 			id : 0,
 			label : 'Sim',
@@ -375,7 +375,7 @@ function desistirJogo() {
 	$.blockUI({ message: null });
 	
 	new Messi("Deseja realmente sair do jogo? Os dados ser&atilde;o perdidos.", {
-		title : "Sair do jogo",
+		title : "Desistir do jogo",
 		buttons : [ {
 			id : 0,
 			label : 'Sim',
