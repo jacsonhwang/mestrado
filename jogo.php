@@ -64,9 +64,9 @@ function verificarEntidadeParaUsuario ($entidadeSuspeita, $arrayEntidade) {
 
 function jogo ($entidade, $referenciaExemplo, $rodada) {
 	
-	/*session_start();
+// 	session_start();
 	$_SESSION["inicioJogo"] = date('Y-m-d H:i:s');
-	var_dump($_SESSION["inicioJogo"]);*/
+// 	var_dump($_SESSION["inicioJogo"]);
 	
 	?>
 	
