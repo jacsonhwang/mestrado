@@ -18,6 +18,7 @@ $usuarioDAO = new UsuarioDAO();
 
 $usuario = $usuarioDAO->recuperarObjetoUsuarioPorEmail($_SESSION["email"]);
 
+$arrayEntidadePermitidoUsuarioQualificacao = $entidadeDAO->recuperarArrayEntidadeQualificacaoPorUsuario($usuario);
 $arrayEntidadePermitidoUsuario = $entidadeDAO->recuperarArrayEntidadePorUsuario($usuario);
 
 //Cria uma entidade baseada nos dados do POST, que e considera suspeita a princpio
@@ -25,9 +26,18 @@ $arrayEntidadePermitidoUsuario = $entidadeDAO->recuperarArrayEntidadePorUsuario(
 $entidadeSuspeita = $entidadeDAO->recuperaEntidadePorId($_POST['entidade_id']);
 
 //Verifica se a Entidade passada via POST é de fato valido para o usuario
+$entidadeHabilitadoUsuarioQualificacao = verificarEntidadeParaUsuario ($entidadeSuspeita, $arrayEntidadePermitidoUsuarioQualificacao);
 $entidadeHabilitadoUsuario = verificarEntidadeParaUsuario ($entidadeSuspeita, $arrayEntidadePermitidoUsuario);
 
-if ($entidadeHabilitadoUsuario == true) {
+if ($entidadeHabilitadoUsuarioQualificacao == true || $entidadeHabilitadoUsuario == true) {
+	if ($entidadeHabilitadoUsuarioQualificacao == true) {
+		$rodada['titulo'] = "Rodada de Qualificação";
+		$rodada['tipo'] = "1";
+	} else if ($entidadeHabilitadoUsuario == true) {
+		$rodada['titulo'] = "Rodada Real";
+		$rodada['tipo'] = "2";
+	}
+	
 	//Carrega as bases de dados ligadas a entidade e seus meta base de dados
 
 	$entidade = $entidadeSuspeita;
@@ -35,13 +45,6 @@ if ($entidadeHabilitadoUsuario == true) {
 	$arrayBaseDados = $baseDAO->recuperaArrayBaseDadosPorEntidadeId($entidade);
 	$entidade->setArrayBaseDados($arrayBaseDados);
 	
-	/* $referenciaExemplo = array();
-	 foreach ($entidade as $key => $baseDados) {
-	$tabela = $baseDados->getNomeTabela();
-	$referenciaArray1 = $entidadesListaDAO->recuperarPrimeiraLinha(1, $tabela);
-	$exemploArquivo[$baseDados->getNomeJogo()] = $referencia;
-	}
-	*/
 	jogo($entidade, $referenciaExemplo);
 	
 } else {	

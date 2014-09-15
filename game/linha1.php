@@ -1,6 +1,6 @@
 <div class="row linha-titulo">
 	<div class="titulo-rodada">
-		<h1>Rodada de Qualificação</h1>
+		<h1><?php echo $rodada['titulo'];?></h1>
 	</div>
 	
 	<div class="contador" data-timer="300" style="float: right; width: 15%"></div>
