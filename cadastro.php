@@ -72,8 +72,10 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputFormacaoAcademica" class="col-sm-2 control-label">Forma&ccedil;&atilde;o
-						acad&ecirc;mica</label>
+					<label for="inputFormacaoAcademica" class="col-sm-2 control-label">Forma&ccedil;&atilde;o<br/>acad&ecirc;mica</label>
+					<a href="#" title="<?php echo TOOLTIP_CADASTRO_FORMACAO_ACADEMICA;?>" class="tooltipQualificacao">
+						<img src="img/help.png"/>
+					</a>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="inputFormacaoAcademica" name="inputFormacaoAcademica"  value="<?php echo $_SESSION["formacaoAcademicaCadastro"]; ?>" <?php if($_SESSION["escolaridadeCadastro"] <= 3 || !isset($_SESSION["escolaridadeCadastro"])) { echo " disabled"; }?>>
 					</div>
