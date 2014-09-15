@@ -20,10 +20,8 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Característica</th>
-					<th>Nome no Jogo</th>
+					<th>Atributo</th>
 					<th>Descrição</th>
-					<th>Referência</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -31,10 +29,8 @@
 					foreach($baseDados->getMetaBaseDados() as $key2 => $metaBaseDados) {
 						if ($metaBaseDados->getExibirAtributo () == 1) {?>
 							<tr>
-								<td><?php echo $metaBaseDados->getNomeAtributo(); ?></td>
 								<td><?php echo $metaBaseDados->getNomeJogo(); ?></td>
 								<td><?php echo $metaBaseDados->getDescricaoAtributo(); ?></td>
-								<td><?php echo 'teste'; //echo $referenciaArray1[$i]; ?></td>
 							</tr>
 						<?php }
 						$i++;
