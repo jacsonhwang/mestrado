@@ -135,6 +135,12 @@ function addToTrash(item) {
 	$("#views").find(item).remove();
 	
 	$("#poolList").find(item).remove();
+	
+	for(var i in dropArray){
+		if(dropArray[i] != item.id){
+			dropArray.splice(i, 1);
+		}
+	}
 }
 
 function fecharMenuSlider() {
