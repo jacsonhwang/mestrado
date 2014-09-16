@@ -1,5 +1,10 @@
 $(document).ready(function() {
 	
+	/*$("#buttonLimparTudo").hover(function() {
+		$("#buttonLimparTudo > img").empty();
+		$("#buttonLimparTudo").appendTo("<img src='../img/botao-limpar-hover.png'>");
+	});*/
+	
 	dropArray = new Array();
 	
 	$("#pool").droppable({
@@ -109,9 +114,7 @@ function drop(lista, classe, listaOposta, item) {
 	html += "</ul></div></li>";
 
 	$(lista).append(html);
-	
-	console.log(classe);
-	
+		
 	$(lista).children(":last").addClass(classe);
 	
 	$("." + classe).data("dadosEntidade", dados);
@@ -124,7 +127,14 @@ function drop(lista, classe, listaOposta, item) {
         //helper: 'clone',
         //appendTo: 'body'
     });
-	
+
+	/*$("." + classe).resizable({		
+		maxHeight: 250,
+	    maxWidth: 350,
+	    minHeight: 150,
+	    minWidth: 200		
+	});*/
+		
 	$(listaOposta).find(item).remove();
 }
 

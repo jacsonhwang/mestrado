@@ -41,7 +41,7 @@
 .divTabelaFiltro {
 	max-width: 100%;
 	overflow: auto;
-	height: 40%;
+	height: 50%;
 	margin-bottom: 15px;
 }
 
@@ -54,7 +54,6 @@
 }
 
 #divFiltro {
-	height: 50%;
 	overflow: auto;
 	margin-bottom: 20px;
 }

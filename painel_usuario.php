@@ -16,7 +16,7 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 
 
 	<?php if ($_SESSION['qualidade'] != null) { ?>
-			new Messi('Última pontuação = <?php echo $_SESSION['qualidade']; ?>', {
+			new Messi('Você conseguiu <?php echo $_SESSION['qualidade']; ?> pontos.', {
 					title: 'Pontuação',
 					titleClass : 'info',
 				    buttons : [ {
@@ -56,7 +56,7 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 					$_SESSION['qualidade'] = 0;
 				}
 					
-				echo "Última pontuação: ".$_SESSION['qualidade'];?></h3>
+				echo "Total de pontos: ".$_SESSION['qualidade'];?></h3>
 			</div>
 
 			<div class="panel panel-primary">

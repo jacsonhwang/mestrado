@@ -210,6 +210,10 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 		if(valorExibicaoAtributos[i] == 1 && nomesColunas[i] != 'Imagem') {
 			$("<th class='text-center'>").appendTo(tabela + " > thead > tr").html(nomesColunas[i]);
 		}
+		
+		else if(valorExibicaoAtributos[i] == 1 && nomesColunas[i] == 'Imagem') {
+			$("<th class='text-center hide'>").appendTo(tabela + " > thead > tr").html(nomesColunas[i]);
+		}
 	}
 	
 	for(var i in dadosArray) {
@@ -231,7 +235,12 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 				if(valorExibicaoAtributos[k] == 1 && nomesColunas[k] != 'Imagem' && dadosArray[i]["id"] != $("#poolList").find("#entidadeAlvo").data("id")) {
 			        dados[nomesColunas[k]] = dadosArray[i][j];
 			        $("<td class='text-center'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);
-			    }			   
+			    }	
+				
+				else if(valorExibicaoAtributos[k] == 1 && nomesColunas[k] == 'Imagem' && dadosArray[i]["id"] != $("#poolList").find("#entidadeAlvo").data("id")) {
+			        dados[nomesColunas[k]] = dadosArray[i][j];
+			        $("<td class='text-center hide'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);			       
+			    }
 			}
 			
 			k++;

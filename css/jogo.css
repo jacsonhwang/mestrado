@@ -70,11 +70,13 @@
 
 .box {
 	border: 2px solid #2a6496;
-	width: 200px;
-	max-height: 200px;
 	overflow: auto;
 	cursor: move;
 	padding-bottom: 10px;
+	heigth:200px;
+	max-heigth:200px;
+	width:200px;
+	max-width:200px;
 	/* -webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px; */
@@ -110,8 +112,8 @@
 }
 
 .box > ul > li:not(:first-child) > img {
-	height: 166px ;
-	width: 166px;
+	max-height: 166px ;
+	max-width: 166px;
 }
 
 
@@ -125,6 +127,7 @@
 	height: 69vh;
 	padding-left: 20px;
 	padding-right: 20px;
+	padding-top: 20px
 }
 
 .area div {
@@ -157,6 +160,7 @@
 	display: inline-block;
 	width: 50%;
 	padding-left: 20px;
+	padding-top: 20px;	
 }
 
 .linha-titulo-botoes {
@@ -199,4 +203,14 @@
 .ui-state-active{
 	border-color:green green !important;
 	border-width : 8px !important;
+}
+
+#menuJogo{
+	padding-top: 30px;
+	padding-right: 20px;
+	text-align: right;
+}
+
+.hide{
+	visibility: hidden
 }

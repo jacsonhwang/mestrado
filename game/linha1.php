@@ -4,7 +4,7 @@
 	</div>
 	
 	<div class="contador" data-timer="300" style="float: right; width: 15%"></div>
-	<div style="float: right; width : 30%">
+	<div style="float: right; width : 30%" id="menuJogo">
 		<div class='text-center buttonJogo' id="buttonLimparTudo">
 			<img src="img/botao-limpar.png" />
 		</div>
