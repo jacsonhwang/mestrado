@@ -1,7 +1,7 @@
 <?php
 include_once __DIR__ . '/../dao/EntidadeDAO.php';
 include_once __DIR__ . '/../dao/EntidadesListaDAO.php';
-include_once __DIR__ . '/../dao/EntidadeAlvoDAO.php';
+include_once __DIR__ . '/../dao/EntidadeUsuarioDAO.php';
 
 function listarEntidade() {
 	$entidadeDAO = new EntidadeDAO();
@@ -52,13 +52,13 @@ function recuperarEntidadeAleatoria($idBaseDados, $nomeTabela, $idEntidade) {
 	return $entidade;
 }
 
-function listarQualidadeUsuarios($idEntidade) {
+function listarPontuacaoUsuarios($idEntidade) {
 	
-	$entidadeAlvoDAO = new EntidadeAlvoDAO();
+	$entidadeUsuarioDAO = new EntidadeUsuarioDAO();
 	
-	$ranking = $entidadeAlvoDAO->listarQualidadeUsuarios($idEntidade);
+	$pontuacao = $entidadeUsuarioDAO->listarPontuacaoUsuarios($idEntidade);
 	
-	return $ranking;
+	return $pontuacao;
 	
 }
 

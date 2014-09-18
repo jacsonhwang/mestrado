@@ -26,7 +26,7 @@
 		
 			<?php
 			// Exibir somente o ranking da entidade Produto.
-			$rankingArray = listarQualidadeUsuarios(43);
+			$rankingArray = listarPontuacaoUsuarios(43);
 			
 			criarTabelaRanking($rankingArray);
 			?>
@@ -44,7 +44,7 @@
 					echo "Ranking indisponível.";
 				}
 				else {
-					$rankingArray = listarQualidadeUsuarios($entidade->getId());
+					$rankingArray = listarPontuacaoUsuarios($entidade->getId());
 					criarTabelaRanking($rankingArray);
 				}
 				?>
