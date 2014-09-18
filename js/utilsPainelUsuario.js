@@ -10,4 +10,6 @@ $(document).ready(function(){
 	$(".tooltipQualificacao").tipsy({});
 	$(".tooltipOutros").tipsy({});
 	
+	$(".tabela-ranking").tablesorter();
+	
 });

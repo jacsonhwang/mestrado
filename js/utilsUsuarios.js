@@ -9,4 +9,12 @@ $(document).ready(function() {
 		}
 	}).tablesorterPager({ container: $(".pager"), output: '{startRow}/{endRow} (Total de {totalRows})', });;
 	
+	$("#tabelaRanking").tablesorter({
+	    headers: {
+	        0: { sorter: true },
+	        1: { sorter: true },
+	        2: { sorter: true }
+	    }
+	});
+	
 });

@@ -61,7 +61,7 @@ function criarTabelaRanking($rankingArray) {
 ?>
 
 	<div class="table-responsive">
-		<table class="table table-bordered table-hover table-striped tabela-ranking">
+		<table class="table table-bordered table-hover table-striped tabela-ranking tablesorter" id="tabelaRanking">
 			<thead>
 				<tr>
 					<th>#</th>
