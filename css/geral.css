@@ -57,3 +57,8 @@
 	overflow: auto;
 	margin-bottom: 20px;
 }
+
+.tabela-ranking > thead {
+	background-color: #428bca;
+	color: white;
+}

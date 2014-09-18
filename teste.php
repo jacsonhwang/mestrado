@@ -1,17 +1,14 @@
 <?php 
 //include 'dao/MetaBaseDadosDAO.php';
-include_once __DIR__ . '/dao/EntidadesListaDAO.php';
+//include_once __DIR__ . '/dao/EntidadesListaDAO.php';
+include_once __DIR__ . '/dao/EntidadeAlvoDAO.php';
+//include_once __DIR__ . '/dao/EntidadeDAO.php';
 //include 'dao/ResultadoDAO.php';
 //include 'dao/BaseDAO.php';
 //include 'controller/entidadeControle.php';
 
 include_once __DIR__ . '/inc/constantes.php';
 include_once __DIR__ . '/inc/dBug.php';
-
-
-session_start();
-
-$_SESSION["email"];
 
 //echo time();
 
@@ -51,6 +48,18 @@ new dBug($entidade); */
 
 // ---------------------------------------------------------
 
-var_dump(date('Y-m-d H:i:s'));
+$ead = new EntidadeAlvoDAO();
+
+$array = $ead->listarQualidadeUsuarios(43);
+
+new dBug($array);
+
+// ---------------------------------------------------------
+
+/* $ed = new EntidadeDAO();
+
+$nomeEntidade = $ed->recuperarNomeEntidade(43);
+
+echo $nomeEntidade; */
 
 ?>

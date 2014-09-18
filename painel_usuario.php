@@ -5,6 +5,7 @@ include_once __DIR__ . '/inc/dBug.php';
 include_once __DIR__ . '/inc/erro.php';
 include_once __DIR__ . '/dao/EntidadeDAO.php';
 include_once __DIR__ . '/dao/UsuarioDAO.php';
+include_once __DIR__ . '/controller/entidadeControle.php';
 ?>
 <?php 
 //echo '<script language="javascript">';
@@ -12,7 +13,7 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 //echo '</script>';
 ?>
 
-<script language="javascript">
+<script type="text/javascript">
 
 
 	<?php if ($_SESSION['qualidade'] != null) { ?>
@@ -30,52 +31,62 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 		$_SESSION['qualidade'] = '';
 	}
 	?>
-</script>'
+</script>
 
-<div id="formularioLogin" class="container">
+<div class="container-fluid">
+
 	<div class="row">
-			
-			<?php	
-			if(isset($_SESSION["email"])) {
+	
+		<?php include_once __DIR__ . '/game/ranking.php'; ?>
+
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+			<div class="row">
+
+				<?php	
+				if(isset($_SESSION["email"])) {
 				$entidadeDAO = new EntidadeDAO();
 				$usuarioDAO = new UsuarioDAO();
-			
+					
 				$usuario = $usuarioDAO->recuperarObjetoUsuarioPorEmail($_SESSION["email"]);
-			
+					
 				$arrayEntidadeQualificacao = $entidadeDAO->recuperarArrayEntidadeQualificacaoPorUsuario($usuario);
 
 				$arrayEntidade = $entidadeDAO->recuperarArrayEntidadePorUsuario($usuario);
-			?>
-		<div class="col-lg-8 col-lg-offset-2">
-			<div id="loginTitulo" class="page-header">
-				<h1>Painel do Usuário</h1>
-				<h3><?php 
-				$qualidade = $_SESSION['qualidade'];
-				
-				if($qualidade == null || empty($qualidade) == true){
-					$_SESSION['qualidade'] = 0;
+				?>
+				<div class="col-lg-8 col-lg-offset-2">
+					<div id="loginTitulo" class="page-header">
+						<h1>Painel do Usuário</h1>
+						<h3>
+							<?php 
+							$qualidade = $_SESSION['qualidade'];
+
+							if($qualidade == null || empty($qualidade) == true){
+								$_SESSION['qualidade'] = 0;
 				}
 					
 				echo "Total de pontos: ".$_SESSION['qualidade'];?></h3>
-			</div>
+					</div>
 
-			<div class="panel panel-primary">
-				<div class="panel-heading">Qualificação
-					<a href="#" title="<?php echo TOOLTIP_PAINEL_USUARIO_QUALIFICACAO;?>" class="tooltipQualificacao">
-						<img src="img/help.png"/>
-					</a>
-				</div>
-				<div class="panel-body">
-					<div class="col-lg-8 col-lg-offset-2">
-						<form action="jogo.php" method="POST">
-							<div class="row" style="margin-bottom: 10px">
-								<?php foreach($arrayEntidadeQualificacao as $key => $entidade) {?>
-									<div class="col-lg-6">
-										<button type="submit" class="btn btn-default btn-lg btn-block"
-											name="entidade_id"
-											id="button<?php echo $entidade->getNomeJogo()?>"
-											value="<?php echo $entidade->getId()?>">
-												<span class="glyphicon
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							Qualificação <a href="#"
+								title="<?php echo TOOLTIP_PAINEL_USUARIO_QUALIFICACAO;?>"
+								class="tooltipQualificacao"> <img src="img/help.png" />
+							</a>
+						</div>
+						<div class="panel-body">
+							<div class="col-lg-8 col-lg-offset-2">
+								<form action="jogo.php" method="POST">
+									<div class="row" style="margin-bottom: 10px">
+										<?php foreach($arrayEntidadeQualificacao as $key => $entidade) {?>
+										<div class="col-lg-6">
+											<button type="submit"
+												class="btn btn-default btn-lg btn-block" name="entidade_id"
+												id="button<?php echo $entidade->getNomeJogo()?>"
+												value="<?php echo $entidade->getId()?>">
+												<span
+													class="glyphicon
 												
 												<?php if ( $entidade->getNomeJogo() == "Pessoa") {
 													echo "glyphicon-user";
@@ -86,33 +97,35 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 												"></span>
 												<?php echo $entidade->getNomeJogo()?>
 											</button>
-									</div>						
-								<?php }?>
+										</div>
+										<?php }?>
+									</div>
+								</form>
 							</div>
-						</form>
+
+						</div>
 					</div>
 
-				</div>
-			</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							Jogos <a href="#"
+								title="<?php echo TOOLTIP_PAINEL_USUARIO_JOGAR;?>"
+								class="tooltipJogo"> <img src="img/help.png" />
+							</a>
+						</div>
+						<div class="panel-body">
 
-			<div class="panel panel-primary">
-				<div class="panel-heading">Jogos
-					<a href="#" title="<?php echo TOOLTIP_PAINEL_USUARIO_JOGAR;?>" class="tooltipJogo">
-						<img src="img/help.png"/>
-					</a>
-				</div>
-				<div class="panel-body">
-
-					<div class="col-lg-8 col-lg-offset-2">
-						<form action="jogo.php" method="POST">
-							<div class="row" style="margin-bottom: 10px">
-								<?php foreach($arrayEntidade as $key => $entidade) {?>
-									<div class="col-lg-6">
-										<button type="submit" class="btn btn-default btn-lg btn-block"
-											name="entidade_id"
-											id="button<?php echo $entidade->getNomeJogo()?>"
-											value="<?php echo $entidade->getId()?>">
-												<span class="glyphicon
+							<div class="col-lg-8 col-lg-offset-2">
+								<form action="jogo.php" method="POST">
+									<div class="row" style="margin-bottom: 10px">
+										<?php foreach($arrayEntidade as $key => $entidade) {?>
+										<div class="col-lg-6">
+											<button type="submit"
+												class="btn btn-default btn-lg btn-block" name="entidade_id"
+												id="button<?php echo $entidade->getNomeJogo()?>"
+												value="<?php echo $entidade->getId()?>">
+												<span
+													class="glyphicon
 												
 												<?php if ( $entidade->getNomeJogo() == "Pessoa") {
 													echo "glyphicon-user";
@@ -123,15 +136,15 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 												"></span>
 												<?php echo $entidade->getNomeJogo()?>
 											</button>
-									</div>						
-								<?php }?>
+										</div>
+										<?php }?>
+									</div>
+								</form>
 							</div>
-						</form>
+						</div>
 					</div>
-				</div>
-			</div>
 
-			<!-- 
+					<!-- 
 			<div class="panel panel-success">
 				<div class="panel-heading">Outros
 					<a href="#" title="<?php //echo TOOLTIP_PAINEL_USUARIO_OUTROS;?>" class="tooltipOutros">
@@ -151,13 +164,27 @@ include_once __DIR__ . '/dao/UsuarioDAO.php';
 				</div>
 			</div>
 			-->
-			
-			<?php
+
+					<?php
 			} else {
 				erro("Erro", ERRO_LOGAR2, "index.php");
 			}
 			?>
+				</div>
+			</div>
+
+			<footer>
+				<div>
+					<div style="float: left;">COPPE/UFRJ</div>
+					<div style="float: right;">2014</div>
+				</div>
+			</footer>
+
+		</div>
+
 	</div>
+
 </div>
 
-<?php include_once __DIR__ . '/footer.php'; ?>
+</body>
+</html>

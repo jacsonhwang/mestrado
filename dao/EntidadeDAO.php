@@ -324,6 +324,22 @@ class EntidadeDAO {
 	
 		return $arrayEntidade;
 	}
+	
+	public function recuperarNomeEntidade($idEntidade) {
+		 $cn = new Conexao();
+		 
+		 $sql = "SELECT LOWER(nome) AS nome FROM dbo.entidade WHERE id = " . $idEntidade;
+		 
+		 $result = $cn->execute($sql);
+		 
+		 while ($rs = sqlsrv_fetch_array($result)) {
+		 	$nomeEntidade = $rs["nome"];
+		 }
+		 
+		 $cn->disconnect();
+		 
+		 return $nomeEntidade;
+	}
 }
 
 ?>

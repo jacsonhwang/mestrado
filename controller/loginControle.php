@@ -42,6 +42,7 @@ else {
 		else {
 			session_start();
 			
+			$_SESSION["id"] = $usuario->getId();
 			$_SESSION["nome"] = $usuario->getNome();
 			$_SESSION["email"] = $usuario->getEmail();
 			$_SESSION["idade"] = $usuario->getIdade();
