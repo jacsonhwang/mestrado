@@ -62,7 +62,7 @@ $(document).ready(function() {
 
 function getEntityLayout(item) {
 	
-	var html = "<div class='drag'><ul class='box-list'>";
+	var html = "<div class='drag' style='width:40%;'><ul class='box-list'>";
 	
 	$(item).find("td").each(function() {
 		html += "<li>" + $(this).html() + "</li>";
@@ -118,7 +118,7 @@ function drop(lista, classe, listaOposta, item) {
 		var i = 0;
 		$(item).find("li:not(:first-child)").each(function() {
 			if(i%2 == 0){
-				html += "<li style='background-color:#eee;>" + $(this).html() + "</li>";
+				html += "<li style='background-color:#eee;'>" + $(this).html() + "</li>";
 			}else{
 				html += "<li style='background-color:#ddd;'>" + $(this).html() + "</li>";
 			}
@@ -143,7 +143,7 @@ function drop(lista, classe, listaOposta, item) {
         //appendTo: 'body'
     });
 
-	$(".resize").resizable({		
+	$("." + classe).resizable({		
 		maxHeight: 350,
 	    maxWidth: 350,
 	    minHeight: 200,
