@@ -95,19 +95,34 @@ function drop(lista, classe, listaOposta, item) {
 	
 	fecharMenuSlider();
 
-	var html = "<li class='pull-left'><div class='box'><ul class='box-list'><li><div>Refer&ecirc;ncia Suspeita</div><div> " + dados.baseDadosNomeJogo + "</div><div class='clearfix'></div></li>";
-
+	var html = "<li class='pull-left resize'><div class='box'><ul class='box-list'><li><div>Refer&ecirc;ncia Suspeita</div><div> " + dados.baseDadosNomeJogo + "</div><div class='clearfix'></div></li>";
+	
+	var i = 0;
 	if($(item).find("td").length > 0) {
 		$(item).find("td").each(function() {
-			if($(this).html().indexOf("http://") == -1)
-				html += "<li>" + $(this).html() + "</li>";
-			else
-				html += "<li><img src='" + $(this).html() + "'></li>";
+			if(i%2 == 0){
+				if($(this).html().indexOf("http://") == -1)
+					html += "<li style='background-color:#eee;'>" + $(this).html() + "</li>";
+				else
+					html += "<li><img src='" + $(this).html() + "'></li>";
+			}else{
+				if($(this).html().indexOf("http://") == -1)
+					html += "<li style='background-color:#ddd;'>" + $(this).html() + "</li>";
+				else
+					html += "<li><img src='" + $(this).html() + "'></li>";
+			}
+			i++;
 		});
 	}
 	else {
+		var i = 0;
 		$(item).find("li:not(:first-child)").each(function() {
-			html += "<li>" + $(this).html() + "</li>";
+			if(i%2 == 0){
+				html += "<li style='background-color:#eee;>" + $(this).html() + "</li>";
+			}else{
+				html += "<li style='background-color:#ddd;'>" + $(this).html() + "</li>";
+			}
+			i++;
 		});
 	}
 
@@ -128,12 +143,12 @@ function drop(lista, classe, listaOposta, item) {
         //appendTo: 'body'
     });
 
-	/*$("." + classe).resizable({		
-		maxHeight: 250,
+	$(".resize").resizable({		
+		maxHeight: 350,
 	    maxWidth: 350,
-	    minHeight: 150,
-	    minWidth: 200		
-	});*/
+	    minHeight: 200,
+	    minWidth: 200	
+	});
 		
 	$(listaOposta).find(item).remove();
 }

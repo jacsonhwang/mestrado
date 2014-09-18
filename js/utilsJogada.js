@@ -234,12 +234,12 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 			if(teste == false){
 				if(valorExibicaoAtributos[k] == 1 && nomesColunas[k] != 'Imagem' && dadosArray[i]["id"] != $("#poolList").find("#entidadeAlvo").data("id")) {
 			        dados[nomesColunas[k]] = dadosArray[i][j];
-			        $("<td class='text-center'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);
+			        $("<td class='text-center' style='cursor:move'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);
 			    }	
 				
 				else if(valorExibicaoAtributos[k] == 1 && nomesColunas[k] == 'Imagem' && dadosArray[i]["id"] != $("#poolList").find("#entidadeAlvo").data("id")) {
 			        dados[nomesColunas[k]] = dadosArray[i][j];
-			        $("<td class='text-center hide'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);			       
+			        $("<td class='text-center hide' style='cursor:move'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);			       
 			    }
 			}
 			
@@ -466,7 +466,7 @@ function recuperarEntidadeAleatoria(idEntidade) {
 	
 	var nomeJogo = jogadaAjax.recuperaNomeJogo(dadosTabela["idBaseDados"]);
 	
-	var html = "<li class='pull-left' id='entidadeAlvo'><div class='box'><ul class='box-list'>";
+	var html = "<li class='pull-left resize' id='entidadeAlvo'><div class='box'><ul class='box-list'>";
 	
 	html += "<li><div>Refer&ecirc;ncia Alvo</div><div> " + nomeJogo + "</div><div class='clearfix'></div></li>";
 	
@@ -488,4 +488,11 @@ function recuperarEntidadeAleatoria(idEntidade) {
 	$('#poolList').append(html);
 	
 	$("#entidadeAlvo").data("idBaseDados", dadosTabela["idBaseDados"]).data("id", entidade["id"]);
+	
+	$(".resize").resizable({		
+		maxHeight: 350,
+	    maxWidth: 350,
+	    minHeight: 200,
+	    minWidth: 200	
+	});
 }
