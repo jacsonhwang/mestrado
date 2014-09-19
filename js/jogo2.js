@@ -13,7 +13,7 @@ $(document).ready(function() {
 	    hoverClass: "box-hover",
 		drop: function(event, ui) {
 			//addToPool(ui.draggable);
-			//dropArray.push(ui.draggable.data("dadosEntidade").id);
+			dropArray.push({"id" : ui.draggable.data("dadosEntidade").id, "idBaseDados" : ui.draggable.data("dadosEntidade").idBaseDados});
 			drop("#poolList", 'fromPool', "#viewsList", ui.draggable);
 		}
 	});
@@ -22,7 +22,7 @@ $(document).ready(function() {
 		accept: ":not(.fromViewer)",		
 		drop: function(event, ui) {
 			//addToViewer(ui.draggable);
-			//dropArray.push(ui.draggable.data("dadosEntidade").id);
+			dropArray.push({"id" : ui.draggable.data("dadosEntidade").id, "idBaseDados" : ui.draggable.data("dadosEntidade").idBaseDados});
 			drop("#viewsList", 'fromViewer', "#poolList", ui.draggable);
 		}
 	});
@@ -169,11 +169,6 @@ function drop(lista, classe, listaOposta, item) {
 	});
 		
 	$(listaOposta).find(item).remove();
-
-	// Esconde a linha da tabela
-	/*if($(item).is("tr")) {
-	    item.hide();
-	}*/
 }
 
 function addToTrash(item) {
@@ -187,8 +182,8 @@ function addToTrash(item) {
     }
 	
 	$("#views").find(item).remove();
-    
-    $("#poolList").find(item).remove();
+	
+	$("#poolList").find(item).remove();
 }
 
 function fecharMenuSlider() {

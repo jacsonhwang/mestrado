@@ -26,6 +26,25 @@ class ResultadoDAO {
 		}
 		
 		$cn = new Conexao();
+		
+		$entidadeDAO = new EntidadeDAO();
+		
+		$baseDAO = new BaseDAO();
+		
+		$base = $baseDAO->recuperaBasePorId($resultadoArray[0]->idBaseDados);
+		$entidade = $base->getEntidade();
+		
+		$nomeEntidade = strtolower($entidade->getNome());
+		echo "nome entidade: ".$nomeEntidade;
+		$sql = "SELECT ISNULL(MAX(linking_id),0) as linking FROM resultado_entidade_" . $nomeEntidade . $qualificacao;
+		echo "Sql: ".$sql;
+		$result = $cn->execute($sql);
+		
+		while ($rs = sqlsrv_fetch_array($result)) {
+			echo  $rs['linking'];
+			$linking = $rs['linking'] + 1;
+			
+		}
 	
 		foreach ($resultadoArray as $resultado){		
 
@@ -39,10 +58,8 @@ class ResultadoDAO {
 			$idEntidadeRegistro = $entidadesListaDAO->recuperarIdEntidade($resultado->idBaseDados, $resultado->id);
 			
 			$sql = "INSERT INTO resultado_entidade_" . $nomeEntidade . $qualificacao ." (linking_id, entidade_" . $nomeEntidade . "_id, entidade_" . $nomeEntidade . "_alvo_id) 
-					VALUES ((SELECT ISNULL(MAX(linking_id),0) FROM resultado_entidade_" . $nomeEntidade . $qualificacao .") + 1,
-							 " . $idEntidadeRegistro . ", 
-							 " . $resultado->idEntidadeAlvo . ")";
-					
+					VALUES (".$linking."," . $resultado->idRegistro . "," . $resultado->idEntidadeAlvo . ")";
+
 			$cn->execute($sql);
 		}
 		

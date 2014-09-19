@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	var idBaseDadosFiltro = '';
+	var nomeBaseDadosFiltro = '';
+	
 	$("#filtro, #comparador, #dicionario, #arquivos, #tabelaFiltro").hide();
 	
 	$(".divTabelaFiltro").hide();
@@ -14,9 +17,8 @@ $(document).ready(function() {
 	    }
 	    else {
 	    	$(this).parent().addClass("active");
-	    		
-	    	/*$("#filtro table > thead > tr").empty();
-	    	$("#filtro table > tbody").empty();*/
+
+	    	criarTabela(nomeBaseDadosFiltro, idBaseDadosFiltro);
 	    	
 	    	$(this).find("img").attr("src", "img/icone-filtro-ativo.png");
 	    	
@@ -114,6 +116,9 @@ $(document).ready(function() {
 		var baseDadosId = $('.abaFiltro.active').attr('value');
 		var baseDadosNomeJogo = $('.abaFiltro.active').text().trim();
 		
+		idBaseDadosFiltro = baseDadosId;
+		nomeBaseDadosFiltro = baseDadosNomeJogo;
+		
 		criarTabela(baseDadosNomeJogo, baseDadosId);
 	});
 	
@@ -125,6 +130,9 @@ $(document).ready(function() {
 	        
 	        var baseDadosId = $('.abaFiltro.active').attr('value');
 	        var baseDadosNomeJogo = $('.abaFiltro.active').text().trim();
+	        
+	        idBaseDadosFiltro = baseDadosId;
+			nomeBaseDadosFiltro = baseDadosNomeJogo;
 	        
 	        criarTabela(baseDadosNomeJogo, baseDadosId);
 	        
@@ -185,13 +193,15 @@ $(document).ready(function() {
 	});*/
 });
 
-function criarTabela(baseDadosNomeJogo, idBaseDados) {
+function criarTabela(baseDadosNomeJogo, idBaseDados) { 
+	if(baseDadosNomeJogo == "" && idBaseDados == "")
+		return;
 	
 	var form = "#form" + baseDadosNomeJogo; 
 	var tabela = "#tabelaFiltro"+ baseDadosNomeJogo;
 	var divTabela = "#divTabelaFiltro"+ baseDadosNomeJogo;
 	
-	
+
 	$(tabela + " > thead > tr").empty();
 	$(tabela + " > tbody").empty();
 
@@ -215,7 +225,8 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 	var nomesColunas = jogadaAjax.getNomesColunas(idBaseDados);	
 	var valorExibicaoAtributos = jogadaAjax.getValorExibicaoAtributos(idBaseDados);	
 	var nomesAtributos = jogadaAjax.getNomesAtributos(idBaseDados).split(", ");
-	
+	var entidadeAlvo = $("#poolList").find("#entidadeAlvo").data("dadosEntidade");
+
 	$(divTabela).show();
 	
 	for(var i in nomesColunas) {
@@ -228,7 +239,7 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 			$("<th class='text-center hide'>").appendTo(tabela + " > thead > tr").html(nomesColunas[i]);
 		}
 	}
-	
+		
 	for(var i in dadosArray) {
 	    
 	    var idRegistroAlvo = $("#poolList").children(":first").data("dadosEntidade").id;
@@ -261,12 +272,12 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 				}						
 			}
 			if(teste == false){
-				if(valorExibicaoAtributos[k] == 1 && nomesColunas[k] != 'Imagem' && dadosArray[i]["id"] != $("#poolList").find("#entidadeAlvo").data("id")) {
+				if(valorExibicaoAtributos[k] == 1 && nomesColunas[k] != 'Imagem' && (dadosArray[i]["id"] != entidadeAlvo.id || idBaseDados != entidadeAlvo.idBaseDados)) {
 			        dados[nomesColunas[k]] = dadosArray[i][j];
 			        $("<td class='text-center' style='cursor:move'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);
 			    }	
 				
-				else if(valorExibicaoAtributos[k] == 1 && nomesColunas[k] == 'Imagem' && dadosArray[i]["id"] != $("#poolList").find("#entidadeAlvo").data("id")) {
+				else if(valorExibicaoAtributos[k] == 1 && nomesColunas[k] == 'Imagem' && (dadosArray[i]["id"] != entidadeAlvo.id || idBaseDados != entidadeAlvo.idBaseDados)) {
 			        dados[nomesColunas[k]] = dadosArray[i][j];
 			        $("<td class='text-center hide' style='cursor:move'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);			       
 			    }
@@ -284,7 +295,6 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 	}
 	
 	$(tabela + " > tbody").find("tr").each(function() {
-	    
 		$(this).draggable({
 			containment: ".main",
 			helper: function(event) {
