@@ -12,6 +12,10 @@ class ResultadoDAO {
 
 	function inserirResultadoEntidade($resultadoArray) {
 		
+		$entidadeDAO = new EntidadeDAO();
+		$baseDAO = new BaseDAO();
+		$entidadesListaDAO = new EntidadesListaDAO();
+		
 		$tipoRodada = $_SESSION['rodadaTipo'];
 		
 		if($tipoRodada == 1){
@@ -23,11 +27,7 @@ class ResultadoDAO {
 		
 		$cn = new Conexao();
 	
-		foreach ($resultadoArray as $resultado){
-	
-			$entidadeDAO = new EntidadeDAO();
-			$baseDAO = new BaseDAO();
-			$entidadesListaDAO = new EntidadesListaDAO();		
+		foreach ($resultadoArray as $resultado){		
 
 			$base = $baseDAO->recuperaBasePorId($resultado->idBaseDados);
 			$entidade = $base->getEntidade();
@@ -44,6 +44,21 @@ class ResultadoDAO {
 							 " . $resultado->idEntidadeAlvo . ")";
 					
 			$cn->execute($sql);
+		}
+		
+		$idEntidadeUsuario = $entidadeDAO->recuperarIdEntidadeUsuario($resultadoArray[0]->idBaseDados);
+		
+		$idEntidadeAlvo = $entidadesListaDAO->recuperarIdEntidade($resultadoArray[0]->idBaseDados, $resultadoArray[0]->id);
+		
+		$sql2 = "dbo.calculaQualidadeQualificacao ".$idEntidadeUsuario.", ".$idEntidadeAlvo;
+		
+		$result = $cn->execute($sql2);
+		
+		session_start();
+		
+		while ($rs = sqlsrv_fetch_array($result)) {
+		
+			$_SESSION['qualidade'] = $rs["qualidade"];
 		}
 		
 		$cn->disconnect();
@@ -64,7 +79,7 @@ class ResultadoDAO {
 		
 		$cn = new Conexao();
 		
-		$sql = "dbo.calculaQualidadeQualificacao ".$idEntidadeUsuario.", ".$idEntidade;
+		/* $sql = "dbo.calculaQualidadeQualificacao ".$idEntidadeUsuario.", ".$idEntidade;
 		
 		$result = $cn->execute($sql);
 
@@ -73,7 +88,7 @@ class ResultadoDAO {
 		while ($rs = sqlsrv_fetch_array($result)) {
 				
 			$_SESSION['qualidade'] = $rs["qualidade"];
-		}
+		} */
 		
 		$sql = "INSERT INTO [mestrado].[dbo].[entidade_produto_alvo".$qualificacao."]
 				([entidade_produto_id]

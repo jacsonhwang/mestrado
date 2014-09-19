@@ -6,6 +6,7 @@ include_once __DIR__ . '/inc/erro.php';
 include_once __DIR__ . '/dao/EntidadeDAO.php';
 include_once __DIR__ . '/dao/UsuarioDAO.php';
 include_once __DIR__ . '/controller/entidadeControle.php';
+
 ?>
 <?php 
 //echo '<script language="javascript">';
