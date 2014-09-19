@@ -15,8 +15,8 @@ $(document).ready(function() {
 	    else {
 	    	$(this).parent().addClass("active");
 	    		
-	    	$("#filtro table > thead > tr").empty();
-	    	$("#filtro table > tbody").empty();
+	    	/*$("#filtro table > thead > tr").empty();
+	    	$("#filtro table > tbody").empty();*/
 	    	
 	    	$(this).find("img").attr("src", "img/icone-filtro-ativo.png");
 	    	
@@ -230,7 +230,23 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 	}
 	
 	for(var i in dadosArray) {
-		$("<tr>").appendTo(tabela + " > tbody")/*.data("id", dadosArray[i]["id"]).data("idBaseDados", idBaseDados)*/;
+	    
+	    var idRegistroAlvo = $("#poolList").children(":first").data("dadosEntidade").id;
+	    var idBaseDadosAlvo = $("#poolList").children(":first").data("dadosEntidade").idBaseDados;
+	    
+	    var iguais = false;
+	    
+	    
+	    // Evitar que a entidade alvo seja exibida na tabela
+	    if(dadosArray[i].id == idRegistroAlvo && idBaseDados == idBaseDadosAlvo) {
+	        iguais = true;
+	    }
+	    
+	    if(iguais == true) {
+	        break;
+	    }
+	    
+		$("<tr>").appendTo(tabela + " > tbody");
 		
 		var k = 0;
 		var dados = {};
@@ -239,7 +255,7 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 		for(var j in dadosArray[i]) {
 			teste = false;
 			for(var m in dropArray){
-				if(dropArray[m] == dadosArray[i]["id"]){
+				if(dropArray[m].id == dadosArray[i]["id"] && dropArray[m].idBaseDados == idBaseDados){
 					teste = true;
 					break;
 				}						
@@ -268,6 +284,7 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 	}
 	
 	$(tabela + " > tbody").find("tr").each(function() {
+	    
 		$(this).draggable({
 			containment: ".main",
 			helper: function(event) {
@@ -383,6 +400,7 @@ function limparJogo() {
 			    $("#poolList").children().not("#entidadeAlvo").each(function() {
 			    	$(this).remove();
 			    });
+			    dropArray = [];
 			}
 			else {
 				$.unblockUI();

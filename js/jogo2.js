@@ -13,7 +13,7 @@ $(document).ready(function() {
 	    hoverClass: "box-hover",
 		drop: function(event, ui) {
 			//addToPool(ui.draggable);
-			dropArray.push(ui.draggable.data("dadosEntidade").id);
+			//dropArray.push(ui.draggable.data("dadosEntidade").id);
 			drop("#poolList", 'fromPool', "#viewsList", ui.draggable);
 		}
 	});
@@ -22,7 +22,7 @@ $(document).ready(function() {
 		accept: ":not(.fromViewer)",		
 		drop: function(event, ui) {
 			//addToViewer(ui.draggable);
-			dropArray.push(ui.draggable.data("dadosEntidade").id);
+			//dropArray.push(ui.draggable.data("dadosEntidade").id);
 			drop("#viewsList", 'fromViewer', "#poolList", ui.draggable);
 		}
 	});
@@ -77,18 +77,36 @@ function getEntityLayout(item) {
 
 function drop(lista, classe, listaOposta, item) {
     
+    var existe = false;
+    
+    for(var i in dropArray) {
+        if(dropArray[i].id == item.data("dadosEntidade").id && dropArray[i].idBaseDados == item.data("dadosEntidade").idBaseDados){
+            existe = true;
+            break;
+        }
+    }
+    
+    if(existe == false) {
+        dropArray.push({
+            id: item.data("dadosEntidade").id,
+            idBaseDados: item.data("dadosEntidade").idBaseDados
+        });
+    }
+    
     var dados = item.data("dadosEntidade");
 
 	var iguais = false;
 
+	// Percorre todas as li's da poollist e viewslist pra evitar que a mesma entidade seja adicionada
 	$(lista).children().each(function() {
-	    
-	    if($(this).data("dadosEntidade") != undefined) {
-	        if (dados.id == $(this).data("dadosEntidade").id && dados.idBaseDados == $(this).data("dadosEntidade").idBaseDados) {
-	            iguais = true;
-	        }
+
+	    var idRegistro = $(this).data("dadosEntidade").id;
+	    var idBaseDadosRegistro = $(this).data("dadosEntidade").idBaseDados;
+
+	    if (dados.id == idRegistro && dados.idBaseDados == idBaseDadosRegistro) {
+	        iguais = true;
 	    }
-	    
+
 	});
 
 	if(iguais == true) {
@@ -151,21 +169,26 @@ function drop(lista, classe, listaOposta, item) {
 	});
 		
 	$(listaOposta).find(item).remove();
+
+	// Esconde a linha da tabela
+	/*if($(item).is("tr")) {
+	    item.hide();
+	}*/
 }
 
 function addToTrash(item) {
 	
 	$("body").css("cursor", "auto");
 	
+	for(var i in dropArray){	    
+        if(dropArray[i].id == item.data("dadosEntidade").id && dropArray[i].idBaseDados == item.data("dadosEntidade").idBaseDados){
+            dropArray.splice(i, 1);
+        }
+    }
+	
 	$("#views").find(item).remove();
-	
-	$("#poolList").find(item).remove();
-	
-	for(var i in dropArray){
-		if(dropArray[i] != item.id){
-			dropArray.splice(i, 1);
-		}
-	}
+    
+    $("#poolList").find(item).remove();
 }
 
 function fecharMenuSlider() {
