@@ -1,6 +1,6 @@
 <div class="row area">
 
-	<div class="col-lg-7">
+	<div class="col-lg-7" style="height: 100%">
 	
 		<div id="views" style="height: 80%">
 			<ul id="viewsList" class='box-list'></ul>

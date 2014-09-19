@@ -9,8 +9,8 @@ $(document).ready(function() {
 	
 	$("#pool").droppable({
 		accept: ":not(.fromPool)",
-		activeClass: "ui-state-hover",
-	    hoverClass: "ui-state-active",
+		activeClass: "box-active",
+	    hoverClass: "box-hover",
 		drop: function(event, ui) {
 			//addToPool(ui.draggable);
 			dropArray.push(ui.draggable.data("dadosEntidade").id);
@@ -65,7 +65,9 @@ function getEntityLayout(item) {
 	var html = "<div class='drag' style='width:20%; z-index: 40'><ul class='box-list'>";
 	
 	$(item).find("td").each(function() {
-		html += "<li>" + $(this).html() + "</li>";
+	    if($(this).html().indexOf("http://") == -1) {
+	        html += "<li>" + $(this).html() + "</li>";
+	    }
 	});
 	
 	html += "</ul></div>";

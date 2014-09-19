@@ -48,11 +48,11 @@ new dBug($entidade); */
 
 // ---------------------------------------------------------
 
-$ead = new EntidadeAlvoDAO();
+/* $ead = new EntidadeAlvoDAO();
 
 $array = $ead->listarQualidadeUsuarios(43);
 
-new dBug($array);
+new dBug($array); */
 
 // ---------------------------------------------------------
 
@@ -62,4 +62,19 @@ $nomeEntidade = $ed->recuperarNomeEntidade(43);
 
 echo $nomeEntidade; */
 
+include_once __DIR__ . '/header.php';
+
 ?>
+<div class="row area">
+<div id="testeResize" style="width: 100px; height: 100px">
+				lorem ipsum lorem ipsum
+			</div>
+			</div>
+			
+			<script>
+			$(document).ready(function() {
+
+				$("#testeResize").resizable();
+			});
+			</script>
+			
