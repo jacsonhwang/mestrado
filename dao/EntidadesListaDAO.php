@@ -163,19 +163,42 @@ class EntidadesListaDAO {
 		return $idEntidade;
 	}
 	
-	function recuperarEntidadeAleatoria($idBaseDados, $nomeTabela, $idEntidade) {
+	function recuperarEntidadeAleatoria($idBaseDados, $nomeTabela, $idEntidade, $idUsuario) {
+		session_start();
+		
 		
 		/* $baseDAO = new BaseDAO();
 		
 		$dados = $baseDAO->recuperarNomeTabelaAleatoria($idEntidade); */
 		
 		$mbd = new MetaBaseDadosDAO();
+		$entidadeDAO = new EntidadeDAO();
 		
+		$entidade = $entidadeDAO->recuperaEntidadePorBaseId($idBaseDados);
+		$entidadeAtributoId = "entidade_".$entidade->getNome()."_id";
+		
+		if ($_SESSION["rodadaTipo"] == 1) {
+			$entidadeTabelaAlvo = "entidade_".$entidade->getNome()."_alvo_qualificacao";
+		} else {
+			$entidadeTabelaAlvo = "entidade_".$entidade->getNome()."_alvo";
+		}
+				
 		$nomesColunas = $mbd->recuperarNomesColunas($idBaseDados);
 		
 		$cn = new Conexao();
 		
-		$sql = "SELECT TOP 1 " . $nomesColunas . " FROM " . $nomeTabela . " ORDER BY NEWID()";
+		//$sql = "SELECT TOP 1 " . $nomesColunas . " FROM " . $nomeTabela . " ORDER BY NEWID()";
+		
+		$sql  = " SELECT TOP 1 * ";
+		//$sql .= " FROM entidade_produto_1 e ";
+		$sql .= " FROM $nomeTabela e ";
+		$sql .= " WHERE NOT EXISTS (SELECT 1 ";
+		//$sql .= "                   FROM entidade_produto_alvo e2 ";
+		$sql .= "                   FROM $entidadeTabelaAlvo e2 ";
+		$sql .= "                   INNER JOIN entidade_usuario eu ON eu.id = e2.entidade_usuario_id ";
+		$sql .= "                   WHERE e2.$entidadeAtributoId = e.$entidadeAtributoId ";
+		$sql .= "                     AND eu.usuario_id = $idUsuario) ";
+		$sql .= " ORDER BY NEWID() ";
 		
 		$result = $cn->execute($sql);
 		

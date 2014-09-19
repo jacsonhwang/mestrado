@@ -43,11 +43,11 @@ function recuperarIdEntidade($idBaseDados, $id) {
 	return $idEntidade;
 }
 
-function recuperarEntidadeAleatoria($idBaseDados, $nomeTabela, $idEntidade) {
+function recuperarEntidadeAleatoria($idBaseDados, $nomeTabela, $idEntidade, $idUsuario) {
 	
 	$entidadesListaDAO = new EntidadesListaDAO();
 	
-	$entidade = $entidadesListaDAO->recuperarEntidadeAleatoria($idBaseDados, $nomeTabela, $idEntidade);
+	$entidade = $entidadesListaDAO->recuperarEntidadeAleatoria($idBaseDados, $nomeTabela, $idEntidade, $idUsuario);
 	
 	return $entidade;
 }

@@ -98,14 +98,14 @@ JogadaAjax.prototype.inserirResultadoEntidade = function(resultadoArray) {
     //return resultado;
 };
 
-JogadaAjax.prototype.recuperarEntidadeAleatoria = function(idBaseDados, nomeTabela, idEntidade) {
+JogadaAjax.prototype.recuperarEntidadeAleatoria = function(idBaseDados, nomeTabela, idEntidade, idUsuario) {
 	
 	var resultado = "";
 
     $.ajax({
         type: "POST",
         url: "ajaxController/entidadeAjaxControle.php",
-        data: { idConsulta: 2, idBaseDados: idBaseDados, nomeTabela: nomeTabela, idEntidade: idEntidade },
+        data: { idConsulta: 2, idBaseDados: idBaseDados, nomeTabela: nomeTabela, idEntidade: idEntidade, idUsuario: idUsuario },
         async: false,
         success: function(msg) {
             resultado = jQuery.parseJSON(msg);

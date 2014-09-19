@@ -22,6 +22,10 @@ if(isset($_POST['nomeTabela'])) {
 	$nomeTabela = $_POST['nomeTabela'];
 }
 
+if(isset($_POST['idUsuario'])) {
+	$idUsuario = $_POST['idUsuario'];
+}
+
 switch ($idConsulta){
 	case 1:
 		
@@ -33,7 +37,7 @@ switch ($idConsulta){
 		
 	case 2:
 		
-		$entidade = recuperarEntidadeAleatoria($idBaseDados, $nomeTabela, $idEntidade);
+		$entidade = recuperarEntidadeAleatoria($idBaseDados, $nomeTabela, $idEntidade, $idUsuario);
 		
 		foreach($entidade as &$dadoEntidade) {
 			$dadoEntidade = utf8_encode($dadoEntidade);

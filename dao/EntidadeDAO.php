@@ -65,6 +65,25 @@ class EntidadeDAO {
 		return $entidade;
 	}
 	
+	public function recuperaEntidadePorBaseId($base_id){
+		$cn = new Conexao();
+	
+		$sql = "SELECT e.id, e.nome, e.descricao_jogo, e.nome_jogo
+				FROM entidade e
+				INNER JOIN base_dados bd ON bd.entidade_id = e.id
+				WHERE bd.id = '".$base_id."'";
+	
+		$result = $cn->execute($sql);
+	
+		while ($rs = sqlsrv_fetch_array($result)) {
+			$entidade = new Entidade($rs['id'], $rs['nome'], $rs['nome_jogo'], $rs['descricao_jogo']);
+		}
+	
+		$cn->disconnect();
+	
+		return $entidade;
+	}
+	
 	public function inserirEntidade($entidade){
 		$cn = new Conexao();
 		

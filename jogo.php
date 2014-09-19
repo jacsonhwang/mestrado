@@ -51,7 +51,7 @@ if ($entidadeHabilitadoUsuarioQualificacao == true || $entidadeHabilitadoUsuario
 	$arrayBaseDados = $baseDAO->recuperaArrayBaseDadosPorEntidadeId($entidade);
 	$entidade->setArrayBaseDados($arrayBaseDados);
 	
-	jogo($entidade, $referenciaExemplo, $rodada);
+	jogo($entidade, $referenciaExemplo, $rodada, $usuario);
 	
 } else {	
 	erro ("Erro", ERRO_JOGAR, "painel_usuario.php");
@@ -68,7 +68,7 @@ function verificarEntidadeParaUsuario ($entidadeSuspeita, $arrayEntidade) {
 	return false;
 }
 
-function jogo ($entidade, $referenciaExemplo, $rodada) {
+function jogo ($entidade, $referenciaExemplo, $rodada, $usuario) {
 	
 // 	session_start();
 	$_SESSION["inicioJogo"] = date('Y-d-m H:i:s');
@@ -79,7 +79,7 @@ function jogo ($entidade, $referenciaExemplo, $rodada) {
 	<script>
 
 	$(document).ready(function () {
-		recuperarEntidadeAleatoria(<?php echo $_POST['entidade_id']; ?>);
+		recuperarEntidadeAleatoria(<?php echo $_POST['entidade_id'].",".$usuario->getId(); ?>);
 	    iniciarContador();
 	});
     

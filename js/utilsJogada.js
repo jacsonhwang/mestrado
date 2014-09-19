@@ -467,13 +467,13 @@ function salvarDados(situacao) {
 
 }
 
-function recuperarEntidadeAleatoria(idEntidade) {
+function recuperarEntidadeAleatoria(idEntidade, idUsuario) {
 	
 	var jogadaAjax = new JogadaAjax();
 	
 	var dadosTabela = jogadaAjax.recuperarNomeTabelaAleatoria(idEntidade);
 	
-	var entidade = jogadaAjax.recuperarEntidadeAleatoria(dadosTabela["idBaseDados"], dadosTabela["nomeTabela"], idEntidade);
+	var entidade = jogadaAjax.recuperarEntidadeAleatoria(dadosTabela["idBaseDados"], dadosTabela["nomeTabela"], idEntidade, idUsuario);
 	
 	var valorExibicaoAtributos = jogadaAjax.getValorExibicaoAtributos(dadosTabela["idBaseDados"]);
 	
