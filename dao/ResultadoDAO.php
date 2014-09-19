@@ -50,16 +50,18 @@ class ResultadoDAO {
 		
 		$idEntidadeAlvo = $entidadesListaDAO->recuperarIdEntidade($resultadoArray[0]->idBaseDados, $resultadoArray[0]->id);
 		
-		$sql2 = "dbo.calculaQualidadeQualificacao ".$idEntidadeUsuario.", ".$idEntidadeAlvo;
-		
+ 		session_start();
+
+ 		//Calcula a qualidade do jogador e armazena na sessão
+		$sql2 = "SELECT dbo.calculaQualidadeQualificacao (".$idEntidadeUsuario.", ".$idEntidadeAlvo.") as qualidade";
 		$result = $cn->execute($sql2);
-		
-		session_start();
-		
 		while ($rs = sqlsrv_fetch_array($result)) {
-		
 			$_SESSION['qualidade'] = $rs["qualidade"];
 		}
+		
+		//Atualiza a qualidade do jogador na tabela alvo
+		$sql3 = "dbo.atualizaQualidadeQualificacao ".$idEntidadeUsuario.", ".$idEntidadeAlvo;
+		$cn->execute($sql3);
 		
 		$cn->disconnect();
 	}
