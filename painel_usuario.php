@@ -16,9 +16,10 @@ include_once __DIR__ . '/controller/entidadeControle.php';
 
 <script type="text/javascript">
 
-
-	<?php if ($_SESSION['qualidade'] != null) { ?>
-			new Messi('Você conseguiu <?php echo $_SESSION['qualidade']; ?> pontos.', {
+	<?php 
+	if($_SESSION['rodadaTipo'] == 1){
+		if ($_SESSION['qualidade'] != null && $_SESSION['qualidade'] >= 60) { ?>
+			new Messi('Parabêns !! Você fez <?php echo $_SESSION['qualidade']; ?> pontos. Portanto, passou no teste de qualificação ', {
 					title: 'Pontuação',
 					titleClass : 'info',
 				    buttons : [ {
@@ -29,9 +30,45 @@ include_once __DIR__ . '/controller/entidadeControle.php';
 				});
 
 	<?php
-		$_SESSION['qualidade'] = '';
-	}
+			$_SESSION['qualidade'] = '';
+		} else if ($_SESSION['qualidade'] != null && $_SESSION['qualidade'] <= 60) {
 	?>
+		new Messi('Você fez <?php echo $_SESSION['qualidade']; ?> pontos. Tente Novamente !', {
+			title: 'Pontuação',
+			titleClass : 'info',
+		    buttons : [ {
+		        id : 0,
+		        label : 'OK',
+		        val : 'X'
+		    } ],	
+		});
+
+	<?php 
+		$_SESSION['qualidade'] = '';
+	
+		}
+	}else if($_SESSION['qualidade'] != null && $_SESSION['rodadaTipo'] == 2){?>
+			new Messi('Você fez <?php echo $_SESSION['qualidade']; ?> pontos.', {
+					title: 'Pontuação',
+					titleClass : 'info',
+				    buttons : [ {
+				        id : 0,
+				        label : 'OK',
+				        val : 'X'
+				    } ],	
+				});
+
+	<?php
+			$_SESSION['qualidade'] = '';
+	} 	
+
+?>
+
+
+	
+		
+	
+	
 </script>
 
 <div class="container-fluid">
@@ -55,20 +92,23 @@ include_once __DIR__ . '/controller/entidadeControle.php';
 
 				$arrayEntidade = $entidadeDAO->recuperarArrayEntidadePorUsuario($usuario);
 				?>
+				
 				<div class="col-lg-8 col-lg-offset-2">
 					<div id="loginTitulo" class="page-header">
 						<h1>Painel do Usuário</h1>
+				<!-- 
 						<h3>
 							<?php 
-							$qualidade = $_SESSION['qualidade'];
+					/* 		$qualidade = $_SESSION['qualidade'];
 
 							if($qualidade == null || empty($qualidade) == true){
 								$_SESSION['qualidade'] = 0;
 				}
-					
-				echo "Total de pontos: ".$_SESSION['qualidade'];?></h3>
+ */					
+				//echo "Total de pontos: ".$_SESSION['qualidade'];?></h3>
 					</div>
-
+ 					-->
+ 					</div>
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							Qualificação <a href="#"

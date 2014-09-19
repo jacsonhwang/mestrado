@@ -93,7 +93,6 @@ JogadaAjax.prototype.inserirResultadoEntidade = function(resultadoArray) {
         data: { idConsulta: 1, resultadoArray: JSON.stringify(resultadoArray)},
         async: false,
         success: function(msg) {
-  		
         }
     });
     

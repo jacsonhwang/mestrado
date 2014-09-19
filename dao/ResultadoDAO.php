@@ -35,14 +35,11 @@ class ResultadoDAO {
 		$entidade = $base->getEntidade();
 		
 		$nomeEntidade = strtolower($entidade->getNome());
-		echo "nome entidade: ".$nomeEntidade;
-		$sql = "SELECT ISNULL(MAX(linking_id),0) as linking FROM resultado_entidade_" . $nomeEntidade . $qualificacao;
-		echo "Sql: ".$sql;
+		$sql = "SELECT ISNULL(MAX(linking_id),0) + 1 as linking FROM resultado_entidade_" . $nomeEntidade . $qualificacao;
 		$result = $cn->execute($sql);
 		
 		while ($rs = sqlsrv_fetch_array($result)) {
-			echo  $rs['linking'];
-			$linking = $rs['linking'] + 1;
+			$linking = $rs['linking'];
 			
 		}
 	
@@ -58,8 +55,7 @@ class ResultadoDAO {
 			$idEntidadeRegistro = $entidadesListaDAO->recuperarIdEntidade($resultado->idBaseDados, $resultado->id);
 			
 			$sql = "INSERT INTO resultado_entidade_" . $nomeEntidade . $qualificacao ." (linking_id, entidade_" . $nomeEntidade . "_id, entidade_" . $nomeEntidade . "_alvo_id) 
-					VALUES (".$linking."," . $resultado->idRegistro . "," . $resultado->idEntidadeAlvo . ")";
-
+					VALUES (".$linking."," . $idEntidadeRegistro . "," . $resultado->idEntidadeAlvo . ")";
 			$cn->execute($sql);
 		}
 		
@@ -67,18 +63,38 @@ class ResultadoDAO {
 		
 		$idEntidadeAlvo = $entidadesListaDAO->recuperarIdEntidade($resultadoArray[0]->idBaseDados, $resultadoArray[0]->id);
 		
- 		session_start();
+		if($tipoRodada == 1){
+			session_start();
 
- 		//Calcula a qualidade do jogador e armazena na sessão
-		$sql2 = "SELECT dbo.calculaQualidadeQualificacao (".$idEntidadeUsuario.", ".$idEntidadeAlvo.") as qualidade";
-		$result = $cn->execute($sql2);
-		while ($rs = sqlsrv_fetch_array($result)) {
-			$_SESSION['qualidade'] = $rs["qualidade"];
+	 		//Calcula a qualidade do jogador e armazena na sessão
+			$sql2 = "SELECT dbo.calculaQualidadeQualificacao (".$idEntidadeUsuario.", ".$idEntidadeAlvo.") as qualidade";
+			
+			$result = $cn->execute($sql2);
+			while ($rs = sqlsrv_fetch_array($result)) {
+				$_SESSION['qualidade'] = $rs["qualidade"];
+			}
+			//Atualiza a qualidade do jogador na tabela alvo
+			$sql3 = "dbo.atualizaQualidadeQualificacao ".$idEntidadeUsuario.", ".$idEntidadeAlvo;
+			
+			$cn->execute($sql3);
+		}
+		else if($tipoRodada == 2){
+			session_start();
+
+	 		//Calcula a qualidade do jogador e armazena na sessão
+			$sql2 = "SELECT dbo.calculaQualidade (".$idEntidadeUsuario.", ".$idEntidadeAlvo.") as qualidade";
+			
+			$result = $cn->execute($sql2);
+			while ($rs = sqlsrv_fetch_array($result)) {
+				$_SESSION['qualidade'] = $rs["qualidade"];
+			}
+			//Atualiza a qualidade do jogador na tabela alvo
+			$sql3 = "dbo.atualizaQualidade ".$idEntidadeUsuario.", ".$idEntidadeAlvo;
+			
+			$cn->execute($sql3);
 		}
 		
-		//Atualiza a qualidade do jogador na tabela alvo
-		$sql3 = "dbo.atualizaQualidadeQualificacao ".$idEntidadeUsuario.", ".$idEntidadeAlvo;
-		$cn->execute($sql3);
+		
 		
 		$cn->disconnect();
 	}

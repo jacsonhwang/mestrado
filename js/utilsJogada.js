@@ -254,7 +254,7 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 	    }
 	    
 	    if(iguais == true) {
-	        break;
+	        continue;
 	    }
 	    
 		$("<tr>").appendTo(tabela + " > tbody");
@@ -272,12 +272,12 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 				}						
 			}
 			if(teste == false){
-				if(valorExibicaoAtributos[k] == 1 && nomesColunas[k] != 'Imagem' && (dadosArray[i]["id"] != entidadeAlvo.id || idBaseDados != entidadeAlvo.idBaseDados)) {
+				if(valorExibicaoAtributos[k] == 1 && nomesColunas[k] != 'Imagem') {
 			        dados[nomesColunas[k]] = dadosArray[i][j];
 			        $("<td class='text-center' style='cursor:move'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);
 			    }	
 				
-				else if(valorExibicaoAtributos[k] == 1 && nomesColunas[k] == 'Imagem' && (dadosArray[i]["id"] != entidadeAlvo.id || idBaseDados != entidadeAlvo.idBaseDados)) {
+				else if(valorExibicaoAtributos[k] == 1 && nomesColunas[k] == 'Imagem') {
 			        dados[nomesColunas[k]] = dadosArray[i][j];
 			        $("<td class='text-center hide' style='cursor:move'>").appendTo(tabela + " > tbody > tr:last").html(dadosArray[i][j]);			       
 			    }
@@ -473,6 +473,7 @@ function salvarDados(situacao) {
 		
 	});
 	
+	console.log(resultadoArray);
 	jogadaAjax.inserirResultadoEntidade(resultadoArray);
 	
 	$.unblockUI();
