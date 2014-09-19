@@ -239,6 +239,14 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 			$("<th class='text-center hide'>").appendTo(tabela + " > thead > tr").html(nomesColunas[i]);
 		}
 	}
+	
+	
+	if(dadosArray.length == 0){
+		$("<tr>").appendTo(tabela + " > tbody");
+		
+		$("<td class='text-center' colspan='"+nomesColunas.length+"'>").appendTo(tabela + " > tbody > tr:last").html("Não existem dados para essa busca.");
+	}
+	
 		
 	for(var i in dadosArray) {
 	    
@@ -473,7 +481,6 @@ function salvarDados(situacao) {
 		
 	});
 	
-	console.log(resultadoArray);
 	jogadaAjax.inserirResultadoEntidade(resultadoArray);
 	
 	$.unblockUI();
