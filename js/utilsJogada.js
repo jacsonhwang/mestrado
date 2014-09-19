@@ -114,8 +114,21 @@ $(document).ready(function() {
 		var baseDadosId = $('.abaFiltro.active').attr('value');
 		var baseDadosNomeJogo = $('.abaFiltro.active').text().trim();
 		
-		//criarTabela("#form"+baseDadosNomeJogo, "#tabelaFiltro"+baseDadosNomeJogo, "#divTabelaFiltro"+baseDadosNomeJogo, baseDadosId);
 		criarTabela(baseDadosNomeJogo, baseDadosId);
+	});
+	
+	$(".formFiltro > div > div > input").keypress(function(event) {
+	    
+	    var keycode = (event.keyCode ? event.keyCode : event.which);
+	    
+	    if(keycode == '13'){
+	        
+	        var baseDadosId = $('.abaFiltro.active').attr('value');
+	        var baseDadosNomeJogo = $('.abaFiltro.active').text().trim();
+	        
+	        criarTabela(baseDadosNomeJogo, baseDadosId);
+	        
+	    }
 	});
 
 	$("#buttonLimparBusca").click(function() {

@@ -15,7 +15,7 @@
 			<?php foreach($entidade->getArrayBaseDados() as $key => $baseDados) { ?>
 		
 			<div class="tab-pane tab <?php if ($key==0) echo 'active';?>" id="tab<?php echo $baseDados->getNomeJogo();?>">
-				<form class="form-horizontal" id="form<?php echo $baseDados->getNomeJogo();?>">
+				<form class="form-horizontal formFiltro" id="form<?php echo $baseDados->getNomeJogo();?>">
 					<?php
 					foreach($baseDados->getMetaBaseDados() as $key2 => $metaBaseDados) {
 						if($metaBaseDados->getExibirAtributo() == 1 && $metaBaseDados->getNomeAtributo() != 'imagem'){
@@ -41,10 +41,10 @@
 	
 	<div class="clearfix"></div>
 	
-	<div class="col-lg-8 col-lg-offset-2" style = "padding-bottom:10px;">
-		<button class="btn btn-info" id="buttonLimparBusca">Limpar busca</button>
+	<div class="col-lg-12" style = "padding-bottom:10px;">
+		<button class="btn btn-info" id="buttonLimparBusca" style="float: left">Limpar busca</button>
 	
-		<button class="btn btn-success botaoFiltrar" id="buttonFiltrar<?php echo $baseDados->getNomeJogo();?>">Filtrar</button>
+		<button class="btn btn-success botaoFiltrar" id="buttonFiltrar<?php echo $baseDados->getNomeJogo();?>" style="float: right">Filtrar</button>
 	</div>
 	
 	<div class="clearfix"></div>
