@@ -84,6 +84,7 @@ JogadaAjax.prototype.recuperarIdEntidade = function(idBaseDados, id) {
 };
 
 JogadaAjax.prototype.inserirResultadoEntidade = function(resultadoArray) {
+    
 	var resultado = "";
 	
     $.ajax({
@@ -94,8 +95,7 @@ JogadaAjax.prototype.inserirResultadoEntidade = function(resultadoArray) {
         success: function(msg) {
         }
     });
-
-    //return resultado;
+    
 };
 
 JogadaAjax.prototype.recuperarEntidadeAleatoria = function(idBaseDados, nomeTabela, idEntidade, idUsuario) {

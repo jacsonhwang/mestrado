@@ -265,10 +265,6 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 		objeto["baseDadosNomeJogo"] = baseDadosNomeJogo;
 		
 		$(tabela + " > tbody > tr:last").data("dadosEntidade", objeto);
-		
-		//$("<tr>").appendTo(tabela + " > tbody").data(objeto);
-		//$("<tr>").appendTo(tabela + " > tbody").data({name:"dasda", idade:"23123"});
-		//console.log ($("<tr>").appendTo(tabela + " > tbody").data());
 	}
 	
 	$(tabela + " > tbody").find("tr").each(function() {
@@ -284,7 +280,7 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 
 function finalizarJogo(situacao) {
 	
-	if(situacao == 1) { // jogo encerrado normalmente, pelo botï¿½o
+	if(situacao == 1) { // jogo encerrado normalmente, pelo botão
 		
 		$.blockUI({ message: null });
 		
@@ -427,31 +423,24 @@ function salvarDados(situacao) {
 
 	var jogadaAjax = new JogadaAjax();
 
-	var idBaseDados = $("#poolList").find("#entidadeAlvo").data("idBaseDados");
-	var idAlvo = $("#poolList").find("#entidadeAlvo").data("id");
+	var idBaseDados = $("#poolList").find("#entidadeAlvo").data("dadosEntidade").idBaseDados;
+	var idAlvo = $("#poolList").find("#entidadeAlvo").data("dadosEntidade").id;
 	
-	var idRegistro = jogadaAjax.recuperarIdEntidade(idBaseDados, idAlvo);
+	var idRegistroAlvo = jogadaAjax.recuperarIdEntidade(idBaseDados, idAlvo);
 
-	var idEntidadeAlvo = jogadaAjax.inserirEntidadeAlvo(idRegistro, idBaseDados, situacao);
+	var idEntidadeAlvo = jogadaAjax.inserirEntidadeAlvo(idRegistroAlvo, idBaseDados, situacao);
 	
 	var resultadoArray = new Array();
 
 	$("#poolList").children().each(function() {
+	    
+	    var dados = $(this).data("dadosEntidade");
+        
+        var idBaseDados = dados.idBaseDados;
+        var id = dados.id;
 				
-		var idBaseDados = $(this).data("idBaseDados");
-		var id = $(this).data("id");
-				
-		if(id == undefined || idBaseDados == undefined){
-			var dados = $(this).data("dadosEntidade");
-			
-			var idBaseDados = dados.idBaseDados;
-			var id = dados.id;			
-		}
-		
-		var idRegistro = jogadaAjax.recuperarIdEntidade(idBaseDados, id);
-				
-		resultadoArray.push({"idBaseDados"    : idBaseDados,
-							 "idRegistro"     : idRegistro,
+		resultadoArray.push({"idBaseDados" : idBaseDados,
+							 "id" : id,
 							 "idEntidadeAlvo" : idEntidadeAlvo});
 		
 	});
@@ -460,10 +449,9 @@ function salvarDados(situacao) {
 	
 	$.unblockUI();
 	
-	window.location = "painel_usuario.php";
-	/*setTimeout(function() {
+	setTimeout(function() {
 		window.location = "painel_usuario.php";
-	}, 2000);*/
+	}, 2000);
 
 }
 
@@ -500,7 +488,12 @@ function recuperarEntidadeAleatoria(idEntidade, idUsuario) {
 	
 	$('#poolList').append(html);
 	
-	$("#entidadeAlvo").data("idBaseDados", dadosTabela["idBaseDados"]).data("id", entidade["id"]);
+	var dados = {
+	        idBaseDados: dadosTabela["idBaseDados"],
+	        id: entidade["id"]
+	};
+	
+	$("#entidadeAlvo").data("dadosEntidade", dados);
 	
 	$(".resize").resizable({		
 		maxHeight: 350,

@@ -2,6 +2,7 @@
 include_once __DIR__ . '/../inc/conexao.php';
 include_once __DIR__ . '/../dao/EntidadeDAO.php';
 include_once __DIR__ . '/../dao/BaseDAO.php';
+include_once __DIR__ . '/../dao/EntidadesListaDAO.php';
 
 session_start();
 
@@ -15,7 +16,8 @@ class ResultadoDAO {
 		
 		if($tipoRodada == 1){
 			$qualificacao = '_qualificacao';
-		}else if($tipoRodada == 2){
+		}
+		else if($tipoRodada == 2){
 			$qualificacao = '';
 		}
 		
@@ -24,8 +26,8 @@ class ResultadoDAO {
 		foreach ($resultadoArray as $resultado){
 	
 			$entidadeDAO = new EntidadeDAO();
-
-			$baseDAO = new BaseDAO();				
+			$baseDAO = new BaseDAO();
+			$entidadesListaDAO = new EntidadesListaDAO();		
 
 			$base = $baseDAO->recuperaBasePorId($resultado->idBaseDados);
 			$entidade = $base->getEntidade();
@@ -34,9 +36,11 @@ class ResultadoDAO {
 			
 			$idEntidadeUsuario = $entidadeDAO->recuperarIdEntidadeUsuario($resultado->idBaseDados);
 			
+			$idEntidadeRegistro = $entidadesListaDAO->recuperarIdEntidade($resultado->idBaseDados, $resultado->id);
+			
 			$sql = "INSERT INTO resultado_entidade_" . $nomeEntidade . $qualificacao ." (linking_id, entidade_" . $nomeEntidade . "_id, entidade_" . $nomeEntidade . "_alvo_id) 
 					VALUES ((SELECT ISNULL(MAX(linking_id),0) FROM resultado_entidade_" . $nomeEntidade . $qualificacao .") + 1,
-							 " . $resultado->idRegistro . ", 
+							 " . $idEntidadeRegistro . ", 
 							 " . $resultado->idEntidadeAlvo . ")";
 					
 			$cn->execute($sql);

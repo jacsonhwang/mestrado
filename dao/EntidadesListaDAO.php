@@ -12,7 +12,7 @@ class EntidadesListaDAO {
 	private $cn;
 	
 	public function __construct__ () {
-		echo "lalala";
+		
 	}
 	
 	public function recuperarPrimeiraLinha($idBaseDados, $nomeTabela) {
@@ -121,8 +121,6 @@ class EntidadesListaDAO {
 		$result = $cn->execute($sql);
 		
 		$dadosArray = array();
-		
-		//new dBug(sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC));
 		
 		while ($rs = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 			array_push($dadosArray, $rs);

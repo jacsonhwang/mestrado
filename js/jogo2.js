@@ -132,9 +132,7 @@ function drop(lista, classe, listaOposta, item) {
 
 	$(lista).append(html);
 		
-	$(lista).children(":last").addClass(classe);
-	
-	$("." + classe).data("dadosEntidade", dados);
+	$(lista).children(":last").addClass(classe).data("dadosEntidade", dados);
 
 	$("." + classe).draggable({
         //revert: 'invalid',
