@@ -62,7 +62,7 @@ $(document).ready(function() {
 
 function getEntityLayout(item) {
 	
-	var html = "<div class='drag' style='width:40%;'><ul class='box-list'>";
+	var html = "<div class='drag' style='width:20%; z-index: 40'><ul class='box-list'>";
 	
 	$(item).find("td").each(function() {
 		html += "<li>" + $(this).html() + "</li>";
@@ -143,11 +143,11 @@ function drop(lista, classe, listaOposta, item) {
         //appendTo: 'body'
     });
 
-	$("." + classe).resizable({		
-		maxHeight: 350,
+	$(".resize").resizable({		
+	    maxHeight: 350,
 	    maxWidth: 350,
 	    minHeight: 200,
-	    minWidth: 200	
+	    minWidth: 200
 	});
 		
 	$(listaOposta).find(item).remove();
