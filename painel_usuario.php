@@ -117,7 +117,10 @@ include_once __DIR__ . '/controller/entidadeControle.php';
 							</a>
 						</div>
 						<div class="panel-body">
-							<p>A pontuação mínima é de 60 pontos para a próxima fase.</p>
+						<ul>
+							<li>A pontuação mínima é de 60 pontos para a próxima fase.</li>
+							<li>Pontos adquiridos nesta fase não são acumulativos.</li>
+						</ul>
 							<div class="col-lg-8 col-lg-offset-2">
 								<form action="jogo.php" method="POST">
 									<div class="row" style="margin-bottom: 10px">
