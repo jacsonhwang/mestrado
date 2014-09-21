@@ -318,7 +318,7 @@ function finalizarJogo(situacao) {
 	if(situacao == 1) { // jogo encerrado normalmente, pelo bot�o
 		
 		if ($("#poolList").children().length > 1) {
-			confirmarFinalizarJogo();
+			confirmarFinalizarJogo(situacao);
 		} else {
 			alertaReferenciaAlvoFinalizarJogo();
 		}
@@ -345,7 +345,7 @@ function finalizarJogo(situacao) {
     
 }
 
-function confirmarFinalizarJogo() {
+function confirmarFinalizarJogo(situacao) {
 	$.blockUI({ message: null });
 	
 	new Messi("Deseja realmente finalizar o jogo?", {
