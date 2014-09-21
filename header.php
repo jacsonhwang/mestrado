@@ -92,6 +92,7 @@
 						<li><a href="cadastro.php" id="linkCadastro">Cadastro</a></li>
 						<li><a href="login.php" id="linkLogin">Login</a></li>
 						<li><a href="contato.php">Contato</a></li>
+						<li><a href="faq.php">FAQ</a></li>
 					</ul>
 				
 				<?php
