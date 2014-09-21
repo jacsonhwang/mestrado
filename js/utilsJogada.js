@@ -244,7 +244,7 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 	if(dadosArray.length == 0){
 		$("<tr>").appendTo(tabela + " > tbody");
 		
-		$("<td class='text-center' colspan='"+nomesColunas.length+"'>").appendTo(tabela + " > tbody > tr:last").html("Não existem dados para essa busca.");
+		$("<td class='text-center' colspan='"+nomesColunas.length+"'>").appendTo(tabela + " > tbody > tr:last").html("Nï¿½o existem dados para essa busca.");
 	}
 	
 		
@@ -315,34 +315,13 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 
 function finalizarJogo(situacao) {
 	
-	if(situacao == 1) { // jogo encerrado normalmente, pelo botão
+	if(situacao == 1) { // jogo encerrado normalmente, pelo botï¿½o
 		
-		$.blockUI({ message: null });
-		
-		new Messi("Deseja realmente finalizar o jogo?", {
-			title : "Finalizar jogo",
-			buttons : [ {
-				id : 0,
-				label : 'Sim',
-				val : 'Y'
-			}, {
-				id : 1,
-				label : 'N&atilde;o',
-				val : 'N'
-			} ],
-			callback: 
-				function(val) {
-				
-				if(val == 'Y') {
-					$.unblockUI();
-					salvarDados(situacao);
-				}
-				else {
-					$.unblockUI();
-				}
-			}
-		});
-		
+		if ($("#poolList").children().length > 1) {
+			confirmarFinalizarJogo();
+		} else {
+			alertaReferenciaAlvoFinalizarJogo();
+		}
 	}
 	else if(situacao == 2) { // jogo encerrado apï¿½s contador finalizar
 		
@@ -364,6 +343,52 @@ function finalizarJogo(situacao) {
 	    });
 	}
     
+}
+
+function confirmarFinalizarJogo() {
+	$.blockUI({ message: null });
+	
+	new Messi("Deseja realmente finalizar o jogo?", {
+		title : "Finalizar jogo",
+		buttons : [ {
+			id : 0,
+			label : 'Sim',
+			val : 'Y'
+		}, {
+			id : 1,
+			label : 'N&atilde;o',
+			val : 'N'
+		} ],
+		callback: 
+			function(val) {
+			
+			if(val == 'Y') {
+				$.unblockUI();
+				
+				salvarDados(situacao);
+			}
+			else {
+				$.unblockUI();
+			}
+		}
+	});
+}
+
+function alertaReferenciaAlvoFinalizarJogo() {
+	$.blockUI({ message: null });
+    
+    new Messi("Selecione no m&iacute;nimo uma refer&ecirc;ncia suspeita.", {
+        title : "Aviso",
+        titleClass : 'warning',
+        buttons : [ {
+            id : 0,
+            label : 'OK',
+            val : 'X'
+        } ],
+        callback: function(val) {
+        	$.unblockUI();
+        }
+    });
 }
 
 function iniciarContador() {
