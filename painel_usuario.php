@@ -117,6 +117,7 @@ include_once __DIR__ . '/controller/entidadeControle.php';
 							</a>
 						</div>
 						<div class="panel-body">
+							<p>A pontuação mínima é de 60 pontos para a próxima fase.</p>
 							<div class="col-lg-8 col-lg-offset-2">
 								<form action="jogo.php" method="POST">
 									<div class="row" style="margin-bottom: 10px">
@@ -155,7 +156,7 @@ include_once __DIR__ . '/controller/entidadeControle.php';
 							</a>
 						</div>
 						<div class="panel-body">
-
+							<p>Jogue para conseguir mais pontos e ser o primeiro lugar do ranking.</p>
 							<div class="col-lg-8 col-lg-offset-2">
 								<form action="jogo.php" method="POST">
 									<div class="row" style="margin-bottom: 10px">
