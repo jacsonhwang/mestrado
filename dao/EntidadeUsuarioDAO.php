@@ -49,7 +49,7 @@ class EntidadeUsuarioDAO {
 	
 		$cn = new Conexao();
 	
-		$sql = "SELECT u.id, u.nome, ISNULL(SUM(epa.qualidade), 0) as qualidade
+		$sql = "SELECT u.id, u.nome, ISNULL(SUM(epa.qualidade_hard_plus), 0) as qualidade
 				FROM " . $this->tabela . " eu
 				LEFT JOIN usuario u ON eu.usuario_id = u.id
 				LEFT JOIN entidade_" . $nomeEntidade . "_alvo epa ON eu.id = epa.entidade_usuario_id

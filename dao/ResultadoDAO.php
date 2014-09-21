@@ -82,7 +82,7 @@ class ResultadoDAO {
 			session_start();
 
 	 		//Calcula a qualidade do jogador e armazena na sessão
-			$sql2 = "SELECT dbo.calculaQualidade (".$idEntidadeUsuario.", ".$idEntidadeAlvo.") as qualidade";
+			$sql2 = "SELECT dbo.calculaQualidadeHardPlus (".$idEntidadeUsuario.", ".$idEntidadeAlvo.") as qualidade";
 			
 			$result = $cn->execute($sql2);
 			while ($rs = sqlsrv_fetch_array($result)) {
