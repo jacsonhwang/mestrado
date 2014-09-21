@@ -16,22 +16,27 @@
     
     <div class="container">
 	    <div class="row">
-	        <div class="col-md-4">
+	        <div class="col-md-3">
 	          <h2>Cadastre-se</h2>
 	          <p>Todos são bem vindos a se cadastrarem na ferramenta GCER. Participe e ajude um amigo no seu experimento.</p>
 	          <p><a class="btn btn-default" href="cadastro.php" role="button">Cadastrar</a></p>
 	        </div>
-	        <div class="col-md-4">
+	        <div class="col-md-3">
 	          <h2>Saiba Mais</h2>
 	          <p>Não sabe do que o GCER se trata? Confira em Saiba Mais uma breve tutorial sobre a ferramenta GCER.</p>
 	          <p><a class="btn btn-info btn-default btn-" href="saibaMais.php" role="button">Saiba mais</a></p>
 	       </div>
-	        <div class="col-md-4">
-	          <h2>Dúvidas</h2>
-	          <p>Dúvidas, sugestões, críticas? Entre em contato e deixe uma mensagem.</p>
-	          <p><a class="btn btn-default" href="contato.php" role="button">Contato</a></p>
-	        </div>
-	      </div>
+			<div class="col-md-3">
+				<h2>Dúvidas</h2>
+				<p>Dúvidas, sugestões, críticas? Entre em contato e deixe uma mensagem.</p>
+				<p><a class="btn btn-default" href="contato.php" role="button">Contato</a></p>
+			</div>
+			<div class="col-md-3">
+				<h2>FAQ</h2>
+				<p>Não entendeu nada do jogo? Não sabe qual o objetivo? Tente ler o FAQ.</p>
+				<p><a class="btn btn-default" href="faq.php" role="button">FAQ</a></p>
+			</div>
+      </div>
     </div>    
 </div>
 

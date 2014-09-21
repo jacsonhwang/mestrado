@@ -31,7 +31,7 @@
 		                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">1. O que é referência?</a>
 		                </h4>
 		            </div>
-		            <div id="collapse1" class="panel-collapse collapse in">
+		            <div id="collapse1" class="panel-collapse collapse">
 		                <div class="panel-body">
 		                    <p>Referência é um conjunto de caracteristicas que representam um ser vivo ou um objeto (pessoa, produto, carro, etc). Por exemplo, se é dito que um objeto tem uma tela de 4 polegadas, quad core, faz ligação. Todas essas caracteristicas são representadas pelas referências. Resumindo, as referências apontam para algo ou alguma coisa. No caso do exemplo, a referência está relacionada a um smartphone (objeto).</p>
 		                </div>
