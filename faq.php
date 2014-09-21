@@ -109,8 +109,18 @@
 		                </div>
 		            </div>
 		        </div>	
-		        
-		        
+		        <div class="panel panel-default">
+		            <div class="panel-heading">
+		                <h4 class="panel-title">
+		                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse8">8. O que é Rodada de Qualificação?</a>
+		                </h4>
+		            </div>
+		            <div id="collapse8" class="panel-collapse collapse">
+		                <div class="panel-body">
+		                    <p>A rodada de qualificação é uma forma do sistema filtrar os jogadores que não ainda não entenderam como o jogo funciona. Calma! Acreditamos que você ao se ambientar, conseguirá jogar e passar dos 60 pontos necessários. Bom jogo!</p>
+		                </div>
+		            </div>
+		        </div>	
 		    </div>
 		</div>
 	</div>
