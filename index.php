@@ -22,9 +22,9 @@
 	          <p><a class="btn btn-default" href="cadastro.php" role="button">Cadastrar</a></p>
 	        </div>
 	        <div class="col-md-4">
-	          <h2>Jogue</h2>
-	          <p>Não sabe do que o GCER se trata? Confira em Saiba Mais uma breve explicação da ferramenta.</p>
-	          <p><a class="btn btn-default" href="saibaMais.php" role="button">Saiba mais</a></p>
+	          <h2>Saiba Mais</h2>
+	          <p>Não sabe do que o GCER se trata? Confira em Saiba Mais uma breve tutorial sobre a ferramenta GCER.</p>
+	          <p><a class="btn btn-info btn-default btn-" href="saibaMais.php" role="button">Saiba mais</a></p>
 	       </div>
 	        <div class="col-md-4">
 	          <h2>Dúvidas</h2>
