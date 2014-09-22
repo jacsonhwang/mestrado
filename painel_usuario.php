@@ -120,6 +120,7 @@ include_once __DIR__ . '/controller/entidadeControle.php';
 						<ul>
 							<li>A pontuação mínima é de 60 pontos para a próxima fase.</li>
 							<li>Pontos adquiridos nesta fase não são acumulativos.</li>
+							<li>Jogue na caixa pontilhada, produtos de mesmo modelo que a referência alvo. Ex.: Caso seja um iPhone 5, procure por outros iPhone 5.</li>
 						</ul>
 							<div class="col-lg-8 col-lg-offset-2">
 								<form action="jogo.php" method="POST">
