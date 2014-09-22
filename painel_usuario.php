@@ -162,6 +162,8 @@ include_once __DIR__ . '/controller/entidadeControle.php';
 						<div class="panel-body">
 							<ul>
 								<li>Jogue para conseguir mais pontos e ser o primeiro lugar do ranking.</li>
+								<li>A pontuação máxima por jogada é de 100 pontos (caso você encontre todos os produtos), a mínima é -100 pontos.</li>
+								<li>Cada referência alvo tem uma quantidade de suspeitas, alguns podem ter 3, outros apenas 1.</li>
 								<li>Produtos de mesma cor e variações são considerados o mesmo.</li>
 							</ul>
 							<div class="col-lg-8 col-lg-offset-2">
