@@ -101,51 +101,95 @@ class ResultadoDAO {
 
 	function inserirEntidadeAlvo ($idEntidade, $idBaseDados, $situacao) {
 		$tipoRodada = $_SESSION['rodadaTipo'];
-		
+
+		$entidadeDAO = new EntidadeDAO();
+		$idEntidadeUsuario = $entidadeDAO->recuperarIdEntidadeUsuario($idBaseDados);
+			
 		if($tipoRodada == 1){
 			$qualificacao = '_qualificacao';
+			
+			$cn = new Conexao();
+			
+			$sql = "INSERT INTO [mestrado].[dbo].[entidade_produto_alvo".$qualificacao."]
+					([entidade_produto_id]
+					,[entidade_usuario_id]
+					,[situacao_tarefa_id]
+					,[data_inicio]
+					,[data_fim])
+					VALUES (
+					" . $idEntidade . "
+					," . $idEntidadeUsuario . "
+					," . $situacao . "
+					,'" . $_SESSION["inicioJogo"] . "'
+					,'" . date('Y-d-m H:i:s') . "')";
+			
+			$cn->execute($sql);
+			
+			$lastId = $cn->getLastId("entidade_produto_alvo".$qualificacao);
+			
+			$cn->disconnect();
+			
+			return $lastId;
+		
 		}else if($tipoRodada == 2){
 			$qualificacao = '';
+			
+			$cn = new Conexao();
+			$sql = "UPDATE entidade_produto_alvo SET situacao_tarefa_id = ".$situacao.", data_fim = GETDATE() WHERE entidade_produto_id = ".$idEntidade." AND entidade_usuario_id = ".$idEntidadeUsuario;
+			$cn->execute($sql);
+			
+			$sql = "SELECT id FROM entidade_produto_alvo WHERE entidade_produto_id = ".$idEntidade." AND entidade_usuario_id = ".$idEntidadeUsuario;
+			$result = $cn->execute($sql);
+			while ($rs = sqlsrv_fetch_array($result)) {
+				$entidadeProdutoAlvoId = $rs["id"];
+			}
+			
+			$cn->disconnect();
+			
+			return $entidadeProdutoAlvoId;
 		}
 		
-		$entidadeDAO = new EntidadeDAO();
+	}
+	
+	//O usuário começa com -100 pontos e situacao 3 (abandono de jogo)
+	function inserirEntidadeAlvoRodadaResolucao ($idEntidade, $idBaseDados, $situacao) {
+		$tipoRodada = $_SESSION['rodadaTipo'];
+	
+		if ($tipoRodada == 2){
+	
+			$entidadeDAO = new EntidadeDAO();
 		
-		$idEntidadeUsuario = $entidadeDAO->recuperarIdEntidadeUsuario($idBaseDados);
+			$idEntidadeUsuario = $entidadeDAO->recuperarIdEntidadeUsuario($idBaseDados);
 		
-		$cn = new Conexao();
+			$cn = new Conexao();
+	
+			$sql = "INSERT INTO [mestrado].[dbo].[entidade_produto_alvo]
+					([entidade_produto_id]
+					,[entidade_usuario_id]
+					,[situacao_tarefa_id]
+					,[qualidade]
+					,[qualidade_hard]
+					,[qualidade_hard_plus]
+					,[data_inicio]
+					,[data_fim])
+					VALUES (
+					" . $idEntidade . "
+					," . $idEntidadeUsuario . "
+					," . $situacao . "
+					,0
+					,0
+					,0
+					,GETDATE()
+					,NULL)";
 		
-		/* $sql = "dbo.calculaQualidadeQualificacao ".$idEntidadeUsuario.", ".$idEntidade;
+			$cn->execute($sql);
 		
-		$result = $cn->execute($sql);
-
-		session_start();
+			$lastId = $cn->getLastId("entidade_produto_alvo");
 		
-		while ($rs = sqlsrv_fetch_array($result)) {
-				
-			$_SESSION['qualidade'] = $rs["qualidade"];
-		} */
+			$cn->disconnect();
 		
-		$sql = "INSERT INTO [mestrado].[dbo].[entidade_produto_alvo".$qualificacao."]
-				([entidade_produto_id]
-				,[entidade_usuario_id]
-				,[situacao_tarefa_id]
-				,[data_inicio]
-				,[data_fim])
-				VALUES (
-				" . $idEntidade . "
-				," . $idEntidadeUsuario . "
-				," . $situacao . "
-				,'" . $_SESSION["inicioJogo"] . "'
-				,'" . date('Y-d-m H:i:s') . "')";
-		
-		$cn->execute($sql);
-		
-		$lastId = $cn->getLastId("entidade_produto_alvo".$qualificacao);
-		
-		$cn->disconnect();
-		
-		return $lastId;
-		
+			return $lastId;
+		}
 	}
 }
 

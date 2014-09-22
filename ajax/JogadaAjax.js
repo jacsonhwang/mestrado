@@ -147,6 +147,23 @@ JogadaAjax.prototype.inserirEntidadeAlvo = function(idEntidade, idBaseDados, sit
     return resultado;
 };
 
+JogadaAjax.prototype.inserirEntidadeAlvoRodadaResolucao = function(idEntidade, idBaseDados, situacao) {
+	var resultado = "";
+
+    $.ajax({
+        type: "POST",
+        url: "ajaxController/resultadoAjaxControle.php",
+        data: { idConsulta: 3, idEntidade: idEntidade, idBaseDados: idBaseDados, situacao: situacao },
+        async: false,
+        success: function(msg) {
+            resultado = jQuery.parseJSON(msg);
+        }
+    });
+
+    return resultado;
+};
+
+
 JogadaAjax.prototype.recuperaNomeJogo = function(idBaseDados) {
 	var resultado = "";
 

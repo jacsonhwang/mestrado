@@ -46,6 +46,14 @@ switch ($idConsulta){
 		echo $lastId;
 		
 		break;
+	case 3:
+		$resultadoDAO = new ResultadoDAO();
+	
+		$lastId = $resultadoDAO->inserirEntidadeAlvoRodadaResolucao($idEntidade, $idBaseDados, $situacao);
+	
+		echo $lastId;
+	
+		break;
 }
 
 ?>

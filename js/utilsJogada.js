@@ -244,7 +244,7 @@ function criarTabela(baseDadosNomeJogo, idBaseDados) {
 	if(dadosArray.length == 0){
 		$("<tr>").appendTo(tabela + " > tbody");
 		
-		$("<td class='text-center' colspan='"+nomesColunas.length+"'>").appendTo(tabela + " > tbody > tr:last").html("N�o existem dados para essa busca.");
+		$("<td class='text-center' colspan='"+nomesColunas.length+"'>").appendTo(tabela + " > tbody > tr:last").html("N&atilde;o existem dados para essa busca.");
 	}
 	
 		
@@ -562,4 +562,12 @@ function recuperarEntidadeAleatoria(idEntidade, idUsuario) {
 	    minHeight: 200,
 	    minWidth: 200	
 	});
+
+	var idBaseDados = $("#poolList").find("#entidadeAlvo").data("dadosEntidade").idBaseDados;
+	var idAlvo = $("#poolList").find("#entidadeAlvo").data("dadosEntidade").id;
+	
+	var idRegistroAlvo = jogadaAjax.recuperarIdEntidade(idBaseDados, idAlvo);
+	
+	//Insere somente caso seja rodada de resolucao
+	var idEntidadeAlvo = jogadaAjax.inserirEntidadeAlvoRodadaResolucao(idRegistroAlvo, idBaseDados, 3);
 }
