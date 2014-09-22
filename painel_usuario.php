@@ -159,7 +159,10 @@ include_once __DIR__ . '/controller/entidadeControle.php';
 							</a>
 						</div>
 						<div class="panel-body">
-							<p>Jogue para conseguir mais pontos e ser o primeiro lugar do ranking.</p>
+							<ul>
+								<li>Jogue para conseguir mais pontos e ser o primeiro lugar do ranking.</li>
+								<li>Produtos de mesma cor e variações são considerados o mesmo.</li>
+							</ul>
 							<div class="col-lg-8 col-lg-offset-2">
 								<form action="jogo.php" method="POST">
 									<div class="row" style="margin-bottom: 10px">
