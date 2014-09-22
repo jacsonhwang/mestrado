@@ -19,8 +19,8 @@ include_once __DIR__ . '/controller/entidadeControle.php';
 	<?php 
 	if($_SESSION['rodadaTipo'] == 1){
 		if ($_SESSION['qualidade'] != null && $_SESSION['qualidade'] >= 60) { ?>
-			new Messi('Parabêns !! Você fez <?php echo $_SESSION['qualidade']; ?> pontos. Portanto, passou no teste de qualificação ', {
-					title: 'Pontuação',
+			new Messi('Parabêns !! Você fez <?php echo $_SESSION['qualidade']; ?> pontos. Portanto, passou no teste de qualifica&ccedil;&atilde;o ', {
+					title: 'Pontua&ccedil;&atilde;o',
 					titleClass : 'info',
 				    buttons : [ {
 				        id : 0,
@@ -33,12 +33,12 @@ include_once __DIR__ . '/controller/entidadeControle.php';
 			$_SESSION['qualidade'] = '';
 		} else if ($_SESSION['qualidade'] != null && $_SESSION['qualidade'] <= 60) {
 	?>
-		new Messi('Você fez <?php echo $_SESSION['qualidade']; ?> pontos. Tente Novamente !', {
-			title: 'Pontuação',
-			titleClass : 'info',
+		new Messi('Você fez <?php echo $_SESSION['qualidade']; ?> pontos, portanto n&atilde;o conseguiu os 60 pontos necess&aacute;rios. Veja o tutorial para tirar suas dúvidas. Tente novamente! <br /> <br /> <div style="text-align:center"><a class="btn btn-primary btn-default btn-" href="saibaMais.php" role="button">Clique aqui para ver o tutorial!</a></div>', {
+			title: 'Reprovado',
+			titleClass : 'error',
 		    buttons : [ {
 		        id : 0,
-		        label : 'OK',
+		        label : 'Continuar',
 		        val : 'X'
 		    } ],	
 		});
